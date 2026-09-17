@@ -61,3 +61,13 @@
 - 密钥零信任：0196/0197 归档 secret-free（暗号运行时读 catalog）；只出现公开 publishable 公钥。
 - EF 只改源码未部署（12-02）；0197 只建不跑（12-04）；桶只加一条 select 策略，原件桶 student-documents 一字节未动。
 - reviewer 三级回落顺序：直读→signed_url→现场渲染；`_wmFetchEF` 逐字保留（闸8 静态断言 v34==v35）。四端未动 md5 开工=收官；本机测试(vm)不入 git。
+
+## 8. 收尾（卡1084 / 1085，2026-09-17 傍晚 · 业主已推主仓库+部署 v30+放宽约束后）
+- **EF v30 已核**：`supabase functions list` → watermark-doc version **30**（部署前 v29）、verify_jwt=true；outcome 约束已含 `served_cached_direct`。两条都对才往下。
+- **清桶 100→0**：`wm_cache_purge(50)` 调 3 次（返回 50/50/20，40s 间隔），桶 100→50→1→0。
+- **cron 重灌回稳**：0195 cron 每 5 分钟补 20，约半小时补齐；末态 95 objs / 待补 4（连续两次一致）。
+- **0198 已应用+验证**：`log_wm_view` 落地 outcome 改回 `served_cached_direct`（函数数 1→1）；模拟 reviewer1 调用写入正确、返回 RV-D09E；测试审计行 `f8f5eeb4…` 已删（DELETE 1）。
+- **瘦身前后大小**：重灌前 100 objs / 平均 398.6 KB / 38.93 MB → 重灌后 95 objs / 平均 340.9 KB / 31.63 MB（−19%）。**分类**：图片 jpg 69 个 **平均 202.2 KB**（瘦身主力、审核最常看）；PDF 25 个 701.1 KB（本轮不瘦，占桶一半多）；PNG 1 个 910.4 KB。→ **审核端看图片明显变快**；PDF 待下轮另瘦。
+- **收尾发现（非致命）**：`wm_cache_index` 重灌后仍 0 行 —— service_role 无 insert 授权，v30 EF upsert 静默失败；但 `log_wm_view` 兜底自算 rv、直读不依赖索引 → 功能全正常。修法一行 grant，列入第十三轮建议包 A（详见 JOB-12-06.md）。
+- **第十三轮建议包**：A 索引通电(grant service_role) / B PDF 瘦身(源码不部署) / C 审计完整性核对 / D outcome 约束归档进账本 / E 历史 backlog 收口 —— 判据+边界见 `JOB-12-06.md` 末节。
+- **待推清单**：卡1084/1085 本地已 commit（0198 归档 + 回执 + reflow 日志 + 本节），主仓库照旧只 commit 不推；逐笔以推前 `git log origin/main..HEAD` 实测为准。桶只碰 wm-cache、原件桶未动、EF 未改。
