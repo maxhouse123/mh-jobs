@@ -1,14 +1,14 @@
-# JOB-18-06 线上走查回执 (G⑥) — CC 对现役线上单探
+# JOB-18-06 线上走查回执 (G⑥) — LIVE 轮询
 
-> CC 本地对**现役线上**先跑一遍并如实记录: 五端 [VER] 目标是第十八轮新版(partner v166 / admin v218 / reviewer v43 三端升版; student v397 / school v234 不动), 现役 partner/admin/reviewer=旧版故指向新版一项为红/挡——属预期, 真绿在业主收官推送后再跑出。本包旨在证明「自动推送」与「元素级截图」真的发生。
+> 业主在推送后跑; Chromium 关代理; 学生端/中介端公开可达, admin/reviewer 在 CF Access 后。
 
-小结: 绿 15 / 红 2 / 灰(N/A) 5
+小结: 绿 17 / 红 0 / 灰(N/A) 5
 
 ## 五端 index 实际指向的版本
 | 端 | 目标(第十八轮) | 实际指向 |
 |---|---|---|
 | student | maxhouse_student_portal_v397.html | maxhouse_student_portal_v397 |
-| partner | maxhouse-partner-portal-v166.html | maxhouse-partner-portal-v165 |
+| partner | maxhouse-partner-portal-v166.html | maxhouse-partner-portal-v166 |
 | school | maxhouse-school-portal-v234.html | maxhouse-school-portal-v234 |
 | admin | maxhouse-admin-portal-v218.html | 未识别 (CF Access) |
 | reviewer | maxhouse-reviewer-portal-v43.html | 未识别 (CF Access) |
@@ -16,8 +16,8 @@
 ## 逐步红绿
 | 步骤 | 期望 | 实际 | 判 |
 |---|---|---|---|
-| ① [VER] student index 指向新版 | maxhouse_student_portal_v397.html | 已指向 (用时 2s) | 绿 |
-| ① [VER] partner index 指向新版 | maxhouse-partner-portal-v166.html | 未指向 (http 200, 实际=maxhouse-partner-portal-v165) | 红 |
+| ① [VER] student index 指向新版 | maxhouse_student_portal_v397.html | 已指向 (用时 1s) | 绿 |
+| ① [VER] partner index 指向新版 | maxhouse-partner-portal-v166.html | 已指向 (用时 21s) | 绿 |
 | ① [VER] school index 指向新版 | maxhouse-school-portal-v234.html | 已指向 (用时 0s) | 绿 |
 | ① [VER] admin index 指向新版 | maxhouse-admin-portal-v218.html | http 302, 实际=未识别 | N/A |
 | ① [VER] reviewer index 指向新版 | maxhouse-reviewer-portal-v43.html | http 302, 实际=未识别 | N/A |
@@ -32,7 +32,7 @@
 | ③ 界面软删测试件(真按钮) | 真点缩略图删除钮删本轮合成件(只认合成名) | 已删 ×1(真点删除钮+确认框, 下方 REST 复核) | 绿 |
 | ② 学生端 0 未捕获报错 | pageerror = 0 | pageerror ×0 | 绿 |
 | ② 收尾: 测试件清 0 (documents 活件 + storage 孤儿) | documents 活件=0 且 storage 无合成孤儿 | =0 (documents 0 / storage 孤儿 0, 干净) | 绿 |
-| ③ [VER]=v166 (console) | console 打印 partner portal v166 | 未见 v166 (现役=旧版, 预期红) | 红 |
+| ③ [VER]=v166 (console) | console 打印 partner portal v166 | 命中 | 绿 |
 | ③ Sent invites 列表在 | 列表出现 [data-dl-copy] 按钮 | ×7 条 | 绿 |
 | ③ Copy link 有可见反应(1.5s) | 提示条或按钮字可见变化 | 有: 提示条 | 绿 |
 | ② 截图: 中介端邀请列表(邮箱/姓名样式打码) | 产出 par-invite-list-masked.png(PII 已脱敏) | 已产出 | 绿 |
@@ -41,12 +41,12 @@
 
 ## 全程日志
 ```
-· === JOB-18-06 线上走查开始 (CC 单探现役线上) ===
+· === JOB-18-06 线上走查开始 (LIVE 轮询) ===
 · 公钥来源: 环境变量 SUPABASE_ANON_KEY
 · 轮询 student index: https://www.maxhouses.net/student-portal/ → 期待指向 maxhouse_student_portal_v397.html
-· [绿] ① [VER] student index 指向新版 — 期望: maxhouse_student_portal_v397.html | 实际: 已指向 (用时 2s)
+· [绿] ① [VER] student index 指向新版 — 期望: maxhouse_student_portal_v397.html | 实际: 已指向 (用时 1s)
 · 轮询 partner index: https://www.maxhouses.net/partner-portal/ → 期待指向 maxhouse-partner-portal-v166.html
-· [红] ① [VER] partner index 指向新版 — 期望: maxhouse-partner-portal-v166.html | 实际: 未指向 (http 200, 实际=maxhouse-partner-portal-v165)
+· [绿] ① [VER] partner index 指向新版 — 期望: maxhouse-partner-portal-v166.html | 实际: 已指向 (用时 21s)
 · 轮询 school index: https://www.maxhouses.net/school-portal/ → 期待指向 maxhouse-school-portal-v234.html
 · [绿] ① [VER] school index 指向新版 — 期望: maxhouse-school-portal-v234.html | 实际: 已指向 (用时 0s)
 · 轮询 admin index: https://www.maxhouses.net/admin-portal/ → 期待指向 maxhouse-admin-portal-v218.html (CF Access 后, 预期挡)
@@ -71,7 +71,7 @@
 · [绿] ② 学生端 0 未捕获报错 — 期望: pageerror = 0 | 实际: pageerror ×0
 · [绿] ② 收尾: 测试件清 0 (documents 活件 + storage 孤儿) — 期望: documents 活件=0 且 storage 无合成孤儿 | 实际: =0 (documents 0 / storage 孤儿 0, 干净)
 · partner1 已真登线上中介端。
-· [红] ③ [VER]=v166 (console) — 期望: console 打印 partner portal v166 | 实际: 未见 v166 (现役=旧版, 预期红)
+· [绿] ③ [VER]=v166 (console) — 期望: console 打印 partner portal v166 | 实际: 命中
 · [绿] ③ Sent invites 列表在 — 期望: 列表出现 [data-dl-copy] 按钮 | 实际: ×7 条
 · [绿] ③ Copy link 有可见反应(1.5s) — 期望: 提示条或按钮字可见变化 | 实际: 有: 提示条
 · [绿] ② 截图: 中介端邀请列表(邮箱/姓名样式打码) — 期望: 产出 par-invite-list-masked.png(PII 已脱敏) | 实际: 已产出
