@@ -53,4 +53,6 @@
 - **其它挂账**：student v399 术语若业主否决则回退登记；watermark-doc v35 部署后 probe 实效回填；20-04 `online-walk` 的 v167/v168 卡片选择器新值须待有现成 Q1 告警场景才量到样式（本轮无场景记 N/A）。
 - **REJ-1 / 老观察项**（承前轮 backlog）：拒绝弹窗缺类别选择器（rejectCategory 恒传 null）、配额云化、vendor/tesseract LFS 评估——均非本轮范围，续挂。
 
-PUSH_OK=no
+PUSH_OK=yes
+
+> 2026-09-24 盖章（卡1156）：PUSH_OK 由 no 改 yes。Claude 复查通过（指纹 / 语法 / 新旧逐行 / v35 惰性加载逐处核 await / 无头启动零新报错 / 卡片位置与颜色 / 清判定逻辑 / 脚本卫生零命中）；业主批准学生端「学习证明→在读证明」与中介端 v168 视觉改动（CC 真页面截图先看，线上再肉眼验收）。
