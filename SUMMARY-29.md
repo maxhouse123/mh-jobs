@@ -1,4 +1,4 @@
-PUSH_OK=no
+PUSH_OK=yes
 
 # SUMMARY-29 · 第二十九轮收官（快车道：管理端派单台三处病 + 学校端提额数量九档）
 
@@ -166,3 +166,5 @@ from pg_proc where proname = 'admin_dispatch_docs';
    - **P6 审批加量口径**：`admin_decide_school_quota` 目前只翻 status、不在函数里加配额数字——若要「批准即自动加 N 到 allocated」，需另设计（本轮未动）。
    - **配额云化**：提额已放开九档写 `school_quota_requests`；quota 的真正扣减/发放口径仍散在前端，建议后续块统一到数据层。
    - 迁移账本：0219/0220 是否已贴以库为准；0221 待业主卡1215 手贴。
+
+> 2026-09-27 Claude 判定：首行原写 PUSH_OK=no 是 CC 把字段理解成「CC 自己没推」；四包闸全绿，改判 PUSH_OK=yes，业主已用卡1217 推送主仓库。
