@@ -2,7 +2,7 @@ PUSH_OK=yes
 
 # SUMMARY-31 · 第三十一轮收官（学校报名系统对接一期 · 验收返修）
 
-> PUSH_OK=yes 的含义：本轮六包全部做完、每包闸全过、无「必须停」、`~/mh-verify/r31-STOP.txt` 不存在；主仓库已按「每包一笔 commit、不 push」备好（6 笔，`8a438fb`→`98006f8`，全部 JOB-31-xx），业主可用卡1237 推送。**本轮无需手贴任何 SQL**（0222 上一轮已落库，本轮只改它的注释）。
+> PUSH_OK=yes 的含义：本轮六包全部做完、每包闸全过、无「必须停」、`~/mh-verify/r31-STOP.txt` 不存在；主仓库已按「每包一笔 commit、不 push」备好（6 笔，`8a438fb`→`98006f8`，全部 JOB-31-xx），业主可用卡1237 推送（现共 **7 笔**：6 笔功能/文档 `8a438fb`→`98006f8` + 1 笔自验证据 `3f4a8dc`；工作树已 clean，仅 QUEUE-31.md 与 JOB-16-00 为卡外既有未跟踪物）。**本轮无需手贴任何 SQL**（0222 上一轮已落库，本轮只改它的注释）。
 
 ## 版本 / md5 账
 | 文件 | 版本 | md5 |
@@ -73,4 +73,4 @@ PUSH_OK=yes
 8. **历轮挂账**：REJ-1（拒绝弹窗缺类别选择器）、admin LS 桥收敛、quota 视图 mock 云化、withdraw_referral 线上 400、vendor/tesseract LFS 评估等既有 backlog。
 
 ---
-本轮到此收官。主仓库 6 笔 commit 待业主用卡1237 推送（推前 `git log origin/main..HEAD` 过目、推后必须空输出 + `git status` clean，四段式）。
+本轮到此收官。主仓库 7 笔 commit（6 功能/文档 + 1 证据）待业主用卡1237 推送（推前 `git log origin/main..HEAD` 过目、推后必须空输出 + `git status` clean，四段式）。
