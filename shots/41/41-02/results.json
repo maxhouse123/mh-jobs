@@ -1,0 +1,103 @@
+{
+  "reqLog": {
+    "auth": 3,
+    "read": 83,
+    "sign": 2,
+    "write_blocked": 1,
+    "other": 3,
+    "writeUrls": [
+      "[stuA] PATCH /rest/v1/students"
+    ]
+  },
+  "roles": {
+    "versionProbe": {
+      "want": {
+        "student-portal": "v410",
+        "partner-portal": "v181",
+        "school-portal": "v245"
+      },
+      "got": {
+        "student-portal": "v410",
+        "partner-portal": "v181",
+        "school-portal": "v245"
+      },
+      "verdict": "过"
+    },
+    "partner1": {
+      "cond": "中介代填: 淡黄预填+表头+AI按钮(不点)+PDF本地转图",
+      "login": "过",
+      "probe": {
+        "referred": 0,
+        "openFn": null,
+        "overlay": false,
+        "nPrefilled": 0,
+        "notice": "",
+        "hasAiBtn": false,
+        "pdfFn": true,
+        "pdfResult": null
+      },
+      "verdict": "判不了",
+      "note": "referred=0 openFn=null prefilled=0 notice=无 aiBtn=false pdfFn=true pdf=null",
+      "pageerr": 0
+    },
+    "schX": {
+      "cond": "学校: 重交两级显示+任务卡lang/exchange人话+提额九档芯片",
+      "login": "过",
+      "probe": {
+        "quotaFn": true,
+        "quotaChipCount": 20,
+        "langHuman": true,
+        "rawCodeLeak": false,
+        "versionMarker": false,
+        "bodyLen": 1099
+      },
+      "verdict": "部分",
+      "note": "quotaFn=true quotaChips=20 langHuman=true rawCodeLeak=false versionMarker=false(需真有重交数据才判得准→部分/判不了)",
+      "pageerr": 0
+    },
+    "reviewer1": {
+      "cond": "审核: 登录+队列页+某材料查看器(只看)",
+      "login": "不过",
+      "verdict": "判不了",
+      "err": "page.waitForSelector: Timeout 40000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#gateEmailInp",
+      "pageerr": 0
+    },
+    "stuA": {
+      "cond": "学生: page.clock+55分钟缩略图重签观察 + item1 淡黄预填",
+      "login": "过",
+      "item1": {
+        "openFn": true,
+        "overlay": true,
+        "nPrefilled": 2,
+        "notice": "2 field(s) prefilled by platform (yellow",
+        "hasAiBtn": true
+      },
+      "item4": {
+        "thumbBefore": {
+          "total": 27,
+          "firstSrc": "https://uexgzwfambanvhdhxome.supabase.co/storage/v1/object/s",
+          "hasResignFn": true
+        },
+        "thumbAfter": {
+          "total": 27,
+          "broken": 0
+        },
+        "signsBefore": 2,
+        "signsAfter": 2,
+        "resigned": false,
+        "stillShowing": true,
+        "verdict": "不过(未触发重签)"
+      },
+      "verdictItem1": "过",
+      "verdict": "见 item1/item4",
+      "note": "item1 预填=过(prefilled=2 notice=有 aiBtn=true) | item4 缩略图=不过(未触发重签)(sign 2→2, 缩略图 27→27/破0)",
+      "pageerr": 0
+    }
+  },
+  "cantJudge": [
+    "管理端 admin 任何项(本轮无 admin 账号授权, 不登)",
+    "平台常量真值 / _mh_level_aliases / admin_dispatch_docs(需 SQL Editor 查 pg_proc, 学生/中介/学校身份调不了)",
+    "云函数 v3 线上真跑效果(需业主先用卡1285 部署 v3; 本轮 CC 不调真模型零费用, 由 Claude 用卡代查)"
+  ],
+  "zeroWrite": "安全网拦下 1 个写请求: [\"[stuA] PATCH /rest/v1/students\"]"
+}
