@@ -41,3 +41,16 @@ Lina 从真站一路走完：填志愿、填资料、传六份材料、提交拿
 ## 产物
 - `flows/student-apply.mjs`、`flows/school-upload.mjs`、`make-docs.mjs`（合成材料+通知书）、`g0-02-run.mjs`（编排，可复用/可重建）、`g0-02-backstage.sql`、`g0-02-emailverify.sql`、probe-02*.sql、`created-ids.json` 追加 G0-02。
 - 主仓库：本包脚本已 git add + commit（未 push）。
+
+---
+
+## 追加（2026-10-05，依业主裁决 R1=A）：第二份 offer 已补上
+业主拍板用「第二所演示学校」给 Lina 补第二份 offer。照办结果：
+- 在**学校端真注册页**新注册了一所测试校 **guide_sch2 = Demo University 2**（校代码 SCH-8E561C，已置 is_test=true、状态 active、建档系统 none；密码只写进 accounts.json 的 guide_sch2 键）。
+- 这所学校给 Lina 发了第二份 offer（数据科学硕士），Lina 接受，学校传了通知书（14 天到期），**没有付款 → 停在「待付 ¥1,500」**（优惠码阶梯：Lina 第一份已用掉 ¥0 档，第二份自然是 ¥1,500 档；线上实测报价 final=1500）。
+- 现在 Lina 登录真站，Admissions 区**两份 offer 都在**：#1（武汉大学 demo）已确认、通知书+JW202 可开；#2（Demo University 2）待付 ¥1,500、带到期倒数。
+
+**所以 G0-02 判据 ③ 现已全过**（#1 确认 + #2 待付 ¥1,500）。整包 ①②③④⑤ 全过。
+- R2 已遵：顶层 schX（sc1 真校）业主已删，本轮此后只用 accounts.schX（schx 武汉大学 demo）。
+- R3 已遵：回执不再写真邀请码本身（统一写「真码」）。
+- 截图：`jobs/JOB-G0/shots/g0-02b-stuA-two-offers.png`。
