@@ -1,0 +1,759 @@
+{
+ "portal": "school",
+ "version": "v245",
+ "file": "maxhouse-school-portal-v245.html",
+ "md5": "6851ea1ae17f379a520951b8f4b4a5c9",
+ "portal_ver": 245,
+ "ui_langs": [
+  "zh",
+  "en"
+ ],
+ "fallback_langs_partial": [
+  "ru",
+  "fr"
+ ],
+ "i18n_embedded": true,
+ "external_scripts": [
+  "./vendor/supabase.js",
+  "../assets/mh-viewer-v2-1-1.js"
+ ],
+ "storage_buckets": [
+  "comm-attachments",
+  "offer-letters",
+  "offer-samples",
+  "school-onboarding-docs",
+  "schools(=table,not bucket)"
+ ],
+ "edge_functions": [
+  "fetch-logo",
+  "send-verify-email",
+  "student-avatars",
+  "watermark-doc"
+ ],
+ "screens": [
+  {
+   "id": "auth-login",
+   "name_zh": "登录",
+   "name_en": "Sign in",
+   "entry": "app 启动落地页 / renderSessionLostView @9230 / 登录门 gate (line ~4380)",
+   "controls": [
+    "gateSetLang(en|zh) @4385-4386 语言门",
+    "输入框 email/password",
+    "忘记密码链接",
+    "角色门(学校/其它端选择)",
+    "提交 → school_bootstrap"
+   ],
+   "rpcs": [
+    "school_bootstrap",
+    "is_school",
+    "register_school_account",
+    "is_my_email_verified",
+    "confirm_email_verification_v2"
+   ],
+   "tables": [
+    "schools",
+    "school_members"
+   ],
+   "buckets": [],
+   "success_text": "进入 dashboard / onboarding"
+  },
+  {
+   "id": "onboarding",
+   "name_zh": "完善学校资料",
+   "name_en": "Complete school profile",
+   "entry": "状态 incomplete/pending/rejected → renderOnboardingView @9563；dashboard 横幅按钮 onb.bannerTitle='完善学校资料'",
+   "controls": [
+    "renderOnboardingForm @9610 多步表单",
+    "renderProfileSummary",
+    "renderOnbThumb/openThumbPreview 资料缩略图",
+    "提交 submit_school_onboarding"
+   ],
+   "rpcs": [
+    "submit_school_onboarding",
+    "update_school_profile"
+   ],
+   "tables": [
+    "schools"
+   ],
+   "buckets": [
+    "school-onboarding-docs"
+   ],
+   "success_text": "onb.statusPending 审核中"
+  },
+  {
+   "id": "pending-review",
+   "name_zh": "资料审核中",
+   "name_en": "Under review",
+   "entry": "状态 pending → renderOnboardingView @9563 (pending 分支)",
+   "controls": [
+    "locked-banner pending",
+    "common.viewDetails 查看详情按钮 → onboarding"
+   ],
+   "rpcs": [],
+   "tables": [
+    "schools"
+   ],
+   "buckets": [],
+   "success_text": "approved 后解锁 dashboard"
+  },
+  {
+   "id": "dashboard",
+   "name_zh": "工作台首页",
+   "name_en": "Dashboard",
+   "entry": "goHome()/userChip；approved 默认视图 renderDashboardView @10911",
+   "controls": [
+    "6 个统计卡 hero-stat: statBookmarks/statPreAdmit/statAgreed/statWaitingFinalize/statAdmitted/statTasks",
+    "renderOfferQuotaPanel 名额面板",
+    "3 个 quick-action-hero: 浏览学生 goToBrowse() / 创建招生任务 openCreateTask() / 导出已录取名单",
+    "行动条 _renderActionBar(待传通知书/待传JW202)",
+    "任务列表区 dashTaskListSection"
+   ],
+   "rpcs": [],
+   "tables": [
+    "admission_tasks",
+    "offer_decisions",
+    "task_candidates"
+   ],
+   "buckets": [],
+   "success_text": "各统计数字实时"
+  },
+  {
+   "id": "offer-quota-panel",
+   "name_zh": "Offer 配额面板",
+   "name_en": "Offer quota panel",
+   "entry": "dashboard 内 renderOfferQuotaPanel @10844；标题 quota.panelTitle='Offer 配额'",
+   "controls": [
+    "剩余/已用进度条",
+    "申请提额按钮 openQuotaRequestForm() @10889"
+   ],
+   "rpcs": [],
+   "tables": [
+    "schools(quota_bonus)",
+    "tier_quota",
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "显示 总名额=等级名额+加成"
+  },
+  {
+   "id": "browse",
+   "name_zh": "浏览学生",
+   "name_en": "Browse students",
+   "entry": "dashboard 浏览学生卡 goToBrowse()；browse.title='浏览学生' renderBrowseView @11152",
+   "controls": [
+    "renderFilterBar @11528",
+    "renderStudentCard @11948 学生卡",
+    "renderGroupedStudents @12869 分组(进行中/全部等桶)",
+    "renderSelectionBar @12045 批量选择条",
+    "renderActiveFilterChips",
+    "导出按钮 openExportWizard() @11255"
+   ],
+   "rpcs": [
+    "search_students_global",
+    "get_students_global_stage",
+    "get_students_exposure",
+    "get_student_photo"
+   ],
+   "tables": [
+    "students",
+    "task_candidates",
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "学生卡渲染，含曝光/阶段"
+  },
+  {
+   "id": "filter",
+   "name_zh": "筛选条件",
+   "name_en": "Filters",
+   "entry": "renderFilterView @11386 / renderFilterBar @11528",
+   "controls": [
+    "renderCountryPicker @11718",
+    "renderMajorPicker @11754 / openFilterMajorDropdown",
+    "基础/人口/状态分组 task.bsBasic/bsDemo/bsStatus",
+    "清空 task.bsClear",
+    "自付/政府奖 task.fundSelf/fundGov"
+   ],
+   "rpcs": [
+    "search_students_global",
+    "list_intake_terms"
+   ],
+   "tables": [
+    "students",
+    "intake_terms"
+   ],
+   "buckets": [],
+   "success_text": "结果落 searchResults"
+  },
+  {
+   "id": "searchResults",
+   "name_zh": "搜索结果",
+   "name_en": "Search results",
+   "entry": "renderSearchResultsView @11448",
+   "controls": [
+    "renderStudentCard 结果卡",
+    "renderActiveFilterChips 当前筛选药丸",
+    "renderTaskContextBanner 任务语境横幅"
+   ],
+   "rpcs": [
+    "search_students_global"
+   ],
+   "tables": [
+    "students"
+   ],
+   "buckets": [],
+   "success_text": "结果卡列表"
+  },
+  {
+   "id": "taskList",
+   "name_zh": "我的招生任务",
+   "name_en": "My admission tasks",
+   "entry": "dashboard statTasks 卡 / task.viewAll；renderTaskListView；标题 task.listTitle='我的招生任务'",
+   "controls": [
+    "renderTaskListCard @25043 任务卡",
+    "打开 openTask(code) @11073",
+    "新建 openCreateTask() @24941"
+   ],
+   "rpcs": [
+    "get_task_candidates",
+    "get_students_global_stage"
+   ],
+   "tables": [
+    "admission_tasks",
+    "task_candidates"
+   ],
+   "buckets": [],
+   "success_text": "任务卡含候选人数"
+  },
+  {
+   "id": "task-detail",
+   "name_zh": "任务详情",
+   "name_en": "Task detail",
+   "entry": "openTask(code) @11073 → renderTaskView @18735",
+   "controls": [
+    "renderTaskScholarshipDisplay/renderTaskAllScholarships",
+    "renderTaskStudentCard @19386 候选卡",
+    "一键匹配 showMatchResultsModal",
+    "筛选添加 openAdmissionDocsUpload",
+    "编辑 openCreateTask(code)",
+    "openTaskAssignPopover @22586"
+   ],
+   "rpcs": [
+    "get_task_candidates",
+    "match_task_candidates",
+    "add_task_candidate",
+    "remove_pool_candidate",
+    "update_admission_task"
+   ],
+   "tables": [
+    "admission_tasks",
+    "task_candidates"
+   ],
+   "buckets": [],
+   "success_text": "候选池渲染"
+  },
+  {
+   "id": "createTask",
+   "name_zh": "新建/编辑招生任务",
+   "name_en": "Create/Edit admission task",
+   "entry": "openCreateTask() @21028 → renderCreateTaskView @21124；标题 task.createTitle='创建招生任务'/task.editTitle",
+   "controls": [
+    "#tdNameZh 中文名 task.nameZh",
+    "#tdName 英文名 task.nameEn",
+    "programLevel 层次(语言/专科/本科/硕士/博士/交换)",
+    "renderIntakeTermSelect @21014 入学季",
+    "renderTaskMajorPicker @20763 专业",
+    "#tdHeadcount 招生人数",
+    "#tdDeadline 截止",
+    "#tdApplyStart/#tdReportStart/#tdReportEnd 时间窗",
+    "funding 自费 task.fundingSelf / 奖学金 task.fundingScholar",
+    "showScholarTypePickerModal @20613 奖学金类型",
+    "renderScholarshipPackageCard 奖学金包",
+    "#tdAttachInput 附件",
+    "保存 create_admission_task/update_admission_task"
+   ],
+   "rpcs": [
+    "create_admission_task",
+    "update_admission_task",
+    "list_intake_terms"
+   ],
+   "tables": [
+    "admission_tasks",
+    "intake_terms"
+   ],
+   "buckets": [],
+   "success_text": "task.createdAsDraft 建为草稿 / 第3个起 task.willNeedApproval 需平台审批 (showOverQuotaWarningModal @20577)"
+  },
+  {
+   "id": "quotaRequest",
+   "name_zh": "申请提额表单",
+   "name_en": "Request quota increase",
+   "entry": "openQuotaRequestForm() @21786 → renderQuotaRequestFormView @21901",
+   "controls": [
+    "九档芯片 OFFER_QUOTA_REQUEST_PRESETS=[5,10,20,30,50,100,200,500,1000]",
+    "数量输入 max=1000 _v241MaxPerRequest",
+    "原因文本 reason",
+    "提交"
+   ],
+   "rpcs": [],
+   "tables": [
+    "school_quota_requests"
+   ],
+   "buckets": [],
+   "success_text": "申请提交待平台审批"
+  },
+  {
+   "id": "quotaRequestList",
+   "name_zh": "提额申请记录",
+   "name_en": "Quota request history",
+   "entry": "renderQuotaRequestListView @22081",
+   "controls": [
+    "renderQuotaReqSummaryInner",
+    "renderQuotaRequestRow @22136 记录行(状态: pending/approved/rejected)"
+   ],
+   "rpcs": [],
+   "tables": [
+    "school_quota_requests"
+   ],
+   "buckets": [],
+   "success_text": "显示每条申请状态与批注"
+  },
+  {
+   "id": "match",
+   "name_zh": "一键匹配结果",
+   "name_en": "One-click match results",
+   "entry": "任务详情「一键匹配」→ showMatchResultsModal @14641",
+   "controls": [
+    "renderMatchStudentCard @14736",
+    "openMatchStudentDetail @14770",
+    "加入 add_task_candidate"
+   ],
+   "rpcs": [
+    "match_task_candidates",
+    "add_task_candidate"
+   ],
+   "tables": [
+    "task_candidates",
+    "students"
+   ],
+   "buckets": [],
+   "success_text": "圈定学生进候选池"
+  },
+  {
+   "id": "blind-search-add",
+   "name_zh": "盲态筛选添加",
+   "name_en": "Blind search & add",
+   "entry": "任务详情「筛选添加」→ openAdmissionDocsUpload @13919 / renderBlindResultCard @24801",
+   "controls": [
+    "筛选条件(国别/专业/年龄/学历等)",
+    "放宽条件",
+    "renderBlindResultCard 脱敏结果卡(无联系方式)",
+    "加入 add_task_candidate"
+   ],
+   "rpcs": [
+    "search_students_blind",
+    "add_task_candidate"
+   ],
+   "tables": [
+    "students",
+    "task_candidates"
+   ],
+   "buckets": [],
+   "success_text": "脱敏学生加入候选池"
+  },
+  {
+   "id": "candidate-pool-card",
+   "name_zh": "候选池学生卡",
+   "name_en": "Candidate pool card",
+   "entry": "任务详情候选池 renderCloudCandidateCard @24228",
+   "controls": [
+    "学生状态五档药丸(renderTaskStudentCard)",
+    "头像 student-avatars",
+    "移除 remove_pool_candidate",
+    "打开详情 openCloudStudentDetail"
+   ],
+   "rpcs": [
+    "get_candidate_documents",
+    "get_student_photo",
+    "remove_pool_candidate"
+   ],
+   "tables": [
+    "task_candidates",
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "状态药丸+颜色"
+  },
+  {
+   "id": "student-detail",
+   "name_zh": "学生详情/档案",
+   "name_en": "Student detail",
+   "entry": "openStudentDetail @15522 / openCloudStudentDetail @22976；detail.title='学生档案'",
+   "controls": [
+    "解锁前可见字段(无 phone/whatsapp/wechat/email)",
+    "renderStudentMaterialRow @15032 材料行",
+    "renderMaterialReviewSummary @15011 双审结论",
+    "水印+追溯码 SC- (watermark-doc)",
+    "放大查看器 mh-viewer-v2",
+    "renderOfferDecisionModule @16617",
+    "本校录取状态三态(已发/在池未发/未发)"
+   ],
+   "rpcs": [
+    "get_paid_student_contact",
+    "get_student_visa_status",
+    "get_candidate_documents",
+    "school_review_doc"
+   ],
+   "tables": [
+    "students",
+    "documents",
+    "offer_decisions"
+   ],
+   "buckets": [
+    "offer-letters",
+    "offer-samples"
+   ],
+   "success_text": "档案渲染,联系方式解锁后 get_paid_student_contact"
+  },
+  {
+   "id": "material-review",
+   "name_zh": "材料评审",
+   "name_en": "Material review",
+   "entry": "学生详情材料区 renderStudentMaterialRow @15032",
+   "controls": [
+    "通过/退回 school_review_doc",
+    "renderMaterialReviewSummary 双审结论",
+    "openRejectMaterialModal @15174 退回弹窗",
+    "renderRejectSampleSlot @15241 退回样例",
+    "renderCustomDocsBlock @20133"
+   ],
+   "rpcs": [
+    "school_review_doc",
+    "get_candidate_documents"
+   ],
+   "tables": [
+    "documents",
+    "school_documents",
+    "school_material_notes"
+   ],
+   "buckets": [],
+   "success_text": "材料状态更新/退回记录"
+  },
+  {
+   "id": "reject-material",
+   "name_zh": "退回材料",
+   "name_en": "Reject material",
+   "entry": "openRejectMaterialModal @15174",
+   "controls": [
+    "退回原因选择",
+    "renderRejectSampleSlot 样例槽",
+    "提交 school_review_doc(reject)"
+   ],
+   "rpcs": [
+    "school_review_doc"
+   ],
+   "tables": [
+    "documents",
+    "school_material_notes"
+   ],
+   "buckets": [
+    "offer-samples"
+   ],
+   "success_text": "退回记录写入"
+  },
+  {
+   "id": "interview-schedule",
+   "name_zh": "安排视频面试",
+   "name_en": "Schedule interview",
+   "entry": "openScheduleInterviewModal @13421；interview.scheduleTitle='安排视频面试'；发offer前闸 renderPreOfferInterviewGate @13356",
+   "controls": [
+    "面试时间",
+    "会议链接",
+    "备注",
+    "提交 school_schedule_interview"
+   ],
+   "rpcs": [
+    "school_schedule_interview",
+    "school_cancel_interview"
+   ],
+   "tables": [
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "面试已排期"
+  },
+  {
+   "id": "interview-record",
+   "name_zh": "记录面试结果",
+   "name_en": "Record interview result",
+   "entry": "openRecordInterviewResultModal @13788；取消 openCancelInterviewConfirm @13722",
+   "controls": [
+    "通过/未通过",
+    "未通过备注",
+    "提交 school_record_interview_result"
+   ],
+   "rpcs": [
+    "school_record_interview_result",
+    "school_cancel_interview"
+   ],
+   "tables": [
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "面试结果写入"
+  },
+  {
+   "id": "offer-send",
+   "name_zh": "发 Offer",
+   "name_en": "Send offer",
+   "entry": "学生详情内联 renderOfferDecisionModule @16617",
+   "controls": [
+    "录取专业 offered_program",
+    "候选专业 candidate_programs",
+    "录取理由 offer_reason(中)/offer_reason_en",
+    "必补材料 required_supplements",
+    "发送 school_send_offer_after_interview",
+    "建档闸 _v242FilingGateBlocked(未设办理方式先去设置)"
+   ],
+   "rpcs": [
+    "school_send_offer_after_interview"
+   ],
+   "tables": [
+    "offer_decisions"
+   ],
+   "buckets": [],
+   "success_text": "offer 写入,学生端可见(盲墙数据层)"
+  },
+  {
+   "id": "offer-list",
+   "name_zh": "Offer 列表与状态",
+   "name_en": "Offer list & status",
+   "entry": "dashboard statPreAdmit/statAgreed/statAdmitted 卡 → browse 对应桶",
+   "controls": [
+    "各状态: 待响应/已同意/已拒/已完成",
+    "平台建档状态行 _v242FilingRow(待补充/待建档/已导出/已提交/学校已通过/退回/已取消)"
+   ],
+   "rpcs": [],
+   "tables": [
+    "offer_decisions",
+    "filing_tasks"
+   ],
+   "buckets": [],
+   "success_text": "状态随 student_response/completed"
+  },
+  {
+   "id": "upload-letter",
+   "name_zh": "上传录取通知书",
+   "name_en": "Upload admission letter",
+   "entry": "学生已同意后 openAdmissionDocsUpload @13919 / renderJW202Banner @18215(通知书分支)",
+   "controls": [
+    "上传 PDF → offer-letters 桶",
+    "letter_file_path / letter_uploaded_at"
+   ],
+   "rpcs": [],
+   "tables": [
+    "offer_decisions"
+   ],
+   "buckets": [
+    "offer-letters"
+   ],
+   "success_text": "letter_uploaded_at 记录"
+  },
+  {
+   "id": "upload-jw202",
+   "name_zh": "上传 JW202",
+   "name_en": "Upload JW202",
+   "entry": "renderJW202Banner @18215 (JW202 分支) / openAdmissionDocsUpload",
+   "controls": [
+    "上传 → offer-letters 桶",
+    "jw202_file_path / jw202_uploaded_at"
+   ],
+   "rpcs": [],
+   "tables": [
+    "offer_decisions"
+   ],
+   "buckets": [
+    "offer-letters"
+   ],
+   "success_text": "jw202_uploaded_at 记录"
+  },
+  {
+   "id": "confirm-enroll",
+   "name_zh": "确认入学",
+   "name_en": "Confirm enrollment",
+   "entry": "openAdmissionModal @18626 / showAdmissionSuccess @18702",
+   "controls": [
+    "确认入学 mark_student_enrolled",
+    "renderMiniStudent"
+   ],
+   "rpcs": [
+    "mark_student_enrolled"
+   ],
+   "tables": [
+    "offer_decisions",
+    "students"
+   ],
+   "buckets": [],
+   "success_text": "enrolled_at / completed_at"
+  },
+  {
+   "id": "contact-unlock",
+   "name_zh": "联系方式互通",
+   "name_en": "Contact unlock",
+   "entry": "学生详情付费/解锁后 get_paid_student_contact",
+   "controls": [
+    "显示 phone/whatsapp/wechat/email(仅解锁后)"
+   ],
+   "rpcs": [
+    "get_paid_student_contact"
+   ],
+   "tables": [
+    "offer_decisions",
+    "students"
+   ],
+   "buckets": [],
+   "success_text": "解锁后显示联系方式"
+  },
+  {
+   "id": "export-wizard",
+   "name_zh": "导出已录取名单",
+   "name_en": "Export admitted list",
+   "entry": "dashboard 导出卡 → browse「已录取」；openExportWizard @17361 / openExportHistoryModal @18107",
+   "controls": [
+    "导出 17gz 格式",
+    "导出档案 ZIP",
+    "watermark-doc 代取"
+   ],
+   "rpcs": [
+    "get_candidate_documents"
+   ],
+   "tables": [
+    "offer_decisions",
+    "documents"
+   ],
+   "buckets": [],
+   "success_text": "生成导出"
+  },
+  {
+   "id": "filing-settings",
+   "name_zh": "录取办理方式(建档设定)",
+   "name_en": "Filing settings",
+   "entry": "设置页 renderSettingsView @10153「录取办理方式」区块",
+   "controls": [
+    "用什么系统 none/gz17/at0086/own/form",
+    "何时建档 before_letter/after_payment",
+    "报名系统登录网址 filing.urlHint",
+    "中介账号名 filing.acctHint",
+    "备注",
+    "保存 school_set_filing"
+   ],
+   "rpcs": [
+    "school_set_filing"
+   ],
+   "tables": [
+    "schools",
+    "filing_tasks",
+    "student_filing_profiles"
+   ],
+   "buckets": [],
+   "success_text": "filing_set_at 写入"
+  },
+  {
+   "id": "settings",
+   "name_zh": "账户设置",
+   "name_en": "Account settings",
+   "entry": "userChip ⚙ openSettingsView @10071；settings.title='账户设置'",
+   "controls": [
+    "学校资料编辑 update_school_profile",
+    "logo 上传 schools 桶",
+    "建档设定(见 filing-settings)",
+    "渠道联系 comm-attachments"
+   ],
+   "rpcs": [
+    "update_school_profile",
+    "school_set_filing",
+    "log_school_access"
+   ],
+   "tables": [
+    "schools"
+   ],
+   "buckets": [
+    "schools",
+    "comm-attachments",
+    "school-onboarding-docs"
+   ],
+   "success_text": "资料保存成功"
+  },
+  {
+   "id": "access-log",
+   "name_zh": "我的操作记录/审计日志",
+   "name_en": "My access log",
+   "entry": "userChip 📋 openAuditLogModal @18281 / renderAccessLogView @10133；audit.title='📋 下载审计日志'",
+   "controls": [
+    "下载审计日志",
+    "操作记录列表"
+   ],
+   "rpcs": [
+    "log_school_access"
+   ],
+   "tables": [
+    "school_access_log"
+   ],
+   "buckets": [],
+   "success_text": "日志下载"
+  },
+  {
+   "id": "notifications",
+   "name_zh": "通知/消息",
+   "name_en": "Notifications",
+   "entry": "顶栏铃铛 #schNotifBell toggleSchNotifPanel() @4523",
+   "controls": [
+    "renderTaskListCard(通知渲染)",
+    "已读 mark_notification_read",
+    "归档 archive_notification",
+    "kinds: interview_confirmed/interview_declined/letter_paid/offer_responded/school_application_decided/task_reviewed"
+   ],
+   "rpcs": [
+    "get_my_notifications",
+    "mark_notification_read",
+    "archive_notification"
+   ],
+   "tables": [
+    "notifications"
+   ],
+   "buckets": [],
+   "success_text": "通知列表/未读角标"
+  },
+  {
+   "id": "bookmarks",
+   "name_zh": "收藏",
+   "name_en": "Bookmarks",
+   "entry": "dashboard statBookmarks → renderBookmarksView @19789",
+   "controls": [
+    "收藏学生卡",
+    "取消收藏"
+   ],
+   "rpcs": [],
+   "tables": [
+    "students"
+   ],
+   "buckets": [],
+   "success_text": "收藏列表"
+  },
+  {
+   "id": "lang-switch",
+   "name_zh": "语言切换",
+   "name_en": "Language switch",
+   "entry": "顶栏 lang-switcher；登录门 gate-lang",
+   "controls": [
+    "setLang('en') @4520 / setLang('zh') @4521",
+    "gateSetLang('en'/'zh') @4385-4386",
+    "仅 EN/中 两档;ru/fr 仅部分回落词条(63 键),无 UI 按钮"
+   ],
+   "rpcs": [],
+   "tables": [],
+   "buckets": [],
+   "success_text": "applyTranslations 重渲"
+  }
+ ]
+}
