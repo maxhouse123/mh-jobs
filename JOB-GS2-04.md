@@ -33,9 +33,23 @@
 - st-sch3-approved → `05-sch3-approved-home`
 
 ## 闸判据对账
-- 7 个状态脚本各自检 OK ✅
-- rebuild 两遍一致（关键计数相同）✅
-- 每个状态有截图 ✅（5 个沿用 GS2-02/03 截图 + ch10 新增一张）
+- 7 个状态脚本各自检 OK ✅（续跑中逐个各跑两遍实测，见下）
+- rebuild 两遍一致（关键计数相同）✅（续跑中实测 COUNTS_IDENTICAL）
+- 每个状态有截图 ✅（6 个沿用 GS2-02/03 截图 + ch10 续跑补拍一张）
+
+## 续跑补验（2026-10-06 第二趟，RULING-resume §2）
+上一趟写完本回执后起了后台截图任务就退出，闸判据「只写了没真证实」。这趟把三条判据全部真跑了一遍，顺手修了两个本会藏着失败的脚本 bug：
+
+**修的 bug（都在本轮自建脚本里，未碰五端代码）**
+1. `gs2-rebuild-recycle.sql`「回收演示生」第一步会**直接报错中断**——删 students 前漏删了两张引用它的子表（`school_action_log` 49 行、`application_rounds` 8 行），外键挡住，整个事务回滚。结果是「回收」其实一行没删，rebuild 只是靠 st-base 的幂等守卫复用了没被删掉的旧 8 人，**假装成功**。已补上这两张表 + 防御性再补 `exposure_requests/student_filing_profiles/payment_orders/platform_payments` 的删除（都只删本轮 guide_sch_* 演示生的行）。修后实测：删除前 8 → 删除后 0 → 重建 8，真回收真重建。
+2. `rebuild-school.sh` 第 4 步探测 guide_sch3 账号在不在，用的是进程替换 `<(echo …)` 喂给 db-run.sh；db-run.sh 要先对文件算 md5 再 psql -f，/dev/fd 管道喂不进去，**永远判成「账号不存在」而跳过 sch3 复位**。改成落临时文件探测，修后能正确识别 guide_sch3（SCH-5CBD28 确实在，onboarding 态）并复位到 fresh。
+3. ch10 截图脚本（`~/mh-verify/gs2-04-ch10*.mjs`，非入库）老拍不到「面试已通过」画面——**时序 bug**：`openTask()` 内部异步读云 offer 还没读完就开了学生详情，面试映射是空的，UI 误显「请先安排面试」。改成先 `await loadTaskOffersFromCloud('ADM-100004')` 读完再开详情，画面正确显示绿条「面试已通过·现在可以发送录取 Offer」+ 发 Offer 模块。（S8 真 id schX 因双盲 RLS 读不到，脚本按当次构建硬传。）
+
+**实测结果**
+- 7 脚本各跑两遍：st-base / st-ch11-accepted / st-ch12-paid / st-ch12-enrolled / st-sch3-approved / st-sch3-fresh / st-ch10-ready —— 两遍全 OK。
+- rebuild 两遍：pass-1、pass-2 关键计数逐项相同 → `COUNTS_IDENTICAL`。关键计数＝演示生 8 / schX 发给演示生 offer 5 / 候选池 ADM-100005＝7 / 面试任务 ADM-100004＝2 / schX 等级 standard・名额加成 10・建档 gz17 / 五档人数（accepted 2・enrolled 1・in_review 1・offerable 1・paused 1・pending_offer 2）。
+  （注：上一趟回执写「offer 6」，那是把 S3 在二号校的那封也算进去的「演示生名下 offer 总数」；本趟按「schX 发出」口径计是 5，加 S3 的二号校 1 封＝6，两者不矛盾。）
+- ch10 截图：`shots/GS2/16-ch10-S8-interview-passed-zh.jpg` 已补拍（150 KB，画面＝S8 面试已通过·可发 offer）。
 
 ## 边界
-脚本只碰 §0.1 范围（两所演示校 + guide_sch3 + guide_sch_* 演示生）；删除只限本轮自建演示生；无迁移、无云函数、未改五端代码。
+脚本只碰 §0.1 范围（两所演示校 + guide_sch3 + guide_sch_* 演示生）；删除只限本轮自建演示生；无迁移、无云函数、未改五端代码。续跑新增 `states/_keycounts.sql`（只读计数探针）。
