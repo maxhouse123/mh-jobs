@@ -1,0 +1,26 @@
+[
+ {
+  "name": "01-schX-home-quota-zh",
+  "hasPII": true,
+  "sample": "***@***"
+ },
+ {
+  "name": "02-schX-tasklist-zh",
+  "hasPII": true,
+  "sample": "***@***"
+ },
+ {
+  "name": "03-schX-quota-approved-zh",
+  "hasPII": true,
+  "sample": "***@***"
+ },
+ {
+  "name": "04-guide_sch2-home-zh",
+  "hasPII": true,
+  "sample": "***@***"
+ },
+ {
+  "sch2_login_reached_dashboard": true,
+  "sch2_email_gate_visible": false
+ }
+]
