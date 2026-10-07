@@ -28,4 +28,14 @@
 ## 三 · 接下来
 - 推一个空提交触发重新部署 → 查体检 kv/r2/secret 全 true → 不带凭据访问后台页应 302 到 Access。
 - 然后造测试码、跑线上 12 条真验、推截图、清测试码、写 `SUMMARY-GS1.md`。
-（本文件随每步进展继续追加。）
+
+## 四 · 重新部署 + 体检（✅ 全绿）
+- 主仓库推一个空提交触发重新部署：`0be8fc5..43e87b7  main -> main`（推前核对待推只有这一个 `JOB-GS1` 提交，推后 `origin/main..HEAD` 为空、无夹带，符合 P5）。
+- 约 30 秒后新部署上线，线上体检 `/guide/school/api/health` 变成：
+  - `{"kv":true, "r2":true, "secret":true, "resend":true}` —— **四项全 true**。
+  - 比停工时多绿了两项（kv/r2 绑定生效）外加 resend=true（RESEND_API_KEY 已有值，发信已开通）。
+- 后台门核对：不带凭据访问 `https://www.maxhouses.net/guide/school/admin/` → **302 跳到 `maxhouseapp.cloudflareaccess.com` 登录页**，且 `kid`/`aud` = `8efe9190…`（正是本应用的 aud，闸门生效）；后台接口 `/guide/school/admin/api/codes` 不带凭据同样 302。
+
+**小结**：裁决书列的三件事（两条绑定、Access 应用+aud）全部到位并线上验证通过。绑定与 Access 门其实业主此前已在面板点好，CC 这次补上了「把 aud 写进 ACCESS_AUD_ADMIN」+「重新部署让一切生效」两步，并逐项线上核对。没动其它任何 Cloudflare 设置、没用 DELETE。
+
+（下一步进入 GS1-03 第 3～6 条，结果写在 `SUMMARY-GS1.md`。）
