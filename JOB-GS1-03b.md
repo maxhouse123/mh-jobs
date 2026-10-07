@@ -38,4 +38,12 @@
 
 **小结**：裁决书列的三件事（两条绑定、Access 应用+aud）全部到位并线上验证通过。绑定与 Access 门其实业主此前已在面板点好，CC 这次补上了「把 aud 写进 ACCESS_AUD_ADMIN」+「重新部署让一切生效」两步，并逐项线上核对。没动其它任何 Cloudflare 设置、没用 DELETE。
 
-（下一步进入 GS1-03 第 3～6 条，结果写在 `SUMMARY-GS1.md`。）
+## 五 · GS1-03 第 3～6 条（线上真验 + 收官）
+- **造测试码**（wrangler 写进 KV）：`MHS-GSAA-TEST`（标签「测试大学 A」, 3 台/90 天, active）、`MHS-GSAA-DEAD`（停用）、`MHS-GSAA-LIM3`（设备上限测试用）。
+- **线上 12 条真验全过**（www 主机，真 curl + 真 Chrome/Playwright 走代理）：无证视频 403 / 错码 404 / 四条✓ / 刷新+me / 2·3 台过第 4 台拒(429) / 停用后 1 秒 media 变 403 / Range 206 / 测试片段 loadeddata(readyState 4) / 水印在且 6 秒换位 / pages.dev→www 302 / 后台→Access 302 / 领码降级(域名未验证→503+页面提示)。逐条见 `SUMMARY-GS1.md` 第三节表格。
+- **推截图** 5 张到 `~/mh-jobs/shots/GS1/`（闸门/通过页+水印/水印换位/后台跳 Access/手机390）。截图内只有测试码数据（码已删）。
+- **清测试码**：三个测试码 + 真验产生的限频键全部用 wrangler 删除；`kv key list` 现为 **count=0（空）**；再 redeem 已删的测试码 → 404 invalid，确认清干净。
+- **写收官单** `SUMMARY-GS1.md`（首行 `PUSH_OK=yes`）。
+
+## 停工/完成
+本次会话目标全部达成：Cloudflare 三件事到位、health 四项全绿、线上 12 条真验全过、测试码已清、收官单已写。无停工条件触发（令牌权限够、无 API 两连错、判据可满足、无指令矛盾）。主仓库本次只推一个 `JOB-GS1` 开头的空提交（重部署用），推前后已核对无夹带。
