@@ -1,0 +1,71 @@
+{
+  "result": {
+    "description": "",
+    "id": "089dcbc46c72420fa3112b08cc267ea9",
+    "kind": "zone",
+    "last_updated": "2026-10-08T00:35:08.442321Z",
+    "name": "default",
+    "phase": "http_request_cache_settings",
+    "rules": [
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "cache": true,
+          "edge_ttl": {
+            "mode": "bypass_by_default"
+          }
+        },
+        "description": "portal versioned html",
+        "enabled": true,
+        "expression": "(http.host eq \"www.maxhouses.net\" and (http.request.uri.path contains \"/student-portal/maxhouse\" or http.request.uri.path contains \"/partner-portal/maxhouse\" or http.request.uri.path contains \"/school-portal/maxhouse\"))",
+        "id": "8283ab08d4e04890a1ae2d38d3680ee6",
+        "last_updated": "2026-09-06T13:32:33.223864Z",
+        "ref": "8283ab08d4e04890a1ae2d38d3680ee6",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "browser_ttl": {
+            "mode": "respect_origin"
+          },
+          "cache": true,
+          "edge_ttl": {
+            "mode": "bypass_by_default"
+          }
+        },
+        "description": "guide-student-html",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/guide/student\"))",
+        "id": "a5728fa7a83d4fb7ada3b79e91ff3d77",
+        "last_updated": "2026-10-06T14:02:43.016126Z",
+        "ref": "a5728fa7a83d4fb7ada3b79e91ff3d77",
+        "version": "1"
+      },
+      {
+        "action": "set_cache_settings",
+        "action_parameters": {
+          "browser_ttl": {
+            "mode": "respect_origin"
+          },
+          "cache": true,
+          "edge_ttl": {
+            "mode": "respect_origin"
+          }
+        },
+        "description": "guide-html-cache",
+        "enabled": true,
+        "expression": "(starts_with(http.request.uri.path, \"/guide/school/\") and not starts_with(http.request.uri.path, \"/guide/school/api\") and not starts_with(http.request.uri.path, \"/guide/school/media\") and not starts_with(http.request.uri.path, \"/guide/school/admin\"))",
+        "id": "085345b46ffc445a94863e19c2ef2ecb",
+        "last_updated": "2026-10-08T00:35:08.442321Z",
+        "ref": "085345b46ffc445a94863e19c2ef2ecb",
+        "version": "1"
+      }
+    ],
+    "version": "3"
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}
+
