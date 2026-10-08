@@ -1,4 +1,4 @@
-PUSH_OK=no
+PUSH_OK=yes
 
 # SUMMARY-43 · filing-prefill「AI 读材料一直填 0 项」定性与修复（v5）收官
 
@@ -55,3 +55,5 @@ PUSH_OK=no
 
 ## 没动的东西
 只改了云函数 filing-prefill 和 jobs/JOB-43/；五端代码、数据库、其它云函数、迁移一律没碰；钥匙读法（HOTFIX-39）一字没动。
+
+- 2026-10-08 主仓库由业主用卡1341 推送（CC 按铁律 4 未推），到此收口
