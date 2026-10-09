@@ -73,3 +73,40 @@
 - 整片/速览：`node build-extras-sch.mjs --lang zh --full` / `--quick`（**不要用 assemble-sch.mjs --full**）。
 - 写库章顺序：c10 前先 `gs3-ch10-reset` + `gs3-ch10-ready`；c12 录后 `gs3-ch12-reset`；c10 录后 `gs3-ch10-reset` 复位干净。
 - 二维码解码：帧 PNG → `~/mh-verify/g6-qr` 目录下 `node _decode.mjs <png>`（jsqr+pngjs 装在那）。
+
+---
+
+## 【续·第二趟 2026-10-09】G6b-03 后半段已全部完成（传私有桶 + 重出目录 + 改构建串 + commit）
+
+上一趟 7 章录好并重拼了整片/速览，但没传桶、没改目录、没改页面构建串。这趟全做完了，学校端这一关（G6b-03）**整个结束**。
+
+### 做了什么（大白话）
+1. **重出变了的缩略图**：用 `poster-thumbs-sch.mjs` 从当前成片重抽一遍章缩略图。7 个重录章里 **6 个**（c05/06/07/08/10/12）代表帧里有学生头像、画面变了→裁成 `-g6b` 新名新图；**c13 的代表帧是「建档状态」界面、没有头像、画面一字没变**（md5 仍是 `e8e4528e`）→沿用旧 `thumb-c13.jpg`、不新传。肉眼看过 c07 缩略图：候选池四行学生各是不同 AI 脸、Student 03 尼日利亚是深肤非洲脸 ✓。
+   - 顺带踩到并处理：没录的章里 c02/c14 的缩略图用 ffmpeg 重抽会有几字节抖动（抽帧非确定性），这两章本轮没动，已把它们和海报 poster.jpg **还原成线上原字节**，保证目录里没改的章版本号一字不动。
+2. **传私有桶（只新增 `-g6b` 新名，绝不覆盖、绝不删旧对象）**：共 **16 个对象**传进 `maxhouse-media-private/guide/school/v1/zh/`，每个当场回读核对字节一致，最后又整体回读复验一遍 16/16 全 `OK`：
+   - 7 个重录章：c05-g6b … c13-g6b.mp4
+   - full-g6b.mp4、quick-g6b.mp4
+   - 6 张变了的缩略图：thumb-c05-g6b … thumb-c12-g6b.jpg
+   - 新目录 manifest.json（键 `guide/school/v1/manifest.json`，覆盖的是目录本身、这是应该的）
+   - （传的过程中 c05 / quick / thumb-c08 / thumb-c12 各有一次回读瞬时失败，重传即过，最终全部核对一致。）
+3. **目录（manifest）按老办法重出**：不从零重算（本机 c02.mp4 与线上字节有历史漂移、整体重算会误动没改的章），改为在**当前线上目录**上只改 **build + full + quick + 这 7 章** 指向 `-g6b` 新名新版本号；**没改的章（c01-04/09/11/14）地址和版本号一个字没动**（git diff 已逐行核对，确只动这几处）。
+4. **页面构建串**：`guide/school/index.html` 从 `gs6-20261009` 改成 **`gs6b-20261009`**（注释/显示/JS 变量 3 处都改了）。
+5. **dist-manifest-zh.json** 记入 `-g6b` 新对象（bytes+md5），与线上目录保持一致。
+
+### 闸的真实输出
+- **缩略图归属**：6 章缩略图变了→出 `-g6b`，c13 未变→沿用（md5 命令实测 `e8e4528e` 不变）。
+- **上传回读核对**：16 个对象 `OK  … bytes`，整体复验 16/16 本地=远端字节一致 ✅
+- **目录 diff**：只有 build + full/quick + 7 个重录章变成 `-g6b`，其余章地址/版本号一字未动（已贴 git diff 过目）✅
+- **构建串**：index.html 3 处 = `gs6b-20261009` ✅
+
+### 这趟改了哪些文件（主仓库，只 commit 未推，1 笔 `0704001`，JOB-G6b-03 开头）
+- 改 `guide/school/index.html`（构建串）、`guide/school/v1/manifest.json`（新目录）、`jobs/JOB-GS3/dist-manifest-zh.json`（记入 -g6b 新对象）
+- 新增 `jobs/JOB-G6/manifest-template-g6b.json`、`jobs/JOB-G6/make-manifest-g6b.sh`
+- 本机不入 git：`guide/dist/school/zh/` 的 -g6b 成片与新缩略图；桶里只新增 16 个 -g6b/manifest 对象，旧对象一个没删没改。
+- 钥匙/令牌/业主码：一律没进回执、没进仓库；wrangler 鉴权走环境变量 CLOUDFLARE_API_TOKEN、CC 没碰 .env、没打印。
+
+### G6b-03 整体结论
+学校端（中文）**有头像的 7 章全部换成 G6b 新脸并重录、整片/速览重拼、全部 `-g6b` 新名传进私有桶、目录重出、页面构建串升到 gs6b-20261009**。只差上线（push + Pages 部署）与线上真验——那是 G6b-05。
+
+### 下一步
+进 **G6b-04**（学生端四语重录，第 5 章用换好的 Lina 新脸素材）。第一件事先看学生线重建卡点（g0-02 向导）是否仍挡路——按 G6-05 的办法逐章前置 SQL 录。
