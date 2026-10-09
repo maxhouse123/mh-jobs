@@ -70,3 +70,51 @@
 ## 本包产出文件（已 commit 到主仓库本机，未推）
 `jobs/JOB-G6/avatar-mechanism.md`、`probe-01-avatar-mech.sql`、`probe-02-cast.sql`、`cast-avatars.json`（已脱敏）、`face-demand.json`、`gates/gate-Q.sh`、`gates/gate-H-student.mjs`。
 本机工具（不进仓库）：`~/mh-verify/g6-qr/`（jsqr 解码器）、`~/mh-verify/g6-local/cast-avatars-FULL.json`（带路径完整名单）。
+
+---
+
+# JOB-G6-00 续跑补完（第二趟，2026-10-09 下午）
+
+上一趟 G6-00 列的「还差什么」三项，这趟全做完了，G6-00 正式收口。
+
+## A. 本机能录能合成（§0.8 兑现）
+- **录**：两条线各真跑一章（存帧），都成了：
+  - 学校端第 2 章：`[c02/zh] shots=5 ok=5 lens=40.682s frames=402`
+  - 学生端英文第 1 章：`[c01/en] shots=4 ok=4 lens=24.9s frames=230`
+- **配音语音齐**：`say -v '?'` 实测四种需要的语音都在 → Samantha(en) / Tingting(zh) / Milena(ru) / Amélie(fr_CA)。文字没变的镜复用现成配音，只有变的镜才新配（本轮二维码不碰口播，预计无需新配）。
+- **ffmpeg/ffprobe 9.0.2 在**（合成用，历轮已验流水线，首次真合成在 G6-04/G6-05 时顺带坐实）。
+- **⚠ 本机第一次跑踩到的坑（已修好，记录备查）**：录制依赖 `pngjs`（两线）和 `qrcode`（学校线片尾二维码）在本机从没装过（历轮都在笔记本跑的）。这些 recorder 目录的 `node_modules` 其实是**软链接**，都指向中央仓库 `~/mh-verify/node_modules`。处理时一度把三个软链接(`JOB-G0`/`JOB-G1`/`JOB-GS3/rec`)覆盖成了实目录，已全部**还原成指向 `~/mh-verify/node_modules` 的软链接**，并把 `pngjs`+`qrcode` 装进中央仓库；现三处软链接都能解析到 playwright+pngjs+qrcode。node_modules 不进 git，无仓库影响。
+
+## B. 哪些章有头像（两份清单已出，DOM 探针实测，不靠猜）
+用「空跑录制骨架、每镜落定后在真 DOM 里数头像元素」的办法逐章测（任务书第6步的正法），脚本与原始数据都入仓：
+- `jobs/JOB-G6/gates/probe-avatars-student.mjs` + `_probe-student-raw.json`
+- `jobs/JOB-G6/gates/probe-avatars-sch.mjs` + `_probe-sch-raw.json`
+- 结论清单：`jobs/JOB-G6/chapters-with-avatars-student.json` / `-school.json`
+
+**学生线（顶栏 #appIdAvatar）** 要重录的章 = **c05 c06 c07 c08 c09 c10 c11 c12 c13（9 章）**；沿用现成的 = c01 c02 **c03 c04** c14。
+- 意外发现（幸好真测了）：**c03/c04（新生 fresh 状态）探针测到 0 个在屏头像**——新生还在"建档/传材料"的向导页，主壳顶栏没出来，所以顶栏头像不在屏。原先"登录后每页都有顶栏头像"的假设不成立。c03/c04 列为"录制时抽帧复核"，真有顶栏头像再补录。
+
+**学校线（.student-avatar 池卡 + #detailAvatar 详情大图）** 要重录的章 = **c05 c06 c07 c08 c10 c12 c13（7 章）**；沿用现成 = c00-intro c01 c02 **c03** c04 c09 **c11** c14。
+- c03/c11 探针测 0，但静态看脚本疑有候选池片段 → 列"录制时抽帧复核"，宁可多录一章不漏脸。
+
+## C. 闸 H 学校端活取（现状 = 红，真命令输出）
+脚本 `jobs/JOB-G6/gates/gate-H-school.mjs`（真 guide 登录 + 本地页，只读不写库），跑浏览池/候选池/详情三章，数同屏头像元素里「有人脸图 / 首字母回落」：
+```
+c06: total=95  有face图=29  首字母回落=66
+c07: total=8   有face图=0   首字母回落=8
+c08: total=8   有face图=0   首字母回落=8
+合计: total=111  有face图=29  首字母回落=82   (AI 脸=0)
+```
+两种"红"都在：**82 个头像是首字母圈（这些学生没传照片）**，**29 个是真人照片（有隐私，也要换成 AI 脸）**。AI 脸 0 个 → **闸 H 现状 = 红**，坐实。
+
+## D. G6-00 闸3判据逐条
+- ✅ avatar-mechanism.md 一句话结论 + 探针原文（上一趟已出）。
+- ✅ cast-avatars.json 50 行 = 库里 is_test 学生 50 人（上一趟）。
+- ✅ 两张片尾卡解码原文（上一趟：学生→.../guide/student，学校→.../guide/school，都≠首页）。
+- ✅ 闸 H 红（本趟 C）/ 闸 Q 红（上一趟）命令输出都在。
+- ✅ 两份 chapters-with-avatars 清单（本趟 B）。
+
+## 下一步（给下一趟：进 G6-01 造脸）
+- G6-01 造 AI 人脸库：先试 `thispersondoesnotexist.com`（带浏览器 UA；上一趟 curl 该域名回的是 HTML 不是图，**要用 Playwright 打开再存**，或换接口）。按 `face-demand.json` 需求数×1.3、每组男女各≥3 张。
+- 需求数回顾：50 人一人一张（占位8+无图10+真照片32 全换 AI 脸）。
+- 造完 G6-02 装脸（通道：Supabase 存储桶 student-documents，需 @supabase/supabase-js——**G6-02 开工前要装**，连同 wrangler+@aws-sdk 一起，都走代理 npm，装进中央仓库 ~/mh-verify/node_modules 再软链接）。
