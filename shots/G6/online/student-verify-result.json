@@ -1,0 +1,586 @@
+[
+  {
+    "L": "en",
+    "build": "Based on student portal v411 · 2026-10 · build g6-2026-10-09",
+    "kp": 3,
+    "chCount": 13,
+    "firstScreenNoHScroll": true,
+    "sw": 405,
+    "iw": 405,
+    "ch1ms": 29,
+    "emailHit": true,
+    "qrEls": [
+      {
+        "tag": "DIV",
+        "id": "qrBox",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      }
+    ],
+    "head": [
+      {
+        "n": 1,
+        "g6": false,
+        "tail": "en/c01.mp4",
+        "status": 200
+      },
+      {
+        "n": 2,
+        "g6": false,
+        "tail": "en/c02.mp4",
+        "status": 200
+      },
+      {
+        "n": 3,
+        "g6": false,
+        "tail": "en/c03.mp4",
+        "status": 200
+      },
+      {
+        "n": 4,
+        "g6": false,
+        "tail": "en/c04.mp4",
+        "status": 200
+      },
+      {
+        "n": 5,
+        "g6": true,
+        "tail": "en/c05-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 6,
+        "g6": true,
+        "tail": "en/c06-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 7,
+        "g6": true,
+        "tail": "en/c07-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 8,
+        "g6": true,
+        "tail": "en/c08-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 9,
+        "g6": true,
+        "tail": "en/c09-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 10,
+        "g6": true,
+        "tail": "en/c10-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 11,
+        "g6": true,
+        "tail": "en/c11-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 12,
+        "g6": true,
+        "tail": "en/c12-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 13,
+        "g6": true,
+        "tail": "en/c13-g6.mp4",
+        "status": 200
+      }
+    ],
+    "qf": [
+      {
+        "kind": "quick",
+        "url": "en/quick-g6.mp4",
+        "status": 200
+      },
+      {
+        "kind": "full",
+        "url": "en/full-g6.mp4",
+        "status": 200
+      }
+    ],
+    "override": {
+      "chapter": {
+        "5": "c05-g6",
+        "6": "c06-g6",
+        "7": "c07-g6",
+        "8": "c08-g6",
+        "9": "c09-g6",
+        "10": "c10-g6",
+        "11": "c11-g6",
+        "12": "c12-g6",
+        "13": "c13-g6"
+      },
+      "poster": {
+        "5": "posters/c05-g6",
+        "6": "posters/c06-g6",
+        "7": "posters/c07-g6",
+        "8": "posters/c08-g6",
+        "9": "posters/c09-g6",
+        "10": "posters/c10-g6",
+        "11": "posters/c11-g6",
+        "12": "posters/c12-g6",
+        "13": "posters/c13-g6"
+      },
+      "full": "full-g6",
+      "quick": "quick-g6"
+    }
+  },
+  {
+    "L": "zh",
+    "build": "基于学生端 v411 · 2026-10 · build g6-2026-10-09",
+    "kp": 3,
+    "chCount": 13,
+    "firstScreenNoHScroll": true,
+    "sw": 405,
+    "iw": 405,
+    "ch1ms": 25,
+    "emailHit": true,
+    "qrEls": [
+      {
+        "tag": "DIV",
+        "id": "qrBox",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      }
+    ],
+    "head": [
+      {
+        "n": 1,
+        "g6": false,
+        "tail": "zh/c01.mp4",
+        "status": 200
+      },
+      {
+        "n": 2,
+        "g6": false,
+        "tail": "zh/c02.mp4",
+        "status": 200
+      },
+      {
+        "n": 3,
+        "g6": false,
+        "tail": "zh/c03.mp4",
+        "status": 200
+      },
+      {
+        "n": 4,
+        "g6": false,
+        "tail": "zh/c04.mp4",
+        "status": 200
+      },
+      {
+        "n": 5,
+        "g6": true,
+        "tail": "zh/c05-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 6,
+        "g6": true,
+        "tail": "zh/c06-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 7,
+        "g6": true,
+        "tail": "zh/c07-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 8,
+        "g6": true,
+        "tail": "zh/c08-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 9,
+        "g6": true,
+        "tail": "zh/c09-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 10,
+        "g6": true,
+        "tail": "zh/c10-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 11,
+        "g6": true,
+        "tail": "zh/c11-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 12,
+        "g6": true,
+        "tail": "zh/c12-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 13,
+        "g6": true,
+        "tail": "zh/c13-g6.mp4",
+        "status": 200
+      }
+    ],
+    "qf": [
+      {
+        "kind": "quick",
+        "url": "zh/quick-g6.mp4",
+        "status": 200
+      },
+      {
+        "kind": "full",
+        "url": "zh/full-g6.mp4",
+        "status": 200
+      }
+    ],
+    "override": {
+      "chapter": {
+        "5": "c05-g6",
+        "6": "c06-g6",
+        "7": "c07-g6",
+        "8": "c08-g6",
+        "9": "c09-g6",
+        "10": "c10-g6",
+        "11": "c11-g6",
+        "12": "c12-g6",
+        "13": "c13-g6"
+      },
+      "poster": {
+        "5": "posters/c05-g6",
+        "6": "posters/c06-g6",
+        "7": "posters/c07-g6",
+        "8": "posters/c08-g6",
+        "9": "posters/c09-g6",
+        "10": "posters/c10-g6",
+        "11": "posters/c11-g6",
+        "12": "posters/c12-g6",
+        "13": "posters/c13-g6"
+      },
+      "full": "full-g6",
+      "quick": "quick-g6"
+    }
+  },
+  {
+    "L": "ru",
+    "build": "На основе кабинета v411 · 2026-10 · build g6-2026-10-09",
+    "kp": 3,
+    "chCount": 13,
+    "firstScreenNoHScroll": true,
+    "sw": 405,
+    "iw": 405,
+    "ch1ms": 26,
+    "emailHit": true,
+    "qrEls": [
+      {
+        "tag": "DIV",
+        "id": "qrBox",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      }
+    ],
+    "head": [
+      {
+        "n": 1,
+        "g6": false,
+        "tail": "ru/c01.mp4",
+        "status": 200
+      },
+      {
+        "n": 2,
+        "g6": false,
+        "tail": "ru/c02.mp4",
+        "status": 200
+      },
+      {
+        "n": 3,
+        "g6": false,
+        "tail": "ru/c03.mp4",
+        "status": 200
+      },
+      {
+        "n": 4,
+        "g6": false,
+        "tail": "ru/c04.mp4",
+        "status": 200
+      },
+      {
+        "n": 5,
+        "g6": true,
+        "tail": "ru/c05-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 6,
+        "g6": true,
+        "tail": "ru/c06-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 7,
+        "g6": true,
+        "tail": "ru/c07-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 8,
+        "g6": true,
+        "tail": "ru/c08-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 9,
+        "g6": true,
+        "tail": "ru/c09-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 10,
+        "g6": true,
+        "tail": "ru/c10-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 11,
+        "g6": true,
+        "tail": "ru/c11-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 12,
+        "g6": true,
+        "tail": "ru/c12-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 13,
+        "g6": true,
+        "tail": "ru/c13-g6.mp4",
+        "status": 200
+      }
+    ],
+    "qf": [
+      {
+        "kind": "quick",
+        "url": "ru/quick-g6.mp4",
+        "status": 200
+      },
+      {
+        "kind": "full",
+        "url": "ru/full-g6.mp4",
+        "status": 200
+      }
+    ],
+    "override": {
+      "chapter": {
+        "5": "c05-g6",
+        "6": "c06-g6",
+        "7": "c07-g6",
+        "8": "c08-g6",
+        "9": "c09-g6",
+        "10": "c10-g6",
+        "11": "c11-g6",
+        "12": "c12-g6",
+        "13": "c13-g6"
+      },
+      "poster": {
+        "5": "posters/c05-g6",
+        "6": "posters/c06-g6",
+        "7": "posters/c07-g6",
+        "8": "posters/c08-g6",
+        "9": "posters/c09-g6",
+        "10": "posters/c10-g6",
+        "11": "posters/c11-g6",
+        "12": "posters/c12-g6",
+        "13": "posters/c13-g6"
+      },
+      "full": "full-g6",
+      "quick": "quick-g6"
+    }
+  },
+  {
+    "L": "fr",
+    "build": "Basé sur l’espace étudiant v411 · 2026-10 · build g6-2026-10-09",
+    "kp": 3,
+    "chCount": 13,
+    "firstScreenNoHScroll": true,
+    "sw": 405,
+    "iw": 405,
+    "ch1ms": 20,
+    "emailHit": true,
+    "qrEls": [
+      {
+        "tag": "DIV",
+        "id": "qrBox",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      },
+      {
+        "tag": "svg",
+        "id": "",
+        "src": ""
+      }
+    ],
+    "head": [
+      {
+        "n": 1,
+        "g6": false,
+        "tail": "fr/c01.mp4",
+        "status": 200
+      },
+      {
+        "n": 2,
+        "g6": false,
+        "tail": "fr/c02.mp4",
+        "status": 200
+      },
+      {
+        "n": 3,
+        "g6": false,
+        "tail": "fr/c03.mp4",
+        "status": 200
+      },
+      {
+        "n": 4,
+        "g6": false,
+        "tail": "fr/c04.mp4",
+        "status": 200
+      },
+      {
+        "n": 5,
+        "g6": true,
+        "tail": "fr/c05-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 6,
+        "g6": true,
+        "tail": "fr/c06-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 7,
+        "g6": true,
+        "tail": "fr/c07-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 8,
+        "g6": true,
+        "tail": "fr/c08-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 9,
+        "g6": true,
+        "tail": "fr/c09-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 10,
+        "g6": true,
+        "tail": "fr/c10-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 11,
+        "g6": true,
+        "tail": "fr/c11-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 12,
+        "g6": true,
+        "tail": "fr/c12-g6.mp4",
+        "status": 200
+      },
+      {
+        "n": 13,
+        "g6": true,
+        "tail": "fr/c13-g6.mp4",
+        "status": 200
+      }
+    ],
+    "qf": [
+      {
+        "kind": "quick",
+        "url": "fr/quick-g6.mp4",
+        "status": 200
+      },
+      {
+        "kind": "full",
+        "url": "fr/full-g6.mp4",
+        "status": 200
+      }
+    ],
+    "override": {
+      "chapter": {
+        "5": "c05-g6",
+        "6": "c06-g6",
+        "7": "c07-g6",
+        "8": "c08-g6",
+        "9": "c09-g6",
+        "10": "c10-g6",
+        "11": "c11-g6",
+        "12": "c12-g6",
+        "13": "c13-g6"
+      },
+      "poster": {
+        "5": "posters/c05-g6",
+        "6": "posters/c06-g6",
+        "7": "posters/c07-g6",
+        "8": "posters/c08-g6",
+        "9": "posters/c09-g6",
+        "10": "posters/c10-g6",
+        "11": "posters/c11-g6",
+        "12": "posters/c12-g6",
+        "13": "posters/c13-g6"
+      },
+      "full": "full-g6",
+      "quick": "quick-g6"
+    }
+  }
+]

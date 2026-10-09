@@ -1,0 +1,50 @@
+{
+  "gate": {
+    "gateVisible": true,
+    "langBtnVisible": false,
+    "enButtons": 0,
+    "htmlLang": "zh"
+  },
+  "pass": {
+    "passVisible": true,
+    "featCount": 4,
+    "checkMarks": 4,
+    "chapCount": 14,
+    "featText": "✓主动挑学生——按国籍、专业、年龄、自费等条件筛选，不再等学生上门✓没有中介费，学费与奖学金由学校发布，纠纷没有土壤✓录取通知书带有效期，谁接受、谁在比较、谁过期，提前看清✓录取学生的材料直接进学校自己的报名系统，不用再传一遍"
+  },
+  "fullscreen": {
+    "fsElement": true,
+    "vidSrc": "/guide/school/media/v1/zh/c01.mp4?v=ee976a18",
+    "vidPlaying": false,
+    "vidReady": 4
+  },
+  "watermark": {
+    "samples": [
+      {
+        "top": "10px",
+        "left": "12px",
+        "right": "1054.83px",
+        "bottom": "830.5px",
+        "transform": "none",
+        "text": "G6-test · ···TEST · 2026-10-09"
+      },
+      {
+        "top": "10px",
+        "left": "1054.83px",
+        "right": "12px",
+        "bottom": "830.5px",
+        "transform": "none",
+        "text": "G6-test · ···TEST · 2026-10-09"
+      },
+      {
+        "top": "794.5px",
+        "left": "1054.83px",
+        "right": "12px",
+        "bottom": "46px",
+        "transform": "none",
+        "text": "G6-test · ···TEST · 2026-10-09"
+      }
+    ],
+    "moved": true
+  }
+}
