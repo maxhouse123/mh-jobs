@@ -37,3 +37,74 @@
 - 学校端 G6-04 **全部做完**（7 章换脸重录 + 片尾新二维码 + full/quick 重拼 + 16 个 `-g6` 对象传进私有桶 + 页面构建串 `gs6-20261009` + commit `34a04f6`），只等 G6-06 上线真验。
 - **本轮尚未到上线步**：学生端还没录没传，**没有写 `NEED_PUSH.txt`**。主仓库这些 JOB-G6 提交都还压在本机未推，等 G6-05 做完、G6-06 开头再按 0.6 走推送。
 - 钥匙/密码/业主码：没进回执、没进仓库；wrangler 的钥匙是它自己从环境变量读的，CC 没碰 .env、没打印。
+
+
+---
+
+# JOB-G6-05 回执（第二趟）· 学生端：开录——查清不需整库重建 + 补上 c05 换脸素材 + 真录 c05/c06 英文
+
+日期 2026-10-09 ｜ 无人值守 ｜ 本机 Mac mini（真卷 /Volumes/Dev/MAXHOUSE）
+
+## 一句话
+上一趟（第一趟）把「学生线重录前要先跑通整库 rebuild」当成第一步。这趟真去跑，发现**整库 rebuild 跑不通、也根本不需要**——演示数据其实是好的，直接按「逐章前置 SQL」就能录。这趟把这事查清楚，顺手补上了**第 5 章的换脸素材**（原来是张占位图不是人脸），并**真录了英文第 5、6 章**（都全过，帧里亲眼看到是 AI 人脸）。剩下的英文章（c07–c13）和中/俄/法三语、拼片、传 R2 是下一趟的活。
+
+## 这趟到底发生了什么（大白话）
+
+### 1. 试跑整库 rebuild → 失败，但查清了「不用它」
+- 跑 `bash jobs/JOB-G0/rebuild.sh`，它第一步会「回收」演示数据（清库 + 清存储桶）再重建。
+- **清库这一步报错、整笔回滚了**：数据库里有张「学校操作日志表」（school_action_log）等三张表，被上一关**学校端录制（G6-04）新写了 22+12+2 行**指向这些演示学生；清库脚本 `cleanup.sql` 没清这些表，于是删学生时被「外键」挡住，整个事务回滚。
+- **关键**：因为是整笔回滚，**数据库原封未动**，还停在 G6-02 装完 AI 脸、已验过的那个状态（16 名 guide 演示生、Lina 有 2 份已接受 offer、材料行齐全）。
+- 清存储桶那步（`cleanup.mjs`）**只删了 student-documents 桶里顶层的东西**；而 AI 脸文件是放在**子目录** `<学生>/photo/g6-face-NNN.jpg` 里的，脚本对子目录的删除是**空操作**（删不动文件夹路径）→ **AI 脸文件一张没丢**。offer-letters 桶那段代码**只列不删**（没有删除动作）→ 通知书文件也完好。
+- **实测坐实数据是好的**：
+  - 重跑装脸脚本 `assign-faces.sh`：`uploaded=0 skipped(exists)=50 failed=0`、库里 `pointing_g6=50 / cast_total=50`——50 张 AI 脸全在、50 个指针全指向它。
+  - 闸 H（学生端）：真登 guide_stuA（Lina）看顶栏头像 → `hasImg:true`（真图，从 Supabase 存储桶取）、`hasSvgFallback:false` → **不是首字母回落，是人脸图**。
+
+> 结论：**不做破坏性的整库 recycle**（既跑不通、也没必要、还牵扯一堆历史测试数据的外键，风险高）。录制本来就有「逐章前置 SQL」的办法（`jobs/JOB-G1b/rec-chapters.sh`，每章录前自动把演示数据摆到该章需要的状态），直接用它录即可。
+
+### 2. 坐实「逐章前置 SQL」真能录（canary）
+- 先不带前置、裸录 c06 → 高亮全测不到（因为没先把 Lina 的 offer 摆成「待处理」）。
+- 改用正规驱动 `bash jobs/JOB-G1b/rec-chapters.sh en 6 6`（它会先跑 `reset-lina-payorder.sql` + `state-ch6-pending.sql`）→ **c06(en) 录 7/7 全过**。证明前置 SQL 自洽、不依赖整库重建。
+
+### 3. 补上第 5 章的换脸素材（本趟唯一的仓库改动）
+- 第 5 章画面里的学生（顶栏/申请 ID 英雄卡的头像）用的是**录制专用新生** guide-rec-en。它是 `is_test=false`（故意的，要像真·新生那样走流程），**不在那 50 张 AI 脸的名单里**，它的头像来自**它自己上传的 photo 素材**。
+- 查明这张素材 = `jobs/JOB-G0/assets/lina/photo.jpg`，原来是一张 **1000×560 的占位图（不是人脸）**。
+- 按叙事，第 5 章的「新生 Lina」和第 6 章起的「收到 offer 的 Lina」是**同一个人**。所以把这张素材换成 **Lina 在库里用的同一张 AI 脸**（face 041 = `f-f0c45b60…`，512×512）——两处同脸同人。
+- 原素材**留底**：`jobs/JOB-G6/photo-asset-before-g6.jpg`（old md5 `e9e516ee…` → new md5 `c19800…`）。
+- 不碰任何产品端 HTML。换脸只换「录制用素材文件」。
+
+### 4. 真录英文 c05、c06（都全过，帧里确认是 AI 脸）
+- `rec-chapters.sh en 5 5` → **c05(en) 8/8 全过**；`rec-chapters.sh en 6 6` → **c06(en) 7/7 全过**。
+- 肉眼看帧 `rec/en/c05/frames/f01010.jpg`：申请 ID 英雄卡（MH-6VDZFY）旁边的头像是一张 **AI 合成的非洲裔女性人脸（戴眼镜、微笑）**，和 Lina 同一张脸 → **c05 换脸成功**。
+
+## 闸 / 命令的真实输出
+- `assign-faces.sh`：`resolved 50/50`、`uploaded=0 skipped(exists)=50 failed=0`、`pointing_g6=50 / cast_total=50`。
+- 闸 H 学生端：`login ok=true`、`STUDENT topbar avatar: {"found":true,"hasImg":true,"hasSvgFallback":false}` → `GATE_H_STUDENT: has-image`。
+- 录制：`[c05/en] shots=8 ok=8`、`[c06/en] shots=7 ok=7`。
+- 素材换脸：old 1000×560 非人脸 → new 512×512 AI 脸；留底文件在。
+
+## 这趟改了哪些文件
+- 主仓库（**只 commit 未推**，1 笔 `7daf16b`，JOB-G6-05 开头）：
+  - 改 `jobs/JOB-G0/assets/lina/photo.jpg`（换成 AI 脸）
+  - 新增 `jobs/JOB-G6/photo-asset-before-g6.jpg`（原素材留底）
+- **`cleanup.sql` 本趟试加过三条删除、后已原样还原**，当前无改动（git diff 为空）。
+- 本机不入 git：`rec/en/c05`、`rec/en/c06` 的录制帧、`guide/dist/en/` 的成片（dist/rec 均 git 忽略，本机留着下一趟续用）。
+- `jobs/JOB-G0/g0-01-result.json` 开工前就是 M 状态（非本趟所改），未动、未提交。
+- 钥匙/密码/业主码：没进回执、没进仓库；DB 走 db-run.sh、装脸/录制脚本自读环境变量，CC 没读 .env。
+
+## 还差什么 / 下一趟从哪接
+1. **录完英文剩余有头像章**：`bash jobs/JOB-G1b/rec-chapters.sh en 7 13`（c07~c13；c05/c06 已录，可只补 7..13）。
+   - c07/c11/c12/c13 用的是 is_test 演示生（guide_agent/agentFresh/被荐生等），都在 50 脸库里，头像=库里 AI 脸，无需再换素材。录完抽帧肉眼复核每章头像是人脸。
+2. **英文自检过了，直接出中/俄/法**：`rec-chapters.sh zh 5 13`、`ru 5 13`、`fr 5 13`（四语画面同构，英文自检过即可照出）。
+   - 注意：c05 的换脸素材对四语通用（都走同一个 fresh 录制生上传同一张 photo 素材）。
+3. **叠层 + 拼片**（照学校端 G6-04 的三步）：`node jobs/JOB-G1/overlays.mjs`（会重渲全部叠层，**含片尾卡**——G6-03 已把片尾卡二维码源头 `overlays.mjs` 的 `CONTACT.guideUrl` 改成官网首页，所以重跑 overlays 就带上新二维码）→ `node jobs/JOB-G1/rec/assemble.mjs --all --lang <L>`（出各章 + quick + full）→ `node jobs/JOB-G1/rec/gates.mjs`（自检）。四语片尾帧各解码一次必须 == `https://www.maxhouses.net/`（解码器 `jobs/JOB-G6/gates/_decode-png.mjs`）。
+4. **传 R2 公开桶 + 改页面**：重录章 + 四语 full/quick + 变了的封面，用 `-g6` 新名传进 `guide/student/v2/`（`bash jobs/r2-put.sh …`，逐个 HEAD 核对，不覆盖不删）；页面 `guide/student/index.html` 改了的章指向 `-g6`、时长按新片、构建串改 **`g6-2026-10-09`**；commit `JOB-G6-05:`（不推）。
+   - ⚠ 公开桶上传用 `jobs/r2-put.sh`（桶 maxhouse-media）。若它也走 wrangler，注意同样要 3.x（上一趟学校端私有桶已装 wrangler 3.x 在 `~/mh-verify/g6-wrangler`）。先看 `r2-put.sh` 用的是 wrangler 还是 aws-sdk。
+5. 之后进 **G6-06**（两线一起上线、线上真验、收官）。
+
+## 给业主的提醒（重要判断）
+- 这趟**没有做任何破坏性数据库操作**：试改 cleanup.sql 后已还原，整库 recycle 没真跑成（都回滚了），数据库原封未动。
+- 发现一处**历史遗留**（非本轮引入、本轮不处理，仅记录）：学生线的清库脚本 `cleanup.sql` 对现在积累的历史测试数据已经不够健壮（学校线录制新写的 school_action_log 等外键 + 一个历史非-guide 测试生 `+stua` 和 guide 任务 ADM-100004 共用），所以「整库 rebuild」当前跑不通。**但录制不需要它**（逐章前置 SQL 够用）。要不要以后专门修一版健壮的清库脚本，列入下一轮建议即可，这趟不动它。
+
+## 现状提醒
+- 学校端 G6-04 **全部做完**（commit `34a04f6`，等 G6-06 上线真验）。
+- 学生端这趟：开录前置查清 + c05 换脸素材 + 英文 c05/c06 已录（本机）。**尚未到上线步，没写 NEED_PUSH.txt**。主仓库这些 JOB-G6 提交都还压在本机未推，等学生线录完拼完、G6-06 开头再按 §0.6 走推送。
