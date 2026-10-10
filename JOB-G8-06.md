@@ -77,5 +77,36 @@
 2. `cleanup.sh --apply` 删 460 个 R2 旧对象 → 抽验 → 回填本文件「五、执行回填」→ 再推。
 3. 主仓库只 commit 新脚本（r2-list-cfapi.sh / build-refset.mjs / cleanup.sh / cleanup-plan.json），不 push。
 
-## 五、执行回填
-（apply 后填：删了几个、释放多少字节、复验几条。）
+## 五、执行回填（已执行 · 2026-10-10 晚）
+**删除：460 个全成功、0 失败，释放约 1295 MB。**
+- 其中 1 个（`en/c04.mp4`）是我验证删除通道时先删的（它本就在计划里）；其余 459 个走 `cleanup.sh --apply`
+  （apply 时自动复建引用集、守卫 GUARD_OK 过，因 c04 已删故计划自然变 459）：**ok=459 / fail=0 / 459**。
+- 公开桶 maxhouse-media：413 个旧对象删除。
+- 私有桶 maxhouse-media-private：47 个旧对象删除（仅 guide/school/v1/zh/ 下）。
+
+**删后复验（以 R2 原点为准，不看边缘缓存）**：
+| 复验 | 删前 | 删后 | 说明 |
+|---|---|---|---|
+| 公开桶 guide/student/v2/ 对象数 | 643 个 / 1457.1 MB | **230 个 / 367.6 MB** | 恰好 = 引用集 230 键，多一个不剩 |
+| 私有桶 guide/school/v1/ 对象数 | 96 个 / 298.9 MB | **49 个 / 92.9 MB** | 恰好 = 引用集 49 键 |
+| 公开引用集逐个公网 HEAD | — | **230/230 = 200/206，0 个异常** | 现役文件全部可取，没删错 |
+| 私有引用集抽验（wrangler get 6 个：c01/full-g7/quick-g7/c14-g7/c07-lite/endcard-lite） | — | **6/6 OK** | 私有现役文件在 |
+
+**两桶现在装的，正好就是线上页面/ manifest 引用的那一套，不多不少**——这是最强的「没删错」证据
+（删后桶内对象数 == 引用集键数，且引用集逐个 HEAD 全绿）。
+
+**一处如实说明（不影响结论）**：删掉的旧对象，用浏览器打 `media.maxhouses.net/<旧键>` 短时间内可能仍回 200——
+那是 Cloudflare 边缘缓存还没过期（文件在 R2 原点已删）。所以「删没删掉」我**以重新列桶（原点真相）为准**，
+不以边缘 HEAD 为准；上表的 643→230 / 96→49 就是原点列桶的结果。
+
+## 六、本段产物与提交
+- 主仓库（**只 commit 不 push**，JOB-G8-06:）：`jobs/JOB-G8/` 下 `r2-list-cfapi.sh`、`build-refset.mjs`、
+  `cleanup.sh`、`cleanup-plan.json`、`cleanup-apply-result.json`、`probe-photos-list.sh`、
+  两桶删前/删后列表 `pub-v2.txt`/`priv-v1.txt`/`pub-v2-after.txt`/`priv-v1-after.txt`、`verify-pub-head.txt`。
+- ~/mh-jobs：本回执（计划段已先推 4c23611，执行回填后再推一次）。
+- 证据若需：无截图（全是命令输出，已贴本回执）。
+
+## 七、G8 收官还差什么
+- **G8-06b（Supabase 学生照片）未做**——见文末，81 个待删键 + 守卫脚本下一趟做。
+- **G8-07 收官**（写 SUMMARY-G8.md，首行 PUSH_OK=yes）须等 G8-06b 完成后才能写。
+- 因此本趟结束时 **G8 尚未收官**；下一趟先做 G8-06b，再 G8-07。
