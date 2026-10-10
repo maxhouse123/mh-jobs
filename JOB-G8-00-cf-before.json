@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-10-10T11:11+08:00",
+  "zone": { "name": "maxhouses.net", "id": "3dad665936b18cbac6ddb6e5f1002c1c", "status": "active" },
+  "token_permissions": {
+    "can_read": ["zones list", "rulesets (cache_settings)", "argo/tiered_caching"],
+    "cannot_read": [
+      "Zone Settings (http3/0rtt/early_hints/brotli) — error 9109/10000 Unauthorized",
+      "需要权限: Zone.Zone Settings:Read 与 Zone.Zone Settings:Edit（G8-01 改设置也缺）"
+    ]
+  },
+  "zone_settings": {
+    "http3": "UNKNOWN (token lacks Zone Settings:Read)",
+    "0rtt": "UNKNOWN (token lacks Zone Settings:Read)",
+    "early_hints": "UNKNOWN (token lacks Zone Settings:Read)",
+    "brotli": "UNKNOWN (token lacks Zone Settings:Read)",
+    "tiered_cache_smart_topology": "off"
+  },
+  "cache_ruleset": {
+    "phase": "http_request_cache_settings",
+    "ruleset_id": "089dcbc46c72420fa3112b08cc267ea9",
+    "rules": [
+      { "id": "8283ab08d4e04890a1ae2d38d3680ee6", "desc": "portal versioned html",
+        "expr": "http.host eq www.maxhouses.net and path contains /student-portal/maxhouse or /partner-portal/maxhouse or /school-portal/maxhouse",
+        "cache": true, "edge_ttl": "bypass_by_default", "browser_ttl": null },
+      { "id": "a5728fa7a83d4fb7ada3b79e91ff3d77", "desc": "guide-student-html",
+        "expr": "starts_with(path, /guide/student)",
+        "cache": true, "edge_ttl": "bypass_by_default", "browser_ttl": "respect_origin",
+        "note": "G8-01 要改的点：当前 edge 为 bypass_by_default，故学生页 HTML 本不该在 edge 缓存；但实测 2 次已 HIT（Pages 自身/stale-while-revalidate 在起作用）。G8-01 需把 edge 改 respect_origin 或新建 guide-student-html-cache 让其明确可缓存。" },
+      { "id": "085345b46ffc445a94863e19c2ef2ecb", "desc": "guide-html-cache (school)",
+        "expr": "starts_with(path, /guide/school/) and not /api and not /media and not /admin",
+        "cache": true, "edge_ttl": "respect_origin", "browser_ttl": "respect_origin" }
+    ],
+    "note": "没有 media.maxhouses.net 的缓存规则（这些规则都只管 www.maxhouses.net）；media 由 R2 自定义域默认缓存，实测已 HIT。"
+  },
+  "cf_cache_probe": {
+    "method": "curl HEAD/Range, 真直连(清代理env)与代理(127.0.0.1:10808)分开",
+    "direct_route": {
+      "note": "国内直连路：TTFB 1.0–2.2s，波动大，部分对象首次 MISS/EXPIRED，第2次 HIT",
+      "student_page": { "1st": "UPDATING ttfb=1.98s", "2nd": "HIT ttfb=2.22s" },
+      "school_page":  { "1st": "EXPIRED ttfb=0.97s", "2nd": "HIT ttfb=1.27s" },
+      "media_c01":    { "1st": "HIT",  "2nd": "HIT" },
+      "media_c07-g7": { "1st": "MISS", "2nd": "HIT" },
+      "media_full-g7b": { "1st": "MISS", "2nd": "HIT" },
+      "media_quick-g7": { "1st": "HIT", "2nd": "HIT" }
+    },
+    "proxy_route": {
+      "note": "海外路：TTFB ~0.65s，稳定，几乎全 HIT",
+      "student_page": { "1st": "HIT ttfb=0.64s", "2nd": "HIT ttfb=0.65s" },
+      "school_page":  { "1st": "HIT ttfb=0.64s", "2nd": "HIT ttfb=0.64s" },
+      "media_all":    "HIT/HIT"
+    }
+  }
+}
