@@ -1,0 +1,1629 @@
+{
+ "when_started": "2026-10-10T03:48:06.009Z",
+ "cells": {
+  "student-en|direct|none|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "direct",
+    "net": "none",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 768.5999999940395,
+    "firstScreenKB": 11,
+    "ttff_ms": 482,
+    "bytesBeforeFirstFrame": 1317158,
+    "stallCount": 1,
+    "stallMs": 465.3999999910593
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "UPDATING"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 558,
+     "stallCount": 1,
+     "stallMs": 542,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 482,
+     "stallCount": 1,
+     "stallMs": 465,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 453,
+     "stallCount": 1,
+     "stallMs": 436,
+     "bbff": 1317158,
+     "cf": "UPDATING"
+    }
+   ],
+   "_secs": 188
+  },
+  "student-en|direct|none|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "direct",
+    "net": "none",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 636.0999999940395,
+    "firstScreenKB": 11,
+    "ttff_ms": 855,
+    "bytesBeforeFirstFrame": 753628,
+    "stallCount": 1,
+    "stallMs": 839
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 918,
+     "stallCount": 1,
+     "stallMs": 901,
+     "bbff": 1032129,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 828,
+     "stallCount": 1,
+     "stallMs": 812,
+     "bbff": 753628,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 855,
+     "stallCount": 1,
+     "stallMs": 839,
+     "bbff": 737262,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-en|direct|none|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "direct",
+    "net": "none",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 740.5,
+    "firstScreenKB": 11,
+    "ttff_ms": 682,
+    "bytesBeforeFirstFrame": 311242,
+    "stallCount": 1,
+    "stallMs": 664.3000000119209
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 699,
+     "stallCount": 1,
+     "stallMs": 683,
+     "bbff": 310362,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 682,
+     "stallCount": 1,
+     "stallMs": 664,
+     "bbff": 311242,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 650,
+     "stallCount": 1,
+     "stallMs": 634,
+     "bbff": 311242,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-en|proxy|none|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "none",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 641.5,
+    "firstScreenKB": 11,
+    "ttff_ms": 481,
+    "bytesBeforeFirstFrame": 1317158,
+    "stallCount": 1,
+    "stallMs": 464.09999999403954
+   },
+   "cfCache": [
+    "UPDATING",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 549,
+     "stallCount": 1,
+     "stallMs": 531,
+     "bbff": 1317158,
+     "cf": "UPDATING"
+    },
+    {
+     "idx": 1,
+     "ttff": 477,
+     "stallCount": 1,
+     "stallMs": 461,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 481,
+     "stallCount": 1,
+     "stallMs": 464,
+     "bbff": 1317158,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 188
+  },
+  "student-en|proxy|none|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "none",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 728.3999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 840,
+    "bytesBeforeFirstFrame": 769994,
+    "stallCount": 1,
+    "stallMs": 824.2000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 860,
+     "stallCount": 1,
+     "stallMs": 840,
+     "bbff": 917314,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 840,
+     "stallCount": 1,
+     "stallMs": 824,
+     "bbff": 737280,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 822,
+     "stallCount": 1,
+     "stallMs": 806,
+     "bbff": 769994,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-en|proxy|none|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "none",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 768.5999999940395,
+    "firstScreenKB": 11,
+    "ttff_ms": 660,
+    "bytesBeforeFirstFrame": 311242,
+    "stallCount": 1,
+    "stallMs": 643.7000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 780,
+     "stallCount": 1,
+     "stallMs": 764,
+     "bbff": 425948,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 549,
+     "stallCount": 1,
+     "stallMs": 534,
+     "bbff": 311242,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 660,
+     "stallCount": 1,
+     "stallMs": 644,
+     "bbff": 311242,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-en|proxy|4g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "4g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 651.2000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 624,
+    "bytesBeforeFirstFrame": 177117,
+    "stallCount": 1,
+    "stallMs": 608
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 645,
+     "stallCount": 1,
+     "stallMs": 629,
+     "bbff": 207120,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 624,
+     "stallCount": 1,
+     "stallMs": 608,
+     "bbff": 175617,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 527,
+     "stallCount": 1,
+     "stallMs": 512,
+     "bbff": 177117,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-en|proxy|4g|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "4g",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 675.3999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 1730,
+    "bytesBeforeFirstFrame": 694465,
+    "stallCount": 1,
+    "stallMs": 1714.9000000059605
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 1772,
+     "stallCount": 1,
+     "stallMs": 1757,
+     "bbff": 725287,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 1641,
+     "stallCount": 1,
+     "stallMs": 1625,
+     "bbff": 694465,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1730,
+     "stallCount": 1,
+     "stallMs": 1715,
+     "bbff": 694465,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 12
+  },
+  "student-en|proxy|4g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "4g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 717,
+    "firstScreenKB": 11,
+    "ttff_ms": 924,
+    "bytesBeforeFirstFrame": 296536,
+    "stallCount": 1,
+    "stallMs": 908.2999999970198
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 924,
+     "stallCount": 1,
+     "stallMs": 908,
+     "bbff": 298331,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 926,
+     "stallCount": 1,
+     "stallMs": 910,
+     "bbff": 295331,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 918,
+     "stallCount": 1,
+     "stallMs": 902,
+     "bbff": 296536,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 10
+  },
+  "student-en|proxy|3g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "3g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 670.6999999880791,
+    "firstScreenKB": 11,
+    "ttff_ms": 1165,
+    "bytesBeforeFirstFrame": 1317158,
+    "stallCount": 1,
+    "stallMs": 1148.2999999970198
+   },
+   "cfCache": [
+    "HIT",
+    "UPDATING",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 1216,
+     "stallCount": 1,
+     "stallMs": 1198,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 1164,
+     "stallCount": 1,
+     "stallMs": 1147,
+     "bbff": 1317158,
+     "cf": "UPDATING"
+    },
+    {
+     "idx": 2,
+     "ttff": 1165,
+     "stallCount": 1,
+     "stallMs": 1148,
+     "bbff": 1317158,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 195
+  },
+  "student-en|proxy|3g|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "3g",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 650.7000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 3947,
+    "bytesBeforeFirstFrame": 691500,
+    "stallCount": 1,
+    "stallMs": 3929.7999999970198
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 4014,
+     "stallCount": 1,
+     "stallMs": 3998,
+     "bbff": 703500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 3947,
+     "stallCount": 1,
+     "stallMs": 3930,
+     "bbff": 691500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 3947,
+     "stallCount": 1,
+     "stallMs": 3929,
+     "bbff": 691500,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 22
+  },
+  "student-en|proxy|3g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "3g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 722.8999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 1977,
+    "bytesBeforeFirstFrame": 295500,
+    "stallCount": 1,
+    "stallMs": 1960.7000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 1975,
+     "stallCount": 1,
+     "stallMs": 1958,
+     "bbff": 295500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 1977,
+     "stallCount": 1,
+     "stallMs": 1961,
+     "bbff": 295500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1979,
+     "stallCount": 1,
+     "stallMs": 1962,
+     "bbff": 295500,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 17
+  },
+  "student-en|proxy|slow3g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "slow3g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 643.3999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 3771,
+    "bytesBeforeFirstFrame": 1317158,
+    "stallCount": 2,
+    "stallMs": 4571.20000000298
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 3832,
+     "stallCount": 2,
+     "stallMs": 4571,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 3763,
+     "stallCount": 2,
+     "stallMs": 4555,
+     "bbff": 1317158,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 3771,
+     "stallCount": 2,
+     "stallMs": 4577,
+     "bbff": 1317158,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 207
+  },
+  "student-en|proxy|slow3g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "en",
+    "path": "proxy",
+    "net": "slow3g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=en"
+   },
+   "median": {
+    "page_ttfb_ms": 711.7000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 7054,
+    "bytesBeforeFirstFrame": 295500,
+    "stallCount": 1,
+    "stallMs": 7037.29999999702
+   },
+   "cfCache": [
+    "UPDATING",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 7022,
+     "stallCount": 1,
+     "stallMs": 7005,
+     "bbff": 295500,
+     "cf": "UPDATING"
+    },
+    {
+     "idx": 1,
+     "ttff": 7054,
+     "stallCount": 1,
+     "stallMs": 7037,
+     "bbff": 295500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 7055,
+     "stallCount": 1,
+     "stallMs": 7038,
+     "bbff": 295500,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 37
+  },
+  "student-zh|direct|none|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "direct",
+    "net": "none",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 720.7000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 619,
+    "bytesBeforeFirstFrame": 1404807,
+    "stallCount": 1,
+    "stallMs": 600.8999999910593
+   },
+   "cfCache": [
+    "MISS",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 619,
+     "stallCount": 1,
+     "stallMs": 601,
+     "bbff": 1404807,
+     "cf": "MISS"
+    },
+    {
+     "idx": 1,
+     "ttff": 462,
+     "stallCount": 1,
+     "stallMs": 446,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 648,
+     "stallCount": 1,
+     "stallMs": 631,
+     "bbff": 1404807,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 189
+  },
+  "student-zh|direct|none|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "direct",
+    "net": "none",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 740.0999999940395,
+    "firstScreenKB": 11,
+    "ttff_ms": 929,
+    "bytesBeforeFirstFrame": 917729,
+    "stallCount": 1,
+    "stallMs": 912.7999999970198
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 929,
+     "stallCount": 1,
+     "stallMs": 913,
+     "bbff": 1245130,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 878,
+     "stallCount": 1,
+     "stallMs": 863,
+     "bbff": 917386,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 991,
+     "stallCount": 1,
+     "stallMs": 975,
+     "bbff": 917729,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 10
+  },
+  "student-zh|direct|none|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "direct",
+    "net": "none",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 635,
+    "firstScreenKB": 11,
+    "ttff_ms": 692,
+    "bytesBeforeFirstFrame": 392419,
+    "stallCount": 1,
+    "stallMs": 675.5999999940395
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 741,
+     "stallCount": 1,
+     "stallMs": 725,
+     "bbff": 606190,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 692,
+     "stallCount": 1,
+     "stallMs": 676,
+     "bbff": 360394,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 665,
+     "stallCount": 1,
+     "stallMs": 648,
+     "bbff": 392419,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-zh|proxy|none|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "none",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 606.8999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 529,
+    "bytesBeforeFirstFrame": 1404807,
+    "stallCount": 1,
+    "stallMs": 512.1999999880791
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "UPDATING"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 602,
+     "stallCount": 1,
+     "stallMs": 585,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 529,
+     "stallCount": 1,
+     "stallMs": 512,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 525,
+     "stallCount": 1,
+     "stallMs": 509,
+     "bbff": 1404807,
+     "cf": "UPDATING"
+    }
+   ],
+   "_secs": 188
+  },
+  "student-zh|proxy|none|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "none",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 722,
+    "firstScreenKB": 11,
+    "ttff_ms": 955,
+    "bytesBeforeFirstFrame": 1131576,
+    "stallCount": 1,
+    "stallMs": 938
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 947,
+     "stallCount": 1,
+     "stallMs": 930,
+     "bbff": 1131576,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 955,
+     "stallCount": 1,
+     "stallMs": 938,
+     "bbff": 901066,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1022,
+     "stallCount": 1,
+     "stallMs": 1006,
+     "bbff": 1196014,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 10
+  },
+  "student-zh|proxy|none|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "none",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 645.2000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 716,
+    "bytesBeforeFirstFrame": 375909,
+    "stallCount": 1,
+    "stallMs": 699.2000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 786,
+     "stallCount": 1,
+     "stallMs": 770,
+     "bbff": 386081,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 694,
+     "stallCount": 1,
+     "stallMs": 677,
+     "bbff": 375909,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 716,
+     "stallCount": 1,
+     "stallMs": 699,
+     "bbff": 344046,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-zh|proxy|4g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "4g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 731,
+    "firstScreenKB": 11,
+    "ttff_ms": 603,
+    "bytesBeforeFirstFrame": 170754,
+    "stallCount": 1,
+    "stallMs": 585.8999999910593
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 638,
+     "stallCount": 1,
+     "stallMs": 620,
+     "bbff": 174290,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 603,
+     "stallCount": 1,
+     "stallMs": 586,
+     "bbff": 170754,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 538,
+     "stallCount": 1,
+     "stallMs": 521,
+     "bbff": 170085,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 9
+  },
+  "student-zh|proxy|4g|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "4g",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 726.8999999910593,
+    "firstScreenKB": 11,
+    "ttff_ms": 2007,
+    "bytesBeforeFirstFrame": 859380,
+    "stallCount": 1,
+    "stallMs": 1990.4000000059605
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 2114,
+     "stallCount": 1,
+     "stallMs": 2098,
+     "bbff": 890414,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 2007,
+     "stallCount": 1,
+     "stallMs": 1990,
+     "bbff": 859380,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1994,
+     "stallCount": 1,
+     "stallMs": 1977,
+     "bbff": 859036,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 13
+  },
+  "student-zh|proxy|4g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "4g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 704.7000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 1058,
+    "bytesBeforeFirstFrame": 333879,
+    "stallCount": 1,
+    "stallMs": 1041.1000000089407
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 13
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 1087,
+     "stallCount": 1,
+     "stallMs": 1071,
+     "bbff": 363914,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 1031,
+     "stallCount": 1,
+     "stallMs": 1015,
+     "bbff": 333879,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1058,
+     "stallCount": 1,
+     "stallMs": 1041,
+     "bbff": 332414,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 10
+  },
+  "student-zh|proxy|3g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "3g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 663.7000000029802,
+    "firstScreenKB": 11,
+    "ttff_ms": 1158,
+    "bytesBeforeFirstFrame": 1404807,
+    "stallCount": 1,
+    "stallMs": 1141
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 1158,
+     "stallCount": 1,
+     "stallMs": 1141,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 1158,
+     "stallCount": 1,
+     "stallMs": 1141,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 1154,
+     "stallCount": 1,
+     "stallMs": 1137,
+     "bbff": 1404807,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 194
+  },
+  "student-zh|proxy|3g|full|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "3g",
+    "what": "full",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 726.4000000059605,
+    "firstScreenKB": 11,
+    "ttff_ms": 4780,
+    "bytesBeforeFirstFrame": 855000,
+    "stallCount": 1,
+    "stallMs": 4763.300000011921
+   },
+   "cfCache": [
+    "UPDATING",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "full-g7b.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 4834,
+     "stallCount": 1,
+     "stallMs": 4819,
+     "bbff": 867000,
+     "cf": "UPDATING"
+    },
+    {
+     "idx": 1,
+     "ttff": 4772,
+     "stallCount": 1,
+     "stallMs": 4756,
+     "bbff": 855000,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 4780,
+     "stallCount": 1,
+     "stallMs": 4763,
+     "bbff": 855000,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 25
+  },
+  "student-zh|proxy|3g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "3g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 703.0999999940395,
+    "firstScreenKB": 11,
+    "ttff_ms": 2154,
+    "bytesBeforeFirstFrame": 331500,
+    "stallCount": 1,
+    "stallMs": 2137.2000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 2215,
+     "stallCount": 1,
+     "stallMs": 2197,
+     "bbff": 342000,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 2154,
+     "stallCount": 1,
+     "stallMs": 2137,
+     "bbff": 331500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 2153,
+     "stallCount": 1,
+     "stallMs": 2135,
+     "bbff": 330000,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 18
+  },
+  "student-zh|proxy|slow3g|ch1|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "slow3g",
+    "what": "ch1",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 60,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 683.6999999880791,
+    "firstScreenKB": 11,
+    "ttff_ms": 3782,
+    "bytesBeforeFirstFrame": 1404807,
+    "stallCount": 2,
+    "stallMs": 3955.7000000029802
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "c01.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 3782,
+     "stallCount": 2,
+     "stallMs": 3956,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 3787,
+     "stallCount": 2,
+     "stallMs": 3949,
+     "bbff": 1404807,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 3782,
+     "stallCount": 2,
+     "stallMs": 3965,
+     "bbff": 1404807,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 206
+  },
+  "student-zh|proxy|slow3g|quick|hd": {
+   "cell": {
+    "line": "student",
+    "lang": "zh",
+    "path": "proxy",
+    "net": "slow3g",
+    "what": "quick",
+    "quality": "hd",
+    "runs": 3,
+    "stall": 0,
+    "url": "https://www.maxhouses.net/guide/student/?lang=zh"
+   },
+   "median": {
+    "page_ttfb_ms": 704,
+    "firstScreenKB": 11,
+    "ttff_ms": 7758,
+    "bytesBeforeFirstFrame": 328500,
+    "stallCount": 1,
+    "stallMs": 7740.70000000298
+   },
+   "cfCache": [
+    "HIT",
+    "HIT",
+    "HIT"
+   ],
+   "proto": {
+    "h2": 1,
+    "?": 14
+   },
+   "srcPlayed": "quick-g7.mp4",
+   "raw": [
+    {
+     "idx": 0,
+     "ttff": 7784,
+     "stallCount": 1,
+     "stallMs": 7767,
+     "bbff": 331500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 1,
+     "ttff": 7758,
+     "stallCount": 1,
+     "stallMs": 7741,
+     "bbff": 328500,
+     "cf": "HIT"
+    },
+    {
+     "idx": 2,
+     "ttff": 7748,
+     "stallCount": 1,
+     "stallMs": 7732,
+     "bbff": 328500,
+     "cf": "HIT"
+    }
+   ],
+   "_secs": 38
+  }
+ }
+}
