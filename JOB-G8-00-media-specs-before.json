@@ -1,0 +1,2458 @@
+{
+  "when": "2026-10-10T03:26:24.242Z",
+  "base": "https://media.maxhouses.net/guide/student/v2",
+  "results": [
+    {
+      "lang": "en",
+      "obj": "c01",
+      "bytes": 1279506,
+      "durationS": 27.29,
+      "bitrateKbps": 375,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 30876
+        },
+        {
+          "t": "free",
+          "off": 30908,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 30916,
+          "size": 1248590
+        }
+      ],
+      "moovSize": 30876,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 30908,
+      "secToFirstFrameAt400k": 0.62
+    },
+    {
+      "lang": "en",
+      "obj": "c02",
+      "bytes": 1508342,
+      "durationS": 33.84,
+      "bitrateKbps": 357,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 37992
+        },
+        {
+          "t": "free",
+          "off": 38024,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 38032,
+          "size": 1470310
+        }
+      ],
+      "moovSize": 37992,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 38024,
+      "secToFirstFrameAt400k": 0.76
+    },
+    {
+      "lang": "en",
+      "obj": "c03",
+      "bytes": 2090336,
+      "durationS": 43.94,
+      "bitrateKbps": 381,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 49020
+        },
+        {
+          "t": "free",
+          "off": 49052,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 49060,
+          "size": 2041276
+        }
+      ],
+      "moovSize": 49020,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 49052,
+      "secToFirstFrameAt400k": 0.98
+    },
+    {
+      "lang": "en",
+      "obj": "c04-g7",
+      "bytes": 4197453,
+      "durationS": 84.57,
+      "bitrateKbps": 397,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 93084
+        },
+        {
+          "t": "free",
+          "off": 93116,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 93124,
+          "size": 4104329
+        }
+      ],
+      "moovSize": 93084,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 93116,
+      "secToFirstFrameAt400k": 1.86
+    },
+    {
+      "lang": "en",
+      "obj": "c05-g6b",
+      "bytes": 3241725,
+      "durationS": 55.41,
+      "bitrateKbps": 468,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 61284
+        },
+        {
+          "t": "free",
+          "off": 61316,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 61324,
+          "size": 3180401
+        }
+      ],
+      "moovSize": 61284,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 61316,
+      "secToFirstFrameAt400k": 1.23
+    },
+    {
+      "lang": "en",
+      "obj": "c06-g6b",
+      "bytes": 2975229,
+      "durationS": 56.22,
+      "bitrateKbps": 423,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 62368
+        },
+        {
+          "t": "free",
+          "off": 62400,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 62408,
+          "size": 2912821
+        }
+      ],
+      "moovSize": 62368,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 62400,
+      "secToFirstFrameAt400k": 1.25
+    },
+    {
+      "lang": "en",
+      "obj": "c07-g7",
+      "bytes": 2551462,
+      "durationS": 37.47,
+      "bitrateKbps": 545,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 41920
+        },
+        {
+          "t": "free",
+          "off": 41952,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 41960,
+          "size": 2509502
+        }
+      ],
+      "moovSize": 41920,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 41952,
+      "secToFirstFrameAt400k": 0.84
+    },
+    {
+      "lang": "en",
+      "obj": "c08-g7",
+      "bytes": 2509610,
+      "durationS": 44.7,
+      "bitrateKbps": 449,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 49876
+        },
+        {
+          "t": "free",
+          "off": 49908,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 49916,
+          "size": 2459694
+        }
+      ],
+      "moovSize": 49876,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 49908,
+      "secToFirstFrameAt400k": 1
+    },
+    {
+      "lang": "en",
+      "obj": "c09-g6b",
+      "bytes": 1245485,
+      "durationS": 24.49,
+      "bitrateKbps": 407,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 27920
+        },
+        {
+          "t": "free",
+          "off": 27952,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 27960,
+          "size": 1217525
+        }
+      ],
+      "moovSize": 27920,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 27952,
+      "secToFirstFrameAt400k": 0.56
+    },
+    {
+      "lang": "en",
+      "obj": "c10-g7",
+      "bytes": 1085977,
+      "durationS": 16.35,
+      "bitrateKbps": 531,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 19004
+        },
+        {
+          "t": "free",
+          "off": 19036,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 19044,
+          "size": 1066933
+        }
+      ],
+      "moovSize": 19004,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 19036,
+      "secToFirstFrameAt400k": 0.38
+    },
+    {
+      "lang": "en",
+      "obj": "c11-g6b",
+      "bytes": 1904043,
+      "durationS": 32,
+      "bitrateKbps": 476,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 36040
+        },
+        {
+          "t": "free",
+          "off": 36072,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 36080,
+          "size": 1867963
+        }
+      ],
+      "moovSize": 36040,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 36072,
+      "secToFirstFrameAt400k": 0.72
+    },
+    {
+      "lang": "en",
+      "obj": "c12-g7b",
+      "bytes": 4118189,
+      "durationS": 65.17,
+      "bitrateKbps": 506,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 72020
+        },
+        {
+          "t": "free",
+          "off": 72052,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 72060,
+          "size": 4046129
+        }
+      ],
+      "moovSize": 72020,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 72052,
+      "secToFirstFrameAt400k": 1.44
+    },
+    {
+      "lang": "en",
+      "obj": "c13-g6b",
+      "bytes": 1246038,
+      "durationS": 15.57,
+      "bitrateKbps": 640,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 18116
+        },
+        {
+          "t": "free",
+          "off": 18148,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 18156,
+          "size": 1227882
+        }
+      ],
+      "moovSize": 18116,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 18148,
+      "secToFirstFrameAt400k": 0.36
+    },
+    {
+      "lang": "en",
+      "obj": "full-g7b",
+      "bytes": 30182726,
+      "durationS": 552.07,
+      "bitrateKbps": 437,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 600028
+        },
+        {
+          "t": "free",
+          "off": 600060,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 600068,
+          "size": 29582658
+        }
+      ],
+      "moovSize": 600028,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 600060,
+      "secToFirstFrameAt400k": 12
+    },
+    {
+      "lang": "en",
+      "obj": "quick-g7",
+      "bytes": 8169165,
+      "durationS": 153.42,
+      "bitrateKbps": 426,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 168356
+        },
+        {
+          "t": "free",
+          "off": 168388,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 168396,
+          "size": 8000769
+        }
+      ],
+      "moovSize": 168356,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 168388,
+      "secToFirstFrameAt400k": 3.37
+    },
+    {
+      "lang": "zh",
+      "obj": "c01",
+      "bytes": 1366553,
+      "durationS": 30.83,
+      "bitrateKbps": 355,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 34772
+        },
+        {
+          "t": "free",
+          "off": 34804,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 34812,
+          "size": 1331741
+        }
+      ],
+      "moovSize": 34772,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 34804,
+      "secToFirstFrameAt400k": 0.7
+    },
+    {
+      "lang": "zh",
+      "obj": "c02",
+      "bytes": 1398691,
+      "durationS": 34.7,
+      "bitrateKbps": 322,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 38996
+        },
+        {
+          "t": "free",
+          "off": 39028,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 39036,
+          "size": 1359655
+        }
+      ],
+      "moovSize": 38996,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 39028,
+      "secToFirstFrameAt400k": 0.78
+    },
+    {
+      "lang": "zh",
+      "obj": "c03",
+      "bytes": 2026178,
+      "durationS": 50.68,
+      "bitrateKbps": 320,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 56264
+        },
+        {
+          "t": "free",
+          "off": 56296,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 56304,
+          "size": 1969874
+        }
+      ],
+      "moovSize": 56264,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 56296,
+      "secToFirstFrameAt400k": 1.13
+    },
+    {
+      "lang": "zh",
+      "obj": "c04-g7",
+      "bytes": 5204026,
+      "durationS": 131.79,
+      "bitrateKbps": 316,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 144324
+        },
+        {
+          "t": "free",
+          "off": 144356,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 144364,
+          "size": 5059662
+        }
+      ],
+      "moovSize": 144324,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 144356,
+      "secToFirstFrameAt400k": 2.89
+    },
+    {
+      "lang": "zh",
+      "obj": "c05-g6b",
+      "bytes": 3448938,
+      "durationS": 57.72,
+      "bitrateKbps": 478,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 63924
+        },
+        {
+          "t": "free",
+          "off": 63956,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 63964,
+          "size": 3384974
+        }
+      ],
+      "moovSize": 63924,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 63956,
+      "secToFirstFrameAt400k": 1.28
+    },
+    {
+      "lang": "zh",
+      "obj": "c06-g6b",
+      "bytes": 2926808,
+      "durationS": 71.44,
+      "bitrateKbps": 328,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 78888
+        },
+        {
+          "t": "free",
+          "off": 78920,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 78928,
+          "size": 2847880
+        }
+      ],
+      "moovSize": 78888,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 78920,
+      "secToFirstFrameAt400k": 1.58
+    },
+    {
+      "lang": "zh",
+      "obj": "c07-g7",
+      "bytes": 2696840,
+      "durationS": 60.51,
+      "bitrateKbps": 357,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.83,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 66964
+        },
+        {
+          "t": "free",
+          "off": 66996,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 67004,
+          "size": 2629836
+        }
+      ],
+      "moovSize": 66964,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 66996,
+      "secToFirstFrameAt400k": 1.34
+    },
+    {
+      "lang": "zh",
+      "obj": "c08-g7",
+      "bytes": 2578619,
+      "durationS": 47.67,
+      "bitrateKbps": 433,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 53072
+        },
+        {
+          "t": "free",
+          "off": 53104,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 53112,
+          "size": 2525507
+        }
+      ],
+      "moovSize": 53072,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 53104,
+      "secToFirstFrameAt400k": 1.06
+    },
+    {
+      "lang": "zh",
+      "obj": "c09-g6b",
+      "bytes": 1143839,
+      "durationS": 26.06,
+      "bitrateKbps": 351,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 29656
+        },
+        {
+          "t": "free",
+          "off": 29688,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 29696,
+          "size": 1114143
+        }
+      ],
+      "moovSize": 29656,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 29688,
+      "secToFirstFrameAt400k": 0.59
+    },
+    {
+      "lang": "zh",
+      "obj": "c10-g7",
+      "bytes": 973854,
+      "durationS": 16.26,
+      "bitrateKbps": 479,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 18948
+        },
+        {
+          "t": "free",
+          "off": 18980,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 18988,
+          "size": 954866
+        }
+      ],
+      "moovSize": 18948,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 18980,
+      "secToFirstFrameAt400k": 0.38
+    },
+    {
+      "lang": "zh",
+      "obj": "c11-g6b",
+      "bytes": 3099513,
+      "durationS": 77.54,
+      "bitrateKbps": 320,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 85512
+        },
+        {
+          "t": "free",
+          "off": 85544,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 85552,
+          "size": 3013961
+        }
+      ],
+      "moovSize": 85512,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 85544,
+      "secToFirstFrameAt400k": 1.71
+    },
+    {
+      "lang": "zh",
+      "obj": "c12-g7b",
+      "bytes": 3924676,
+      "durationS": 82.4,
+      "bitrateKbps": 381,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 90696
+        },
+        {
+          "t": "free",
+          "off": 90728,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 90736,
+          "size": 3833940
+        }
+      ],
+      "moovSize": 90696,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 90728,
+      "secToFirstFrameAt400k": 1.81
+    },
+    {
+      "lang": "zh",
+      "obj": "c13-g6b",
+      "bytes": 1229758,
+      "durationS": 15.28,
+      "bitrateKbps": 644,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 59.94,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 17828
+        },
+        {
+          "t": "free",
+          "off": 17860,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 17868,
+          "size": 1211890
+        }
+      ],
+      "moovSize": 17828,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 17860,
+      "secToFirstFrameAt400k": 0.36
+    },
+    {
+      "lang": "zh",
+      "obj": "full-g7b",
+      "bytes": 32249137,
+      "durationS": 717.88,
+      "bitrateKbps": 359,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 780172
+        },
+        {
+          "t": "free",
+          "off": 780204,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 780212,
+          "size": 31468925
+        }
+      ],
+      "moovSize": 780172,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 780204,
+      "secToFirstFrameAt400k": 15.6
+    },
+    {
+      "lang": "zh",
+      "obj": "quick-g7",
+      "bytes": 8763513,
+      "durationS": 197.22,
+      "bitrateKbps": 355,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 215704
+        },
+        {
+          "t": "free",
+          "off": 215736,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 215744,
+          "size": 8547769
+        }
+      ],
+      "moovSize": 215704,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 215736,
+      "secToFirstFrameAt400k": 4.31
+    },
+    {
+      "lang": "ru",
+      "obj": "c01",
+      "bytes": 1399888,
+      "durationS": 31.72,
+      "bitrateKbps": 353,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 35784
+        },
+        {
+          "t": "free",
+          "off": 35816,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 35824,
+          "size": 1364064
+        }
+      ],
+      "moovSize": 35784,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 35816,
+      "secToFirstFrameAt400k": 0.72
+    },
+    {
+      "lang": "ru",
+      "obj": "c02",
+      "bytes": 1548756,
+      "durationS": 35.35,
+      "bitrateKbps": 351,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 39644
+        },
+        {
+          "t": "free",
+          "off": 39676,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 39684,
+          "size": 1509072
+        }
+      ],
+      "moovSize": 39644,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 39676,
+      "secToFirstFrameAt400k": 0.79
+    },
+    {
+      "lang": "ru",
+      "obj": "c03",
+      "bytes": 2207308,
+      "durationS": 47.38,
+      "bitrateKbps": 373,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 52724
+        },
+        {
+          "t": "free",
+          "off": 52756,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 52764,
+          "size": 2154544
+        }
+      ],
+      "moovSize": 52724,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 52756,
+      "secToFirstFrameAt400k": 1.06
+    },
+    {
+      "lang": "ru",
+      "obj": "c04-g7",
+      "bytes": 5887788,
+      "durationS": 125.89,
+      "bitrateKbps": 374,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 137900
+        },
+        {
+          "t": "free",
+          "off": 137932,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 137940,
+          "size": 5749848
+        }
+      ],
+      "moovSize": 137900,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 137932,
+      "secToFirstFrameAt400k": 2.76
+    },
+    {
+      "lang": "ru",
+      "obj": "c05-g6b",
+      "bytes": 3708061,
+      "error": "Error: Command failed: ffprobe -v error -show_entries format=duration,bit_rate,size:stream=codec_type,codec_name,width,height,r_frame_rate,sample_rate,channels ",
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 64728
+        },
+        {
+          "t": "free",
+          "off": 64760,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 64768,
+          "size": 3643293
+        }
+      ],
+      "moovSize": 64728,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 64760,
+      "secToFirstFrameAt400k": 1.3
+    },
+    {
+      "lang": "ru",
+      "obj": "c06-g6b",
+      "bytes": 3319630,
+      "durationS": 74.43,
+      "bitrateKbps": 357,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 82008
+        },
+        {
+          "t": "free",
+          "off": 82040,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 82048,
+          "size": 3237582
+        }
+      ],
+      "moovSize": 82008,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 82040,
+      "secToFirstFrameAt400k": 1.64
+    },
+    {
+      "lang": "ru",
+      "obj": "c07-g7",
+      "bytes": 2881935,
+      "durationS": 61.89,
+      "bitrateKbps": 373,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 240,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 68484
+        },
+        {
+          "t": "free",
+          "off": 68516,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 68524,
+          "size": 2813411
+        }
+      ],
+      "moovSize": 68484,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 68516,
+      "secToFirstFrameAt400k": 1.37
+    },
+    {
+      "lang": "ru",
+      "obj": "c08-g7",
+      "bytes": 2414030,
+      "durationS": 45.63,
+      "bitrateKbps": 423,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 50780
+        },
+        {
+          "t": "free",
+          "off": 50812,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 50820,
+          "size": 2363210
+        }
+      ],
+      "moovSize": 50780,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 50812,
+      "secToFirstFrameAt400k": 1.02
+    },
+    {
+      "lang": "ru",
+      "obj": "c09-g6b",
+      "bytes": 1324221,
+      "durationS": 26.48,
+      "bitrateKbps": 400,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 30088
+        },
+        {
+          "t": "free",
+          "off": 30120,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 30128,
+          "size": 1294093
+        }
+      ],
+      "moovSize": 30088,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 30120,
+      "secToFirstFrameAt400k": 0.6
+    },
+    {
+      "lang": "ru",
+      "obj": "c10-g7",
+      "bytes": 1100205,
+      "durationS": 18.16,
+      "bitrateKbps": 485,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 21024
+        },
+        {
+          "t": "free",
+          "off": 21056,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 21064,
+          "size": 1079141
+        }
+      ],
+      "moovSize": 21024,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 21056,
+      "secToFirstFrameAt400k": 0.42
+    },
+    {
+      "lang": "ru",
+      "obj": "c11-g6b",
+      "bytes": 2154340,
+      "durationS": 40.18,
+      "bitrateKbps": 429,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 44884
+        },
+        {
+          "t": "free",
+          "off": 44916,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 44924,
+          "size": 2109416
+        }
+      ],
+      "moovSize": 44884,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 44916,
+      "secToFirstFrameAt400k": 0.9
+    },
+    {
+      "lang": "ru",
+      "obj": "c12-g7b",
+      "bytes": 4272061,
+      "durationS": 89.53,
+      "bitrateKbps": 382,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 98528
+        },
+        {
+          "t": "free",
+          "off": 98560,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 98568,
+          "size": 4173493
+        }
+      ],
+      "moovSize": 98528,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 98560,
+      "secToFirstFrameAt400k": 1.97
+    },
+    {
+      "lang": "ru",
+      "obj": "c13-g6b",
+      "bytes": 1204241,
+      "durationS": 16.76,
+      "bitrateKbps": 575,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 19540
+        },
+        {
+          "t": "free",
+          "off": 19572,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 19580,
+          "size": 1184661
+        }
+      ],
+      "moovSize": 19540,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 19572,
+      "secToFirstFrameAt400k": 0.39
+    },
+    {
+      "lang": "ru",
+      "obj": "full-g7b",
+      "bytes": 33652788,
+      "durationS": 686.93,
+      "bitrateKbps": 392,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 746540
+        },
+        {
+          "t": "free",
+          "off": 746572,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 746580,
+          "size": 32906208
+        }
+      ],
+      "moovSize": 746540,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 746572,
+      "secToFirstFrameAt400k": 14.93
+    },
+    {
+      "lang": "ru",
+      "obj": "quick-g7",
+      "bytes": 9559638,
+      "durationS": 196.12,
+      "bitrateKbps": 390,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 214732
+        },
+        {
+          "t": "free",
+          "off": 214764,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 214772,
+          "size": 9344866
+        }
+      ],
+      "moovSize": 214732,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 214764,
+      "secToFirstFrameAt400k": 4.3
+    },
+    {
+      "lang": "fr",
+      "obj": "c01",
+      "bytes": 1319659,
+      "durationS": 28.52,
+      "bitrateKbps": 370,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 32216
+        },
+        {
+          "t": "free",
+          "off": 32248,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 32256,
+          "size": 1287403
+        }
+      ],
+      "moovSize": 32216,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 32248,
+      "secToFirstFrameAt400k": 0.64
+    },
+    {
+      "lang": "fr",
+      "obj": "c02",
+      "bytes": 1702201,
+      "durationS": 37.33,
+      "bitrateKbps": 365,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 41824
+        },
+        {
+          "t": "free",
+          "off": 41856,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 41864,
+          "size": 1660337
+        }
+      ],
+      "moovSize": 41824,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 41856,
+      "secToFirstFrameAt400k": 0.84
+    },
+    {
+      "lang": "fr",
+      "obj": "c03",
+      "bytes": 2103520,
+      "durationS": 45.06,
+      "bitrateKbps": 373,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.83,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 50204
+        },
+        {
+          "t": "free",
+          "off": 50236,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 50244,
+          "size": 2053276
+        }
+      ],
+      "moovSize": 50204,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 50236,
+      "secToFirstFrameAt400k": 1
+    },
+    {
+      "lang": "fr",
+      "obj": "c04-g7",
+      "bytes": 6114913,
+      "durationS": 119.81,
+      "bitrateKbps": 408,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 131348
+        },
+        {
+          "t": "free",
+          "off": 131380,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 131388,
+          "size": 5983525
+        }
+      ],
+      "moovSize": 131348,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 131380,
+      "secToFirstFrameAt400k": 2.63
+    },
+    {
+      "lang": "fr",
+      "obj": "c05-g6b",
+      "bytes": 3603012,
+      "durationS": 58.85,
+      "bitrateKbps": 490,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 65132
+        },
+        {
+          "t": "free",
+          "off": 65164,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 65172,
+          "size": 3537840
+        }
+      ],
+      "moovSize": 65132,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 65164,
+      "secToFirstFrameAt400k": 1.3
+    },
+    {
+      "lang": "fr",
+      "obj": "c06-g6b",
+      "bytes": 3319638,
+      "durationS": 73.86,
+      "bitrateKbps": 360,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 81456
+        },
+        {
+          "t": "free",
+          "off": 81488,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 81496,
+          "size": 3238142
+        }
+      ],
+      "moovSize": 81456,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 81488,
+      "secToFirstFrameAt400k": 1.63
+    },
+    {
+      "lang": "fr",
+      "obj": "c07-g7",
+      "bytes": 2773544,
+      "durationS": 58.06,
+      "bitrateKbps": 382,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.92,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 64372
+        },
+        {
+          "t": "free",
+          "off": 64404,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 64412,
+          "size": 2709132
+        }
+      ],
+      "moovSize": 64372,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 64404,
+      "secToFirstFrameAt400k": 1.29
+    },
+    {
+      "lang": "fr",
+      "obj": "c08-g7",
+      "bytes": 2490767,
+      "durationS": 44.48,
+      "bitrateKbps": 448,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 49524
+        },
+        {
+          "t": "free",
+          "off": 49556,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 49564,
+          "size": 2441203
+        }
+      ],
+      "moovSize": 49524,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 49556,
+      "secToFirstFrameAt400k": 0.99
+    },
+    {
+      "lang": "fr",
+      "obj": "c09-g6b",
+      "bytes": 1322244,
+      "durationS": 24.43,
+      "bitrateKbps": 433,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 27792
+        },
+        {
+          "t": "free",
+          "off": 27824,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 27832,
+          "size": 1294412
+        }
+      ],
+      "moovSize": 27792,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 27824,
+      "secToFirstFrameAt400k": 0.56
+    },
+    {
+      "lang": "fr",
+      "obj": "c10-g7",
+      "bytes": 1079086,
+      "durationS": 16.93,
+      "bitrateKbps": 510,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 19736
+        },
+        {
+          "t": "free",
+          "off": 19768,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 19776,
+          "size": 1059310
+        }
+      ],
+      "moovSize": 19736,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 19768,
+      "secToFirstFrameAt400k": 0.4
+    },
+    {
+      "lang": "fr",
+      "obj": "c11-g6b",
+      "bytes": 2273747,
+      "durationS": 36.36,
+      "bitrateKbps": 500,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 40748
+        },
+        {
+          "t": "free",
+          "off": 40780,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 40788,
+          "size": 2232959
+        }
+      ],
+      "moovSize": 40748,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 40780,
+      "secToFirstFrameAt400k": 0.82
+    },
+    {
+      "lang": "fr",
+      "obj": "c12-g7b",
+      "bytes": 4415513,
+      "durationS": 84.93,
+      "bitrateKbps": 416,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.92,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 93512
+        },
+        {
+          "t": "free",
+          "off": 93544,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 93552,
+          "size": 4321961
+        }
+      ],
+      "moovSize": 93512,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 93544,
+      "secToFirstFrameAt400k": 1.87
+    },
+    {
+      "lang": "fr",
+      "obj": "c13-g6b",
+      "bytes": 1299164,
+      "durationS": 16.56,
+      "bitrateKbps": 628,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 19300
+        },
+        {
+          "t": "free",
+          "off": 19332,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 19340,
+          "size": 1279824
+        }
+      ],
+      "moovSize": 19300,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 19332,
+      "secToFirstFrameAt400k": 0.39
+    },
+    {
+      "lang": "fr",
+      "obj": "full-g7b",
+      "bytes": 34049949,
+      "durationS": 660.18,
+      "bitrateKbps": 413,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 717528
+        },
+        {
+          "t": "free",
+          "off": 717560,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 717568,
+          "size": 33332381
+        }
+      ],
+      "moovSize": 717528,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 717560,
+      "secToFirstFrameAt400k": 14.35
+    },
+    {
+      "lang": "fr",
+      "obj": "quick-g7",
+      "bytes": 8807225,
+      "durationS": 184.49,
+      "bitrateKbps": 382,
+      "vcodec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "acodec": "aac",
+      "aSampleRate": 44100,
+      "aChannels": 1,
+      "atoms": [
+        {
+          "t": "ftyp",
+          "off": 0,
+          "size": 32
+        },
+        {
+          "t": "moov",
+          "off": 32,
+          "size": 201944
+        },
+        {
+          "t": "free",
+          "off": 201976,
+          "size": 8
+        },
+        {
+          "t": "mdat",
+          "off": 201984,
+          "size": 8605241
+        }
+      ],
+      "moovSize": 201944,
+      "moovOffset": 32,
+      "moovInHead": true,
+      "headerBytesToFirstFrame": 201976,
+      "secToFirstFrameAt400k": 4.04
+    }
+  ]
+}
