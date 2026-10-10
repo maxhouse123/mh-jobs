@@ -1,0 +1,16 @@
+{
+ "note": "G9-04 复测：线上 g9 已部署(student g9-2026-10-10 / school gs9-20261010)。分段流畅速览。measure.mjs 同 before 口径(proxy,3次中位,stall=60)。cell3 首测被CF缓存传旧gs8/旧manifest污染(播 quick-lite-g8)已剔除,下表为干净重测值。",
+ "measuredAt": "2026-10-11T00:40:00+08:00",
+ "gate": {"ttff_3g_max_s":2.5,"ttff_slow3g_max_s":4,"stall_3g_max":0,"stall_slow3g_max":1,"crossgap_max_s":0.6},
+ "cells": [
+  {"line":"student","lang":"zh","net":"3g","src":"quick-lite-g9-01.mp4","ttff_ms":838,"stallCount":3,"stallMs":2121,"ttff_pass":true,"stall_pass":false,"raw_ttff":[903,838,836]},
+  {"line":"student","lang":"zh","net":"slow3g","src":"quick-lite-g9-01.mp4","ttff_ms":2505,"stallCount":4,"stallMs":6071,"ttff_pass":true,"stall_pass":false,"raw_ttff":[2536,2505,2476]},
+  {"line":"school","lang":"zh","net":"3g","src":"quick-lite-g9-01.mp4","ttff_ms":656,"stallCount":2,"stallMs":1462,"ttff_pass":true,"stall_pass":false,"raw_ttff":[816,655,656]},
+  {"line":"school","lang":"zh","net":"slow3g","src":"quick-lite-g9-01.mp4","ttff_ms":5380,"stallCount":9,"stallMs":27374,"ttff_pass":false,"stall_pass":false,"raw_ttff":[5459,5376,5380]}
+ ],
+ "crossgap_ms": {
+  "student_zh_3g":[650,667,654,825,818,660],
+  "student_zh_slow3g":[1765,1767,1778,2428,2431,1780]
+ },
+ "verdict": "TTFF(秒开)全改善,学生线4格TTFF全过;学校慢3G TTFF 5.38s>4s(段01=994KB偏大)。但跨段间隔(3G 0.65~0.83s / 慢3G 1.77~2.43s)与60秒卡顿(3G 2~3次/慢3G 4~9次)均超闸——根因:播放器 preload=none、只在 ended 时才取下一段,无预取。"
+}
