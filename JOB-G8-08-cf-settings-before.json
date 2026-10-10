@@ -1,0 +1,23 @@
+{ "captured_at_note": "JOB-G8-08 卡1360 before", "zone": "maxhouses.net 3dad665936b18cbac6ddb6e5f1002c1c",
+  "http3":
+{"result":{"id":"http3","value":"on","modified_on":"2026-08-22T15:33:55.282728Z","editable":true},"success":true,"errors":[],"messages":[]}
+  ,"0rtt":
+{"result":{"id":"0rtt","value":"on","modified_on":null,"editable":true},"success":true,"errors":[],"messages":[]}
+  ,"early_hints":
+{"result":{"id":"early_hints","value":"on","modified_on":null,"editable":true},"success":true,"errors":[],"messages":[]}
+  ,"brotli":
+{"result":{"id":"brotli","value":"on","editable":true},"success":true,"errors":[],"messages":[],"result_info":{}}
+
+  ,"tiered_cache_smart_topology_enable":
+{
+  "result": {
+    "editable": true,
+    "id": "tiered_cache_smart_topology_enable",
+    "value": "off"
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}
+
+}

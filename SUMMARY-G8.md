@@ -70,3 +70,7 @@ Cloudflare Pages 已部署（线上构建串 student `g8-2026-10-10` / school `g
 
 ---
 **账本**：G8-00~G8-07 全部完成。代码两次推送已上线并线上真验；清理两段已执行并复验；本总结即 §8 收官件。
+
+---
+## 补记（卡1360）· JOB-G8-08 Cloudflare zone 设置收尾
+本轮令牌权限已够，maxhouses.net 五项 zone 设置全部读到。http3 / 0rtt / early_hints / brotli 四项本来就是 on（按要求一个没改）；唯一是 off 的 tiered_cache_smart_topology_enable（智能分层缓存）已 PATCH 成 on 并复读确认。验证：带浏览器 UA 的 `curl -sI https://www.maxhouses.net/guide/student/` 响应头含 `alt-svc: h3=":443"; ma=86400`，即 HTTP/3 已开。全程无 9109/10000 无权限报错，未碰缓存规则、未清缓存。原始前后 JSON + 回执见 JOB-G8-08.md / JOB-G8-08-cf-settings-{before,after}.json。
