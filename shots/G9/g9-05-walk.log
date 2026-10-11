@@ -1,0 +1,59 @@
+
+=== 学生页 双缓冲逻辑走查(media abort) ===
+  ✅ BUILD=g9b-2026-10-11
+  ✅ 两个顶部播放器 A/B 存在
+  ✅ A=seg01(active)  quick-lite-g9-01.mp4
+  ✅ 初始 actI=0
+  ✅ A 为显示(无 sb 类)
+  ✅ B 为隐藏(有 sb 类)
+  ✅ 预装 B=seg02 (preload=auto)  quick-lite-g9-02.mp4
+  ✅ ended→actI=1(切到B)
+  ✅ B 现为显示
+  ✅ A 现为隐藏
+  ✅ 标签 速览 第 2 / 7 段
+  ✅ 切后 A 去预装 seg03  quick-lite-g9-03.mp4
+  ✅ Next 到末段=quick-lite-g9-07  quick-lite-g9-07.mp4
+  ✅ 末段 Next 禁用
+  ✅ 切hd速览=quick-g9.mp4单文件  quick-g9.mp4
+  ✅ hd 速览 seqNav 隐藏
+  ✅ 速览自动降档 AUTO_LITE=true
+  ✅ 降档后速览→分段流畅  quick-lite-g9-01.mp4
+  ✅ hd 第10章=c10-g9.mp4(回归)
+  ✅ ch10 页面章名=长名
+
+=== 学校页 双缓冲 + g9b 分段走查(route 桩) ===
+  ✅ 进入 pass 视图
+  ✅ build=gs9b-20261011
+  ✅ 两个播放器 vidA/vidB 存在
+  ✅ 流畅速览起=quick-lite-g9b-01(首段切短)  quick-lite-g9b-01.mp4
+  ✅ nowPlaying 速览 第 1 / 7 段
+  ✅ ended→active 切换到另一元素  vidA→vidB
+  ✅ 速览 ended→seg02  quick-lite-g9b-02.mp4
+  ✅ nowPlaying 速览 第 2 / 7 段
+  ✅ 切hd速览=quick-g7(hd不动)  quick-g7.mp4
+  ✅ 流畅整片起=intro-lite-g8(回归)  intro-lite-g8.mp4
+
+=== student 真跨段间隔(双缓冲,服本地 dist,seek 段尾测 ended→playing) ===
+  跨段间隔(ms): [0.2,0.3,0.2]
+  ✅ student 真跨段≥3次且最大≤600ms  max=0.3ms n=3
+
+=== 学校 双缓冲接缝就绪度(连跨3接缝,待进段 readyState≥3=秒切) ===
+  · 接缝1:待进段quick-lite-g9b-02.mp4 rs=4
+  · 接缝2:待进段quick-lite-g9b-03.mp4 rs=4
+  · 接缝3:待进段quick-lite-g9b-04.mp4 rs=4
+  ✅ 学校 连跨3接缝均「待进段已就绪」(秒切)  3/3
+
+=== g9b 每段 file:// 真放前 3s 无 error ===
+  ✅ quick-lite-g9b-01.mp4 真放无error  rs=4 dur=20.0s ct=2.94
+  ✅ quick-lite-g9b-02.mp4 真放无error  rs=4 dur=34.7s ct=2.94
+  ✅ quick-lite-g9b-03.mp4 真放无error  rs=4 dur=31.9s ct=2.94
+  ✅ quick-lite-g9b-04.mp4 真放无error  rs=4 dur=24.6s ct=2.94
+  ✅ quick-lite-g9b-05.mp4 真放无error  rs=4 dur=25.2s ct=2.94
+  ✅ quick-lite-g9b-06.mp4 真放无error  rs=4 dur=29.4s ct=2.94
+  ✅ quick-lite-g9b-07.mp4 真放无error  rs=4 dur=10.1s ct=2.96
+
+=== 页面体积 (≤60KB) ===
+  ✅ 学生页 ≤60KB  44564B
+  ✅ 学校页 ≤60KB  40944B
+
+===== 结果: PASS=41 FAIL=0 =====
