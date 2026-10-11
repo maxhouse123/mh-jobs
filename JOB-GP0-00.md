@@ -1,8 +1,18 @@
-# JOB-GP0-00 回执 —— 摸底与先红（**部分完成 · 闸未过 · 本趟因网络阻塞**）
+# JOB-GP0-00 回执 —— 摸底与先红（**部分完成 · 闸未过 · 数据库仍不可达**）
 
-状态：**闸3 未通过**。本趟数据库（直连 Postgres，仅 IPv6、端口 5432）连不上——这台机器当前**没有可用的 IPv6 线路**，Supabase 直连数据库只有 IPv6 地址，所以 `bash jobs/db-run.sh` 这条唯一许可的数据库通道走不通。凡是要读库或写库的步骤这趟都做不了。走代理的 HTTPS（REST 接口）是通的，单纯是裸 Postgres 端口不通。
+状态：**闸3 仍未通过**。数据库（直连 Postgres，仅 IPv6、端口 5432）**连续第二趟连不上**——这台机器当前**没有可用的 IPv6 线路**，Supabase 直连数据库只有 IPv6 地址，所以 `bash jobs/db-run.sh` 这条唯一许可的数据库通道走不通（本趟两次实测均 Operation timed out，地址 2406:da18:1f7e:b101:...:5432）。凡是要读库或写库的步骤这趟还是做不了。走代理的 HTTPS（REST）是通的，单纯是裸 Postgres 端口不通。
 
-下一趟（循环会再跑）等 IPv6 恢复后，从「待办」清单接着做，别重做已完成项。
+## 本趟（第 2 趟）新进展：画面对照表 partner-map.json 已按源码建好（第2条）
+上一趟把第2条整条留到「登录后标真见」。考虑到库连续不可达、再空等只会零进展，而这张对照表记录的三样东西（定位方式 / 四语文案键 / 出现条件）**全部源自源码、源码即权威**，登录「真见」只是给每条盖一个确认章、不改已记内容（零返工风险），且任务书 §2 第2条本就允许「源码对照·未真见」——故本趟先把它建出来：
+- 产物 `jobs/JOB-GP0/partner-map.json`，md5 `da296235714ab6268299c65aa3d61bb9`，已原样复制到 `~/mh-jobs/JOB-GP0-partner-map.json`（两份 md5 一致）。
+- 覆盖 §3 **十二章**（开场/1~10/片尾），**每章 ≥3 个定位项**（最少 4、最多 13，共 84 项），满足闸3 对本对照表的子判据「覆盖十二章且每章≥3」。
+- 每项记：定位方式（id/class/text/函数）、四语文案键（语言中性点号键，或标 hardcoded 双语字面量）、出现条件（登录态/向导步/开关/数据依赖）、源码大致行号。
+- 全部 84 项 `seen` 字段均标 **「源码对照·未真见」**；被荐生详情、offer、材料退回等需真数据才渲染的屏另标 **data-dependent**。
+- 关键锚点本趟已逐个 grep 实证存在（gate 四件 / gateShowRegister / regInvite / 资质表单 onb* / 审核三态渲染函数 / 工作台 partner.stats.* 与 partner.students.* / 推荐向导 openReferralForm+wzBody / 委托 _dlLoadFlags+两级开关 / 付款 payment.title 实为 EN「Admission Letter Unlock Fee」· ZH「录取通知书解锁费」+ SCHOOL_PAYMENT_AMOUNT / 优惠码 couponInput / JW202+建档 _v173OpenFiling+get_agent_filing / 提额 qrTarget+request_quota_raise / 增值 partner.premium.* / 设置菜单 toggleSettingsMenu+settingsSignOut），非臆造。
+
+**仍不改此判定：GP0-00 整包闸3 未过**——探针(第3条)、建 Demo Agency 账号(第5条)、四语裸键正式计数(第1条·登录走查)、手机宽度体检(第6条)四件仍全被数据库阻塞，故不能进入后续 GP0-01/02（三包须按序）。
+
+下一趟（循环会再跑）等 IPv6 恢复后，从「待办」清单接着做，别重做已完成项（版本摸底、文案核对、注册入口核对、**partner-map.json 已建**）。
 
 ## 这趟确认到的事实（都是只看源码、不碰库，下一趟不用重做）
 
@@ -38,18 +48,19 @@
 - 🟢 付款单文案核对（第4条·文案）：新有旧无，不红。
 - 🟢 自助注册入口核对（第4条·入口）：有，但邀请码门槛已查清。
 - 🟡 四语裸键（第1条）：仅静态预估，正式计数待登录走查。
-- 🔴 画面对照表 partner-map.json（第2条）：未做（登录后标「真见」质量更高，避免返工，整条留下趟）。
-- 🔴 库只读探针（第3条）：阻塞（IPv6/直连库不可达）。
+- 🟡 画面对照表 partner-map.json（第2条）：**本趟已按源码建好**（十二章×≥3项=84 项，md5 两份一致），每项标「源码对照·未真见」；登录后逐项盖「真见」章待下趟。
+- 🔴 库只读探针（第3条）：阻塞（IPv6/直连库不可达，连续第二趟）。
 - 🔴 建 Demo Agency 账号 + 开委托邀请开关（第5条）：阻塞（需邀请码 + 连库）。
 - 🔴 手机宽度体检（第6条）：阻塞（需登录 guide_partner）。
 
 ## 下一趟待办（按顺序）
 1. 先 `bash jobs/db-run.sh jobs/JOB-GP0/probe-00-schema.sql` 验证 IPv6/库恢复；没恢复就直接结束，再下趟。
 2. 库恢复后：第3条探针（partners is_test 行 / mh_flag 总开关 / 三演示校 / is_test 学生数）→ 第5条建 guide_partner（拿/发邀请码或照 guide_sch3 手工建）+ 只开它的 `delegate_invite_enabled` → 登录。
-3. 登录后：第1条四语裸键走查、第2条 partner-map.json（十二章、每章≥3定位项、标真见/源码对照）、第6条手机宽度体检（三档×六页截图打码）。
-4. 三样成果副本进 ~/mh-jobs，过闸后把本回执改为「完成」。
+3. 登录后：第1条四语裸键走查、第6条手机宽度体检（三档×六页截图打码）；**partner-map.json 已建**，只需登录后拿真界面逐项把 `seen` 从「源码对照·未真见」改为「真见」（发现与源码不符处再订正，预期极少）。
+4. 过闸后三样成果副本齐备、把本回执改为「完成」。
 
-## 产物（本趟）
-- 主仓库 `jobs/JOB-GP0/`：`probe-00-schema.sql`（已备好待下趟跑）、`findings-00-partial.json`（本趟确认的事实，供下趟直接引用）。已点名提交到 main、**未推**（本轮不推主仓库）。
-- 本回执 `~/mh-jobs/JOB-GP0-00.md`（部分）。
-- 本趟**无任何数据库写入**（库没连上），**未建任何账号**，`accounts.json` 未动。
+## 产物（累计 + 本趟新增）
+- 主仓库 `jobs/JOB-GP0/`：`probe-00-schema.sql`（备好待下趟跑）、`findings-00-partial.json`（已确认事实）、**本趟新增 `partner-map.json`**（画面对照表，md5 da296235714ab6268299c65aa3d61bb9）。点名提交到 main、**未推**（本轮不推主仓库）。
+- `~/mh-jobs/JOB-GP0-partner-map.json`（对照表副本，与主仓库版 md5 一致）。
+- 本回执 `~/mh-jobs/JOB-GP0-00.md`（仍为部分）。
+- 本趟**无任何数据库写入**（库没连上），**未建任何账号**，`accounts.json` 未动；**未碰**五个产品端口 HTML、未碰 jobs/JOB-G*/JOB-GS* 任何文件、未跑 rebuild/状态/cleanup、未碰 R2/Cloudflare。
