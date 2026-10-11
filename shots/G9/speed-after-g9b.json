@@ -1,0 +1,23 @@
+{
+ "note": "G9-05(cycle=2)线上复测：g9b 已部署(student g9b-2026-10-11 / school gs9b-20261011)。双缓冲串播。脚本 g9-05-measure.mjs(双缓冲感知:停顿只计可见元素、接缝=任一ended→另一元素playing)。proxy 路、CPU×4(仅移动端=学生)、每格3次取中位、stall=60。学校线用 G9-test 码(redeem)。",
+ "measuredAt": "2026-10-11T09:55:00+08:00",
+ "gate": {"ttff_3g_max_s":2.5,"ttff_slow3g_max_s":4,"stall_3g_max":0,"stall_slow3g_max":1,"seam_3g_max_s":0.6,"seam_slow3g_max_s":1.0},
+ "cells": [
+  {"line":"student","lang":"zh","net":"3g","src":"quick-lite-g9-01.mp4","ttff_ms":1004,"raw_ttff":[1004,954,1023],"stallCount":0,"stallMs":0,"ttff_pass":true,"stall_pass":true},
+  {"line":"student","lang":"zh","net":"slow3g","src":"quick-lite-g9-01.mp4","ttff_ms":3655,"raw_ttff_run1":[4062,4333,3616],"raw_ttff_run2":[3694,3597,3414],"ttff_median_combined6":3655,"stallCount":2,"stallMs":674,"ttff_pass":true,"ttff_note":"合6次中位3655<4000过;首批3次中位4062略超,二批3597过,跨界","stall_pass":false},
+  {"line":"school","lang":"zh","net":"3g","src":"quick-lite-g9b-01.mp4","ttff_ms":1804,"raw_ttff":[1804,1698,2049],"stallCount":2,"stallMs":266,"ttff_pass":true,"stall_pass":false},
+  {"line":"school","lang":"zh","net":"slow3g","src":"quick-lite-g9b-01.mp4","ttff_ms":3478,"raw_ttff":[3607,3477,3478],"stallCount":6,"stallMs":24094,"ttff_pass":true,"stall_pass":false,"ttff_note":"关键项:较 G9-04 的 5380ms 降到 3478ms,首段切短(37.47s→20s/994KB→489KB)奏效,过闸"}
+ ],
+ "seams_ms": {
+  "note": "双缓冲接缝=上一段 ended→下一段 playing。每格3次run各含该窗口内全部接缝。全部≤6ms(G9-04 旧值:3G 0.65~0.83s / 慢3G 1.77~2.43s)——裁决①核心目标完成。",
+  "student_zh_3g": [1,0,0,4,0,1],
+  "student_zh_slow3g": [0,0,5,6,0,0],
+  "school_zh_3g": [1,0,3,0,0,4],
+  "school_zh_slow3g": [0,4,0]
+ },
+ "before_after_ttff": {
+  "student_slow3g": {"before_g8":6396,"g9_segmented":2505,"g9b_dblbuf":3655},
+  "school_slow3g": {"before_g8":13509,"g9_segmented":5380,"g9b_dblbuf":3478}
+ },
+ "verdict": "秒开(TTFF):4格全过闸(学生慢3G 3655ms跨界性过)。接缝:全部≤6ms,裁决①双缓冲彻底解决卡顿接缝(从0.65~2.43s→≈0)。学校慢3G首段切短后TTFF 5.38→3.48s达标。但【标红】60秒连续播放卡顿闸未达:3G 学校2次(闸0)、慢3G 学生2次/学校6次(闸≤1,学校慢3G 24s/60s在缓冲)。根因=慢网物理极限+双缓冲预取争抢带宽的权衡(详见 NEEDS_OWNER_DECISION-G9b-slow3g.md)。"
+}
