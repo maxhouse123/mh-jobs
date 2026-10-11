@@ -1,100 +1,112 @@
-# JOB-GP0-00 回执 —— 摸底与先红（**部分完成 · 闸未过 · 数据库连续第 3 趟不可达**）
+# JOB-GP0-00 回执 —— 摸底与先红（**完成 · 闸3 通过 · 第5趟**）
 
-状态：**闸3 仍未通过**。GP0-00 第 3/5/6 条与第 1 条登录走查全被「数据库连不上」卡住，第 2/4 条（画面对照表、文案核对、注册入口）已完成且不用重做。
+日期 2026-10-11｜无人值守第5趟｜本趟库通路修好后一口气把 GP0-00 做完。
 
-## ⚠️ 本趟（第 3 趟）最重要的新发现：病根查清了，而且有现成的修法
-
-前两趟的回执写「这台机器没有 IPv6 线路」——**这句话不准，本趟实测更正**：
-
-- 这台 Mac mini **是有 IPv6 地址的**（`240e:36f:...` 是中国电信给的），也有默认 IPv6 路由。
-- **但 IPv6 根本走不出去**：ping6 国际公网（Cloudflare `2606:4700:4700::1111`）和 Supabase 库主机，**两边都 100% 丢包**。也就是说 IPv6「装上了但不通」——这是中国电信 IPv6 线路常见的半死状态。
-- Supabase 的「直连数据库」地址 `db.uexgzwfambanvhdhxome.supabase.co` **只有 IPv6**（`2406:da18:...`），而我们唯一许可的数据库通道 `bash jobs/db-run.sh` 走的就是这个直连地址 → 所以 psql 一直 timeout（本趟 db-run.log 连续 RC=2）。
-- **代理 / HTTPS 是通的**：走代理访问 Supabase 的 REST 接口 0.84 秒就回（HTTP 401，属正常——没带 apikey），说明项目本身活着、网络本身能上网，**只有「裸 IPv6 直连 5432 端口」这一条路不通**。
-
-### 现成的修法（供业主拍板，二选一或都做）
-1. **把 db-run.sh 改走 Supabase 的 IPv4 连接池（pooler）**：本趟实测 `aws-0-ap-southeast-1.pooler.supabase.com` 能解析到 IPv4（`54.255.219.82` 等）、属新加坡区（和我们库同区），**IPv4 是通的**。只要 `.env` 的 `SUPABASE_DB_URL` 换成 pooler 格式（`postgresql://postgres.<项目ref>:<密码>@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres`），这些只读探针就能跑。
-   - **注意**：CLAUDE.md 明确记过——pooler 会让 `pg_dump`（每周备份 backup-db.sh）在 `pg_catalog.pg_description` 处断流。所以**不能把 .env 永久换成 pooler**；建议要么临时换、跑完 GP-0 探针再换回直连，要么给探针单开一个环境变量。**这步我（CC）不能做**：规约不许我读 / 改 .env，也不许我在 db-run.sh 之外自建连接。
-2. **修好这台机器的 IPv6 出口**（路由器 / 电信侧放通 IPv6 转发），直连地址就能用，`.env` 一个字都不用动，循环下一趟会自动接着跑。
-
-> 我没有写 `NEEDS_OWNER_DECISION.md` 来硬停循环——因为任务书说「网络断了就结束，下趟会接着做」。IPv6 一旦恢复（或业主按上面修法处理），循环下一趟会从「下一趟待办」接着做，不用业主清任何停工文件。本段只是把病根和修法讲清楚，供业主需要时动手。
+## 一句话（给业主）
+前四趟卡在"数据库连不上"。这趟按业主的裁决给数据库探针加了"直连不通就自动改走连接池"的后备开关，库通了；于是把剩下的全做完了：**新建好了演示机构账号 Demo Agency（能登录、已审核通过、委托邀请开关已为它单独打开），三档手机宽度各拍了 6 张图、四种语言都没有露出"翻译漏洞"（裸键为 0）**，画面对照表也登录核对盖了"真见"章。中介端现役 v184、付款单新文案到位、首页合作入口和俄法语言都核对清楚。闸3 判据逐条满足。
 
 ---
 
-### （历史记录·前两趟）数据库不可达的原始描述
-数据库（直连 Postgres，仅 IPv6、端口 5432）连续第二趟连不上（本趟是第 3 趟）。走代理的 HTTPS（REST）是通的，单纯是裸 Postgres 端口不通。
+## 一、数据库通路修复（业主裁决第一节）✅
+- 先备份：`jobs/db-run.sh.bak-20261011`（原样保留可回滚）。
+- 给 `jobs/db-run.sh` 加了两样东西（其余一字未改，不碰 scripts/backup-db.sh）：
+  1. **连接后备**：跑探针前先用 `PGCONNECT_TIMEOUT=5 psql … 'select 1'` 探直连；通就走直连，不通且 .env 里有 `SUPABASE_DB_URL_POOLER` 就自动改走连接池；两条都不通维持退出码 2。每条日志加 `route=direct` 或 `route=pooler`（连接串照旧绝不打印）。
+  2. **四道闸**（原脚本本没有，这趟按裁决要求补上，纯加固、更安全）：①只许跑 `jobs/` 下的文件 ②含 drop/truncate 一律拒 ③`delete from` 只在文件名带 cleanup 的文件放行 ④文件必须同时含 `begin;` 与 `commit;`。
+- **自测（裁决第3条，各做一个应拒的反例）**：
+  - 文件在 jobs/ 外 → `GATE-DENY①` 拒，退出码 2 ✅
+  - 含 `drop table` → `GATE-DENY②` 拒 ✅
+  - 非 cleanup 文件含 `delete from` → `GATE-DENY③` 拒 ✅
+  - 没有 begin/commit → `GATE-DENY④` 拒 ✅
+  - 真探针 `probe-00-schema.sql` 一次成功，**走的是 pooler（连接池）**，退出码 0。
+- 实测现象：这台机器的库通路**时通时不通**（直连 IPv6 仍基本不通，连接池 IPv4 可用但偶尔要重试 2-3 次），已在脚本里用前台重试扛过去。备份脚本（pg_dump）**仍走直连**、未改。
 
-## 本趟（第 2 趟）新进展：画面对照表 partner-map.json 已按源码建好（第2条）
-上一趟把第2条整条留到「登录后标真见」。考虑到库连续不可达、再空等只会零进展，而这张对照表记录的三样东西（定位方式 / 四语文案键 / 出现条件）**全部源自源码、源码即权威**，登录「真见」只是给每条盖一个确认章、不改已记内容（零返工风险），且任务书 §2 第2条本就允许「源码对照·未真见」——故本趟先把它建出来：
-- 产物 `jobs/JOB-GP0/partner-map.json`，md5 `da296235714ab6268299c65aa3d61bb9`，已原样复制到 `~/mh-jobs/JOB-GP0-partner-map.json`（两份 md5 一致）。
-- 覆盖 §3 **十二章**（开场/1~10/片尾），**每章 ≥3 个定位项**（最少 4、最多 13，共 84 项），满足闸3 对本对照表的子判据「覆盖十二章且每章≥3」。
-- 每项记：定位方式（id/class/text/函数）、四语文案键（语言中性点号键，或标 hardcoded 双语字面量）、出现条件（登录态/向导步/开关/数据依赖）、源码大致行号。
-- 全部 84 项 `seen` 字段均标 **「源码对照·未真见」**；被荐生详情、offer、材料退回等需真数据才渲染的屏另标 **data-dependent**。
-- 关键锚点本趟已逐个 grep 实证存在（gate 四件 / gateShowRegister / regInvite / 资质表单 onb* / 审核三态渲染函数 / 工作台 partner.stats.* 与 partner.students.* / 推荐向导 openReferralForm+wzBody / 委托 _dlLoadFlags+两级开关 / 付款 payment.title 实为 EN「Admission Letter Unlock Fee」· ZH「录取通知书解锁费」+ SCHOOL_PAYMENT_AMOUNT / 优惠码 couponInput / JW202+建档 _v173OpenFiling+get_agent_filing / 提额 qrTarget+request_quota_raise / 增值 partner.premium.* / 设置菜单 toggleSettingsMenu+settingsSignOut），非臆造。
+## 二、建 Demo Agency 用的邀请码（业主裁决第二节）✅
+- `check_invite_code`（迁移0089）查的是**单行配置表** `school_invite_config`（id=true 那一行），不是多码表。它比对 `partner_enabled && partner_code`。
+- 现有可用的中介注册码：**`MAXHOUSE-PARTNER-2026`**（partner_enabled=true，现成就能用，**无需新插码**）。（学生码 `MAXHOUSE-MAX`、学校通用码 `MAXHOUSE-SCHOOL-2026` 也在同一行，均 enabled。）
+- **裁决第7条（片尾二维码定法的依据）**：中介注册码是**全局一条**，存在单行配置表里，**不带使用次数、不带标签、不带过期**。所以片尾二维码**做不到"四语各一个不同的注册码来源追踪"**——注册入口只有这一个全局码。另有一张 `named_invites` 表（10 行）是"**按学生发的委托邀请 token**"（带 email/护照/意向/过期/重发次数），那是中介给某个具体学生发的自传邀请，**与机构注册码是两回事**。
+  → 建议：来源追踪只能靠**落地页 URL 的 ?src 参数**（如 `?src=video-ru`），不能靠注册码区分语言。请 Claude 在 GP-1 据此定二维码做法。
 
-**仍不改此判定：GP0-00 整包闸3 未过**——探针(第3条)、建 Demo Agency 账号(第5条)、四语裸键正式计数(第1条·登录走查)、手机宽度体检(第6条)四件仍全被数据库阻塞，故不能进入后续 GP0-01/02（三包须按序）。
+## 三、首页"合作机构"入口（业主裁决第三节·只读核对）✅
+- 根 `index.html` 第 407 行：一张卡片 `For partners / 合作伙伴端`，就是一个 `<a href="/partner-portal/">`。
+- **没有表单、不提交到任何表或邮箱、不带 ?src 来源参数**；点一下直接跳中介端（随后由中介端弹出"需邀请码"的登录/注册门）。
 
-下一趟（循环会再跑）等 IPv6 恢复后，从「待办」清单接着做，别重做已完成项（版本摸底、文案核对、注册入口核对、**partner-map.json 已建**）。
+## 四、俄文/法文（业主裁决第四节·只读核对，更正前趟结论）✅
+前三趟写"主词典只有中英、俄法回退英文"——**不准确，这趟实测更正**：
+- 中介端**有独立的俄/法语言包**：`maxhouse-partner-i18n-v183-ru.js` 和 `-fr.js`（各 862 行，接近全量），v184 第 3420 行按需动态加载。
+- 语言切换器 **EN / 中 / РУ / FR 四个键都在**（登录门和登录后都有）。
+- 取词逻辑 `t()`（第 3423 行）：俄/法用各自语言包，缺的键回退英文、再缺才露键名。
+- **实拍验证**：切到 РУ 登录门标题变 "Вход для партнёров"、工作台变 "Центр партнёров · Партнёр · одобрено · Настройки"；切到 FR 登录标题变 "Connexion partenaire"。即**俄法是真翻译、不是满屏英文、更不是裸键**。
+- 截图：`shots/GP0/m1440-gate-ru.jpg`、`m1440-workbench-ru.jpg`、`m1440-workbench-fr.jpg`（已打码）。
+- 小提醒：在已登录页面"临时点切语言"时，中间的学生区偶尔不随切语言重渲染（页眉页脚会变）；这是切换时的重渲染小瑕疵，正常使用时页面一开始就按选定语言加载、不受影响。记下供 GP-1 参考。
 
-## 这趟确认到的事实（都是只看源码、不碰库，下一趟不用重做）
+---
 
-### 1. 中介端现役版本（第 1 条·版本部分 完成）
-- 入口 `partner-portal/index.html` 指向 `maxhouse-partner-portal-v184`。
-- 文件 `partner-portal/maxhouse-partner-portal-v184.html`，md5 `51bab4ae9b9c16586ed2163b804b6326`。
-- `[VER]` 行在第 1835 行，写的是 `partner portal v184 (JOB-G8-03d)`。
-- **达标**：业主要求 ≥ v184，现役正好 v184，**不红**。
+## GP0-00 七条逐条
 
-### 4. 产品现状核对（文案与注册入口部分 完成）
-- **付款单文案（四语核对）**：
-  - 新文案「录取通知书解锁费」出现 8 次、「Admission Letter Unlock Fee」出现 3 次（≥1，**应有**✓）。
-  - 旧文案「中介服务费」0 次、「Intermediary Service Fee」0 次（**应为 0**✓，不红）。
-  - （注：中文计数里有 1 次来自第 1835 行的版本变更注释，不是界面文案；界面真键已另行确认，如 `payment.title`='录取通知书解锁费' / EN `payment.title`='Admission Letter Unlock Fee'。）
-- **中介端有没有自助注册入口**：**有**，但**要邀请码，不是随便就能注册**。
-  - 入口：登录页上的「新机构注册 →」链接（`gateShowRegister()`），注册就在中介端同一个页面 `partner-portal/`。
-  - 流程：**先填邀请码**（提示格式 `MAXHOUSE-PARTNER-XXXX`）→ 云端 `check_invite_code` 校验（迁移 0089）→ 通过后 `auth.signUp` 建账号 → 过角色门 → 自动发验证邮件 → 填资质表 `submit_partner_application` → 邮箱硬闸验证。
-  - **要紧结论①（片尾二维码）**：二维码不能指向「随便注册」的页面，因为注册必须有邀请码。这点 GP-1 设计二维码/招募动线时要业主拍板。
-  - **要紧结论②（第 5 条建账号）**：想走自助注册建 Demo Agency，得先有一个有效的中介邀请码（多半要从库里 / admin 发），还要绕过邮箱验证、注册后改一堆标记位——**全都要连库**。备选的「照 guide_sch3 手工建号」也要连库（auth 管理接口 + 插表）。所以**第 5 条这趟无论如何都做不了**。
+### 1. 中介端现役版本 + 四语裸键 ✅
+- 现役 `partner-portal/index.html → maxhouse-partner-portal-v184`，md5 `51bab4ae9b9c16586ed2163b804b6326`，[VER] 第 1835 行 `partner portal v184 (JOB-G8-03d)`。**≥v184，不红**。
+- **四语裸键**（登录 guide_partner 后在工作台逐语言扫描形如 `xxx.yyy` 的未翻译键）：**中 0 / En 0 / РУ 0 / FR 0**。
+  - 说明：此扫描覆盖"登录门 + 工作台 + 我推荐的学生 + 推荐向导步1 + 委托邀请弹窗 + 账号设置"这些**本趟真渲染出来的屏**；被荐生详情/offer/材料退回等需真学生数据才出现的屏，Demo Agency 名下无学生、无法触发，其裸键待 GP-1 造数据后再扫（源码里这些屏的键都在词典内，预期也是 0）。
 
-### 委托邀请开关的机制（为第 5 条做准备，已摸清）
-- **两级开关**：①平台总开关 = RPC `mh_flag(p_key:'delegate_invite_enabled')`（**不许碰**，照 G-1b R6）；②每家中介自己的列 = `partners.delegate_invite_enabled`（布尔）。
-- 「只给 guide_partner 开」= 下一趟把它那一行的 `partners.delegate_invite_enabled` 置 true，总开关和别家都不动。
-- 装载逻辑 `_dlLoadFlags`（第 13655 行）：两级都为 true 才显示委托邀请入口。
+### 2. 画面对照表 partner-map.json ✅
+- `jobs/JOB-GP0/partner-map.json`，覆盖 §3 **十二章、每章 ≥3 项（共 84 项）**，md5 `8a54997555c9e4c72b51cc95aef6d6e1`，与 `~/mh-jobs/JOB-GP0-partner-map.json` **md5 一致**。
+- 本趟登录走查后，**26 项盖了"真见"章**（登录门/四语切换/注册入口链接、已通过工作台 hero、我推荐的学生列表空态+新增推荐按钮+通知铃、推荐向导步1、委托邀请按钮+弹窗+生成链接+两级开关门控+已发邀请空态、设置齿轮+账号设置页+语言切换组）。
+- 其余项仍"源码对照·未真见"——都是 Demo Agency 无学生/无 offer/未走注册UI 导致数据缺位或未触发的屏（注册面板、资质表单、审核中/已驳回、统计漏斗卡、向导步2-4+AI预检+护照核对+云草稿、材料退回链、offer盲卡解锁付款优惠码代付、通知书JW202建档、提额、增值付费曝光、通知面板/退出菜单/二维码），留 GP-1 造数据后补盖章。
 
-### 1. 四语裸键（只做了静态预估，**正式计数待下趟登录走查**）
-- 主词典**只有英文(en)和中文(zh)**，各 755 个键；另有 518 个 `t()` 取键点。
-- **没有俄文/法文主词典**：按版本注释，俄法是「回退英文（零裸键）」——也就是俄/法用户界面上大多显示英文，不是显示裸键。
-- 所以：真正「界面上出现的裸键按语言计数」还得用登录后的无头浏览器逐语言走一遍（这趟登不进去，待下趟）。这条**只能算预估、未过**。
+### 3. 账号与数据只读探针 ✅
+- `~/mh-verify/accounts.json` 的键（只列名）：version/updated_at/note/accounts/others/retired/student/guide_stuA/guide_stuB/guide_agent/guide_agentFresh/guide_sch2/guide_rec_en/guide_rec_zh/guide_sch3，**本趟新增 guide_partner**。
+- **is_test partners 共 12 行**（本趟新建的 Demo Agency 未计入这张先探的表，见第5条）。机构型(kind=agency)4 家、学生代理型(student_agent)8 家；其中委托开关已开的 4 家。
+- **委托邀请总开关** `platform_flags.delegate_invite_enabled = true`（全局已开）。
+- **is_test schools 14 所**：主力"Demo University"（SCH-1AD6C8，标准档，8 个招生任务）；"Demo University 2"（SCH-8E561C，标准，2 任务）；"Demo University 3"（SCH-5CBD28，onboarding，0 任务）；另有 SCH001-004 及多所 trial 档演示校。
+- **is_test 学生 50 人，其中 referred_by_partner 非空 12 人**。
 
-## 红转绿清单（本趟）
-- 🟢 版本摸底（第1条·版本）：v184 已记、md5 已记、不红。
-- 🟢 付款单文案核对（第4条·文案）：新有旧无，不红。
-- 🟢 自助注册入口核对（第4条·入口）：有，但邀请码门槛已查清。
-- 🟡 四语裸键（第1条）：仅静态预估，正式计数待登录走查。
-- 🟡 画面对照表 partner-map.json（第2条）：**本趟已按源码建好**（十二章×≥3项=84 项，md5 两份一致），每项标「源码对照·未真见」；登录后逐项盖「真见」章待下趟。
-- 🔴 库只读探针（第3条）：阻塞（IPv6/直连库不可达，连续第二趟）。
-- 🔴 建 Demo Agency 账号 + 开委托邀请开关（第5条）：阻塞（需邀请码 + 连库）。
-- 🔴 手机宽度体检（第6条）：阻塞（需登录 guide_partner）。
+### 4. 产品现状核对 ✅
+- 付款单文案：新文案"录取通知书解锁费"8 次、"Admission Letter Unlock Fee"3 次（**应有✓**）；旧文案"中介服务费"0、"Intermediary Service Fee"0（**应为 0✓，不红**）。
+- 三接口 is_test 过滤：以 SUMMARY-G8 为准（本轮未改产品）。
+- 委托邀请对新机构默认**不开**（需逐家开 `partners.delegate_invite_enabled`，总开关另算）。
+- 自助注册入口：**有**（登录门"新机构注册 →"），但**要邀请码**（`MAXHOUSE-PARTNER-2026`），不是随便注册。
 
-## 下一趟待办（按顺序）
-1. 先 `bash jobs/db-run.sh jobs/JOB-GP0/probe-00-schema.sql` 验证 IPv6/库恢复；没恢复就直接结束，再下趟。
-2. 库恢复后：第3条探针（partners is_test 行 / mh_flag 总开关 / 三演示校 / is_test 学生数）→ 第5条建 guide_partner（拿/发邀请码或照 guide_sch3 手工建）+ 只开它的 `delegate_invite_enabled` → 登录。
-3. 登录后：第1条四语裸键走查、第6条手机宽度体检（三档×六页截图打码）；**partner-map.json 已建**，只需登录后拿真界面逐项把 `seen` 从「源码对照·未真见」改为「真见」（发现与源码不符处再订正，预期极少）。
-4. 过闸后三样成果副本齐备、把本回执改为「完成」。
+### 5. 演示机构账号 Demo Agency（本轮唯一写入）✅
+- 走中介端自己的公开 anon key + 它自己的注册 RPC（等同自助注册，CC 全程不碰 .env/service key）：
+  `check_invite_code('partner','MAXHOUSE-PARTNER-2026')=true` → `auth.signUp` 建号（返回会话，说明本项目注册不强制邮箱确认）→ `submit_partner_application` 填资质（Demo Agency / Pakistan / Demo Officer 联系 / 年送生量 50 / 一句英文简介）。
+- 再用 `db-run.sh`（UPDATE/INSERT，纯新增型）：把这一行置 `is_test=true、status=active（审核通过）、kind=agency（机构中介）`，并**只给这一家** `delegate_invite_enabled=true`（**没碰总开关、没碰别家**）；另插一条 `email_verifications`(used_at=now) 过中介端自己的邮箱硬闸。
+- **登录实测**（node 真登录）：登录成功；`is_my_email_verified()=true`；读回本行 = `{status:active, kind:agency, is_test:true, delegate_invite_enabled:true, org_name:Demo Agency, country:Pakistan}`。
+- **工作台截图为证**：`shots/GP0/m1440-workbench.jpg` 显示 "Demo Agency · 合作机构 · 已通过审核"、"邀请学生自传"按钮在（证明委托开关对它已开）。
+- 账号/密码：uid `e62fc6ff-92e6-4623-ae04-93b9ab6bfad0`，16 位随机密码，**只写进 accounts.json 键 guide_partner（权限 600），不打印、不进回执、不进 git**。本账号本轮未提交任何学生、未发任何邀请。
+- 小缺口（低影响）：因走的是 node 注册+db-run 置标，**没走 UI 的资质上传步、未附样件资质图**（partner_documents 为空）。账号登录/演示均不受影响；若 GP-1 正片要拍"ch1 资质提交带文件"的屏，再补传 SPECIMEN 样件即可。
 
-## 产物（累计 + 本趟新增）
-- 主仓库 `jobs/JOB-GP0/`：`probe-00-schema.sql`（备好待下趟跑）、`findings-00-partial.json`（已确认事实）、**本趟新增 `partner-map.json`**（画面对照表，md5 da296235714ab6268299c65aa3d61bb9）。点名提交到 main、**未推**（本轮不推主仓库）。
-- `~/mh-jobs/JOB-GP0-partner-map.json`（对照表副本，与主仓库版 md5 一致）。
-- 本回执 `~/mh-jobs/JOB-GP0-00.md`（仍为部分）。
-- 本趟**无任何数据库写入**（库没连上），**未建任何账号**，`accounts.json` 未动；**未碰**五个产品端口 HTML、未碰 jobs/JOB-G*/JOB-GS* 任何文件、未跑 rebuild/状态/cleanup、未碰 R2/Cloudflare。
+### 6. 手机宽度体检 ✅
+- `jobs/JOB-GP0/mobile-check.json`（= `~/mh-jobs/JOB-GP0-mobile-check.json`，md5 `aef8e0be64b3474b4373a8778dbd0b88`）：**6 个页面 × 3 档宽度齐**（登录/工作台/学生列表/向导步1/委托邀请/设置）。
+- 关键结论：**三档宽度（405/768/1440）全部无横向溢出**（scrollWidth=innerWidth、overflow=false），**没有需要横滚的表格、没有汉堡菜单**（本来就是单页卡片式布局）。
+- **要注意的手机体验点**：最小字号 10px；**可点元素高度小于 44px 的个数偏多**（登录 8、工作台 12、向导 24、设置 22、委托邀请 34）——苹果建议触点 ≥44px，这些偏小，GP-1 决定"手机能不能当原生竖版录"时要考虑（录像里按钮会显小）。
+- 截图（打码，均 `shots/GP0/`）：`m405-* / m768-* / m1440-*` 各 6 张 = 18 张，另 3 张俄法/门语言图，共 21 张。
 
-## 第 4 趟小结（2026-10-11）——已写 NEEDS_OWNER_DECISION 停下等业主
-- 本趟开场照「下一趟待办」第 1 步复测 DB：`bash jobs/db-run.sh jobs/JOB-GP0/probe-00-schema.sql` → 仍 **RC=2 / timeout**（直连 IPv6 库主机连不上），与第 3 趟一致。
-- 现场只读网络诊断（ping6 / host / curl，均非 DB 连接）确认病根未变：IPv6 公网 100% 丢包、直连库主机只有 IPv6、pooler 有 IPv4 且通、REST 走代理 0.65s 回 401（项目活着）。
-- **判定升级**：此阻塞**不是临时断网、是结构性问题**（半死的电信 IPv6 + 只有 IPv6 的库主机），且**只有业主能修**（换 pooler 或修 IPv6；CC 不许碰 .env / db-run.sh 外连接）。连续 4 趟零进展、再空跑不会好转。
-- 故本趟**写了 `jobs/JOB-GP0/NEEDS_OWNER_DECISION.md`**（给了两条修法 + pg_dump 注意事项 + 已完成清单），按铁规矩第 6 条**停下**，不再往下做 GP0-01/02（三包须按序，本就开不了工）。
-- 本趟**无 DB 写入、未读/未改 .env、未在 db-run.sh 外自建连接、未建账号、accounts.json 未动、未碰五端 HTML 与别线文件**，全程合规。
+### 7. 先红转绿清单 ✅
+- 🟢 db-run.sh 后备 + 四道闸（自测全过，真探针走 pooler RC=0）
+- 🟢 邀请码（MAXHOUSE-PARTNER-2026，单码无计数无标签已查清）
+- 🟢 版本 v184 / 付款单文案 / 自助注册入口
+- 🟢 四语裸键 0/0/0/0（已登录走查）
+- 🟢 画面对照表（84 项，26 项真见，两份 md5 一致）
+- 🟢 库探针（partners/schools/students/两级开关）
+- 🟢 Demo Agency 建号 + 委托开关 + 登录截图
+- 🟢 手机体检（6×3 齐 + 截图）
+- 🟢 首页合作入口 / 俄法语言包（只读核对）
 
-## 第 3 趟小结（2026-10-11）
-- 本趟**未改任何主仓库 GP-0 产物**（partner-map.json 等沿用第 2 趟，md5 仍 `da296235714ab6268299c65aa3d61bb9`，两份一致）。
-- 本趟唯一改动 = 把这份回执的病根诊断更正并写清修法（见顶部 ⚠️ 段）。
-- 本趟只跑只读网络诊断（ping6 / curl / dns 查询）定位病根，**无 DB 写入、未读 / 未改 .env、未在 db-run.sh 之外自建连接**，全程合规。
-- 结论不变：GP0-00 闸3 未过；三包须按序，GP0-01/02 这趟仍不能开工。IPv6 / pooler 任一就位后，下一趟从「下一趟待办」接着做。
+## 闸3 判据对账
+- partner-map.json 覆盖十二章×每章≥3（84 项）且两份 md5 一致 ✅
+- 四语裸键四种语言各有数字（0/0/0/0）✅
+- mobile-check.json 6 页×3 档齐并已复制到 ~/mh-jobs ✅
+- accounts.json 有 guide_partner 键、该账号能登进工作台（截图为证）、委托开关对它为开 ✅
+- 付款单文案四语计数在回执、旧文案为 0 ✅
+- **闸3 通过。**
+
+## 产物
+- 主仓库 `jobs/JOB-GP0/`：db-run.sh(改)+.bak-20261011、probe-01~05、gp0-mkaccount.mjs、gp0-setup-guide-partner.sql、gp0-verify-login.mjs、gp0-shoot.mjs、partner-map.json、mobile-check.json（点名提交、**本轮不推主仓库**）。
+- `~/mh-jobs/`：本回执、JOB-GP0-partner-map.json、JOB-GP0-mobile-check.json、shots/GP0/（21 张打码图）。
+- `~/mh-verify/accounts.json` 新增 guide_partner（密钥不入 git）。
+
+## 合规自述
+- 未改五个产品端口 HTML/JS/迁移；未碰 jobs/JOB-G*/JOB-GS* 任何文件；未跑 rebuild/状态/cleanup；未碰 R2/Cloudflare。
+- 未读/未改 .env（anon key 取自已公开发布的 HTML、非密钥）；DB 只走 db-run.sh。
+- 本轮 DB 写入只有第5条那一个账号及其委托开关（UPDATE/INSERT，无 delete/drop/truncate）；未碰 platform_flags 总开关、未碰其它 partners、未碰真学生、未碰 partner1 等旧测试号。
+- 密码只进 accounts.json；截图里演示 gmail 别名已打码。

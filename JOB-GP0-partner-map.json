@@ -5,7 +5,7 @@
     "source_md5": "51bab4ae9b9c16586ed2163b804b6326",
     "version": "v184 (JOB-G8-03d)",
     "built_trip": "JOB-GP0-00 续跑（库不可达·源码对照轮）",
-    "verification": "源码对照·未真见 —— 本趟数据库(直连 IPv6:5432)不可达、无法登录 guide_partner，全部条目仅凭源码定位，未经登录真见。每条 seen 字段=源码对照·未真见；待下趟库恢复、登录后逐项改标真见。",
+    "verification": "部分真见(2026-10-11 第5趟):库通路修复(pooler后备)后建出 guide_partner(Demo Agency·is_test·active·机构中介·委托开关开)并 file:// 本地页+真 Supabase 登录走查三档宽度。已真见:登录门/四语切换/新机构注册入口链接、已通过工作台 hero、我推荐的学生列表(空态)+新增推荐按钮+通知铃、推荐向导步1(学历/专业/学期/资金/档案字段)、委托邀请按钮+弹窗+生成链接+两级开关门控+已发邀请空态、设置齿轮+账号设置页+语言切换组。仍源码对照·未真见:注册面板/资质表单/审核中/已驳回四态、统计漏斗卡(需学生>0)、向导步2-4+AI预检+护照核对+云草稿、材料退回链(ch5)、offer盲卡解锁付款优惠码代付(ch6)、通知书JW202建档(ch7)、提额(ch8)、增值付费曝光(ch9)、通知面板/退出菜单/二维码——均因 Demo Agency 名下无学生/无 offer/未走注册UI 而数据缺位或未触发。",
     "i18n_note": "主词典只有 en / zh 两套（各 755 键），ru / fr 回退英文；i18nKeys 为语言中性的点号键，t(key) 按当前语言取串。标 hardcoded 的为 gate/登录等非词典硬编码双语字面量。",
     "data_dependent_note": "Demo Agency 名下尚无学生，凡被荐生详情/offer/材料退回等需真数据才渲染的屏，condition 标 data-dependent 且 seen=源码对照·未真见。",
     "lineref_note": "lineref 为源码大致行号，供下趟定位；非逐行校验。"
@@ -16,72 +16,366 @@
       "title": "四条重点合版 20 秒",
       "note": "四条重点为视频旁白/叠层文案（§3 草案，四语随分镜脚本定稿），产品端无专属 DOM；旁白期间屏上实际可见=入口登录页。",
       "items": [
-        { "name": "四条重点①②③④叠层文案", "locator": "无产品 DOM（视频叠层/旁白）", "i18nKeys": "分镜脚本定稿（§3 四条重点草案）", "condition": "片头 20 秒", "lineref": null, "seen": "源码对照·未真见" },
-        { "name": "入口登录卡（旁白背景屏）", "locator": "class=\"gate-card\"", "i18nKeys": "hardcoded", "condition": "未登录（body.locked）", "lineref": 1612, "seen": "源码对照·未真见" },
-        { "name": "语言切换（右上·展示四语）", "locator": "class=\"lang-toggle\" 四按钮 onclick=setLang('zh'/'en'/'ru'/'fr')", "i18nKeys": "hardcoded", "condition": "always on gate", "lineref": 1615, "seen": "源码对照·未真见" },
-        { "name": "新机构注册入口链接", "locator": "id=\"gateToRegister\" onclick=gateShowRegister()", "i18nKeys": "hardcoded「新机构注册 →」", "condition": "always on gate", "lineref": 1631, "seen": "源码对照·未真见" }
+        {
+          "name": "四条重点①②③④叠层文案",
+          "locator": "无产品 DOM（视频叠层/旁白）",
+          "i18nKeys": "分镜脚本定稿（§3 四条重点草案）",
+          "condition": "片头 20 秒",
+          "lineref": null,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "入口登录卡（旁白背景屏）",
+          "locator": "class=\"gate-card\"",
+          "i18nKeys": "hardcoded",
+          "condition": "未登录（body.locked）",
+          "lineref": 1612,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "语言切换（右上·展示四语）",
+          "locator": "class=\"lang-toggle\" 四按钮 onclick=setLang('zh'/'en'/'ru'/'fr')",
+          "i18nKeys": "hardcoded",
+          "condition": "always on gate",
+          "lineref": 1615,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "新机构注册入口链接",
+          "locator": "id=\"gateToRegister\" onclick=gateShowRegister()",
+          "i18nKeys": "hardcoded「新机构注册 →」",
+          "condition": "always on gate",
+          "lineref": 1631,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        }
       ]
     },
     {
       "ch": "1",
       "title": "注册机构账号、提交资质、平台审核（2 个工作日内）、开通",
       "items": [
-        { "name": "登录标题", "locator": "id=\"gateTitle\"", "i18nKeys": "hardcoded「合作伙伴登录」", "condition": "always（登录前）", "lineref": 1621, "seen": "源码对照·未真见" },
-        { "name": "邮箱输入框", "locator": "id=\"emailInput\"", "i18nKeys": "hardcoded placeholder「you@agency.com」", "condition": "always", "lineref": 1623, "seen": "源码对照·未真见" },
-        { "name": "密码输入框", "locator": "id=\"pwdInput\"", "i18nKeys": "hardcoded placeholder「••••••••」", "condition": "always", "lineref": 1625, "seen": "源码对照·未真见" },
-        { "name": "登录按钮", "locator": "id=\"gateBtn\" onclick=doLogin()", "i18nKeys": "hardcoded「登录 / Sign in」", "condition": "always", "lineref": 1629, "seen": "源码对照·未真见" },
-        { "name": "注册面板（邀请码+邮箱建号）", "locator": "id=\"gateRegisterBox\"（gateShowRegister() 切出）", "i18nKeys": "hardcoded「机构注册」", "condition": "register-mode", "lineref": 1633, "seen": "源码对照·未真见" },
-        { "name": "邀请码输入框", "locator": "id=\"regInvite\"（校验走 RPC check_invite_code）", "i18nKeys": "hardcoded placeholder「MAXHOUSE-PARTNER-XXXX」", "condition": "register-mode", "lineref": 1636, "seen": "源码对照·未真见" },
-        { "name": "注册提交按钮", "locator": "id=\"regBtn\" onclick=doRegister()", "i18nKeys": "hardcoded「注册 / Register」", "condition": "register-mode", "lineref": 1642, "seen": "源码对照·未真见" },
-        { "name": "资质表单·机构名(本国/英文)", "locator": "id=\"onbOrgName\" / id=\"onbOrgNameEn\"", "i18nKeys": "hardcoded「机构名称(本国语言)/(英文)」", "condition": "renderOnboardingView（建号后填资质）", "lineref": 13180, "seen": "源码对照·未真见" },
-        { "name": "资质表单·国家/联系邮箱/电话/年送生量/简介", "locator": "id=\"onbCountry\" / id=\"onbEmail\" / id=\"onbPhone\"（年送生量、简介同视图）", "i18nKeys": "hardcoded「国家/地区·联系邮箱·联系电话·年送生量·机构简介」", "condition": "renderOnboardingView", "lineref": 13184, "seen": "源码对照·未真见" },
-        { "name": "资质提交按钮", "locator": "onclick=submitOnboarding()", "i18nKeys": "hardcoded「提交申请」", "condition": "renderOnboardingView", "lineref": 13400, "seen": "源码对照·未真见" },
-        { "name": "审核四态·审核中", "locator": "renderPendingView() → class=\"pill pill-amber\"", "i18nKeys": "hardcoded「审核中 / Under review」", "condition": "app-status=onboarding（已交无果）", "lineref": 13524, "seen": "源码对照·未真见" },
-        { "name": "审核四态·已通过", "locator": "renderActiveView() → .hero", "i18nKeys": "hardcoded「合作机构 · 已通过审核 / Partner agency · approved」", "condition": "app-status=active", "lineref": 13573, "seen": "源码对照·未真见" },
-        { "name": "审核四态·已驳回", "locator": "renderRejectedView() → class=\"pill pill-red」+ rejection_reason", "i18nKeys": "hardcoded「已驳回 / Rejected」", "condition": "app-status=onboarding + rejection_reason", "lineref": 13547, "seen": "源码对照·未真见" }
+        {
+          "name": "登录标题",
+          "locator": "id=\"gateTitle\"",
+          "i18nKeys": "hardcoded「合作伙伴登录」",
+          "condition": "always（登录前）",
+          "lineref": 1621,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "邮箱输入框",
+          "locator": "id=\"emailInput\"",
+          "i18nKeys": "hardcoded placeholder「you@agency.com」",
+          "condition": "always",
+          "lineref": 1623,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "密码输入框",
+          "locator": "id=\"pwdInput\"",
+          "i18nKeys": "hardcoded placeholder「••••••••」",
+          "condition": "always",
+          "lineref": 1625,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "登录按钮",
+          "locator": "id=\"gateBtn\" onclick=doLogin()",
+          "i18nKeys": "hardcoded「登录 / Sign in」",
+          "condition": "always",
+          "lineref": 1629,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "注册面板（邀请码+邮箱建号）",
+          "locator": "id=\"gateRegisterBox\"（gateShowRegister() 切出）",
+          "i18nKeys": "hardcoded「机构注册」",
+          "condition": "register-mode",
+          "lineref": 1633,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "邀请码输入框",
+          "locator": "id=\"regInvite\"（校验走 RPC check_invite_code）",
+          "i18nKeys": "hardcoded placeholder「MAXHOUSE-PARTNER-XXXX」",
+          "condition": "register-mode",
+          "lineref": 1636,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "注册提交按钮",
+          "locator": "id=\"regBtn\" onclick=doRegister()",
+          "i18nKeys": "hardcoded「注册 / Register」",
+          "condition": "register-mode",
+          "lineref": 1642,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "资质表单·机构名(本国/英文)",
+          "locator": "id=\"onbOrgName\" / id=\"onbOrgNameEn\"",
+          "i18nKeys": "hardcoded「机构名称(本国语言)/(英文)」",
+          "condition": "renderOnboardingView（建号后填资质）",
+          "lineref": 13180,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "资质表单·国家/联系邮箱/电话/年送生量/简介",
+          "locator": "id=\"onbCountry\" / id=\"onbEmail\" / id=\"onbPhone\"（年送生量、简介同视图）",
+          "i18nKeys": "hardcoded「国家/地区·联系邮箱·联系电话·年送生量·机构简介」",
+          "condition": "renderOnboardingView",
+          "lineref": 13184,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "资质提交按钮",
+          "locator": "onclick=submitOnboarding()",
+          "i18nKeys": "hardcoded「提交申请」",
+          "condition": "renderOnboardingView",
+          "lineref": 13400,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "审核四态·审核中",
+          "locator": "renderPendingView() → class=\"pill pill-amber\"",
+          "i18nKeys": "hardcoded「审核中 / Under review」",
+          "condition": "app-status=onboarding（已交无果）",
+          "lineref": 13524,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "审核四态·已通过",
+          "locator": "renderActiveView() → .hero",
+          "i18nKeys": "hardcoded「合作机构 · 已通过审核 / Partner agency · approved」",
+          "condition": "app-status=active",
+          "lineref": 13573,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "审核四态·已驳回",
+          "locator": "renderRejectedView() → class=\"pill pill-red」+ rejection_reason",
+          "i18nKeys": "hardcoded「已驳回 / Rejected」",
+          "condition": "app-status=onboarding + rejection_reason",
+          "lineref": 13547,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "2",
       "title": "工作台：名额总量/剩余、学生列表五档状态、通知",
       "items": [
-        { "name": "机构问候 hero 卡", "locator": "class=\"hero\" / .hero-name / .hero-sub", "i18nKeys": "hardcoded「合作机构 · 已通过审核」+ org_name(DB)", "condition": "logged-in && app-status=active", "lineref": 13569, "seen": "源码对照·未真见" },
-        { "name": "统计面板标题", "locator": "class=\"partner-stats-title\" data-i18n=\"partner.stats.title\"", "i18nKeys": "partner.stats.title", "condition": "logged-in && students>0", "lineref": 6129, "seen": "源码对照·未真见" },
-        { "name": "已提交学生数卡", "locator": "class=\"partner-stats-hero-card\" data-i18n=\"partner.stats.heroStudentsLabel\"", "i18nKeys": "partner.stats.heroStudentsLabel", "condition": "logged-in", "lineref": 6138, "seen": "源码对照·未真见" },
-        { "name": "累计付款卡", "locator": "class=\"partner-stats-hero-card-revenue\" data-i18n=\"partner.stats.heroPaidLabel\"", "i18nKeys": "partner.stats.heroPaidLabel", "condition": "logged-in", "lineref": 6142, "seen": "源码对照·未真见" },
-        { "name": "漏斗四段(提交/出信/付款/入学)", "locator": "class=\"partner-stats-funnel-stage\" data-i18n=\"partner.stats.funnel.*\"", "i18nKeys": "partner.stats.funnel.submitted/gotLetter/paid/enrolled", "condition": "logged-in", "lineref": 6152, "seen": "源码对照·未真见" },
-        { "name": "学生列表标题 + 计数", "locator": "data-i18n=\"partner.students.title\" / class=\"partner-students-count\"", "i18nKeys": "partner.students.title / partner.students.count", "condition": "logged-in", "lineref": 6361, "seen": "源码对照·未真见" },
-        { "name": "学生五档状态药丸", "locator": "class=\"partner-student-status-pending/reviewing/approved/enrolled」(+ issue chips 第五档 退回/拒录)", "i18nKeys": "partner.students.status.pending/reviewing/approved/enrolled", "condition": "随 student.status（data-dependent）", "lineref": 2494, "seen": "源码对照·未真见" },
-        { "name": "新增学生推荐按钮", "locator": "class=\"partner-add-student-btn\" onclick=openAddStudentModal() data-i18n=\"partner.students.addBtn\"", "i18nKeys": "partner.students.addBtn", "condition": "logged-in", "lineref": 6371, "seen": "源码对照·未真见" },
-        { "name": "通知铃 + 角标", "locator": "id=\"stuNotifBell\" onclick=toggleStuNotifPanel() / .stu-notif-bell-badge", "i18nKeys": "hardcoded(SVG/数字)", "condition": "logged-in（角标 unread>0）", "lineref": 1700, "seen": "源码对照·未真见" },
-        { "name": "通知面板/列表", "locator": "id=\"stuNotifList\" / .stu-notif-panel-title", "i18nKeys": "hardcoded「Notifications」+ 动态条目", "condition": "面板展开", "lineref": 1718, "seen": "源码对照·未真见" }
+        {
+          "name": "机构问候 hero 卡",
+          "locator": "class=\"hero\" / .hero-name / .hero-sub",
+          "i18nKeys": "hardcoded「合作机构 · 已通过审核」+ org_name(DB)",
+          "condition": "logged-in && app-status=active",
+          "lineref": 13569,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "统计面板标题",
+          "locator": "class=\"partner-stats-title\" data-i18n=\"partner.stats.title\"",
+          "i18nKeys": "partner.stats.title",
+          "condition": "logged-in && students>0",
+          "lineref": 6129,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "已提交学生数卡",
+          "locator": "class=\"partner-stats-hero-card\" data-i18n=\"partner.stats.heroStudentsLabel\"",
+          "i18nKeys": "partner.stats.heroStudentsLabel",
+          "condition": "logged-in",
+          "lineref": 6138,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "累计付款卡",
+          "locator": "class=\"partner-stats-hero-card-revenue\" data-i18n=\"partner.stats.heroPaidLabel\"",
+          "i18nKeys": "partner.stats.heroPaidLabel",
+          "condition": "logged-in",
+          "lineref": 6142,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "漏斗四段(提交/出信/付款/入学)",
+          "locator": "class=\"partner-stats-funnel-stage\" data-i18n=\"partner.stats.funnel.*\"",
+          "i18nKeys": "partner.stats.funnel.submitted/gotLetter/paid/enrolled",
+          "condition": "logged-in",
+          "lineref": 6152,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "学生列表标题 + 计数",
+          "locator": "data-i18n=\"partner.students.title\" / class=\"partner-students-count\"",
+          "i18nKeys": "partner.students.title / partner.students.count",
+          "condition": "logged-in",
+          "lineref": 6361,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "学生五档状态药丸",
+          "locator": "class=\"partner-student-status-pending/reviewing/approved/enrolled」(+ issue chips 第五档 退回/拒录)",
+          "i18nKeys": "partner.students.status.pending/reviewing/approved/enrolled",
+          "condition": "随 student.status（data-dependent）",
+          "lineref": 2494,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "新增学生推荐按钮",
+          "locator": "class=\"partner-add-student-btn\" onclick=openAddStudentModal() data-i18n=\"partner.students.addBtn\"",
+          "i18nKeys": "partner.students.addBtn",
+          "condition": "logged-in",
+          "lineref": 6371,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "通知铃 + 角标",
+          "locator": "id=\"stuNotifBell\" onclick=toggleStuNotifPanel() / .stu-notif-bell-badge",
+          "i18nKeys": "hardcoded(SVG/数字)",
+          "condition": "logged-in（角标 unread>0）",
+          "lineref": 1700,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "通知面板/列表",
+          "locator": "id=\"stuNotifList\" / .stu-notif-panel-title",
+          "i18nKeys": "hardcoded「Notifications」+ 动态条目",
+          "condition": "面板展开",
+          "lineref": 1718,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "3",
       "title": "提交第一个学生：向导、材料上传、AI 预检、护照姓名核对、云草稿",
       "items": [
-        { "name": "推荐学生按钮", "locator": "onclick=openReferralForm()（→ _wzOpen()）", "i18nKeys": "「推荐学生 / Refer a student」", "condition": "logged-in（active 视图）", "lineref": 14137, "seen": "源码对照·未真见" },
-        { "name": "推荐向导 stepper（四步）", "locator": "class=\"referral-stepper\" / id=\"wzBody\"（_wzStepper/_wzRender）", "i18nKeys": "基本与计划/档案/材料/确认", "condition": "wizard-mode（state.wiz.step 1-4）", "lineref": 14403, "seen": "源码对照·未真见" },
-        { "name": "向导步1·学历/专业/学期/资金", "locator": "id=\"wzNationality\" / id=\"wzFundWrap\"（拟报层次/专业/入学学期/资助方式）", "i18nKeys": "国籍/拟报读书类型/意向入学学期/资助方式", "condition": "wizard-step=1", "lineref": 14431, "seen": "源码对照·未真见" },
-        { "name": "向导步2·档案(DOB/护照/HSK/GPA)", "locator": "id=\"wzInput_*\"", "i18nKeys": "出生日期/护照号/HSK/CSCA/GPA", "condition": "wizard-step=2", "lineref": 14462, "seen": "源码对照·未真见" },
-        { "name": "向导步3·材料上传格", "locator": "id=\"wzInput_{key}\"（MAT_KINDS 动态；_matLabel()）", "i18nKeys": "doc.education/doc.passport/… 等材料键", "condition": "wizard-step=3", "lineref": 14529, "seen": "源码对照·未真见" },
-        { "name": "AI 预检提示带", "locator": "_aiHintBandHtml(key,files) / class=\".ai-hint」（_q1Check()）", "i18nKeys": "q1.aiHintTitle / q1.warnTitle", "condition": "步3 暂存文件后触发", "lineref": 14540, "seen": "源码对照·未真见" },
-        { "name": "护照姓名核对", "locator": "_r2CheckPassportName(file,surname,given) → class=\"reason-box amber-box\"", "i18nKeys": "r2.mismatchTitle / r2.mismatchMsg", "condition": "护照上传后姓名不符时", "lineref": 14566, "seen": "源码对照·未真见" },
-        { "name": "云草稿卡 + 续编/删除", "locator": "id=\"pwzDraftCard\" onclick=_pwzResume()/_pwzDeleteCard()（_pwzScheduleSave 自动存）", "i18nKeys": "草稿/继续编辑/删除", "condition": "state._pwzDraft 存在", "lineref": 14187, "seen": "源码对照·未真见" }
+        {
+          "name": "推荐学生按钮",
+          "locator": "onclick=openReferralForm()（→ _wzOpen()）",
+          "i18nKeys": "「推荐学生 / Refer a student」",
+          "condition": "logged-in（active 视图）",
+          "lineref": 14137,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "推荐向导 stepper（四步）",
+          "locator": "class=\"referral-stepper\" / id=\"wzBody\"（_wzStepper/_wzRender）",
+          "i18nKeys": "基本与计划/档案/材料/确认",
+          "condition": "wizard-mode（state.wiz.step 1-4）",
+          "lineref": 14403,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "向导步1·学历/专业/学期/资金",
+          "locator": "id=\"wzNationality\" / id=\"wzFundWrap\"（拟报层次/专业/入学学期/资助方式）",
+          "i18nKeys": "国籍/拟报读书类型/意向入学学期/资助方式",
+          "condition": "wizard-step=1",
+          "lineref": 14431,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "向导步2·档案(DOB/护照/HSK/GPA)",
+          "locator": "id=\"wzInput_*\"",
+          "i18nKeys": "出生日期/护照号/HSK/CSCA/GPA",
+          "condition": "wizard-step=2",
+          "lineref": 14462,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "向导步3·材料上传格",
+          "locator": "id=\"wzInput_{key}\"（MAT_KINDS 动态；_matLabel()）",
+          "i18nKeys": "doc.education/doc.passport/… 等材料键",
+          "condition": "wizard-step=3",
+          "lineref": 14529,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "AI 预检提示带",
+          "locator": "_aiHintBandHtml(key,files) / class=\".ai-hint」（_q1Check()）",
+          "i18nKeys": "q1.aiHintTitle / q1.warnTitle",
+          "condition": "步3 暂存文件后触发",
+          "lineref": 14540,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "护照姓名核对",
+          "locator": "_r2CheckPassportName(file,surname,given) → class=\"reason-box amber-box\"",
+          "i18nKeys": "r2.mismatchTitle / r2.mismatchMsg",
+          "condition": "护照上传后姓名不符时",
+          "lineref": 14566,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "云草稿卡 + 续编/删除",
+          "locator": "id=\"pwzDraftCard\" onclick=_pwzResume()/_pwzDeleteCard()（_pwzScheduleSave 自动存）",
+          "i18nKeys": "草稿/继续编辑/删除",
+          "condition": "state._pwzDraft 存在",
+          "lineref": 14187,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "4",
       "title": "委托邀请：学生自己传材料，你保留提交权",
       "items": [
-        { "name": "邀请学生自传按钮", "locator": "onclick=_dlOpenInvite() / class=\"dl-ibtn\"", "i18nKeys": "dl.inviteBtn", "condition": "两级开关均 true（_dlState.platform && .partner）才显示", "lineref": 13987, "seen": "源码对照·未真见" },
-        { "name": "邀请表单弹窗", "locator": "id=\"dlModal\" / .dl-box（字段 id=dlEmail/dlName/dlPassport/dlProgram/dlMajor/dlCity/dlFunding/dlBudget/dlSemester/dlInChina）", "i18nKeys": "dl.email/dl.name/dl.passport/dl.program/dl.major/dl.funding/dl.budget/dl.semester", "condition": "_dlOpenInvite() 打开", "lineref": 13994, "seen": "源码对照·未真见" },
-        { "name": "生成邀请链接按钮", "locator": "id=\"dlCreate\" onclick=_dlCreateGuarded()", "i18nKeys": "dl.create", "condition": "字段校验通过", "lineref": 14013, "seen": "源码对照·未真见" },
-        { "name": "已发邀请列表", "locator": "id=\"dlInviteList\"（_dlRenderList/_dlLoadInvites）", "i18nKeys": "动态条目", "condition": "data-dependent（已发过邀请）", "lineref": 13793, "seen": "源码对照·未真见" },
-        { "name": "复制链接按钮", "locator": "button[data-dl-copy=\"{id}\"] class=\"dl-ibtn\"", "i18nKeys": "dl.copy", "condition": "每条生效邀请", "lineref": 13830, "seen": "源码对照·未真见" },
-        { "name": "重发按钮(含冷却)", "locator": "button[data-dl-resend=\"{id}\"]", "i18nKeys": "dl.resend / dl.resendIn", "condition": "生效且未在冷却且 resend_count<5", "lineref": 13827, "seen": "源码对照·未真见" },
-        { "name": "两级委托开关门控", "locator": "_dlLoadFlags()：平台 mh_flag('delegate_invite_enabled') + partners.delegate_invite_enabled", "i18nKeys": "—（开关逻辑非文案）", "condition": "两级均 true 才放出本章全部入口", "lineref": 13656, "seen": "源码对照·未真见" }
+        {
+          "name": "邀请学生自传按钮",
+          "locator": "onclick=_dlOpenInvite() / class=\"dl-ibtn\"",
+          "i18nKeys": "dl.inviteBtn",
+          "condition": "两级开关均 true（_dlState.platform && .partner）才显示",
+          "lineref": 13987,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "邀请表单弹窗",
+          "locator": "id=\"dlModal\" / .dl-box（字段 id=dlEmail/dlName/dlPassport/dlProgram/dlMajor/dlCity/dlFunding/dlBudget/dlSemester/dlInChina）",
+          "i18nKeys": "dl.email/dl.name/dl.passport/dl.program/dl.major/dl.funding/dl.budget/dl.semester",
+          "condition": "_dlOpenInvite() 打开",
+          "lineref": 13994,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "生成邀请链接按钮",
+          "locator": "id=\"dlCreate\" onclick=_dlCreateGuarded()",
+          "i18nKeys": "dl.create",
+          "condition": "字段校验通过",
+          "lineref": 14013,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "已发邀请列表",
+          "locator": "id=\"dlInviteList\"（_dlRenderList/_dlLoadInvites）",
+          "i18nKeys": "动态条目",
+          "condition": "data-dependent（已发过邀请）",
+          "lineref": 13793,
+          "seen": "真见·空态(2026-10-11·Demo Agency 无学生/无邀请)"
+        },
+        {
+          "name": "复制链接按钮",
+          "locator": "button[data-dl-copy=\"{id}\"] class=\"dl-ibtn\"",
+          "i18nKeys": "dl.copy",
+          "condition": "每条生效邀请",
+          "lineref": 13830,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "重发按钮(含冷却)",
+          "locator": "button[data-dl-resend=\"{id}\"]",
+          "i18nKeys": "dl.resend / dl.resendIn",
+          "condition": "生效且未在冷却且 resend_count<5",
+          "lineref": 13827,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "两级委托开关门控",
+          "locator": "_dlLoadFlags()：平台 mh_flag('delegate_invite_enabled') + partners.delegate_invite_enabled",
+          "i18nKeys": "—（开关逻辑非文案）",
+          "condition": "两级均 true 才放出本章全部入口",
+          "lineref": 13656,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        }
       ]
     },
     {
@@ -89,12 +383,54 @@
       "title": "材料被退回怎么改：英文退回理由、换版",
       "note": "整章在被荐生详情弹窗内渲染，需真学生 + 被退材料 → data-dependent。",
       "items": [
-        { "name": "被拒状态徽章", "locator": "class=\"badge badge-rejected\"", "i18nKeys": "status.rejected（「被拒绝 / Rejected」）", "condition": "slot.status==='rejected'（data-dependent）", "lineref": 9601, "seen": "源码对照·未真见" },
-        { "name": "被退材料卡容器", "locator": "class=\"material-item is-rejected\" / id=\"partner-material-{key}\"", "i18nKeys": "hardcoded 样式", "condition": "status==='rejected'（data-dependent）", "lineref": 9635, "seen": "源码对照·未真见" },
-        { "name": "退回理由(英文)显示", "locator": "review 对象 r.reason / r.decide_note（renderReviewerMatrix）", "i18nKeys": "动态文本（学校方英文理由，无 i18n 键）", "condition": "该审核 status=rejected（data-dependent）", "lineref": 9618, "seen": "源码对照·未真见" },
-        { "name": "换版重传面板 + 选文件", "locator": "id=\"partner-replace-{key}\"（open 态）/ input id=\"partner-fix-file-{key}\"", "i18nKeys": "fix.uploadBtn / fix.chooseFiles", "condition": "status==='rejected' 自动展开（data-dependent）", "lineref": 8465, "seen": "源码对照·未真见" },
-        { "name": "旧版留档对照", "locator": "class=\"resubmit-section resubmit-section-old\"", "i18nKeys": "resubmit.previousRejected", "condition": "isRej && 已有历史文件（data-dependent）", "lineref": 8420, "seen": "源码对照·未真见" },
-        { "name": "提交修改按钮", "locator": "class=\"btn-resubmit-commit\" onclick=commitResubmission('{key}')", "i18nKeys": "resubmit.commitBtn", "condition": "hasPending && !_q1Block（data-dependent）", "lineref": 8454, "seen": "源码对照·未真见" }
+        {
+          "name": "被拒状态徽章",
+          "locator": "class=\"badge badge-rejected\"",
+          "i18nKeys": "status.rejected（「被拒绝 / Rejected」）",
+          "condition": "slot.status==='rejected'（data-dependent）",
+          "lineref": 9601,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "被退材料卡容器",
+          "locator": "class=\"material-item is-rejected\" / id=\"partner-material-{key}\"",
+          "i18nKeys": "hardcoded 样式",
+          "condition": "status==='rejected'（data-dependent）",
+          "lineref": 9635,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "退回理由(英文)显示",
+          "locator": "review 对象 r.reason / r.decide_note（renderReviewerMatrix）",
+          "i18nKeys": "动态文本（学校方英文理由，无 i18n 键）",
+          "condition": "该审核 status=rejected（data-dependent）",
+          "lineref": 9618,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "换版重传面板 + 选文件",
+          "locator": "id=\"partner-replace-{key}\"（open 态）/ input id=\"partner-fix-file-{key}\"",
+          "i18nKeys": "fix.uploadBtn / fix.chooseFiles",
+          "condition": "status==='rejected' 自动展开（data-dependent）",
+          "lineref": 8465,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "旧版留档对照",
+          "locator": "class=\"resubmit-section resubmit-section-old\"",
+          "i18nKeys": "resubmit.previousRejected",
+          "condition": "isRej && 已有历史文件（data-dependent）",
+          "lineref": 8420,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "提交修改按钮",
+          "locator": "class=\"btn-resubmit-commit\" onclick=commitResubmission('{key}')",
+          "i18nKeys": "resubmit.commitBtn",
+          "condition": "hasPending && !_q1Block（data-dependent）",
+          "lineref": 8454,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
@@ -102,15 +438,78 @@
       "title": "收到多校录取：盲卡、解锁、优惠码 0 元、代付款、接受与有效期倒计时",
       "note": "被荐生录取详情全链 data-dependent，需真学生 + 真 offer（offer_decisions / _cloudOffers）。",
       "items": [
-        { "name": "被荐生 offer 列表弹窗", "locator": "id=\"admissionModal\"（openCloudAdmissionModal(lane,idx,offerId)）", "i18nKeys": "admission.modalTitle / admission.modalEyebrow", "condition": "data-dependent（_cloudOffers[]）", "lineref": 1744, "seen": "源码对照·未真见" },
-        { "name": "盲卡(校名遮蔽)", "locator": "class=\"admission-id-tag\" 显示「SCH-•••」+ 城市 + 类型", "i18nKeys": "cloudOffer.blindName2", "condition": "!unlocked_at && offered_program!=null（data-dependent）", "lineref": 5561, "seen": "源码对照·未真见" },
-        { "name": "解锁按钮", "locator": "class=\"cloud-offer-unlock\" onclick=_cloudAdmUnlock()（RPC agent_unlock_offer）", "i18nKeys": "cloudOffer.unlock", "condition": "!unlocked_at（内测仅状态翻转，data-dependent）", "lineref": 5642, "seen": "源码对照·未真见" },
-        { "name": "解锁付款单", "locator": "id=\"paymentModal\" / id=\"paymentModalBody\"（_renderSchoolPaymentBody）", "i18nKeys": "payment.title（EN「Admission Letter Unlock Fee」/ ZH「录取通知书解锁费」）/ payment.eyebrow", "condition": "接受+出信后触发（data-dependent）", "lineref": 1762, "seen": "源码对照·未真见" },
-        { "name": "付款金额显示", "locator": "class=\"payment-amount-value\"（const SCHOOL_PAYMENT_AMOUNT=3000）", "i18nKeys": "payment.amountLabel / payment.amountDesc", "condition": "付款单内（优惠码可改价，data-dependent）", "lineref": 4486, "seen": "源码对照·未真见" },
-        { "name": "优惠码 0 元解锁输入", "locator": "id=\"couponInput\" + .coupon-*（onclick=_couponToggle()）", "i18nKeys": "coupon.have/coupon.placeholder/coupon.apply/coupon.freeBtn/coupon.payBtnAmt", "condition": "付款单可选项（0 元券命中出 freeBtn，data-dependent）", "lineref": 4390, "seen": "源码对照·未真见" },
-        { "name": "接受/拒绝按钮", "locator": "id=\"cloudAdmPayBtn\" class=\"btn-accept\" onclick=_cloudAdmPay() / class=\"btn-decline\" onclick=_cloudAdmAcceptFinal()", "i18nKeys": "admission.payNowBtn / admission.declineBtn", "condition": "resp=accepted && letterUp && !paid（data-dependent）", "lineref": 5637, "seen": "源码对照·未真见" },
-        { "name": "代付款行(合伙人代学生付)", "locator": "class=\"payment-detail-row-partner」", "i18nKeys": "payment.detail.partnerAgent / payment.detail.onBehalfNote", "condition": "applicantCtx.kind==='referred'（data-dependent）", "lineref": 4514, "seen": "源码对照·未真见" },
-        { "name": "有效期倒计时", "locator": "内联渐变卡（daysLeft 由 letter_expires_at 算；🔴/🟠/⏰）", "i18nKeys": "admission.deadlineExpired/Urgent/Nudge/Relaxed/ExpiresOn", "condition": "data-dependent（letter_expires_at）", "lineref": 5624, "seen": "源码对照·未真见" }
+        {
+          "name": "被荐生 offer 列表弹窗",
+          "locator": "id=\"admissionModal\"（openCloudAdmissionModal(lane,idx,offerId)）",
+          "i18nKeys": "admission.modalTitle / admission.modalEyebrow",
+          "condition": "data-dependent（_cloudOffers[]）",
+          "lineref": 1744,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "盲卡(校名遮蔽)",
+          "locator": "class=\"admission-id-tag\" 显示「SCH-•••」+ 城市 + 类型",
+          "i18nKeys": "cloudOffer.blindName2",
+          "condition": "!unlocked_at && offered_program!=null（data-dependent）",
+          "lineref": 5561,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "解锁按钮",
+          "locator": "class=\"cloud-offer-unlock\" onclick=_cloudAdmUnlock()（RPC agent_unlock_offer）",
+          "i18nKeys": "cloudOffer.unlock",
+          "condition": "!unlocked_at（内测仅状态翻转，data-dependent）",
+          "lineref": 5642,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "解锁付款单",
+          "locator": "id=\"paymentModal\" / id=\"paymentModalBody\"（_renderSchoolPaymentBody）",
+          "i18nKeys": "payment.title（EN「Admission Letter Unlock Fee」/ ZH「录取通知书解锁费」）/ payment.eyebrow",
+          "condition": "接受+出信后触发（data-dependent）",
+          "lineref": 1762,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "付款金额显示",
+          "locator": "class=\"payment-amount-value\"（const SCHOOL_PAYMENT_AMOUNT=3000）",
+          "i18nKeys": "payment.amountLabel / payment.amountDesc",
+          "condition": "付款单内（优惠码可改价，data-dependent）",
+          "lineref": 4486,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "优惠码 0 元解锁输入",
+          "locator": "id=\"couponInput\" + .coupon-*（onclick=_couponToggle()）",
+          "i18nKeys": "coupon.have/coupon.placeholder/coupon.apply/coupon.freeBtn/coupon.payBtnAmt",
+          "condition": "付款单可选项（0 元券命中出 freeBtn，data-dependent）",
+          "lineref": 4390,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "接受/拒绝按钮",
+          "locator": "id=\"cloudAdmPayBtn\" class=\"btn-accept\" onclick=_cloudAdmPay() / class=\"btn-decline\" onclick=_cloudAdmAcceptFinal()",
+          "i18nKeys": "admission.payNowBtn / admission.declineBtn",
+          "condition": "resp=accepted && letterUp && !paid（data-dependent）",
+          "lineref": 5637,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "代付款行(合伙人代学生付)",
+          "locator": "class=\"payment-detail-row-partner」",
+          "i18nKeys": "payment.detail.partnerAgent / payment.detail.onBehalfNote",
+          "condition": "applicantCtx.kind==='referred'（data-dependent）",
+          "lineref": 4514,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "有效期倒计时",
+          "locator": "内联渐变卡（daysLeft 由 letter_expires_at 算；🔴/🟠/⏰）",
+          "i18nKeys": "admission.deadlineExpired/Urgent/Nudge/Relaxed/ExpiresOn",
+          "condition": "data-dependent（letter_expires_at）",
+          "lineref": 5624,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
@@ -118,23 +517,100 @@
       "title": "下载录取通知书与 JW202、学校系统建档代录",
       "note": "全链 data-dependent，需已付款/已接受的真 offer。",
       "items": [
-        { "name": "录取通知书下载", "locator": "class=\"admission-doc-btn admission-doc-btn-letter\" onclick=_cloudAdmDownload('letter')", "i18nKeys": "admission.doc.letter / admission.doc.letterMeta", "condition": "letter_uploaded_at 真值（data-dependent）", "lineref": 5553, "seen": "源码对照·未真见" },
-        { "name": "JW202 下载(含待传态)", "locator": "class=\"admission-doc-btn admission-doc-btn-jw\" onclick=_cloudAdmDownload('jw202')", "i18nKeys": "admission.doc.jwMeta", "condition": "jw202_uploaded_at 真值；未传则灰待传（data-dependent）", "lineref": 5554, "seen": "源码对照·未真见" },
-        { "name": "文件就绪横幅", "locator": "class=\"admission-docs-banner\"（含 ✓）", "i18nKeys": "admission.docsBannerTitle / admission.letterBannerTitle", "condition": "paid && (letterUp||jwUp)（data-dependent）", "lineref": 5550, "seen": "源码对照·未真见" },
-        { "name": "建档代录按钮", "locator": "onclick=_v173OpenFiling()（_v173InjectFilingBtn 注入；RPC get_agent_filing；组件 mh-filing-form-v1-7.js）", "i18nKeys": "MHFilingForm.t('btn.open'/'btn.edit')（组件自带词典）", "condition": "offer.student_response==='accepted' && agent lane && RPC 成功（data-dependent；0222 未部署则静默隐藏）", "lineref": 5317, "seen": "源码对照·未真见" },
-        { "name": "付款同意勾选", "locator": "id=\"paymentConsent\" onchange=updatePayBtn()", "i18nKeys": "payment.consent", "condition": "付款单内静态 DOM（勾选才放开付款）", "lineref": 4619, "seen": "源码对照·未真见" },
-        { "name": "退款政策段", "locator": "class=\"payment-refund-policy\"", "i18nKeys": "payment.refund.title/lead/case1/case2", "condition": "付款单内静态文本", "lineref": 4584, "seen": "源码对照·未真见" }
+        {
+          "name": "录取通知书下载",
+          "locator": "class=\"admission-doc-btn admission-doc-btn-letter\" onclick=_cloudAdmDownload('letter')",
+          "i18nKeys": "admission.doc.letter / admission.doc.letterMeta",
+          "condition": "letter_uploaded_at 真值（data-dependent）",
+          "lineref": 5553,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "JW202 下载(含待传态)",
+          "locator": "class=\"admission-doc-btn admission-doc-btn-jw\" onclick=_cloudAdmDownload('jw202')",
+          "i18nKeys": "admission.doc.jwMeta",
+          "condition": "jw202_uploaded_at 真值；未传则灰待传（data-dependent）",
+          "lineref": 5554,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "文件就绪横幅",
+          "locator": "class=\"admission-docs-banner\"（含 ✓）",
+          "i18nKeys": "admission.docsBannerTitle / admission.letterBannerTitle",
+          "condition": "paid && (letterUp||jwUp)（data-dependent）",
+          "lineref": 5550,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "建档代录按钮",
+          "locator": "onclick=_v173OpenFiling()（_v173InjectFilingBtn 注入；RPC get_agent_filing；组件 mh-filing-form-v1-7.js）",
+          "i18nKeys": "MHFilingForm.t('btn.open'/'btn.edit')（组件自带词典）",
+          "condition": "offer.student_response==='accepted' && agent lane && RPC 成功（data-dependent；0222 未部署则静默隐藏）",
+          "lineref": 5317,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "付款同意勾选",
+          "locator": "id=\"paymentConsent\" onchange=updatePayBtn()",
+          "i18nKeys": "payment.consent",
+          "condition": "付款单内静态 DOM（勾选才放开付款）",
+          "lineref": 4619,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "退款政策段",
+          "locator": "class=\"payment-refund-policy\"",
+          "i18nKeys": "payment.refund.title/lead/case1/case2",
+          "condition": "付款单内静态文本",
+          "lineref": 4584,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "8",
       "title": "名额与提额申请",
       "items": [
-        { "name": "配额待审横幅(用量/状态)", "locator": "id=\"qrPendingBanner\"", "i18nKeys": "LL() 硬编码双语 + partner.summary", "condition": "存在提额申请决定时", "lineref": 13576, "seen": "源码对照·未真见" },
-        { "name": "名额用尽触发提额", "locator": "onclick=_qrOpenRaise()（新推荐超额时弹）", "i18nKeys": "「推荐名额已用完 / Referral quota reached」", "condition": "超额时（data-dependent）", "lineref": 14720, "seen": "源码对照·未真见" },
-        { "name": "目标名额输入", "locator": "id=\"qrTarget\" type=number", "i18nKeys": "「目标名额（≤999）/ Target quota」", "condition": "提额弹窗内", "lineref": 14723, "seen": "源码对照·未真见" },
-        { "name": "申请理由(可空)", "locator": "id=\"qrReason\"", "i18nKeys": "「申请理由（可空）/ Reason (optional)」", "condition": "提额弹窗内", "lineref": 14725, "seen": "源码对照·未真见" },
-        { "name": "提交申请按钮", "locator": "id=\"qrSubmit\"（RPC request_quota_raise）", "i18nKeys": "「提交申请 / Submit request」", "condition": "提额弹窗内", "lineref": 14728, "seen": "源码对照·未真见" }
+        {
+          "name": "配额待审横幅(用量/状态)",
+          "locator": "id=\"qrPendingBanner\"",
+          "i18nKeys": "LL() 硬编码双语 + partner.summary",
+          "condition": "存在提额申请决定时",
+          "lineref": 13576,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "名额用尽触发提额",
+          "locator": "onclick=_qrOpenRaise()（新推荐超额时弹）",
+          "i18nKeys": "「推荐名额已用完 / Referral quota reached」",
+          "condition": "超额时（data-dependent）",
+          "lineref": 14720,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "目标名额输入",
+          "locator": "id=\"qrTarget\" type=number",
+          "i18nKeys": "「目标名额（≤999）/ Target quota」",
+          "condition": "提额弹窗内",
+          "lineref": 14723,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "申请理由(可空)",
+          "locator": "id=\"qrReason\"",
+          "i18nKeys": "「申请理由（可空）/ Reason (optional)」",
+          "condition": "提额弹窗内",
+          "lineref": 14725,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "提交申请按钮",
+          "locator": "id=\"qrSubmit\"（RPC request_quota_raise）",
+          "i18nKeys": "「提交申请 / Submit request」",
+          "condition": "提额弹窗内",
+          "lineref": 14728,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
@@ -142,34 +618,146 @@
       "title": "增值服务一句带过（无限解锁、代办、付费曝光）",
       "note": "三项增值在每张被荐生卡内的 partner-premium-block 渲染 → data-dependent。",
       "items": [
-        { "name": "增值服务区标题", "locator": "class=\"partner-premium-title\"", "i18nKeys": "partner.premium.title（📦 增值服务）", "condition": "被荐生卡内（data-dependent）", "lineref": 6820, "seen": "源码对照·未真见" },
-        { "name": "Audit Service ¥1,500 行", "locator": "class=\"partner-premium-row\"（_v107openAuditModalFor()）", "i18nKeys": "partner.premium.auditLabel / partner.premium.auditActivate", "condition": "被荐生卡内（data-dependent）", "lineref": 6824, "seen": "源码对照·未真见" },
-        { "name": "Human-assisted Search ¥600 行", "locator": "class=\"partner-premium-row\"（_v107openSearchModalFor()）", "i18nKeys": "partner.premium.searchLabel", "condition": "被荐生卡内（data-dependent）", "lineref": 6829, "seen": "源码对照·未真见" },
-        { "name": "付费曝光行(进更多学校候选池)", "locator": "class=\"partner-premium-row--boost\"（_p99_StatusHtml/_p99_ActionHtml）", "i18nKeys": "_p99_I18N(zh/en/ru/fr)「📡 付费曝光」+ 档位", "condition": "被荐生卡内，status inactive/pending/active/expired（data-dependent）", "lineref": 6834, "seen": "源码对照·未真见" },
-        { "name": "激活按钮(audit/search)", "locator": "class=\"btn-partner-premium-activate\"", "i18nKeys": "partner.premium.auditActivate 等", "condition": "status=inactive（data-dependent）", "lineref": null, "seen": "源码对照·未真见" }
+        {
+          "name": "增值服务区标题",
+          "locator": "class=\"partner-premium-title\"",
+          "i18nKeys": "partner.premium.title（📦 增值服务）",
+          "condition": "被荐生卡内（data-dependent）",
+          "lineref": 6820,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "Audit Service ¥1,500 行",
+          "locator": "class=\"partner-premium-row\"（_v107openAuditModalFor()）",
+          "i18nKeys": "partner.premium.auditLabel / partner.premium.auditActivate",
+          "condition": "被荐生卡内（data-dependent）",
+          "lineref": 6824,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "Human-assisted Search ¥600 行",
+          "locator": "class=\"partner-premium-row\"（_v107openSearchModalFor()）",
+          "i18nKeys": "partner.premium.searchLabel",
+          "condition": "被荐生卡内（data-dependent）",
+          "lineref": 6829,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "付费曝光行(进更多学校候选池)",
+          "locator": "class=\"partner-premium-row--boost\"（_p99_StatusHtml/_p99_ActionHtml）",
+          "i18nKeys": "_p99_I18N(zh/en/ru/fr)「📡 付费曝光」+ 档位",
+          "condition": "被荐生卡内，status inactive/pending/active/expired（data-dependent）",
+          "lineref": 6834,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "激活按钮(audit/search)",
+          "locator": "class=\"btn-partner-premium-activate\"",
+          "i18nKeys": "partner.premium.auditActivate 等",
+          "condition": "status=inactive（data-dependent）",
+          "lineref": null,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "10",
       "title": "学生再次申请、账户、切语言、安全",
       "items": [
-        { "name": "设置齿轮按钮", "locator": "id=\"settingsBtn\" onclick=toggleSettingsMenu(event)", "i18nKeys": "aria-label「Settings」", "condition": "logged-in（topbar 常驻）", "lineref": 1705, "seen": "源码对照·未真见" },
-        { "name": "设置下拉菜单", "locator": "id=\"settingsMenu\" class=\"stu-settings-menu\"（renderSettingsMenu）", "i18nKeys": "动态填充", "condition": "菜单展开", "lineref": 1709, "seen": "源码对照·未真见" },
-        { "name": "账号设置项", "locator": "onclick=openAccountSettings()", "i18nKeys": "LL('账号设置','Account settings')", "condition": "菜单内", "lineref": 10584, "seen": "源码对照·未真见" },
-        { "name": "语言切换组(en/zh/ru/fr)", "locator": "class=\"stu-set-langs\" onclick=settingsSetLang('zh'/'en'/'ru'/'fr')", "i18nKeys": "—（当前语言高亮）", "condition": "菜单内常驻", "lineref": 10586, "seen": "源码对照·未真见" },
-        { "name": "退出登录(危险样式)", "locator": "onclick=settingsSignOut()（→ signOut()，二次确认）class=\"stu-set-item danger\"", "i18nKeys": "L.signout（「退出登录 / Sign out」）", "condition": "菜单底部", "lineref": 10588, "seen": "源码对照·未真见" },
-        { "name": "再次申请·材料重传", "locator": "_v141PartnerReplaceBlock()（被退材料再传）class=\"partner-resubmit-card-actions\"", "i18nKeys": "data-dependent 文案", "condition": "material status=rejected 且详情弹窗内（data-dependent）", "lineref": 9610, "seen": "源码对照·未真见" }
+        {
+          "name": "设置齿轮按钮",
+          "locator": "id=\"settingsBtn\" onclick=toggleSettingsMenu(event)",
+          "i18nKeys": "aria-label「Settings」",
+          "condition": "logged-in（topbar 常驻）",
+          "lineref": 1705,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "设置下拉菜单",
+          "locator": "id=\"settingsMenu\" class=\"stu-settings-menu\"（renderSettingsMenu）",
+          "i18nKeys": "动态填充",
+          "condition": "菜单展开",
+          "lineref": 1709,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "账号设置项",
+          "locator": "onclick=openAccountSettings()",
+          "i18nKeys": "LL('账号设置','Account settings')",
+          "condition": "菜单内",
+          "lineref": 10584,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "语言切换组(en/zh/ru/fr)",
+          "locator": "class=\"stu-set-langs\" onclick=settingsSetLang('zh'/'en'/'ru'/'fr')",
+          "i18nKeys": "—（当前语言高亮）",
+          "condition": "菜单内常驻",
+          "lineref": 10586,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "退出登录(危险样式)",
+          "locator": "onclick=settingsSignOut()（→ signOut()，二次确认）class=\"stu-set-item danger\"",
+          "i18nKeys": "L.signout（「退出登录 / Sign out」）",
+          "condition": "菜单底部",
+          "lineref": 10588,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "再次申请·材料重传",
+          "locator": "_v141PartnerReplaceBlock()（被退材料再传）class=\"partner-resubmit-card-actions\"",
+          "i18nKeys": "data-dependent 文案",
+          "condition": "material status=rejected 且详情弹窗内（data-dependent）",
+          "lineref": 9610,
+          "seen": "源码对照·未真见"
+        }
       ]
     },
     {
       "ch": "片尾",
       "title": "四条重点回顾 + 二维码（指中介端入口页，带来源参数）",
       "items": [
-        { "name": "二维码(指入口页·带来源参数)", "locator": "无产品 DOM（视频叠层）；指向中介端入口页 partner-portal/ + 来源语言参数", "i18nKeys": "—", "condition": "片尾（§1 第6条；注册须邀请码，入口非随意注册——见 NEEDS_OWNER_DECISION 待拍板）", "lineref": null, "seen": "源码对照·未真见" },
-        { "name": "入口登录卡", "locator": "class=\"gate-card\"", "i18nKeys": "hardcoded", "condition": "未登录", "lineref": 1612, "seen": "源码对照·未真见" },
-        { "name": "新机构注册链接(二维码落点)", "locator": "id=\"gateToRegister\" onclick=gateShowRegister()", "i18nKeys": "hardcoded「新机构注册 →」", "condition": "always on gate", "lineref": 1631, "seen": "源码对照·未真见" },
-        { "name": "邀请码输入(注册门槛)", "locator": "id=\"regInvite\"（check_invite_code）", "i18nKeys": "hardcoded placeholder「MAXHOUSE-PARTNER-XXXX」", "condition": "register-mode", "lineref": 1636, "seen": "源码对照·未真见" },
-        { "name": "语言切换(来源参数按语言)", "locator": "class=\"lang-toggle\" setLang('zh'/'en'/'ru'/'fr')", "i18nKeys": "hardcoded", "condition": "always on gate", "lineref": 1615, "seen": "源码对照·未真见" }
+        {
+          "name": "二维码(指入口页·带来源参数)",
+          "locator": "无产品 DOM（视频叠层）；指向中介端入口页 partner-portal/ + 来源语言参数",
+          "i18nKeys": "—",
+          "condition": "片尾（§1 第6条；注册须邀请码，入口非随意注册——见 NEEDS_OWNER_DECISION 待拍板）",
+          "lineref": null,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "入口登录卡",
+          "locator": "class=\"gate-card\"",
+          "i18nKeys": "hardcoded",
+          "condition": "未登录",
+          "lineref": 1612,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "新机构注册链接(二维码落点)",
+          "locator": "id=\"gateToRegister\" onclick=gateShowRegister()",
+          "i18nKeys": "hardcoded「新机构注册 →」",
+          "condition": "always on gate",
+          "lineref": 1631,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        },
+        {
+          "name": "邀请码输入(注册门槛)",
+          "locator": "id=\"regInvite\"（check_invite_code）",
+          "i18nKeys": "hardcoded placeholder「MAXHOUSE-PARTNER-XXXX」",
+          "condition": "register-mode",
+          "lineref": 1636,
+          "seen": "源码对照·未真见"
+        },
+        {
+          "name": "语言切换(来源参数按语言)",
+          "locator": "class=\"lang-toggle\" setLang('zh'/'en'/'ru'/'fr')",
+          "i18nKeys": "hardcoded",
+          "condition": "always on gate",
+          "lineref": 1615,
+          "seen": "真见(2026-10-11 登录走查·guide_partner)"
+        }
       ]
     }
   ]

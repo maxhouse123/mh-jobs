@@ -1,0 +1,207 @@
+{
+  "mobile": {
+    "m405": {
+      "login": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 12,
+        "clickableUnder44": 8,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "workbench": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "students": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "wizard1": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 24,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "delegate": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 34,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "settings": {
+        "scrollWidth": 405,
+        "innerWidth": 405,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 22,
+        "via": "openAccountSettings"
+      }
+    },
+    "m768": {
+      "login": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 12,
+        "clickableUnder44": 8,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "workbench": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "students": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "wizard1": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 24,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "delegate": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 34,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "settings": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 22,
+        "via": "openAccountSettings"
+      }
+    },
+    "m1440": {
+      "login": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 12,
+        "clickableUnder44": 8,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "workbench": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "students": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 12,
+        "tableHScroll": false,
+        "hamburger": false
+      },
+      "wizard1": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 24,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "delegate": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 34,
+        "tableHScroll": false,
+        "hamburger": false,
+        "call": true
+      },
+      "settings": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflow": false,
+        "minFontPx": 10,
+        "clickableUnder44": 22,
+        "via": "openAccountSettings"
+      }
+    }
+  },
+  "bareKeys": {
+    "zh": {
+      "count": 0,
+      "keys": []
+    },
+    "en": {
+      "count": 0,
+      "keys": []
+    },
+    "ru": {
+      "count": 0,
+      "keys": []
+    },
+    "fr": {
+      "count": 0,
+      "keys": []
+    }
+  },
+  "gate": {
+    "m405": {
+      "loggedIn": true,
+      "title": "MAXHOUSE · 合作伙伴中心 Partner Hub"
+    },
+    "m768": {
+      "loggedIn": true,
+      "title": "MAXHOUSE · 合作伙伴中心 Partner Hub"
+    },
+    "m1440": {
+      "loggedIn": true,
+      "title": "MAXHOUSE · 合作伙伴中心 Partner Hub"
+    }
+  }
+}
