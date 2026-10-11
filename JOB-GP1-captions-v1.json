@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "line": "GP1-02 · 字幕底稿（EN/中 照抄 storyboard-v1 / shots-v1.json，一字不改；RU/FR 由 CC 从 EN 译出并回译自检）",
+    "source_storyboard": "jobs/JOB-GP1/storyboard-v1.md",
+    "source_shots": "jobs/JOB-GP1/rec/shots-v1.json (62 镜)",
+    "narrated_shots": 59,
+    "silent_shots": ["1-2", "1-4", "6-4"],
+    "silent_note": "这三镜 capEN=null（纯动作镜，无旁白），不出音频、不计入四语对账镜数。",
+    "langs": ["en", "zh", "ru", "fr"],
+    "voices": { "en": "Samantha", "zh": "Tingting", "ru": "Milena", "fr": "Amélie" },
+    "glossary_keep_as_is": ["MAXHOUSE", "Demo University", "Demo University 2", "Demo Agency", "JW202", "MH-", "SCH-", "¥0", "¥1,500", "¥600", "www.maxhouses.net", "partner-portal"],
+    "ui_labels_rule": "按钮名在 ru/fr 字幕里用引号括出自然译名；金额/专有名词/编号前缀保留原文（见 glossary）。",
+    "sub_rule": "subtitle 带宽：横版 ≤2 行、竖版 ≤3 行 48px。超限的 ru/fr 句在 compress[] 给 short 变体（供 GP1-03 字幕烧入）；音频一律用全文 en/zh/ru/fr。keypoints（OP-2/3/5、ED-1）是叠层卡文案、非字幕带，不受 3 行限、不压短。"
+  },
+
+  "keypoints": [
+    {
+      "id": 1, "title_en": "One submission, many universities", "title_zh": "一次提交，多校同审",
+      "en": "Submit a student once and the same file enters the candidate pools of many Chinese universities at the same time. Offers arrive in parallel — no more applying school by school.",
+      "zh": "你的学生一份材料，同时进入多所中国高校的候选池，录取并行到手，不用一校一校投。",
+      "ru": "Отправьте студента один раз — и то же досье попадает в списки кандидатов сразу многих китайских вузов. Предложения приходят параллельно — больше не нужно подавать в каждый вуз отдельно.",
+      "fr": "Soumettez un étudiant une seule fois : le même dossier entre en même temps dans les viviers de candidats de nombreuses universités chinoises. Les admissions arrivent en parallèle — fini les candidatures une par une."
+    },
+    {
+      "id": 2, "title_en": "Your student stays yours", "title_zh": "学生归你，没人绕开你",
+      "en": "Submitting binds the student to you: they cannot apply on their own or move to another agent. Under the double-blind rule, universities never see the student's contact details, and the student sees no university name until unlock. The platform never takes your student.",
+      "zh": "提交即绑定：学生不能再自己申请，也不能转给别的中介。双盲规则下，学校看不到学生的联系方式，学生解锁前看不到学校。平台不抢你的学生。",
+      "ru": "Подача закрепляет студента за вами: он не может подать заявку сам или перейти к другому агенту. По правилу двойной слепоты вузы не видят контактов студента, а студент не видит названия вуза до разблокировки. Платформа не забирает вашего студента.",
+      "fr": "La soumission lie l'étudiant à vous : il ne peut ni postuler seul ni passer à un autre agent. Selon la règle du double anonymat, les universités ne voient jamais ses coordonnées, et l'étudiant ne voit aucun nom d'université avant le déblocage. La plateforme ne vous prend jamais votre étudiant."
+    },
+    {
+      "id": 3, "title_en": "Zero platform fees", "title_zh": "学生不交平台费，你的服务费全归你",
+      "en": "No application fee, no agency fee. Enter the coupon code and unlock the admission letter for ¥0. Your own service fee stays with you.",
+      "zh": "不收报名费，不收中介费。录取通知书输入优惠码，0 元解锁。你的服务费，全归你。",
+      "ru": "Без регистрационного сбора, без платы агентству. Введите промокод и разблокируйте письмо о зачислении за ¥0. Ваш собственный сервисный сбор остаётся у вас.",
+      "fr": "Pas de frais de dossier, pas de frais d'agence. Saisissez le code promo et débloquez la lettre d'admission pour ¥0. Vos propres honoraires vous reviennent intégralement."
+    },
+    {
+      "id": 4, "title_en": "Written by the university, delivered to you", "title_zh": "奖学金学校亲自填，通知书 JW202 直发，学校系统平台代录",
+      "en": "Scholarship and tuition are entered by the university itself when it admits the student. The admission letter and JW202 are downloaded right here. The university's own enrolment system is filled in by the platform — you never re-enter the data.",
+      "zh": "奖学金和学费由学校在录取时亲自填写，看到的就是学校写的。录取通知书和 JW202 在平台直接下载。学校报名系统的建档由平台代为录入，你不用再录一遍。",
+      "ru": "Стипендию и стоимость обучения вуз указывает сам при зачислении студента. Письмо о зачислении и форму JW202 вы скачиваете прямо здесь. Собственную систему регистрации вуза заполняет платформа — вам не нужно вводить данные заново.",
+      "fr": "La bourse et les frais de scolarité sont saisis par l'université elle-même lorsqu'elle admet l'étudiant. La lettre d'admission et le JW202 se téléchargent ici même. Le système d'inscription de l'université est rempli par la plateforme — vous ne ressaisissez jamais les données."
+    }
+  ],
+
+  "compress": [
+    { "id": "3-5", "lang": "ru", "full": "ИИ-предпроверка выявляет проблемы ещё до того, как вуз увидит документ.", "short": "ИИ находит проблемы до того, как вуз увидит документ." },
+    { "id": "3-5", "lang": "fr", "full": "La prévérification par IA signale les problèmes avant même qu'une université ne voie le dossier.", "short": "L'IA repère les problèmes avant que l'université ne voie le dossier." },
+    { "id": "6-2", "lang": "ru", "full": "До разблокировки вы видите специальность, стоимость обучения и стипендию — указанные самим вузом — но не его название.", "short": "До разблокировки видны специальность, стоимость и стипендия — но не название вуза." },
+    { "id": "6-2", "lang": "fr", "full": "Avant le déblocage, vous voyez le programme, les frais et la bourse — saisis par l'université elle-même — mais pas son nom.", "short": "Avant déblocage : programme, frais et bourse — écrits par l'université — mais pas son nom." },
+    { "id": "7-3", "lang": "ru", "full": "Платформа сама заносит студента в систему регистрации вуза за вас.", "short": "Платформа сама заносит студента в систему вуза." },
+    { "id": "7-3", "lang": "fr", "full": "La plateforme inscrit l'étudiant dans le système d'inscription de l'université à votre place.", "short": "La plateforme inscrit l'étudiant dans le système de l'université pour vous." },
+    { "id": "8-3", "lang": "ru", "full": "Укажите, сколько ещё студентов вы ожидаете; мы рассмотрим запрос за два рабочих дня.", "short": "Укажите число студентов; ответ за два рабочих дня." },
+    { "id": "8-3", "lang": "fr", "full": "Indiquez combien d'étudiants supplémentaires vous prévoyez ; nous l'examinons sous deux jours ouvrés.", "short": "Indiquez le nombre d'étudiants prévus ; réponse sous deux jours ouvrés." },
+    { "id": "9-4", "lang": "ru", "full": "и платное продвижение, которое помещает студента в списки кандидатов большего числа вузов.", "short": "и платное продвижение — студент попадает в списки большего числа вузов." },
+    { "id": "9-4", "lang": "fr", "full": "et une mise en avant payante, qui place l'étudiant dans les viviers de candidats de davantage d'universités.", "short": "et la mise en avant payante, qui place l'étudiant dans plus de viviers de candidats." }
+  ],
+
+  "shots": [
+    { "id": "OP-1", "ch": "OP", "en": "This is the MAXHOUSE partner guide.", "zh": "这是迈克豪斯合作机构操作指南。", "ru": "Это руководство для партнёров MAXHOUSE.", "fr": "Voici le guide partenaire MAXHOUSE." },
+    { "id": "OP-2", "ch": "OP", "en": "Submit a student once and the same file enters the candidate pools of many Chinese universities at the same time. Offers arrive in parallel — no more applying school by school.", "zh": "你的学生一份材料，同时进入多所中国高校的候选池，录取并行到手，不用一校一校投。", "ru": "Отправьте студента один раз — и то же досье попадает в списки кандидатов сразу многих китайских вузов. Предложения приходят параллельно — больше не нужно подавать в каждый вуз отдельно.", "fr": "Soumettez un étudiant une seule fois : le même dossier entre en même temps dans les viviers de candidats de nombreuses universités chinoises. Les admissions arrivent en parallèle — fini les candidatures une par une." },
+    { "id": "OP-3", "ch": "OP", "en": "Submitting binds the student to you: they cannot apply on their own or move to another agent. Under the double-blind rule, universities never see the student's contact details, and the student sees no university name until unlock. The platform never takes your student.", "zh": "提交即绑定：学生不能再自己申请，也不能转给别的中介。双盲规则下，学校看不到学生的联系方式，学生解锁前看不到学校。平台不抢你的学生。", "ru": "Подача закрепляет студента за вами: он не может подать заявку сам или перейти к другому агенту. По правилу двойной слепоты вузы не видят контактов студента, а студент не видит названия вуза до разблокировки. Платформа не забирает вашего студента.", "fr": "La soumission lie l'étudiant à vous : il ne peut ni postuler seul ni passer à un autre agent. Selon la règle du double anonymat, les universités ne voient jamais ses coordonnées, et l'étudiant ne voit aucun nom d'université avant le déblocage. La plateforme ne vous prend jamais votre étudiant." },
+    { "id": "OP-4", "ch": "OP", "en": "No application fee, no agency fee. Enter the coupon code and unlock the admission letter for ¥0. Your own service fee stays with you.", "zh": "不收报名费，不收中介费。录取通知书输入优惠码，0 元解锁。你的服务费，全归你。", "ru": "Без регистрационного сбора, без платы агентству. Введите промокод и разблокируйте письмо о зачислении за ¥0. Ваш собственный сервисный сбор остаётся у вас.", "fr": "Pas de frais de dossier, pas de frais d'agence. Saisissez le code promo et débloquez la lettre d'admission pour ¥0. Vos propres honoraires vous reviennent intégralement." },
+    { "id": "OP-5", "ch": "OP", "en": "Scholarship and tuition are entered by the university itself when it admits the student. The admission letter and JW202 are downloaded right here. The university's own enrolment system is filled in by the platform — you never re-enter the data.", "zh": "奖学金和学费由学校在录取时亲自填写，看到的就是学校写的。录取通知书和 JW202 在平台直接下载。学校报名系统的建档由平台代为录入，你不用再录一遍。", "ru": "Стипендию и стоимость обучения вуз указывает сам при зачислении студента. Письмо о зачислении и форму JW202 вы скачиваете прямо здесь. Собственную систему регистрации вуза заполняет платформа — вам не нужно вводить данные заново.", "fr": "La bourse et les frais de scolarité sont saisis par l'université elle-même lorsqu'elle admet l'étudiant. La lettre d'admission et le JW202 se téléchargent ici même. Le système d'inscription de l'université est rempli par la plateforme — vous ne ressaisissez jamais les données." },
+    { "id": "OP-6", "ch": "OP", "en": "Ten short chapters. Let's begin.", "zh": "十个短章节，开始吧。", "ru": "Десять коротких глав. Начнём.", "fr": "Dix courts chapitres. Commençons." },
+
+    { "id": "1-1", "ch": "1", "en": "Open the partner portal. New here? Tap \"Register your agency\".", "zh": "打开合作伙伴端。第一次来，点「新机构注册」。", "ru": "Откройте портал для партнёров. Впервые здесь? Нажмите «Зарегистрировать агентство».", "fr": "Ouvrez le portail partenaire. Première visite ? Touchez « Inscrire votre agence »." },
+    { "id": "1-3", "ch": "1", "en": "Enter the invite code from the guide page, then your email and a password.", "zh": "输入引导页上的邀请码，再填邮箱和密码。", "ru": "Введите код приглашения со страницы-гида, затем ваш e-mail и пароль.", "fr": "Saisissez le code d'invitation de la page guide, puis votre e-mail et un mot de passe." },
+    { "id": "1-5", "ch": "1", "en": "Tell us about your agency: name, country, contact person, students per year.", "zh": "填机构信息：名称、国家、联系人、每年送生量。", "ru": "Расскажите о вашем агентстве: название, страна, контактное лицо, студентов в год.", "fr": "Présentez votre agence : nom, pays, personne à contacter, étudiants par an." },
+    { "id": "1-6", "ch": "1", "en": "Upload the owner's ID and your business licence.", "zh": "上传负责人证件和机构资质文件。", "ru": "Загрузите удостоверение личности руководителя и лицензию вашей компании.", "fr": "Téléversez la pièce d'identité du responsable et votre licence d'exploitation." },
+    { "id": "1-7", "ch": "1", "en": "Submit. Our team reviews new agencies within two working days.", "zh": "提交。平台在 2 个工作日内完成审核。", "ru": "Отправьте. Наша команда проверяет новые агентства в течение двух рабочих дней.", "fr": "Soumettez. Notre équipe examine les nouvelles agences sous deux jours ouvrés." },
+    { "id": "1-8", "ch": "1", "en": "Once approved, your Partner Hub is open.", "zh": "审核通过，工作台就开通了。", "ru": "После одобрения ваш партнёрский кабинет открыт.", "fr": "Une fois approuvé, votre espace partenaire est ouvert." },
+
+    { "id": "2-1", "ch": "2", "en": "Your Partner Hub shows every student you referred, in one place.", "zh": "工作台把你推荐的每一位学生放在一处。", "ru": "Партнёрский кабинет показывает всех рекомендованных вами студентов в одном месте.", "fr": "Votre espace partenaire réunit tous les étudiants que vous avez recommandés au même endroit." },
+    { "id": "2-2", "ch": "2", "en": "Here is your referral quota: used and remaining.", "zh": "这里是你的推荐名额：已用和剩余。", "ru": "Вот ваша квота рекомендаций: использовано и осталось.", "fr": "Voici votre quota de recommandations : utilisé et restant." },
+    { "id": "2-3", "ch": "2", "en": "Each card carries the student's current stage.", "zh": "每张卡显示学生当前所处的阶段。", "ru": "На каждой карточке показан текущий этап студента.", "fr": "Chaque fiche indique l'étape actuelle de l'étudiant." },
+    { "id": "2-4", "ch": "2", "en": "Under review, ready for offers, offer in progress, accepted, enrolled.", "zh": "审核中、可发录取、在途录取、已接受、已入学。", "ru": "На проверке, готов к зачислению, зачисление в процессе, принято, зачислен.", "fr": "En examen, prêt pour l'admission, admission en cours, acceptée, inscrit." },
+    { "id": "2-5", "ch": "2", "en": "Notifications tell you the moment a university acts.", "zh": "学校一有动作，通知就到。", "ru": "Уведомления сообщают вам в момент, когда вуз что-то делает.", "fr": "Les notifications vous préviennent dès qu'une université agit." },
+
+    { "id": "3-1", "ch": "3", "en": "Tap \"Submit a new student\".", "zh": "点「提交新学生推荐」。", "ru": "Нажмите «Отправить нового студента».", "fr": "Touchez « Soumettre un nouvel étudiant »." },
+    { "id": "3-2", "ch": "3", "en": "Step one: the plan — intake term, funding, degree level and major.", "zh": "第一步，申请计划：开学季、资助方式、学历层次和专业。", "ru": "Шаг первый: план — семестр поступления, финансирование, уровень обучения и специальность.", "fr": "Étape un : le projet — session d'entrée, financement, niveau d'études et spécialité." },
+    { "id": "3-3", "ch": "3", "en": "Step two: the student's profile, exactly as in the passport.", "zh": "第二步，学生档案，按护照填写。", "ru": "Шаг второй: профиль студента, точно как в паспорте.", "fr": "Étape deux : le profil de l'étudiant, exactement comme sur le passeport." },
+    { "id": "3-4", "ch": "3", "en": "Step three: upload the documents.", "zh": "第三步，上传材料。", "ru": "Шаг третий: загрузите документы.", "fr": "Étape trois : téléversez les documents." },
+    { "id": "3-5", "ch": "3", "en": "The AI pre-check flags problems before a university ever sees the file.", "zh": "AI 预检在学校看到之前就把问题指出来。", "ru": "ИИ-предпроверка выявляет проблемы ещё до того, как вуз увидит документ.", "fr": "La prévérification par IA signale les problèmes avant même qu'une université ne voie le dossier." },
+    { "id": "3-6", "ch": "3", "en": "The passport name check catches spelling differences right away.", "zh": "护照姓名核对当场发现拼写不一致。", "ru": "Проверка имени по паспорту сразу замечает расхождения в написании.", "fr": "La vérification du nom sur le passeport repère aussitôt les différences d'orthographe." },
+    { "id": "3-7", "ch": "3", "en": "Leave any time — your draft is saved in the cloud.", "zh": "随时退出，草稿存在云端。", "ru": "Выходите в любой момент — черновик сохраняется в облаке.", "fr": "Quittez à tout moment — votre brouillon est enregistré dans le cloud." },
+    { "id": "3-8", "ch": "3", "en": "Confirm and submit. The student gets an application number.", "zh": "确认提交，学生拿到申请编号。", "ru": "Подтвердите и отправьте. Студент получает номер заявки.", "fr": "Confirmez et soumettez. L'étudiant reçoit un numéro de dossier." },
+    { "id": "3-9", "ch": "3", "en": "From now on this student is bound to you.", "zh": "从现在起，这名学生与你绑定。", "ru": "С этого момента студент закреплён за вами.", "fr": "Désormais, cet étudiant vous est rattaché." },
+
+    { "id": "4-1", "ch": "4", "en": "Too many files to collect? Let the student upload them.", "zh": "材料太多收不过来？让学生自己传。", "ru": "Слишком много файлов собирать? Пусть студент загрузит их сам.", "fr": "Trop de fichiers à rassembler ? Laissez l'étudiant les téléverser." },
+    { "id": "4-2", "ch": "4", "en": "Fill in the student's email and the plan you agreed. Send.", "zh": "填学生邮箱和你们定好的计划，发送。", "ru": "Укажите e-mail студента и согласованный план. Отправьте.", "fr": "Renseignez l'e-mail de l'étudiant et le projet convenu. Envoyez." },
+    { "id": "4-3", "ch": "4", "en": "Copy the link or resend it.", "zh": "可以复制链接，也可以重发。", "ru": "Скопируйте ссылку или отправьте повторно.", "fr": "Copiez le lien ou renvoyez-le." },
+    { "id": "4-4", "ch": "4", "en": "The student registers and uploads; you watch the progress.", "zh": "学生注册上传，你看进度。", "ru": "Студент регистрируется и загружает материалы; вы следите за прогрессом.", "fr": "L'étudiant s'inscrit et téléverse ; vous suivez la progression." },
+    { "id": "4-5", "ch": "4", "en": "The submit button stays with you — only you file the application.", "zh": "提交权在你手里，只有你能提交申请。", "ru": "Кнопка отправки остаётся у вас — только вы подаёте заявку.", "fr": "Le bouton d'envoi reste chez vous — vous seul déposez le dossier." },
+
+    { "id": "5-1", "ch": "5", "en": "A document was returned. Open the student.", "zh": "有材料被退回，打开学生详情。", "ru": "Документ был возвращён. Откройте студента.", "fr": "Un document a été renvoyé. Ouvrez l'étudiant." },
+    { "id": "5-2", "ch": "5", "en": "The reason is written in English, so every agent can read it.", "zh": "退回理由用英文写，任何中介都看得懂。", "ru": "Причина написана на английском, чтобы её мог прочитать любой агент.", "fr": "Le motif est rédigé en anglais, afin que chaque agent puisse le lire." },
+    { "id": "5-3", "ch": "5", "en": "Upload the corrected file.", "zh": "上传修正后的文件。", "ru": "Загрузите исправленный файл.", "fr": "Téléversez le fichier corrigé." },
+    { "id": "5-4", "ch": "5", "en": "Back under review — no need to resubmit the whole application.", "zh": "回到审核中，不用整份重交。", "ru": "Снова на проверке — не нужно подавать всю заявку заново.", "fr": "De nouveau en examen — pas besoin de resoumettre tout le dossier." },
+
+    { "id": "6-1", "ch": "6", "en": "Two universities admitted this student.", "zh": "两所学校录取了这名学生。", "ru": "Два вуза зачислили этого студента.", "fr": "Deux universités ont admis cet étudiant." },
+    { "id": "6-2", "ch": "6", "en": "Before unlock you see the programme, tuition and scholarship — written by the university itself — but not its name.", "zh": "解锁前能看到专业、学费、奖学金——都是学校亲自填的——但看不到校名。", "ru": "До разблокировки вы видите специальность, стоимость обучения и стипендию — указанные самим вузом — но не его название.", "fr": "Avant le déblocage, vous voyez le programme, les frais et la bourse — saisis par l'université elle-même — mais pas son nom." },
+    { "id": "6-3", "ch": "6", "en": "Compare, then unlock the one you prefer.", "zh": "比较之后，解锁你中意的那份。", "ru": "Сравните и разблокируйте ту, что вам больше подходит.", "fr": "Comparez, puis débloquez celle que vous préférez." },
+    { "id": "6-5", "ch": "6", "en": "Enter the coupon code — ¥0. No agency fee, no application fee.", "zh": "输入优惠码，应付 0 元。不收中介费，不收报名费。", "ru": "Введите промокод — ¥0. Без платы агентству, без регистрационного сбора.", "fr": "Saisissez le code promo — ¥0. Pas de frais d'agence, pas de frais de dossier." },
+    { "id": "6-6", "ch": "6", "en": "The university is revealed.", "zh": "校名揭晓。", "ru": "Название вуза раскрывается.", "fr": "L'université est révélée." },
+    { "id": "6-7", "ch": "6", "en": "Accept before the deadline — the countdown is right here.", "zh": "在截止日前接受，倒计时就在这里。", "ru": "Примите до крайнего срока — обратный отсчёт здесь.", "fr": "Acceptez avant l'échéance — le compte à rebours est juste ici." },
+
+    { "id": "7-1", "ch": "7", "en": "Download the admission letter the moment the university uploads it.", "zh": "学校一上传，录取通知书就能下载。", "ru": "Скачайте письмо о зачислении сразу, как только вуз его загрузит.", "fr": "Téléchargez la lettre d'admission dès que l'université la dépose." },
+    { "id": "7-2", "ch": "7", "en": "The JW202 follows the same way.", "zh": "JW202 同样在这里。", "ru": "Форма JW202 — таким же образом.", "fr": "Le JW202 se télécharge de la même façon." },
+    { "id": "7-3", "ch": "7", "en": "The platform files the student into the university's own enrolment system for you.", "zh": "平台替你把学生录入学校自己的报名系统。", "ru": "Платформа сама заносит студента в систему регистрации вуза за вас.", "fr": "La plateforme inscrit l'étudiant dans le système d'inscription de l'université à votre place." },
+    { "id": "7-4", "ch": "7", "en": "Enrolled. Done.", "zh": "已入学，完成。", "ru": "Зачислен. Готово.", "fr": "Inscrit. Terminé." },
+
+    { "id": "8-1", "ch": "8", "en": "Your quota is almost used up.", "zh": "名额快用完了。", "ru": "Ваша квота почти исчерпана.", "fr": "Votre quota est presque épuisé." },
+    { "id": "8-2", "ch": "8", "en": "Request a raise right here.", "zh": "在这里申请提额。", "ru": "Запросите увеличение прямо здесь.", "fr": "Demandez une augmentation ici même." },
+    { "id": "8-3", "ch": "8", "en": "Tell us how many more students you expect; we review it within two working days.", "zh": "填预计人数，平台 2 个工作日内审核。", "ru": "Укажите, сколько ещё студентов вы ожидаете; мы рассмотрим запрос за два рабочих дня.", "fr": "Indiquez combien d'étudiants supplémentaires vous prévoyez ; nous l'examinons sous deux jours ouvrés." },
+    { "id": "8-4", "ch": "8", "en": "Approved — your quota grows with your results.", "zh": "已批，名额随业绩增长。", "ru": "Одобрено — квота растёт вместе с вашими результатами.", "fr": "Approuvé — votre quota grandit avec vos résultats." },
+
+    { "id": "9-1", "ch": "9", "en": "Optional extras, only if you want them:", "zh": "可选的增值服务，用不用都行：", "ru": "Дополнительные услуги — по желанию:", "fr": "Des options supplémentaires, seulement si vous le souhaitez :" },
+    { "id": "9-2", "ch": "9", "en": "unlimited unlocks for a student with many offers,", "zh": "多份录取的学生，无限解锁；", "ru": "безлимитные разблокировки для студента с множеством предложений,", "fr": "des déblocages illimités pour un étudiant ayant de nombreuses admissions," },
+    { "id": "9-3", "ch": "9", "en": "a concierge who handles the paperwork,", "zh": "代办服务，替你跑手续；", "ru": "консьерж, который берёт на себя оформление документов,", "fr": "un service de conciergerie qui gère les formalités," },
+    { "id": "9-4", "ch": "9", "en": "and paid exposure, which places the student in more universities' candidate pools.", "zh": "付费曝光，让学生进入更多学校的候选池。", "ru": "и платное продвижение, которое помещает студента в списки кандидатов большего числа вузов.", "fr": "et une mise en avant payante, qui place l'étudiant dans les viviers de candidats de davantage d'universités." },
+
+    { "id": "10-1", "ch": "10", "en": "A graduate can apply again from the same account.", "zh": "毕业后可以用同一账号再次申请。", "ru": "Выпускник может подать заявку снова с того же аккаунта.", "fr": "Un diplômé peut postuler à nouveau depuis le même compte." },
+    { "id": "10-2", "ch": "10", "en": "Account settings live under the gear.", "zh": "账户设置在齿轮里。", "ru": "Настройки аккаунта — под значком шестерёнки.", "fr": "Les réglages du compte se trouvent sous l'engrenage." },
+    { "id": "10-3", "ch": "10", "en": "Four interface languages.", "zh": "四种界面语言。", "ru": "Четыре языка интерфейса.", "fr": "Quatre langues d'interface." },
+    { "id": "10-4", "ch": "10", "en": "Sign out when you share a computer.", "zh": "共用电脑时记得退出。", "ru": "Выходите из аккаунта, если компьютер общий.", "fr": "Déconnectez-vous si l'ordinateur est partagé." },
+
+    { "id": "ED-1", "ch": "ED", "en": "One submission, many universities. Your student stays yours. Zero platform fees. Written by the university, delivered to you.", "zh": "一次提交多校同审；学生归你；学生不交平台费；学校亲自填、平台直发代录。", "ru": "Одна подача — много вузов. Ваш студент остаётся вашим. Никаких сборов платформы. Заполняет вуз — доставляем вам.", "fr": "Une seule soumission, de nombreuses universités. Votre étudiant reste le vôtre. Aucuns frais de plateforme. Rempli par l'université, livré chez vous." },
+    { "id": "ED-2", "ch": "ED", "en": "Scan to register. The invite code is on the guide page.", "zh": "扫码注册，邀请码见引导页。", "ru": "Сканируйте, чтобы зарегистрироваться. Код приглашения — на странице-гиде.", "fr": "Scannez pour vous inscrire. Le code d'invitation est sur la page guide." }
+  ]
+}
