@@ -1,43 +1,46 @@
 # JOB-GP1-03 进度交接（**进行中 · 未过闸**）
 
-最新：2026-10-11 Mac mini 无人值守 **第 8 趟**。按业主 RULING-20261011-ch4（选 B 无人值守继续）开工：
-**第 4 章（委托邀请 → 中介提交）动作章完整成片**，并把「打字/连点/确认/选择器等待」动作原语搬进 harness（后续动作章复用）。
-**未写 rGP1-STOP.txt / SUMMARY-GP1-A.md（REVIEW=yes）**——那只在英文十章全片拼完时写；剩 1/3/5/6/7/8 + 开场/片尾/拼接/联络表 未做。
+最新：2026-10-11 Mac mini 无人值守 **第 9 趟**。按 RULING-20261011-ch4（选 B 无人值守继续）继续动作章。
+本趟新成片：**第 5、7、8 章**（横+竖，带英文旁白字幕，真帧肉眼复验、零 @gmail 泄露）。
+**未写 rGP1-STOP.txt / SUMMARY-GP1-A.md**——那只在英文十章全片拼完时写；剩 1 / 3 / 6 + 开场/片尾/拼接/联络表 未做。
 
 ## 一句话（给业主）
-困住前 7 趟的「第 4 章提交按钮找不到」，这趟查出病根：那颗按钮只在学生被标成「委托生」时才长出来，而建数据的脚本漏标了这一项——补上就有了，不是功能没做。这趟把第 4 章从头到尾录成了成片（横屏 + 竖屏，带英文旁白字幕，约 43 秒），画面里学生真邮箱全部打码成 example.com（新加了自动查泄露，5 个镜头全过）。录完把数据库一键还原到基线，自检 16/16 全过。顺带修好了一个一直潜伏、靠运气没炸的登录 bug。
+这趟又录好了三章操作演示：「材料被退回怎么补传」「录取通知书 / JW202 下载与建档完成」「名额快用完怎么申请提额」。都是横屏竖屏两版、带英文配音字幕，画面里学生真邮箱全部打码。录完数据库一键还原，自检 16/16 全过。还顺手把脱敏做得更严（现在任何角落出现的真邮箱都自动盖掉）。剩「多校录取解锁」「提交第一个学生」「机构注册」三章没录。
 
 ## 本趟实际完成（已验证）
-1. **开工 verify 16/16 PASS**；收工 rebuild 后 verify **16/16 PASS**（REBUILD_OK）。数据库净写入=0（录制中的临时写入已全数还原）。
-2. **第 4 章病根实证（iron-law-14）**：委托卡「邀请发出→学生注册→材料传齐→你提交」时间线盒 + 提交按钮由 `_dlDecorateDom()`(v184 L13713) 画，**硬要求 `intake_mode==='delegate'`**(L13730)；seed 只设 `submit_holder='partner'` 没设 intake_mode → 盒子不画 → 按钮不存在。补 `intake_mode='delegate'` 即现。
-   - 提交按钮：`button.dl-abtn.primary[data-dl-submit]`，文案键 `dl.submit`；材料齐(`_dlDocCount.ok`)才可点；点→`_dlSubmit`→确认框 `#confirmModalConfirmBtn`→`students.update({submitted_at})`；卡变「Submitted · <app_no>」。
-3. **材料口径修正（图纸冲突·按 RULING 授予的代裁权定案）**：委托必传集=passport/education/transcript/photo（in_china=false 不含 visa）=**4 份**；真机显「3/4→4/4」，storyboard/RULING 的「3/6→6/6」是学生端 6 类口径、委托卡不适用。字幕不含数字，无观众面影响。pt-04 缺 transcript，补 SPECIMEN→4/4。
-4. **第 4 章成片**（本机 `~/guide/dist/partner/`，不进 git/mh-jobs/桶）：
-   - `ch4-land-en.mp4` **1920x1080 · audio=yes · 42.87s · 5 镜**；`ch4-port-en.mp4` **1080x1920 · audio=yes · 42.62s · 5 镜**。
-   - 5 镜：4-1 邀请按钮｜4-2 表单打字（演示名/邮箱）｜4-3 已发列表 Copy/Resend（真邮箱已打码 example.com）｜4-4 委托卡时间线 3/4、提交按钮灰｜4-5 材料齐 4/4→提交亮→点→确认→卡变「Submitted · MH-EZX4RE」。真帧肉眼复验全对。
-   - **脱敏**：harness 新增「DOM 文本 @gmail 探测」，land+port 两版全 5 镜 **✅ 无 @gmail**。
-5. **动作原语底座入 rec.mjs（RULING §7，后续动作章复用）**：shot 支持 `pre`(镜前页面 eval 置态) + `act`[](镜后动作：type/click/clickConfirm/wait/eval/ms)。
-6. **顺带修 2 个登录潜伏问题**：①`waitForFunction` options 误位 → 一直只有 30s 超时，改真 60s；②MASK 通用 input 循环在 fill↔点击间把门禁邮箱框盖成演示邮箱→「Invalid login credentials」，加 `window.__mhLogin` 闸（登录 offCamera 不盖门禁框）。MASK 另加「邀请列表数据源头脱敏」。
+1. **ch5 材料被退回（pt-03 Rahim Islam）**：5-1 列表卡→5-2 退回理由(Maxhouse 退回·英文原因)→5-3 点「换版」选 SPECIMEN 文件(前端暂存不写库)→5-4 徽章转「Under review」(前端示意·不写库)。**零数据库写入**。横 31.8s / 竖 32.1s。
+2. **ch7 通知书/JW202/建档（pt-07 Nilufar / pt-08 Abena / pt-09 Dmitri）**：7-1 录取弹窗下载「Admission Letter」→7-2 下载「JW202 Form」→7-3 建档进度条(Accept✓/Letter✓/JW202✓/Enrollment✓)→7-4 列表卡「Admission complete」。录前置态 `st-pt07-letter.sql`+`st-pt08-jw202.sql`(传 SPECIMEN 到既有 specimen/ 对象，非真上传)，**录后 rebuild 复位 16/16**。横/竖各 28.5s。
+3. **ch8 名额与提额（Demo Agency）**：8-1 统计卡「已提交 9」→8-2 打开「Referral quota reached」弹窗(传真值 used:9/quota:10，修掉 _qrOpenRaise 冷调出的 undefined/NaN)→8-3 填 30+理由、高亮 Submit(不真提交)→8-4 横幅转「Quota raise approved: now 30」(前端示意)。**零数据库写入**。横/竖各 30s。
+4. **harness 三项加固（rec.mjs，复用于后续章）**：
+   - `file` 动作原语：`{t:'file',sel,path}` → setInputFiles 选本地 SPECIMEN(ch5-3 换版用)。
+   - `waitFor` 字段：镜前 runPre 后等指定选择器可见(≤9s)再高亮——解两级弹窗(detail→#admissionModal)异步开启的时序，ch7 用它稳稳等出下载按钮。
+   - **MASK 脱敏升级为 TreeWalker 全文本节点扫描**：原只盖「叶子元素」文本，漏了「含子节点元素的直系文本节点」里的 @gmail(ch7-2 pt-08 详情里学生邮箱曾漏 1 次)；改成 TreeWalker 遍历 document.body 所有文本节点，@gmail 不论嵌套层级一律盖成 agency.demo@example.com。ch7 重录后 land+port 全 ✅ 无泄露。
+5. **两级弹窗真机实证（ch7，写进本文件下方）**：`openCloudAdmissionModal(lane,idx,offerId)` 填 `#admissionModalBody`、给 `#admissionModal` 加 `.show`；offerId 是运行时 uuid(rebuild 变)，pre 里用 setInterval 从 detail 的 school-card onclick 现抓现开。下载钮渲染条件 = `letter_paid_at 非空 && (letter_uploaded_at||jw202_uploaded_at)`(源 L5544 `_renderCloudAdmissionBody`)——只上传不付款不出钮；pt-07/08/09 基线已 `letter_paid_at`，故置态只补 uploaded_at 即现钮。
 
-## 成片进度表（正式成片）
-| 章 | 横 | 竖 | 状态 |
+## 成片进度表（正式成片，本机 ~/guide/dist/partner/，不进 git/桶）
+| 章 | 横 | 竖 | 趟 |
 |---|---|---|---|
-| 2 | ✅ | ✅ | 完片（trip7） |
-| 4 | ✅ | ✅ | **完片（trip8，动作章首杀）** |
-| 9 | ✅ | ✅ | 完片（trip5） |
-| 10 | ✅ | ✅ | 完片（trip6） |
-| 1/3/5/6/7/8 | — | — | 待录（动作章；原语底座已就绪，病根式实证逐章补） |
-| 开场OP/片尾ED/整片拼接/海报/缩略图/联络表 | — | — | 待章节齐 |
+| 2 | ✅ | ✅ | trip7 |
+| 4 | ✅ | ✅ | trip8（动作章首杀）|
+| 5 | ✅ | ✅ | **trip9** |
+| 7 | ✅ | ✅ | **trip9** |
+| 8 | ✅ | ✅ | **trip9** |
+| 9 | ✅ | ✅ | trip5 |
+| 10 | ✅ | ✅ | trip6 |
+| **1 / 3 / 6** | — | — | **待录** |
+| 开场OP/片尾ED/拼接/海报/缩略图/联络表 | — | — | 待章节齐 |
 
-## 下一趟（动作章模板已跑通，照此做）
-每章铁律：**开工先 verify 16/16（不过先 `bash jobs/JOB-GP1/rebuild-partner.sh`）→ 置态(states/*.sql 或客户端 pre)→录 land+port→复位(rebuild)→verify**。基线已含多数「结果态」(pt-06 两盲 offer / pt-03 退回 / pt-07 unlocked+accepted / pt-08 letter / pt-09 enrolled / quota_request pending)，很多读镜无需新写库。
-- **ch5**：pt-03 transcript 已退回(基线)。5-1/5-2 读；5-3/5-4 换版=上传写库(用 pre 客户端演示或真传 SPECIMEN 后 reset)。退回理由真 class 待定位。
-- **ch6**：pt-06 两盲 offer 已在(基线)。6-1/6-2/6-3 读(开 admission modal)；6-4..6-7 解锁/优惠码/接受=写库，录后 reset。二级弹窗 `#paymentModal` opener 待定位（CHOREOGRAPHY trip5/6 记）。
-- **ch7**：先 `st-pt07-letter.sql`+`st-pt08-jw202.sql` 传样件→letter/jw202 下载按钮现→录→reset。
-- **ch8**：8-1/8-2/8-3 基线已 quota 9/10 + quota_request pending；8-4 跑 `st-quota-approve.sql` 录 10→30→reset。
-- **ch3**：向导打字+上传+提交→真 app_no(写 pt-01)；MRZ 合成护照 OCR 不触发则按 storyboard 预授权改静态高亮。
-- **ch1**：reg 从零注册（先删 guide-pt-reg 账号→注册→资质打字→传 2 SPECIMEN→审核中→切 guide_partner 录 APPROVED→rebuild 重建 reg）。
+## 下一趟（剩 ch6 / ch3 / ch1 + 收尾）
+每章铁律：开工先 verify 16/16（不过先 `bash jobs/JOB-GP1/rebuild-partner.sh`）→置态→录 land+port→复位(rebuild)→verify。
+- **ch6 多校录取（pt-06 Bilal，两盲 offer）= 最难**：detail 内两张盲 `.school-card.school-card-clickable`(offerId 运行时抓)→开 `#admissionModal`→`.cloud-offer-unlock`(onclick `_cloudAdmUnlock()` **写 unlocked_at**)→`#paymentModal` 优惠码框打字 MAXHOUSE→应付 ¥0(停≥2s 框住)→确认→校名揭晓 Demo University→`.btn-offer-accept`(`_cloudAdmRespond('accepted')` **又写库**)。需 harness 打字+顺序点击(已有 type/click/clickConfirm)+可能加 waitFor 等 #paymentModal。第二盲 offer 留盲比较。**真写 pt-06 自家 offer，录后必 rebuild 复位(verify #5 两盲 pending)**。建议先只读探针走一遍 unlock→payment 选择器(探针本身会写 unlocked_at，跑完即 rebuild)。
+- **ch3 提交第一个学生（pt-01 草稿 Ayesha）**：`openReferralForm()`→`_wzOpen()` 向导；步进函数/stepper 选择器待实证；打字填表+传 SPECIMEN+提交→真 app_no(写 pt-01)。MRZ 合成护照 OCR 不触发则按 storyboard §2.6 预授权改静态高亮。录后 reset 回草稿。
+- **ch1 注册从零**：harness 现**强制登录 guide_partner**，ch1 需「不登录」路径——rec.mjs 要加 `--nologin` 分支或 ch1 专用录法(gateShowRegister→注册→资质打字→传 2 SPECIMEN→审核中→切 guide_partner 录 APPROVED)。先删 guide-pt-reg 账号(注册才走得通)，录完 rebuild 重建 reg。**最复杂，建议放最后或留待下趟**。
 - 齐后：开场 OP / 片尾 ED（gp1-overlays）→ 整片拼接 full/quick → 联络表 → 写 `JOB-GP1-03.md` + `SUMMARY-GP1-A.md`(REVIEW=yes) + `~/mh-verify/rGP1-STOP.txt`=WAIT_REVIEW 停审。
 
+## 两级弹窗 / ch7 实证索引（供下趟 ch6 复用）
+- 学生卡→`viewReferredStudent(N)`，N=列表显示序(非 pt 号)。本轮基线真机映射：N=2 Nilufar(pt-07)、N=3 Abena(pt-08)、N=4 Dmitri(pt-09)、N=8 Rahim(pt-03)。**rebuild 后顺序可能变，录前用 DB 名字→viewReferredStudent 现对**。
+- detail 内 `[onclick*="openCloudAdmissionModal"]` = school-card，eval 其 onclick 开 `#admissionModal`。
+- 下载钮 `.admission-doc-btn-letter` / `.admission-doc-btn-jw`；建档进度 `.offer-progress`(含 ✓Enrollment)；揭晓胶囊 `.admission-id-tag--unlocked`；校名联系块 `_p130_ContactBlock`(含 @gmail，靠 MASK TreeWalker 盖)。
+
 ## 合规
-未改五端 HTML；未碰 JOB-G*/GS*/GP0 原文件；未碰 R2/CF；未起后台任务；node 走代理；写入仅 Demo Agency 自家 is_test(pt-04 一行 + 一份 SPECIMEN transcript + 一次真提交)，4-3 sent 行纯客户端注入不写库，录后全 rebuild 清回基线(verify 16/16)；画面脱敏真帧复验 + 程序探测双证零 @gmail；本轮**不推主仓库**、未写 NEED_PUSH；主仓库仅点名 commit 自己的文件。
+未改五端 HTML(只读 partner v184)；未碰 JOB-G*/GS*/GP0 原文件；未碰 R2/CF；未起后台任务；node 走代理。写入仅 ch7 置态(pt-07 letter / pt-08 jw202，指既有 specimen/ 对象)，**录后 rebuild 清回基线 verify 16/16 PASS**；ch5/ch8 零 DB 写入(前端暂存/示意)。画面脱敏：真帧复验 + 程序 @gmail 探测双证，本轮全章 ✅ 无泄露。本轮**不推主仓库**、未写 NEED_PUSH；主仓库仅点名 commit 自己的文件。
