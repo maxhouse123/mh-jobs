@@ -1,39 +1,43 @@
-# JOB-GP1-03 进度交接（**进行中 · 未过闸 · 已停下等业主拍板**）
+# JOB-GP1-03 进度交接（**进行中 · 未过闸**）
 
-最新：2026-10-11 Mac mini 无人值守 **第 7 趟**。本趟补成第 2 章正式成片，随后撞墙：剩余七章无人值守做不出来、且第 4 章有一处分镜/现网冲突（铁律 14）必须业主定案 → 已写 `jobs/JOB-GP1/NEEDS_OWNER_DECISION.md` 并停下。**没写 rGP1-STOP.txt**（那只在英文全片做完时写），**没写 REVIEW=yes**。
+最新：2026-10-11 Mac mini 无人值守 **第 8 趟**。按业主 RULING-20261011-ch4（选 B 无人值守继续）开工：
+**第 4 章（委托邀请 → 中介提交）动作章完整成片**，并把「打字/连点/确认/选择器等待」动作原语搬进 harness（后续动作章复用）。
+**未写 rGP1-STOP.txt / SUMMARY-GP1-A.md（REVIEW=yes）**——那只在英文十章全片拼完时写；剩 1/3/5/6/7/8 + 开场/片尾/拼接/联络表 未做。
 
 ## 一句话（给业主）
-英文片十章里，**第 2、9、10 章已成片**（都是「只看不点」能录的纯读章）。**剩第 1、3、4、5、6、7、8 共七章全部卡住**——都要「先改数据库状态/传样件到桶 + 录屏时打字、连续多步点击」，现录屏工具只会「高亮+单步」，做不了；且这类「动作章」要边改演示数据边录、录完复位，无人值守裸跑有断网留半截风险（前两趟同结论）。另第 4 章「材料齐→提交申请按钮」现网找不到该按钮，按铁律 14 须业主读源码定案。详见 `jobs/JOB-GP1/NEEDS_OWNER_DECISION.md`（两个待定：①ch4-5 提交入口落点 ②动作章用「有监督一趟」还是「无人值守继续」）。
+困住前 7 趟的「第 4 章提交按钮找不到」，这趟查出病根：那颗按钮只在学生被标成「委托生」时才长出来，而建数据的脚本漏标了这一项——补上就有了，不是功能没做。这趟把第 4 章从头到尾录成了成片（横屏 + 竖屏，带英文旁白字幕，约 43 秒），画面里学生真邮箱全部打码成 example.com（新加了自动查泄露，5 个镜头全过）。录完把数据库一键还原到基线，自检 16/16 全过。顺带修好了一个一直潜伏、靠运气没炸的登录 bug。
 
 ## 本趟实际完成（已验证）
-1. **环境复核**：代理 127.0.0.1:10808 通（curl 200）；ffmpeg 9.0.2；四语音在；accounts.json 有 guide_partner。
-2. **数据库零写入**：开工 `verify.sql` **16/16 PASS**，收工再测 **16/16 PASS**（全程只读探针+录屏浏览）。
-3. **第 2 章补成正式成片**（此前仅 trip4 dry 空跑版）：
-   - `rec.mjs --chapter 2 --orient land/port --lang en` 各一遍，5 镜全高亮命中、**0 MISS**（2-2 677x70 / 2-3 220x73 / 2-4 509x50 / 2-5 铃 90x90）。
-   - `prod-ch.mjs` 合成：`ch2-land-en.mp4` **1920x1080 · audio=yes · 27.61s · 5 镜 OK**；`ch2-port-en.mp4` **1080x1920 · audio=yes · 27.58s · 5 镜 OK**。
-   - **真帧肉眼复验**：章节条「Chapter 2 · Your Partner Hub」、Demo Agency 抬头、名额提示条（10→30 pending）、通知面板（ACTION REQUIRED/GOOD NEWS/under review）、底部英文字幕；**无 @gmail 真邮箱**（页头为平台 maxhouses.net 服务邮箱，与已验收的 ch9/ch10 一致）。橙色高亮环跟随正确。成片在本机 `~/guide/dist/partner/`（不进 git/mh-jobs/桶）。
-   - 旧 dry 版 `ch2-*-en-dry.mp4` 已被正式版取代（rm 受本机权限限制未删，文件名 `-dry` 可辨；下趟清理）。
-4. **第 4 章只读实证**（新只读探针 `probe-ch4.mjs`，纯读不写库）：
-   - 邀请弹窗 `_dlOpenInvite()` → `#dlModal` 可见；`#dlInviteList` 现显 pt-04「Aizhan Serikova … Registered」（**4-4「已注册」态现已成立✅**，比 trip6 的「· Sent」更进一步）；弹窗按钮：Create invite link / Cancel / ×。
-   - **4-5 冲突实证**：工作台 + pt-04 详情**无任何 `submitApplication` 类按钮**，可见 submit 入口只有「+ Submit New Student Referral」(openAddStudentModal=发起新推荐)。→ 分镜 4-5 与现网冲突，入 NEEDS_OWNER_DECISION ①。
-   - 另注：`viewReferredStudent(N)` 的 N **≠ pt 号**（运行时按排名排序，本次 (4) 打开的是 Islam Rahim=pt-03），CHOREOGRAPHY 原「N=pt号」表述不可靠，动作章录制须运行时按姓名/状态抓目标。
+1. **开工 verify 16/16 PASS**；收工 rebuild 后 verify **16/16 PASS**（REBUILD_OK）。数据库净写入=0（录制中的临时写入已全数还原）。
+2. **第 4 章病根实证（iron-law-14）**：委托卡「邀请发出→学生注册→材料传齐→你提交」时间线盒 + 提交按钮由 `_dlDecorateDom()`(v184 L13713) 画，**硬要求 `intake_mode==='delegate'`**(L13730)；seed 只设 `submit_holder='partner'` 没设 intake_mode → 盒子不画 → 按钮不存在。补 `intake_mode='delegate'` 即现。
+   - 提交按钮：`button.dl-abtn.primary[data-dl-submit]`，文案键 `dl.submit`；材料齐(`_dlDocCount.ok`)才可点；点→`_dlSubmit`→确认框 `#confirmModalConfirmBtn`→`students.update({submitted_at})`；卡变「Submitted · <app_no>」。
+3. **材料口径修正（图纸冲突·按 RULING 授予的代裁权定案）**：委托必传集=passport/education/transcript/photo（in_china=false 不含 visa）=**4 份**；真机显「3/4→4/4」，storyboard/RULING 的「3/6→6/6」是学生端 6 类口径、委托卡不适用。字幕不含数字，无观众面影响。pt-04 缺 transcript，补 SPECIMEN→4/4。
+4. **第 4 章成片**（本机 `~/guide/dist/partner/`，不进 git/mh-jobs/桶）：
+   - `ch4-land-en.mp4` **1920x1080 · audio=yes · 42.87s · 5 镜**；`ch4-port-en.mp4` **1080x1920 · audio=yes · 42.62s · 5 镜**。
+   - 5 镜：4-1 邀请按钮｜4-2 表单打字（演示名/邮箱）｜4-3 已发列表 Copy/Resend（真邮箱已打码 example.com）｜4-4 委托卡时间线 3/4、提交按钮灰｜4-5 材料齐 4/4→提交亮→点→确认→卡变「Submitted · MH-EZX4RE」。真帧肉眼复验全对。
+   - **脱敏**：harness 新增「DOM 文本 @gmail 探测」，land+port 两版全 5 镜 **✅ 无 @gmail**。
+5. **动作原语底座入 rec.mjs（RULING §7，后续动作章复用）**：shot 支持 `pre`(镜前页面 eval 置态) + `act`[](镜后动作：type/click/clickConfirm/wait/eval/ms)。
+6. **顺带修 2 个登录潜伏问题**：①`waitForFunction` options 误位 → 一直只有 30s 超时，改真 60s；②MASK 通用 input 循环在 fill↔点击间把门禁邮箱框盖成演示邮箱→「Invalid login credentials」，加 `window.__mhLogin` 闸（登录 offCamera 不盖门禁框）。MASK 另加「邀请列表数据源头脱敏」。
 
 ## 成片进度表（正式成片）
 | 章 | 横 | 竖 | 状态 |
 |---|---|---|---|
-| 2 | ✅ | ✅ | 完片（trip7，补掉 dry） |
+| 2 | ✅ | ✅ | 完片（trip7） |
+| 4 | ✅ | ✅ | **完片（trip8，动作章首杀）** |
 | 9 | ✅ | ✅ | 完片（trip5） |
 | 10 | ✅ | ✅ | 完片（trip6） |
-| 1/3/4/5/6/7/8 | — | — | 卡住，待业主拍板（见 NEEDS_OWNER_DECISION） |
-| 开场OP/片尾ED/整片拼接/海报/缩略图/联络表 | — | — | 未做（待章节齐） |
+| 1/3/5/6/7/8 | — | — | 待录（动作章；原语底座已就绪，病根式实证逐章补） |
+| 开场OP/片尾ED/整片拼接/海报/缩略图/联络表 | — | — | 待章节齐 |
 
-## 主仓库（本轮点名 commit，不推主仓库——遵铁律）
-- 新：`jobs/JOB-GP1/rec/probe-ch4.mjs`（只读 ch4 邀请流探针）、`jobs/JOB-GP1/NEEDS_OWNER_DECISION.md`。
-- 录帧/成片/verify 抽帧（out/）、voice/ 均 gitignore 不入 git。别线（G8/G9/GP0 等）改动未碰未提交。
-
-## 下一趟（业主回话后）
-- 若给 ch4-5 落点 + 选「有监督一趟」：给 rec.mjs 加「打字+连续点击」能力 → 逐章 states/*.sql 置态→录→reset（每章前后 verify 16/16）→ 开场/片尾卡 → 整片拼接+海报+缩略图+联络表 → 写 JOB-GP1-03.md+SUMMARY-GP1-A.md(REVIEW=yes)+rGP1-STOP.txt=WAIT_REVIEW。
-- 若选「无人值守继续」：同上但我自跑，每章出错即 rebuild-partner.sh 复位。
+## 下一趟（动作章模板已跑通，照此做）
+每章铁律：**开工先 verify 16/16（不过先 `bash jobs/JOB-GP1/rebuild-partner.sh`）→ 置态(states/*.sql 或客户端 pre)→录 land+port→复位(rebuild)→verify**。基线已含多数「结果态」(pt-06 两盲 offer / pt-03 退回 / pt-07 unlocked+accepted / pt-08 letter / pt-09 enrolled / quota_request pending)，很多读镜无需新写库。
+- **ch5**：pt-03 transcript 已退回(基线)。5-1/5-2 读；5-3/5-4 换版=上传写库(用 pre 客户端演示或真传 SPECIMEN 后 reset)。退回理由真 class 待定位。
+- **ch6**：pt-06 两盲 offer 已在(基线)。6-1/6-2/6-3 读(开 admission modal)；6-4..6-7 解锁/优惠码/接受=写库，录后 reset。二级弹窗 `#paymentModal` opener 待定位（CHOREOGRAPHY trip5/6 记）。
+- **ch7**：先 `st-pt07-letter.sql`+`st-pt08-jw202.sql` 传样件→letter/jw202 下载按钮现→录→reset。
+- **ch8**：8-1/8-2/8-3 基线已 quota 9/10 + quota_request pending；8-4 跑 `st-quota-approve.sql` 录 10→30→reset。
+- **ch3**：向导打字+上传+提交→真 app_no(写 pt-01)；MRZ 合成护照 OCR 不触发则按 storyboard 预授权改静态高亮。
+- **ch1**：reg 从零注册（先删 guide-pt-reg 账号→注册→资质打字→传 2 SPECIMEN→审核中→切 guide_partner 录 APPROVED→rebuild 重建 reg）。
+- 齐后：开场 OP / 片尾 ED（gp1-overlays）→ 整片拼接 full/quick → 联络表 → 写 `JOB-GP1-03.md` + `SUMMARY-GP1-A.md`(REVIEW=yes) + `~/mh-verify/rGP1-STOP.txt`=WAIT_REVIEW 停审。
 
 ## 合规
-无需改五端 HTML；未碰 JOB-G*/GS*/GP0 原文件；未碰 R2/CF；未起后台任务；node 走代理；DB 零写入（开工+收工各 16/16）；本轮不推主仓库、未写 NEED_PUSH；画面脱敏生效（真帧复验）。已按铁律 14/规矩 0.7 写 NEEDS_OWNER_DECISION 并停。
+未改五端 HTML；未碰 JOB-G*/GS*/GP0 原文件；未碰 R2/CF；未起后台任务；node 走代理；写入仅 Demo Agency 自家 is_test(pt-04 一行 + 一份 SPECIMEN transcript + 一次真提交)，4-3 sent 行纯客户端注入不写库，录后全 rebuild 清回基线(verify 16/16)；画面脱敏真帧复验 + 程序探测双证零 @gmail；本轮**不推主仓库**、未写 NEED_PUSH；主仓库仅点名 commit 自己的文件。
