@@ -86,6 +86,13 @@
 - 本回执 `~/mh-jobs/JOB-GP0-00.md`（仍为部分）。
 - 本趟**无任何数据库写入**（库没连上），**未建任何账号**，`accounts.json` 未动；**未碰**五个产品端口 HTML、未碰 jobs/JOB-G*/JOB-GS* 任何文件、未跑 rebuild/状态/cleanup、未碰 R2/Cloudflare。
 
+## 第 4 趟小结（2026-10-11）——已写 NEEDS_OWNER_DECISION 停下等业主
+- 本趟开场照「下一趟待办」第 1 步复测 DB：`bash jobs/db-run.sh jobs/JOB-GP0/probe-00-schema.sql` → 仍 **RC=2 / timeout**（直连 IPv6 库主机连不上），与第 3 趟一致。
+- 现场只读网络诊断（ping6 / host / curl，均非 DB 连接）确认病根未变：IPv6 公网 100% 丢包、直连库主机只有 IPv6、pooler 有 IPv4 且通、REST 走代理 0.65s 回 401（项目活着）。
+- **判定升级**：此阻塞**不是临时断网、是结构性问题**（半死的电信 IPv6 + 只有 IPv6 的库主机），且**只有业主能修**（换 pooler 或修 IPv6；CC 不许碰 .env / db-run.sh 外连接）。连续 4 趟零进展、再空跑不会好转。
+- 故本趟**写了 `jobs/JOB-GP0/NEEDS_OWNER_DECISION.md`**（给了两条修法 + pg_dump 注意事项 + 已完成清单），按铁规矩第 6 条**停下**，不再往下做 GP0-01/02（三包须按序，本就开不了工）。
+- 本趟**无 DB 写入、未读/未改 .env、未在 db-run.sh 外自建连接、未建账号、accounts.json 未动、未碰五端 HTML 与别线文件**，全程合规。
+
 ## 第 3 趟小结（2026-10-11）
 - 本趟**未改任何主仓库 GP-0 产物**（partner-map.json 等沿用第 2 趟，md5 仍 `da296235714ab6268299c65aa3d61bb9`，两份一致）。
 - 本趟唯一改动 = 把这份回执的病根诊断更正并写清修法（见顶部 ⚠️ 段）。
