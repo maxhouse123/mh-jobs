@@ -509,3 +509,13 @@
 - 收尾前只读复跑 `_probe-rework-stats.sql` 复核活库：9 演示生 stage 列全 NULL、payment_orders 0 行、coupon_redemptions pt-08/09 各 1、offer_decisions 真实进度在册——缺陷2 实证不变。
 - 请示单列清：业主一句话版 + 技术版(文件/行/根因) + 只读实证表 + 建议改法(改用 student_global_stage()/offer_decisions、paid 不硬编码、hero 覆盖两条付款车道) + 阻塞清单 + 已交付清单；给出 A/B/C 三选项。复制 `~/mh-jobs/JOB-GP1-NEEDS_OWNER_DECISION-20261012-1914.md` 推送。
 - **循环应在此停下等业主裁决**。GP-1 未收官；业主回复前不重录带工作台章、不写 SUMMARY-GP1、不碰上线/R2/Cloudflare/主仓库推送。
+
+## D-27-1 (2026-10-12 第27趟 · 缺陷2 业主选 A：先修中介端漏斗产品码 → v185)
+- **触发**：业主已对 trip26 的缺陷2 请示单裁决——`RULING-20261012d-funnel.md`（2026-10-12 20:00），选 **A：先修产品，再录**；原请示单被卡改名 `NEEDS_OWNER_DECISION-resolved-20261012-200057.md`。缺陷2 已解除阻塞，循环不再停于缺陷2，本趟照裁决施工。
+- **授权范围（对「不改五端口」的唯一例外，裁决 §一）**：只改 partner-portal v184→v185；只改工作台「录取漏斗 / 人均 offer」对云端学生的算法（`_getPartnerStats` 云端分支）；`TOTAL PAYMENTS PROCESSED` 与「Invested on this student」不动（§一.3，¥0 优惠码付款本就 ¥0）。
+- **数据来源选法（裁决 §一.4 顺序）**：第一条路径 a（只改前端）即行得通——学生卡/事件流已把真 offer 数据加载进 `stu._offers`（`get_agent_student_offers` RPC，v184 原 L7312-7319）。不新增迁移、不新发请求。
+- **改法**：`_getPartnerStats` 云端分支弃读废弃列 `students.stage`（恒 NULL），改按卡面同口径数 `stu._offers`：offer 份数=行数；gotLetter=任一 `letter_uploaded_at`；paid=任一 `letter_paid_at`；enrolled=任一 `completed_at`（卡面「Enrollment」第 4 步同字段，原 L5234）。另 `avgOffersPerStudent` 零学生兜底 `'0'→'0.0'`（闸 3）。版本串 [VER]/MH_PORTAL_VER 185；index.html 4 处重定向→v185。**全部 diff 仅这 4 处逻辑块，其它一字未动。**
+- **闸（全过）**：①期望值只读探针 `_probe-rework-stats.sql` 从 offer_decisions 算得 9→3→2→1、offer 5、人均 0.6（与裁决估计一致）；②v185 真登录 guide_partner 四语截图漏斗全 9/3/2/1·5·0.6（`_probe-funnel-v185.mjs`，shots/GP1/funnel/）；③回归：diff 仅 4 块、四语面板数字遮罩后文本逐字相同、唯一 console.error 是 v184 同存的 file:// 产物（非本次引入）、0 学生态 `_probe-funnel-zero.mjs` 实测无 NaN·人均 0.0·面板空串。
+- **DB**：全程零写入；开工+收工 verify 17/17 PASS 0 FAIL。
+- **推送纪律（裁决 §二.5/§三）**：主仓库点名提交（v185 文件 + index.html + jobs/JOB-GP1），说明以 `JOB-GP1-PF` 开头，**本机不推**；写 `NEEDS_OWNER_DECISION.md`（标题「v185 漏斗修复已就绪，请 Claude 审核后由业主推送上线」）复制推 mh-jobs，本趟结束等审（停下情形④）。推送上线由业主用卡执行。
+- **下趟（v185 上线、线上确认后循环重开）**：做 review1 里被缺陷2 卡住的定版重录——ch1/2/3/5/7/8/10 带工作台的镜四语横竖、2-2/2-4/7-4/ch8 横幅/节奏(3-1/3-8/5-1)、OP-3/4/5 开场快剪；完后四语过十一项重审写 SUMMARY-GP1。**v185 上线前不录定版**（免视频漏斗与线上不一致，裁决 §三.4）。
