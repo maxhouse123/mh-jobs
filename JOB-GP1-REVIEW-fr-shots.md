@@ -54,3 +54,20 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 | 1-8 | Une fois approuvé, votre espace partenaire est ouvert. | `.hero`（Demo Agency · Partenaire · approuvé，橙框）；同帧 hero「STUDENTS SUBMITTED 9」「TOTAL PAYMENTS PROCESSED ¥0」（**非 v184 的 ¥-9,000**） | 是 |
 
 - 时长：land 49.62s / port 49.68s（8 镜）。全片 no @gmail。亲眼复验（FR land 1-8 原始帧）：1-8 hero ¥0（负数销账）、STUDENTS SUBMITTED 9、approuvé 徽章橙框；无负数、无 beta 控件；法文 UI（Espace partenaires / Aucun étudiant boosté，部分串英文回退 D-18-4）；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+
+## ch3 §三.8（节奏 3-1/3-8）+ §四（草稿残留）+ §一（工作台 v185，返工第30趟 2026-10-12 · 定版重录）
+前置同 EN 段。FR 字幕来自 captions-v1.json（trip19 已随 FR 录制核验）。D-18-4：工作台/向导动态串在 FR 同样回退英文＝真实产品，照录、记入 SUMMARY。§三.8/§四/§一 处理同 EN。
+
+| 镜 | FR 字幕 | 高亮区 DOM 实际（v185 真帧，法/英混排=真产品 D-18-4） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 3-1 | Touchez « Soumettre un nouvel étudiant ». | `.partner-add-student-btn`（全窗口高亮） | 是 |
+| 3-2 | Étape un : le projet — session, financement, niveau, spécialité. | 向导 step1 + 高亮 `#wzSemStart` | 是 |
+| 3-3 | Étape deux : le profil de l'étudiant, exactement comme sur le passeport. | step2 高亮 DOB 行（Demo Aisha / DE1234567） | 是 |
+| 3-4 | Étape trois : téléversez les documents. | step3 `.mat-grid` 护照槽 | 是 |
+| 3-5 | La prévérification par IA signale les problèmes avant même qu'une université ne voie le dossier. | 琥珀预检条（FR 本地化·moitié inférieure floue）+ sticky 1 doc flagged（产品渲染） | 是 |
+| 3-6 | La vérification du nom sur le passeport repère aussitôt les différences d'orthographe. | 护照卡姓名核对琥珀条 | 是 |
+| 3-7 | Quittez à tout moment — votre brouillon est enregistré dans le cloud. | 退出弹窗存草稿钮 | 是 |
+| 3-8 | Confirmez et soumettez. L'étudiant reçoit un numéro de dossier. | `.student-app-id-num`「… · MH-xxxxxx」（Demo Aisha·#10；§三.8 修后全窗口在画面） | 是 |
+| 3-9 | Désormais, cet étudiant vous est rattaché. | `.partner-student-status-pending`（pending 标签，基线生卡；同卡 Invested ¥0 无负数） | 是 |
+
+- 时长：land 69.59s / port 69.51s（9 镜）。横竖 2 片 res OK + audio yes，no @gmail，9 镜 hl 全 resolve。亲验同 EN/RU：3-8 app_no 全窗口、3-9 ¥0 无负数、演示生无真 PII、无 beta、页头不遮。

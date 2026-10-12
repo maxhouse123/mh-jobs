@@ -1,3 +1,20 @@
+最后一趟：2026-10-12 第30趟 返工：**做了**＝ch3 工作台章（state 章）v185 底座四语横竖定版重录，一并落 review1 §三.8（3-1/3-8 节奏）+§四（草稿残留复核）+§一（工作台 v185）。**§三.8 节奏＝录制层实现「后期剪掉等待的那几秒」**：rec.mjs 加 `preOff` 开关（把导航/加载/真提交放镜外 offCamera 跑、不计入字幕窗口帧，等结果落定才开录）。3-1 旧病＝点完按钮后镜尾 openWizard 切走、高亮环落向导空白处→删 3-1 openWizard、移到 3-2 offCamera pre（3-1 全窗口框按钮·亲验尾帧仍框按钮；3-2 开录即向导 step1 高亮 Semester）。3-8 旧病「app_no 落段尾」（trip12 记）→真 submit+等 app_no 全放 offCamera，开录 app_no 已在画面（亲验首帧 t0 即显 MH-xxxxxx）。**§四**＝每变体前后跑 st-ch3-cleanup 还原 pt-01 基线草稿（Ayesha Malik/step2）+真 submit 后即 st-ch3-mark-test 标 is_test；8 变体=8 次真 submit（cleanup-before-each 保配额恒 9→10 成功），verify #17 开工+收工 PASS。**§一**＝3-9 卡「Invested ¥0」无负数（缺陷1 销账）。8 片全 res OK+audio yes+no @gmail+9镜×8 hl 全 resolve。时长 land/port：EN60.23/60.25·ZH70.52/70.46·RU70.69/70.55·FR69.59/69.51s。亲验 en-land(3-1尾/3-2/3-8/3-9)+ru-land(3-5/3-8/3-9)原始帧：§三.8 三镜达标、¥0 无负数、AI 预检琥珀条四语本地化(产品渲染)、演示生 Demo Aisha 无真 PII、护照 DE1234567 样号、邮箱掩码、无 beta、页头平台 WhatsApp/Email 不遮。ch3 开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住（scoped 复位，无全量 rebuild）。v1 成片在 _v1/ 留底、dist 覆盖 v2。**全片 bookend/film/trailer 本趟不重拼**（待全部工作台章完后统一拼）。主仓库点名提交 JOB-GP1 不推；四语 ch3 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。**下趟**＝下一含工作台章定版重录（ch7 7-4/ch8 横幅/ch5 5-1·5-4 两态/ch10/OP-3·4·5 快剪），一趟一章；全部完后四语过十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官，勿据旧『收官』停工。**
+
+---
+# 第30趟详记：
+## 第 30 趟（2026-10-12 Mac mini 无人值守）· ch3 工作台章定版重录 v185（review1 §三.8 + §四 + §一）
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail/RULING-b-review1/-c-rework/-d/-e/DECISIONS/storyboard/QUEUE/CHOREOGRAPHY。trip29 ch1 已定版，下趟＝下一含工作台章（ch3）。开工即改首行「返工进行中」，开工 verify **17/17 PASS**。
+- **选题**：按 trip29「下趟」与 review1 §八 挑 ch3（state 章，含 §三.8 节奏 3-1/3-8 + §四 草稿残留 + §一 工作台 v185 背景）。review1 未标 ch3 任何字幕缺陷→字幕/配音一字不改，纯节奏/底座/残留返工。
+- **§三.8 做法（rec.mjs +preOff，见 D-30-1）**：先录 en-land 测量——timeline 实证 3-1 旧 openWizard 致尾帧高亮环落向导空白（亲验），3-8 preOff 后 app_no 窗口 t0 即在画面。据实改 3-1（去 openWizard）/3-2（移入 offCamera pre）/3-8（preOff）后重录 en-land 复验达标，再批量录其余 7 变体。
+- **录制闭环**：每变体 st-ch3-cleanup（清+还原草稿）→ 真 submit 录 → st-ch3-mark-test（标 is_test）；全 8 变体后最终 cleanup。cleanup-before-each 保每次配额 9→10 submit 成功出新 app_no。
+- **自验**：8 片 res/audio/no-@gmail/hl 全过；亲验 en-land+ru-land 关键原始帧（§三.8 达标/¥0 无负数/AI 琥珀四语/demo 无真 PII/无 beta/页头不遮）；§十一对账四语写入 REVIEW-*-shots.md。
+- **DB**：ch3 state 章，开工+收工 verify **17/17 PASS 0 FAIL**（含往返+§四#17），零残留。
+- **踩坑**：node 从仓库根跑 require 相对路径失败（cwd 复位）——改 cd rec 目录或绝对路径。批量录用带引号位置参数 `run(){...--lang "$1" --orient "$2"}`（避 LEDGER-3 $combo 分词）。
+- **改了**（主仓库，点名 JOB-GP1，不推）：rec/rec.mjs、rec/shots-v1.json、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；v1 在 _v1/、dist 覆盖 v2；全片不重拼。四语 ch3 联络表+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **下趟**：ch7/ch8/ch5/ch10/OP-3·4·5，一趟一章；全部完后十一项重审+重拼全片→写 SUMMARY-GP1。GP-1 未收官。
+
+---
+# 上一趟（第29趟）首行存档：
 最后一趟：2026-10-12 23:20 第29趟 返工：**做了**＝接 trip28（ch2 定版 v185 已出），本趟做 ch1 工作台章定版重录（review1 §一）。ch1 读-only（1~7 镜注册/入驻 UI 产品自身渲染、1-8 已登录 hub），review1 未标 ch1 任何字幕缺陷→字幕一字不改，纯 v185 底座整章四语横竖定版重录。病灶＝1-8 背景 hero，v184 缓存帧显 `TOTAL PAYMENTS PROCESSED ¥-9,000`（负数，缺陷1；亲看 v184 ch1-contact-land-en 实证）。v185 底座（含 trip28 offCamera 等待）重录后 1-8 自动显 **¥0**。四语 land 1-8 原始帧逐张亲验：四语全 ¥0（负数销账）、STUDENTS SUBMITTED 9、APPROVED/одобрено/approuvé/已通过 徽章橙框、无负数、无 beta、注册号画面 no @gmail+邀请码打码+SPECIMEN+无真 PII、页头平台 WhatsApp/Email 不遮。8 片全 res OK+audio yes+no @gmail+8 镜 hl 全 resolve。§十一对账四语写入 REVIEW-*-shots.md。时长 EN49.43·ZH49.45·RU51.22·FR49.62s(land)。ch1 全程只读，开工+收工 verify 17/17 PASS 0 FAIL。踩坑：批量录 `$combo` 未分词污染 TAG（LEDGER-3 复犯），TaskStop 杀后台改带引号位置参数函数重录。v1 成片在 _v1/ 留底，覆盖 dist 为 v2。**全片 bookend/film/trailer 本趟不重拼**（待全部工作台章完后统一拼）。主仓库点名提交 JOB-GP1 不推；四语 ch1 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。**下趟**＝下一含工作台章定版重录（ch3 3-1·3-8 节奏+§四草稿残留/ch7 7-4/ch8 横幅/ch5 5-1·5-4 两态/ch10/OP-3·4·5 快剪），一趟一章；全部完后四语过十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官，勿据旧『收官』停工。**
 
 ---

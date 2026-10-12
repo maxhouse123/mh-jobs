@@ -547,3 +547,17 @@
 - **改了**（主仓库，点名提交 JOB-GP1，**不推**）：rec/out/*（gitignore，不入库）、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；四语 ch1 联络表（land+port）+ 四 REVIEW + 决定账 + PROGRESS 推 mh-jobs。
 - **非四种停下情形**：ch1 全在只读 + 成片工装范围，记账继续。
 - **下趟**：接做下一含工作台章定版重录——ch3（3-1/3-8 含 §三.8 节奏，需真 submit 置态 + st-ch3-cleanup 复位 + §四草稿残留处理）或 ch7（7-4 §三.5，需 pt-07/08/09 置态）或 ch8（§三.7 横幅，需 scoped 撤提额请求）或 ch5 5-1/5-4 两态定版 或 ch10（读-only）或 OP-3/4/5 开场快剪（素材 3-8/7-0/7-1 现已不阻塞）。一趟一章；全部完后四语过十一项重审 + 重拼全片 → 写 SUMMARY-GP1。GP-1 未收官。
+
+## D-30-1（返工第30趟 2026-10-12）· ch3 工作台章定版重录（review1 §三.8 节奏 + §四 草稿 + §一 v185）
+- **范围**：ch3（state 章，3-8 真 submit→真 app_no）在 v185 底座四语横竖定版重录，一并落 review1 §三.8（3-1/3-8 节奏）、§四（草稿残留复核）、§一（工作台 v185）。字幕/配音一字未改（review1 未标 ch3 任何字幕缺陷）。
+- **§三.8 节奏 = 录制层实现「后期剪掉等待的那几秒」**（rec.mjs，jobs 工装非产品码，承 trip28 offCamera 先例）：
+  - 新增 `preOff` 开关：`follow()` 里把 `runPre + waitFor`（即导航/加载/真提交 + 等结果出现）放 `offCamera` 里跑，不计入字幕窗口帧；等结果落定后才开录。非 preOff 镜行为一字不变。
+  - **3-1 旧病**：`special:openWizard` 在 dwell 后切向导→镜尾高亮环落在向导空白处（亲验 v1 风格尾帧：环框在 Continue 钮下方空白）。**改**：删 3-1 的 openWizard，把开向导移到 3-2 的 `pre`（`openAddStudentModal`）+ `preOff:true` + `waitFor:#wzSemStart`；3-1 `expect` 收为 `.partner-add-student-btn`。→ 3-1 全窗口框按钮（亲验尾帧 t≈5s 仍框按钮）、3-2 开录即向导 step1 高亮 Semester。
+  - **3-8 旧病「app_no 落在段尾」（trip12 记）**：3-8 加 `preOff:true`，真 submit + 等 `.student-app-id-num` 全放 offCamera，开录时 app_no 已渲染（亲验首帧 t0 即显 app_no）。
+- **§四 草稿残留**：每变体前后各跑 `st-ch3-cleanup.sql`（删 guide-pt-ch3 + 还原 pt-01 基线草稿 Ayesha Malik/step2/_demo=pt-01）；真 submit 后立即 `st-ch3-mark-test.sql` 标 is_test（安全网）。8 变体＝8 次真 submit（每次新 app_no，cleanup-before-each 保证配额恒 9→10 submit 成功），收工 1 次最终 cleanup。verify #17（pt-01 draft==基线）开工+收工 PASS。
+- **§一 工作台**：3-9 列表背景＝v185 真值，推荐生卡「Invested on this student: ¥0」无负数（缺陷1 销账）。
+- **自验**：8 片全 res OK + audio yes，no @gmail，9 镜×8 hl 全 resolve 零 MISS。时长 land/port：EN 60.23/60.25、ZH 70.52/70.46、RU 70.69/70.55、FR 69.59/69.51s。亲验 en-land（3-1尾/3-2首中/3-8首中/3-9中）+ ru-land（3-5/3-8/3-9）原始帧：§三.8 三镜达标、¥0 无负数、AI 预检琥珀条四语本地化（产品渲染 RULING §1.2）、演示生 Demo Aisha 无真 PII、护照 DE1234567 样号、邮箱掩码、无 beta、页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- **DB**：开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住（scoped 复位，无全量 rebuild，faces 缺口 D-12-2）。
+- **改了**（主仓库，点名 JOB-GP1，不推）：rec/rec.mjs（+preOff）、rec/shots-v1.json（3-1 去 openWizard/收 expect、3-2 +preOff/pre/waitFor、3-8 +preOff）、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；ch3 v1 早在 _v1/ 留底，dist 覆盖 v2。四语 ch3 联络表+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **全片不重拼**：bookend/film/trailer 待全部工作台章定版重录完后统一拼。
+- **下趟**：下一含工作台章定版重录——ch7（7-4 §三.5：字幕「Enrolled. Done.」vs 卡徽章，需第一节修后产品能否真显已入学，否则字幕最小改）/ ch8（§三.7 横幅：8-1 已显「Quota raise pending 10→30」与 8-2/8-3 叙事矛盾，录前 scoped 撤待审提额、录后复位 verify#13）/ ch5（5-1 工作台 + 5-4 两态，需 st-pt03-reupload 两态分录）/ ch10 / OP-3·4·5 开场快剪（3-8/7-0/7-1 素材现已不阻塞）。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**

@@ -85,3 +85,27 @@
 - 时长：land 49.43s / port 49.44s（8 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**。
 - 逐张亲眼复验（EN land 联络表 + 1-8 原始帧 46s）：1-8 hero `TOTAL PAYMENTS PROCESSED ¥0`（负数已消失，review1 §一 销账）、`STUDENTS SUBMITTED 9`、APPROVED 徽章橙框；无负数、无 beta/内测/test 控件；注册演示号画面 no @gmail、邀请码打码、SPECIMEN 样件、无真护照号/电话；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
 - 记账：1-8 同帧有「Quota raise pending: 10 → 30」横幅＝基线真实待审提额请求（verify #13），在 ch1 叙事中属真实背景态、不矛盾（该横幅与 ch8 叙事的矛盾由 §三.7 ch8 返工时 scoped 撤除后再录处理，与 ch1 无关）。
+
+## ch3 §三.8（节奏 3-1/3-8）+ §四（草稿残留）+ §一（工作台 v185，返工第30趟 2026-10-12 · 定版重录）
+前置：ch3 是 state 章（3-8 真 submit→真 app_no，耗配额 9→10、建 guide-pt-ch3 生）。本趟在 v185 底座对 ch3 整章四语横竖定版重录，处理 review1 三处：
+- **§三.8 节奏（录制层实现 review1「后期剪掉等待的那几秒」）**：给 rec.mjs 加 `preOff` 开关——把「导航/加载/真提交」放镜外（offCamera）跑，不计入字幕窗口帧，等结果落定后才开录，保证字幕说的东西在窗口里占 ~100%。
+  - **3-1（旧病：点完按钮后镜尾 openWizard 切走，高亮环落在向导空白处）**：去掉 3-1 的 `special:openWizard`，把「开向导」移到 3-2 的 offCamera `pre`。→ 3-1 全窗口停在高亮的「Submit New Student Referral」按钮（亲验 3-1 尾帧 t≈5s 仍框按钮，无空白环）；3-2 开录即向导 step1、高亮 Semester（亲验 3-2 首帧已是向导、中帧框 Semester 选择框）。
+  - **3-8（旧病「app_no 落在段尾」，trip12 已记）**：3-8 的真 submit + 等 app_no 全放 offCamera，开录时 app_no 已渲染。亲验 3-8 首帧（窗口 t0）即显 `MH-xxxxxx`（en-land 本趟 MH-EQ3SS3 / ru-land MH-G35SC4，每次真 submit 新码，录后 scoped 删）、中帧高亮环框住 app_no。app_no 全窗口在画面。
+- **§四（草稿残留）**：本趟每录一变体前后各跑 `st-ch3-cleanup.sql`（删 guide-pt-ch3 + 把 pt-01 草稿还原成基线 Ayesha Malik/step2/_demo=pt-01）；真 submit 后立即 `st-ch3-mark-test.sql` 标 is_test（安全网）。收工 verify **#17 PASS**（pt-01 draft==基线，无 ch3 向导覆盖残留）。
+- **§一（工作台 v185）**：3-9 列表背景＝v185 真值，推荐生卡「Invested on this student: ¥0」（无负数，缺陷1 销账）。
+
+| 镜 | 字幕原文（未改） | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 3-1 | Tap "Submit New Student Referral". | `.partner-add-student-btn`「+ Submit New Student Referral」（工作台底，全窗口高亮） | 是（§三.8 修后全程框按钮） |
+| 3-2 | Step one: the plan — intake term, funding, degree level and major. | 向导 step1：Intended program type 六卡（Short-term/Chinese Language/Associate/Bachelor's/Master's/Doctorate）+ 高亮 `#wzSemStart`「Semester *」选择框 | 是 |
+| 3-3 | Step two: the student's profile, exactly as in the passport. | 向导 step2 档案：高亮「Date of birth」行（同屏 Passport no. 等；演示 Demo Aisha / 护照 DE1234567 样号） | 是 |
+| 3-4 | Step three: upload the documents. | 向导 step3 `.mat-grid`：高亮 `#wz_card_passport` 上传槽（23 槽矩阵） | 是 |
+| 3-5 | The AI pre-check flags problems before a university ever sees the file. | `#wz_card_transcript` 内产品自身琥珀条「Pre-check reminders · transcript.jpg · The transcript scan is blurry in the lower half — please upload a clearer copy.」+ sticky「⚠ Documents with AI notes: 1」（RULING §1.2 产品渲染，四语本地化） | 是 |
+| 3-6 | The passport name check catches spelling differences right away. | `#wz_card_passport` 内护照姓名核对琥珀条（名字不一致提醒「does not match」） | 是 |
+| 3-7 | Leave any time — your draft is saved in the cloud. | `#pwzExitModal` 退出三选一弹窗，高亮「💾 Save draft & exit」 | 是 |
+| 3-8 | Confirm and submit. The student gets an application number. | `.student-app-id-num`「YOUR APPLICATION ID · MH-EQ3SS3」（Demo Aisha · #10 · Pakistan · bachelor · 2026-fall · DOCUMENTS UNDER REVIEW；§三.8 修后全窗口在画面） | 是 |
+| 3-9 | From now on this student is bound to you. | `.partner-student-status-pending`「Submitted · awaiting platform review」（推荐生卡，渲染全/有脸的基线生卡；同卡「Invested on this student: ¥0」无负数） | 是 |
+
+- 时长：land 60.23s / port 60.25s（9 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**；8 录屏 9 镜 hl 全 resolve、零 MISS。
+- 逐张亲眼复验（EN land 联络表 + 3-1尾/3-2首中/3-8首中/3-9中 原始帧）：3-1 全程框按钮无空白环、3-2 开录即向导、3-8 app_no 全窗口在画面（§三.8 达标）；3-9「Invested ¥0」无负数（§一.3/缺陷1 销账）；注册演示生 Demo Aisha 无真 PII、护照 DE1234567 样号、邮箱掩码 agency.demo@example.com；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- 记账：真 submit（submit_referral）仅 insert students、不发邮件/站内通知（trip20 实证）；每变体真码不同（录后 scoped 删）；收工 verify 17/17 PASS、draft 回基线。
