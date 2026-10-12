@@ -1,4 +1,4 @@
-最后一趟：2026-10-12 第20趟 返工 · §八第1步（review1 §一 工作台数字根因）＋修复缺陷1。**做了**：只读查清——负数金额 ¥-9,000/¥-3,000 = DEMO 数据（基线造了真实 ¥0 优惠码付款链从不建的假 payment_order，amount-discount=-3000×3），已照 review1 §一第2条改成真实流程表征（删 3 假单＋pt-08/09 补 coupon_redemption＋pt-07 改『已接受+通知书已传+未付』合法录前态），活库＋build-core＋verify＋两个 ch7 复位脚本全同步，verify 16/16 PASS（含复位幂等往返）。**查实缺陷2 = 产品算法 bug**：漏斗 0 letter/0 paid/0 enrolled/0 offers 与卡面矛盾，根因是漏斗读废弃列 students.stage（真实生恒 NULL、全库零写入）且对云端生硬编码 paid=0/offers=0——任何真实中介都会看到空漏斗，非演示数据可修（填 stage=造假、改硬编码=动产品码，均禁）。照 §1.3/§八：先做完不依赖它的部分，最后写 NEEDS_OWNER_DECISION 停下。**下趟**：§四 清草稿残留（ZH ch2 的『草稿·DRAFT Demo』）→ §二 ch6 去『点解锁→校名揭晓』→ §三可独立字幕 → §五开场快剪；凡含工作台漏斗的章节重出待缺陷2 裁决。**GP-1 未收官，勿据旧『收官』停工。**
+最后一趟：2026-10-12 第20趟 返工 · §八第1步（review1 §一 工作台数字根因）＋修复缺陷1。**做了**：只读查清——负数金额 ¥-9,000/¥-3,000 = DEMO 数据（基线造了真实 ¥0 优惠码付款链从不建的假 payment_order，amount-discount=-3000×3），已照 review1 §一第2条改成真实流程表征（删 3 假单＋pt-08/09 补 coupon_redemption＋pt-07 改『已接受+通知书已传+未付』合法录前态），活库＋build-core＋verify＋两个 ch7 复位脚本全同步，verify 16/16 PASS（含复位幂等往返）。**查实缺陷2 = 产品算法 bug**：漏斗 0 letter/0 paid/0 enrolled/0 offers 与卡面矛盾，根因是漏斗读废弃列 students.stage（真实生恒 NULL、全库零写入）且对云端生硬编码 paid=0/offers=0——任何真实中介都会看到空漏斗，非演示数据可修（填 stage=造假、改硬编码=动产品码，均禁）。照 §1.3/§八：先做完不依赖它的部分，最后写 NEEDS_OWNER_DECISION 停下。**本趟还做了 §四**：清掉 ZH ch2 的『草稿·DRAFT』残留——根因 ch3 向导云自存经 unique(partner_uid) 覆盖基线 pt-01 草稿；已还原 Ayesha Malik 基线+折进 st-ch3-cleanup+加 verify #17（17/17 PASS）+加 st-ch3-mark-test.sql（提交后即标 is_test）；查实 ch3 真提交不发任何邮件/通知。**下趟**：§二 ch6 去『点解锁→校名揭晓』→ §三可独立字幕 → §五开场快剪；凡含工作台漏斗的章节重出待缺陷2 裁决。**GP-1 未收官，勿据旧『收官』停工。**
 
 ## 第 20 趟（2026-10-12 Mac mini 无人值守）· 返工开工 · review1 §一根因 + 修复缺陷1
 - **接手核对**：上一趟（16:02）读到旧 PROGRESS 首行『收官』即停、未读返工裁决——本趟首行已改『返工进行中』，不复犯。读齐 RULING-20261012c-rework（返工范围/顺序）+ RULING-20261012b-review1（复核意见）。
@@ -10,6 +10,7 @@
 - **下趟**：§四 草稿残留 → §二 ch6 → §三独立字幕 → §五快剪；workbench 漏斗章重出 + 最终 NEEDS_OWNER_DECISION 待后续。
 
 # JOB-GP1-03 进度交接（**视频制作已收官 · EN·ZH·RU·FR 四语全齐**）
+- **§四 清录制残留（D-20-3）**：referral_drafts unique(partner_uid) 致 ch3 向导云自存覆盖基线 pt-01 草稿（活库探针:surname/email 空、_demo 丢、step=3）→ ZH ch2 空白『草稿·DRAFT』残留卡。还原基线(Ayesha Malik/step2/_demo=pt-01)折进 st-ch3-cleanup + verify #17 + 新增 st-ch3-mark-test.sql(提交后即标 is_test 安全网)。活库还原后 verify 17/17 PASS。查实 submit_referral 仅 insert students、无邮件/站内通知（触发器为配额/app_no/重提闸，均不发信）。
 
 ## 第 19 趟（2026-10-12 Mac mini 无人值守）· RU 全片合成 + FR 全程 → GP-1 视频制作收官
 ### A. RU 全片合成（D-19-1/2/3）

@@ -369,3 +369,13 @@
   - 改 states/st-pt07-pay-cleanup.sql（7-0 录前态头注更新 + 并清 paid_at/payment_reference_id/unlocked_at）。
 - **影响重出**：凡画面含工作台 hero/卡的章节（1-8、2、3、5、7、8、9、10）负数已从数据层根除；但漏斗全 0（缺陷2·产品码）仍在，这些章节的定版重出须待业主对缺陷2 裁决（见 D-20-1）。本趟不重录（无录制）。
 - **非四种停下情形**：缺陷1 属 §0.3 可修的演示数据，照 review1 §一第2条处理完毕、记账继续。
+
+## D-20-3 (2026-10-12 第20趟 · 修复缺陷·清录制残留，照 review1 §四)
+- **草稿残留根因（实证）**：referral_drafts 有 unique(partner_uid)；ch3 向导（3-1..3-8）录制时产品云自存经 upsert **覆盖**基线 pt-01 草稿。活库探针(_probe-draft.sql)实况：该行 surname/given_name/email 全空、_demo 丢失、step 由 2 变 3、updated=2026/10/12（created 仍 2026/10/11 基线刻）——即 ZH ch2 画面那张空白「草稿·DRAFT」残留卡。scoped 复位（st-ch3-cleanup 原只删 guide-pt-ch3 学生）没还原它。
+- **改法**：
+  - st-ch3-cleanup.sql 末尾加 referral_drafts 还原（Ayesha Malik / step2 / _demo=pt-01，逐字取自 build-core，created_at 保原刻，on conflict(partner_uid) do update）。
+  - verify.sql 加 #17：pt-01 草稿内容==基线（surname=Malik 且 _demo=pt-01）。断言总数 16→17。
+  - 活库跑 st-ch3-cleanup 还原 → draft surname=Malik/_demo=pt-01；verify **17/17 PASS**。
+  - 新增 st-ch3-mark-test.sql：3-8 真提交后立刻把 guide-pt-ch3 标 is_test=true（§0.3 新增型 UPDATE，安全网；删除仍照 st-ch3-cleanup）。录制流程后续趟接入。
+- **真提交会否发邮件/通知（review1 §四问）**：submit_referral RPC(0022/0073) 仅 `insert into public.students`（非 auth.users）→ **不触发任何 auth 邮件**；RPC 内无 net.http/pg_notify/notifications 插入。students 上触发器为配额账(0139a)/app_no(0030)/重提闸(0073)等，**均不发邮件/站内通知**。→ 结论：ch3 真提交**不给任何人发邮件或通知**（学生邮箱亦为业主自有 +alias 演示地址）。写入 SUMMARY。
+- **非四种停下情形**：§0.3/§0.4 内，处理完毕记账继续。
