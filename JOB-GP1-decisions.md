@@ -226,3 +226,8 @@
 - **章 / 镜**：第 10 章 账户、语言与安全（guide_partner），ZH 横竖。读-only。CONTEXT['10']=toggleSettingsMenu（菜单内账户设置/语言/退出全可见，trip6 实证）。hl 全 onclick/class 语言无关。
 - **交付**：ch10-{land,port}-zh.mp4（16.32/16.31s，3 镜）；联络表亲验（设置菜单 账户设置/四语切换 EN中РУFR/退出登录，邮箱 agency.demo@example.com 掩码、Partner Code PA-E62FC6FF、零 @gmail）。
 - **成片现状（ZH）**：1·2·3·4·5·6·7·8·9·10 = **10/10 齐**。下阶段：ZH 全片合成（OP/ED overlays + 全片 + 速览 + 20-40s 分段）+ item-7 禁用词扫 + item-8 ED-zh 二维码解码；再 RU/FR。
+
+## D-16-11 (2026-10-12 第16趟 · ZH item-7 禁用词扫 + 收尾/下阶段落点)
+- **item-7（ZH 禁用词扫）**：脚本扫 120 条 ZH 串（全镜 capZH + captions zh + keypoints zh）对 10 条禁用词 + 13 个真名校名 → **0 命中**，ZH 过。注：7-0「不收中介费，不收报名费」=定价陈述（¥0 解锁免费），非「零中介」存在性虚假宣称，EN 已过 item-7 同词，ZH 同判过。
+- **ZH 全片合成前置（下趟待办，已勘明落点）**：gp1-finish bookend 卡文案部分硬编码英文需本地化：①OP-1 brandCard 标题/副标硬编码英文 ②OP-6 目录卡用 CH_TITLE（英文）需换 CH_TITLE_ZH + 「Ten short chapters」表头译中 ③OP-2..5 keypointCard 用 KEYPOINT_TITLE（待核是否英文硬编码）④ED-2 qrCard URL 文案（URL 本身留，capFor('ED-2') 已语言感知）。ED-1 recapCard 用 RECAP_LINES[LANG]（已语言感知）、章内字幕 capFor 已用 capZH。→ 下趟先给 gp1-finish 加 lang 感知（同 chapterBar 做法），再跑 bookend/film/trailer --lang zh，出 OP/ED/full/trailer-zh + 20-40s 分段，再 item-8 对 ED-zh 二维码解码（期望 ...?src=video-zh）。
+- **本趟 DB 账**：全程 baseline 16/16 守住；有置态章（ch3/4/6/7）各 scoped 置态+复位，录后每次 verify 16/16；ch7 录前空跑状态往返验证复位可靠。新增复位件：st-pt04-reset-cleanup / st-pt06-reset / st-pt0708-reset-cleanup（均 scoped、授权内）。全量 rebuild 本机禁用（faces 空 0/201）。
