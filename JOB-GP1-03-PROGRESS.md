@@ -1,4 +1,4 @@
-最后一趟：2026-10-12 第11趟 — 按 RULING-20261012-gp1 续跑；ch6 照裁决重做并录完 EN 横竖成片（删 6-5、6-6 校名揭晓走产品自身 reveal 渲染喂演示校数据、6-7 字幕去掉不存在的倒计时）；基线 16/16 PASS。下趟：ch7 加 7-0（¥0 优惠码，复用 6-5 音频字幕）并重录 ch7 EN 横竖，再 ch3、ch1，然后 EN 全片自审 → 中俄法。
+最后一趟：2026-10-12 第11趟 — 按 RULING-20261012-gp1 续跑；**ch6 + ch7 两章 EN 横竖成片全部录完**（ch6 删 6-5、校名揭晓走产品 reveal 渲染、6-7 去倒计时；ch7 加 7-0 ¥0 优惠码真付款链+重录 7-1..7-4 名字解析）；每章录后 rebuild 复位、基线 16/16 PASS。EN 缺 ch1、ch3 两章。下趟：ch3（3-5 AI 预检用产品渲染函数喂样例）、ch1（注册从零），然后 EN 十章齐 → overlays/拼接/联络表 → REVIEW-en-self.md 自审 → 中俄法。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
 
@@ -10,8 +10,12 @@
   - **6-7 字幕去掉「倒计时」**：真机 pending 盲 offer 无倒计时元素（倒计时块仅 accepted+letterUp+!paid 才渲染），四语字幕改为陈述画面真有的「接受该专业 + 开学日期 + 奖学金」，6-7 音频四语重配。见 DECISIONS D-11-2。
   - **harness 加固**：MASK 脱敏加 MutationObserver（re-render 即刻补扫）+ 抓泄露前强制 sweep + sweep 间隔 120→80ms——消除「弹窗重开后、下次 sweep 前」的 @gmail 瞬露窗口（ch6-2 首录曾因此报泄露，修后零泄露）。
 - **DB 全程守住 16/16**：ch6 land/port 各录一次（6-4 真写 unlocked_at），**录后各 rebuild 复位 verify 16/16 PASS**。
-- **下一步（下趟）**：ch7 加 7-0（pt-07 通知书付款单上录 ¥0 优惠码，复用 6-5 音频字幕 + storyboard→v1.1）并**重录 ch7 EN 横竖**（旧 ch7 成片作废）；再 ch3（3-5 AI 预检用产品渲染函数喂样例）、ch1（注册从零）；EN 十章齐 → 开场/片尾 overlays → 全片+速览拼接 → 联络表 → REVIEW-en-self.md 九项自审 → 过了录中俄法 → GP1-04/05 收官 → SUMMARY-GP1.md。
-- 成片现状（EN）：2·4·5·**6(新)**·7(待重录)·8·9·10；缺 1·3；7 待加 7-0 重录。
+- **ch7 多校通知书/建档 = 照 RULING §1 加 7-0 + 重录，EN 横竖成片已出**（~42s，5 镜，带英文旁白字幕，真帧复验、零 @gmail）：
+  - **7-0（新·¥0 优惠码）**：pt-07 通知书付款单真机驱动「Pay now→¥3,000→优惠码 MAXHOUSE→应付 ¥0(橙框≥2s)→勾同意→确认(真写 letter_paid_at)」；确认走 `coupon_agent_pay_offer` RPC 实证走通（确认后下载钮出现、offer 转 paid）。旁白/字幕/四语配音**复用原 6-5**（直接拷音频，字幕一字未改）。
+  - **7-1..7-4 重录**：7-0 确认后 pt-07 转 paid → 7-1 下载通知书（校名 Demo University 此处是真·服务端去盲，因已付款）；7-2 pt-08 JW202；7-3 pt-09 建档进度；7-4 pt-09 列表卡。全改**按名字解析 viewReferredStudent(N)**（硬编码 2/3/4 已随 rebuild 失效）。
+  - 置态 st-pt07-pay-cleanup.sql（授权删 pt-07 自家 ¥0 单 1 行）+ st-pt08-jw202.sql；录后各 rebuild 复位 verify 16/16 PASS。G-3 D1 遮蔽：当前 v184 付款单无 PayPal/half-price 元素，无需遮。OP-4 快剪改用 7-0；storyboard 升 v1.1。见 DECISIONS D-11-3/4。
+- **下一步（下趟）**：ch3（3-5 AI 预检用产品渲染函数喂样例，3-6 护照核对同理；真 submit 录 app_no 后 rebuild）、ch1（注册从零，需 no-login 路径 + guide-pt-reg 账号）；EN 十章齐 → 开场/片尾 overlays → 全片+速览拼接(20-40s 分段) → 联络表 shots/GP1/en → REVIEW-en-self.md 九项自审 → 过了录中俄法 → GP1-04/05 收官 → SUMMARY-GP1.md。
+- 成片现状（EN）：2·4·5·**6(新)**·**7(新,含7-0)**·8·9·10（8/10）；**缺 1·3**。
 
 ---
 ## 【历史·第 10 趟】停审待拍板（已被 RULING-20261012-gp1 解除）

@@ -29,4 +29,16 @@
 - **章·镜**：ch6 / 6-5。
 - **问题/依据**：RULING §1 定案——¥0 优惠码属通知书付款链，不在 pt-06 盲解锁链上，删 6-5、移到第7章开头 7-0（pt-07 真付款单上录，复用 6-5 音频字幕）。
 - **选了**：照 RULING 执行。shots-v1.json 删 6-5 镜；captions 的 6-5 条留待改名 7-0（ch7 趟处理）。
-- **改了**：jobs/JOB-GP1/rec/shots-v1.json（删 6-5）。7-0 新增与音频复用在 ch7 趟落。
+- **改了**：jobs/JOB-GP1/rec/shots-v1.json（删 6-5）。
+
+### D-11-4 · ch7 新增 7-0（¥0 优惠码，照 RULING §1），并重录 ch7 EN 横竖
+- **章·镜**：ch7 / 7-0（新）+ 7-1..7-4（重录）。
+- **做了**：
+  - **7-0**：pt-07(Nilufar) 通知书付款单上，真机驱动「开录取弹窗→Pay now→付款单显示 ¥3,000→优惠码框打 MAXHOUSE→Apply→应付 ¥0(橙框≥2s)→勾同意→确认」。确认走 `confirmPayment()`→`coupon_agent_pay_offer` RPC **真写 letter_paid_at**（探针实证：确认后 2s 内下载钮出现、offer 转 paid、建 1 条 coupon_redemption）。7-0 旁白/字幕/四语配音**复用原 6-5**（voice/*/6-5.m4a 直接拷成 7-0.m4a，durations 同步），字幕一字未改。
+  - **7-1..7-4 重录**：pt-07 经 7-0 确认后转 paid → 7-1 下载通知书（校名 Demo University 此处是**真·服务端去盲**，因已付款）；7-2 pt-08 JW202；7-3 pt-09 建档进度；7-4 pt-09 列表卡。全部改**按名字解析 viewReferredStudent(N)**（N=列表序随 rebuild 变，硬编码 2/3/4 已失效；Nilufar 现=5，按名字找最稳）。
+  - **置态**：录前 `st-pt07-pay-cleanup.sql`（pt-07 未付+通知书已传，删自家 ¥0 payment_order 1 行、coupon_redemptions 0 行——授权 §0.3/§0.4+RULING §1）+ `st-pt08-jw202.sql`。录后 rebuild 复位 verify 16/16 PASS（两版各一次）。
+  - **G-3 D1 遮蔽**：探针实证当前 v184 付款单**无** PayPal / 1st-free / half-price 说明元素（findText 零命中），无需遮蔽；优惠码框/¥0/确认钮均未动（符合 D1）。
+  - **OP-4 快剪改用 7-0 ¥0**；storyboard 升 v1.1；shots/captions 同步。
+- **选项/选了**：RULING §1 已定方案（7-0 真付款链录 ¥0），本可用 §1 的「确认录不到则置态补」兜底；实测确认 RPC 本地走得通 → 用真确认（更忠实，7-1 下载钮自然出现）。
+- **真帧复验**：7-0 横竖 ¥0.00 橙框 + ¥3,000 删除线 + MAXHOUSE，邮箱全遮 agency.demo@example.com；7-1 下载钮现；零 @gmail。EN 横竖成片 ~42s / 1920x1080 & 1080x1920 带音轨。
+- **改了**：rec/shots-v1.json（7-0 新 + 7-1..7-4 名字解析 + OP-4）、captions-v1.json（6-5→7-0）、states/st-pt07-pay-cleanup.sql（新）、voice/*/7-0.m4a（拷自 6-5）、storyboard-v1.md（v1.1）、rec/patch-ch7.mjs / probe-ch70.mjs（工装）。
