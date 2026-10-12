@@ -1,6 +1,17 @@
-最后一趟：2026-10-12 第11趟 — 按 RULING-20261012-gp1 续跑；**ch6 + ch7 两章 EN 横竖成片全部录完**（ch6 删 6-5、校名揭晓走产品 reveal 渲染、6-7 去倒计时；ch7 加 7-0 ¥0 优惠码真付款链+重录 7-1..7-4 名字解析）；每章录后 rebuild 复位、基线 16/16 PASS。EN 缺 ch1、ch3 两章。下趟：ch3（3-5 AI 预检用产品渲染函数喂样例）、ch1（注册从零），然后 EN 十章齐 → overlays/拼接/联络表 → REVIEW-en-self.md 自审 → 中俄法。
+最后一趟：2026-10-12 第12趟 — ch3（提交第一个学生）EN 横竖成片录完：向导四步真机驱动；3-5/3-6 AI 预检照 RULING §1.2 用产品 _aiHintBandHtml 喂样例草稿判词(琥珀条真渲染)；3-8 真 submit 出真 app_no；复位用新 scoped 删 st-ch3-cleanup.sql（本机脸库缺口不跑全量 rebuild，D-12-2），基线 16/16 PASS。**EN 现 9/10，只缺 ch1（注册从零）**。下趟：ch1（需 no-login 注册门 + guide_ptReg 账号，harness 现总先登录，需加不登录路径），然后 EN 十章齐 → overlays/拼接/联络表 → REVIEW-en-self.md 自审 → 中俄法。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+
+## 第 12 趟（2026-10-12 Mac mini 无人值守）
+- **ch3 提交第一个学生（guide-pt-01 向导，EN 横竖成片已出，~69s，9 镜，真帧肉眼复验、零 @gmail）**：
+  - 3-1 列表「Submit New Student Referral」→ 3-2 向导 step1 计划(开学季/资助/层次/专业) → 3-3 step2 档案(DOB/护照号，step2 输入无 id 用 label 文本选择器) → 3-4 step3 材料上传槽 → **3-5 AI 预检琥珀条** → **3-6 护照姓名核对琥珀条** → 3-7 退出三选一(存草稿入口) → 3-8 真 submit 出真 app_no → 3-9 列表卡「审核中」。
+  - **3-5/3-6 照 RULING §1.2 用产品自身渲染喂样例**（ch8 先例）：wizard step3 pre 注入 `state.wiz.docs[槽]=[{path:'demo/referral-drafts/槽/..'}]` + `state._aiDraftHints[path]={verdict:'fail'|'unsure',issues:[真口吻英文样例]}` → `_wzRender()` → 产品 `_aiHintBandHtml` 琥珀条「Pre-check reminders ⚠ + 问题 + 产品自带 footer」+ sticky `.ai-agg` 真渲染。零 EF/零桶/零自造。**关键坑**：草稿判认领条件 `indexOf('/referral-drafts/')>0` 须有前缀（前导斜杠=0 不命中）。见 DECISIONS D-12-1。
+  - **3-8 真 submit**：清 docs/hints 过 Q1+AI 闸 → `_wzFinalize`(check_collision+submit_referral 真 RPC) → 真 app_no(横 MH-XJ4XDA / 竖 MH-R8JT4M) 高亮。真 submit ~8s，段偏长。
+  - **图纸死选择器全校正**：`.ai-hint`/`.amber-box`/`#wzInput_dob`(step2 无此 id)/`.partner-student-status-reviewing`(真 class=`.partner-student-status-pending`)。
+- **复位（本机脸库缺口·D-12-2）**：3-8 真 submit 的 guide-pt-ch3(is_test=false) **不走 rebuild-partner.sh**——本机 jobs/JOB-G6 脸库缺 129/201 张(LEDGER-4 双机分割)，全量 rebuild 的 assign-faces 必崩；且 cleanup 的 is_test 闸遇 is_test=false 整体回滚。新建 `states/st-ch3-cleanup.sql`(scoped 单删 guide-pt-ch3，不碰 9 基线生/脸)。录 land→删→verify16/16→录 port→删→verify16/16。
+- **交付**：成片 ~/guide/dist/partner/ch3-{land,port}-en.mp4；联络表 ~/mh-jobs/shots/GP1/en/ch3-contact-{land,port}-en.png；主仓库 commit e301615(不推)。
+- **成片现状（EN）**：2·3·4·5·6·7·8·9·10（**9/10**）；**缺 1**。
+
 
 ## 第 11 趟（2026-10-12 Mac mini 无人值守）
 业主 2026-10-12 下 RULING-20261012-gp1：视频做到收官、上线前停；分镜与产品对不上时 CC 自处理记账不停（四种情况才停）。本趟从该裁决接着做。
