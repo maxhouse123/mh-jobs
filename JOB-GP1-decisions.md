@@ -379,3 +379,22 @@
   - 新增 st-ch3-mark-test.sql：3-8 真提交后立刻把 guide-pt-ch3 标 is_test=true（§0.3 新增型 UPDATE，安全网；删除仍照 st-ch3-cleanup）。录制流程后续趟接入。
 - **真提交会否发邮件/通知（review1 §四问）**：submit_referral RPC(0022/0073) 仅 `insert into public.students`（非 auth.users）→ **不触发任何 auth 邮件**；RPC 内无 net.http/pg_notify/notifications 插入。students 上触发器为配额账(0139a)/app_no(0030)/重提闸(0073)等，**均不发邮件/站内通知**。→ 结论：ch3 真提交**不给任何人发邮件或通知**（学生邮箱亦为业主自有 +alias 演示地址）。写入 SUMMARY。
 - **非四种停下情形**：§0.3/§0.4 内，处理完毕记账继续。
+
+## D-21-1 (2026-10-12 第21趟 · §二 第6章去「点解锁→校名揭晓」，照 review1 §二)
+- **接手**：第20趟做完 §一(缺陷1修/缺陷2定性产品bug) + §四(草稿残留)。本趟按 §八顺序接做 §二。开工 verify **17/17 PASS**（baseline 守住）。
+- **只读实证（_probe-ch6-blind.mjs，不写库）**：盲态录取弹窗内 `.btn-offer-accept` 存在且可见（"✓ Accept this program" 193x41）→ 6-7 可直接高亮，无需先解锁揭晓；`.cloud-offer-unlock` = 内测链接「🔓 Unlock to view (beta: status flip only, no payment)」(282x24)；`.admission-id-tag`=SCH-1AD6C8 盲码（无校名）。
+- **改法（review1 §二 1~5 全做）**：
+  1. **删 6-4（点 beta 解锁）+ 6-6（注入式揭晓，连 `_p130_SchoolCache` 注入一并删）** → 第6章 = 6-1→6-2→6-3→6-7，全程只读、零写库（不再写 unlocked_at）。shots-v1.json / captions-v1.json 同步删两镜。
+  2. **6-3 字幕** EN "Compare, then accept the one you prefer." / 中「比较之后，接受你中意的那份。」；ru "Сравните и примите ту, что вам больше подходит."；fr "Comparez, puis acceptez celle que vous préférez."（据 EN 重译+回译自检）。四语重配音。
+  3. **7-1 字幕** EN "The university is revealed — download the admission letter here." / 中「校名揭晓，录取通知书就在这里下载。」；ru "Название вуза раскрыто — скачайте письмо о зачислении здесь."；fr "L'université est révélée — téléchargez la lettre d'admission ici."（揭晓移到 7-0 真付之后的 7-1）。四语重配音。⚠ 7-1「先框校名条再框下载钮」的两段高亮 + ch7 重录待缺陷2 裁决后与 ch7 一并做（ch7 含 7-4 工作台漏斗，受缺陷2 阻塞）；本趟只落 7-1 字幕文本+配音，shots hl 暂留 `.admission-doc-btn-letter`。
+  4. **盖 beta 链接**（照 G-3 D1「只隐藏说明元素」先例）：rec.mjs 加 HIDE_INIT。**踩坑**：document-start 注入 `<style>` 被本 SPA 整体重渲染丢弃（实测 styleInjected:false、链接仍可见）→ 改用 MASK_INIT 同款 setInterval(80ms)+MutationObserver 直接给 `.cloud-offer-unlock` 打 inline `display:none!important`，复测 display:none/w:0 盖住。全片生效（6-4 已删，全片不再用它）。真实中介也看得见此 beta 链接 → 写进 SUMMARY「留给业主的产品问题」。
+  5. **速览清单** gp1-finish.mjs TRAILER_CH ch6 `['6-2','6-6']`→`['6-2']`（ch7 已是 `['7-0','7-1','7-3']`，= review1「6-2 → 7-0/7-1/7-3」）。
+- **重出 ch6（EN+ZH，各横竖；review1 §八「英文、中文重出」先行）**：
+  - 录制 rec.mjs ch6 en/zh land+port（4 镜 6-1/6-2/6-3/6-7，高亮全 resolve，DOM 扫描 no @gmail）。
+  - 合成 prod-ch：ch6-{land,port}-{en,zh}.mp4，分辨率/音轨 OK，时长 en 25.9/25.8s、zh 26.3/26.4s（旧版含 6-4/6-6 更长）。
+  - 联络表 gp1-finish --stage contact（每镜段中取帧=字幕中点，已合 review1 §六）→ shots/GP1/{en,zh}/ch6-contact-{land,port}.png。
+  - **逐张亲眼看图复验**（铁律/自审第2项）：EN land+port+6-3 两次 zoom、ZH land+port。4 镜画面↔字幕一致；6-2/6-3/6-7 盲码 SCH-1AD6C8、MSc Computer Science、Full scholarship、2027-09-01，**无校名**；**beta「Unlock to view」链接已不可见**（底部只剩 Decline + 禁用的 Confirm）；「Privacy protected」盲态说明=产品合法文案保留；全片无 @gmail。ZH 章节条左标签「合作伙伴端」。
+- **DB**：ch6 全程只读，baseline 17/17 未动（开工已验）。本趟零置态/零写库。
+- **改了**（主仓库，不推）：rec/shots-v1.json(删6-4/6-6、6-3/7-1 capEN/capZH)、captions-v1.json(6-3/7-1 四语、删6-6、_meta narrated 58→57 silent 去6-4)、rec/rec.mjs(HIDE_INIT)、rec/gp1-finish.mjs(TRAILER_CH ch6)、rec/_probe-ch6-blind.mjs(新·只读探针)、DECISIONS.md。成片/voice 不入 git。
+- **下趟**：ch6 ru/fr 重出（同法，RU/FR 7-1/6-3 已备译文+配音）；然后 §三 里不受工作台漏斗阻塞的字幕镜（逐镜核实哪些镜真不含漏斗再定）；§五 快剪中 OP-2(6-1/6-2) 可先做，OP-3/4/5 用 3-8/7-0/7-1 属漏斗/ch7 章待裁决。凡含工作台漏斗章节（ch1/2/3/5/7/8/9/10）定版重出 + 最终 NEEDS_OWNER_DECISION（缺陷2）待后续。
+- **非四种停下情形**：§二 全在 §0.3 只读范围内，处理完毕记账继续。

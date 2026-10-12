@@ -1,4 +1,17 @@
-最后一趟：2026-10-12 第20趟 返工 · §八第1步（review1 §一 工作台数字根因）＋修复缺陷1。**做了**：只读查清——负数金额 ¥-9,000/¥-3,000 = DEMO 数据（基线造了真实 ¥0 优惠码付款链从不建的假 payment_order，amount-discount=-3000×3），已照 review1 §一第2条改成真实流程表征（删 3 假单＋pt-08/09 补 coupon_redemption＋pt-07 改『已接受+通知书已传+未付』合法录前态），活库＋build-core＋verify＋两个 ch7 复位脚本全同步，verify 16/16 PASS（含复位幂等往返）。**查实缺陷2 = 产品算法 bug**：漏斗 0 letter/0 paid/0 enrolled/0 offers 与卡面矛盾，根因是漏斗读废弃列 students.stage（真实生恒 NULL、全库零写入）且对云端生硬编码 paid=0/offers=0——任何真实中介都会看到空漏斗，非演示数据可修（填 stage=造假、改硬编码=动产品码，均禁）。照 §1.3/§八：先做完不依赖它的部分，最后写 NEEDS_OWNER_DECISION 停下。**本趟还做了 §四**：清掉 ZH ch2 的『草稿·DRAFT』残留——根因 ch3 向导云自存经 unique(partner_uid) 覆盖基线 pt-01 草稿；已还原 Ayesha Malik 基线+折进 st-ch3-cleanup+加 verify #17（17/17 PASS）+加 st-ch3-mark-test.sql（提交后即标 is_test）；查实 ch3 真提交不发任何邮件/通知。**下趟**：§二 ch6 去『点解锁→校名揭晓』→ §三可独立字幕 → §五开场快剪；凡含工作台漏斗的章节重出待缺陷2 裁决。**GP-1 未收官，勿据旧『收官』停工。**
+最后一趟：2026-10-12 17:18 第21趟 返工：做完 §二（第6章去『点解锁→校名揭晓』）。**做了**：只读实证盲态有接受钮/beta解锁链接→删 6-4(点beta解锁)+6-6(注入揭晓)，第6章改全程只读 6-1→6-2→6-3→6-7(零写库)；6-3 字幕 unlock→accept、7-1 字幕改『校名揭晓+下载』(揭晓移到 7-0 真付后的 7-1)，四语重译重配音；录取弹窗底部内测链接『Unlock to view(beta)』录制层隐藏(rec.mjs HIDE_INIT，踩坑:document-start注style被SPA重渲丢弃→改 setInterval+MutationObserver 打inline display:none)；速览 ch6 段 6-2/6-6→6-2；storyboard→v1.3。**重出 ch6 EN+ZH 横竖**(4镜,时长en25.9/zh26.3s)：录制高亮全resolve+no @gmail→合成→联络表(每镜字幕中点)→逐张亲眼复验：画面↔字幕一致、盲码SCH-1AD6C8无校名、**beta链接已不可见**、Privacy盲态说明保留、ZH章节条『合作伙伴端』。baseline 17/17 全程未动(ch6只读)。**下趟**：ch6 RU/FR 重出(译文/配音已备)；再 §三 不含工作台漏斗的字幕镜 + §五 OP-2(6-1/6-2) 可先做。凡含工作台漏斗章(1/2/3/5/7/8/9/10)定版重出+缺陷2(产品漏斗bug)NEEDS_OWNER_DECISION 待后续。**GP-1 未收官，勿据旧『收官』停工。**
+
+## 第 21 趟（2026-10-12 Mac mini 无人值守）· 返工 §二 第6章去「点解锁→校名揭晓」
+- **接手核对**：第20趟做完 §一(缺陷1修/缺陷2定性=产品漏斗bug待裁决)+§四(草稿残留)。本趟按 §八 顺序接做 §二。开工 verify **17/17 PASS**。
+- **只读实证**（_probe-ch6-blind.mjs，不写库）：盲态录取弹窗 `.btn-offer-accept`「✓ Accept this program」存在可见→6-7 可直接高亮无需解锁；`.cloud-offer-unlock`=内测链接「🔓 Unlock to view (beta: status flip only, no payment)」；`.admission-id-tag`=SCH-1AD6C8 盲码无校名。
+- **§二 改法（review1 §二 1~5 全做）**：删 6-4/6-6（连 _p130_SchoolCache 注入）；6-3/7-1 四语字幕改+重配音；rec.mjs 加 HIDE_INIT 盖 beta 链接（踩坑见 D-21-1：改 setInterval+MutationObserver）；TRAILER_CH ch6 `['6-2']`。详见 DECISIONS D-21-1。
+- **重出 ch6 EN+ZH**（各横竖，review1 §八「英文、中文先行」）：录制→合成→联络表→**逐张亲眼复验全过**（beta 链接确认不可见、盲码无校名、全片 no @gmail、字幕↔画面一致）。
+- **DB**：ch6 全程只读，baseline 17/17 全程守住。零置态。
+- **改了**（主仓库，不推）：rec/shots-v1.json、captions-v1.json、rec/rec.mjs、rec/gp1-finish.mjs、rec/_probe-ch6-blind.mjs(新)、storyboard-v1.md(v1.3)、DECISIONS.md。成片/voice/联络表：成片voice不入git；联络表推 mh-jobs。
+- **下趟**：ch6 RU/FR 重出 → §三/§五 中不受漏斗阻塞的部分 → 最终缺陷2 NEEDS_OWNER_DECISION。
+
+---
+# 以下为第20趟及更早（返工开工前）记录
+**上一趟（第20趟）做了**：只读查清——负数金额 ¥-9,000/¥-3,000 = DEMO 数据（基线造了真实 ¥0 优惠码付款链从不建的假 payment_order，amount-discount=-3000×3），已照 review1 §一第2条改成真实流程表征（删 3 假单＋pt-08/09 补 coupon_redemption＋pt-07 改『已接受+通知书已传+未付』合法录前态），活库＋build-core＋verify＋两个 ch7 复位脚本全同步，verify 16/16 PASS（含复位幂等往返）。**查实缺陷2 = 产品算法 bug**：漏斗 0 letter/0 paid/0 enrolled/0 offers 与卡面矛盾，根因是漏斗读废弃列 students.stage（真实生恒 NULL、全库零写入）且对云端生硬编码 paid=0/offers=0——任何真实中介都会看到空漏斗，非演示数据可修（填 stage=造假、改硬编码=动产品码，均禁）。照 §1.3/§八：先做完不依赖它的部分，最后写 NEEDS_OWNER_DECISION 停下。**本趟还做了 §四**：清掉 ZH ch2 的『草稿·DRAFT』残留——根因 ch3 向导云自存经 unique(partner_uid) 覆盖基线 pt-01 草稿；已还原 Ayesha Malik 基线+折进 st-ch3-cleanup+加 verify #17（17/17 PASS）+加 st-ch3-mark-test.sql（提交后即标 is_test）；查实 ch3 真提交不发任何邮件/通知。**下趟**：§二 ch6 去『点解锁→校名揭晓』→ §三可独立字幕 → §五开场快剪；凡含工作台漏斗的章节重出待缺陷2 裁决。**GP-1 未收官，勿据旧『收官』停工。**
 
 ## 第 20 趟（2026-10-12 Mac mini 无人值守）· 返工开工 · review1 §一根因 + 修复缺陷1
 - **接手核对**：上一趟（16:02）读到旧 PROGRESS 首行『收官』即停、未读返工裁决——本趟首行已改『返工进行中』，不复犯。读齐 RULING-20261012c-rework（返工范围/顺序）+ RULING-20261012b-review1（复核意见）。
