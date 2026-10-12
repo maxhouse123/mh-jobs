@@ -1,4 +1,4 @@
-最后一趟：2026-10-12 第16趟 — **开录中文（ZH）启动**。章节条本地化（chapterBar 加 lang，zh=「合作伙伴端 / 第 N 章 + 中文章名」，EN 默认不变，D-16-1）。ZH ch1（注册与开通，8 镜，49.46/49.48s，零 DB 写入）+ ZH ch2（工作台，5 镜，28.16/28.12s，零 DB 写入）横竖成片齐、联络表逐张亲验（字幕↔画面一致、中文 UI、邀请码掩码、演示邮箱 firstname.demo@example.com、零 @gmail）。item-3 页头平台联系同 D-15-1 口径保留。baseline 16/16（开工实测，ch1/ch2 零写未动）。**下趟：ZH ch3**（真 submit，照 EN trip12 编排 + st-ch3-cleanup scoped 复位，AI 预检注入中文样例词），续 ch4..ch10；ZH 完再 RU/FR。本轮不推主仓库、不上线。
+最后一趟：2026-10-12 第16趟 — **开录中文（ZH）进行中**。章节条本地化 D-16-1；跨语言选择器修（pre_<lang>/hl 语言无关，D-16-3）。ZH 成片 ch1(注册,8镜)·ch2(工作台,5镜)·ch3(提交第一个学生,9镜·真submit MH-DDRKCJ·scoped复位×2) 横竖齐，联络表逐张亲验（AI 预检琥珀条中文、app_no 真、字幕↔画面一致、零 @gmail、演示名/邮箱打码）。每章开工/收工 verify 16/16（ch3 真 submit 后 cleanup 回 9）。**下趟：ZH ch4..ch10**（ch4/5/6/7 有置态，照 EN 各趟编排 + 录后 rebuild/scoped 复位），ZH 完再 RU/FR。本轮不推主仓库、不上线。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
 
@@ -8,7 +8,7 @@
 - **ZH ch2（工作台）**：CONTEXT 同 EN（2-5 toggleStuNotifPanel）。零 DB 写入。成片 ch2-{land,port}-zh.mp4（28.16/28.12s，5 镜）；联络表亲验（工作台/名额/进度/五档徽章/通知 五镜齐、中文 UI、仅演示生名、零 @gmail）。
 - **item-3 页头平台联系**：ZH 片同 D-15-1 口径（平台自有 WhatsApp/+49…/Service@maxhouses.net 保留不遮，铁律15 人眼闸保留）。
 - **DB**：开工 verify 16/16 PASS；ch1/ch2 零 DB 写入，baseline 未动。
-- **成片现状（ZH）**：1·2（2/10）。
+- **成片现状（ZH）**：1·2·3（3/10）。
 
 
 ## 第 15 趟（2026-10-12 Mac mini 无人值守）· EN 英文母版九项自审全过 → EN 清关

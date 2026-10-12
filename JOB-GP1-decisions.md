@@ -159,3 +159,14 @@
 - **做法**：照 EN trip13 同编排（三登录态：1-1..1-4 未登录门禁高亮不点 / 1-5..1-7 产品 render 喂样例 / 1-8 guide_partner 真登录工作台），仅 `--lang zh`。**零 DB 写入**（录前 verify 16/16，录中纯浏览/注入，baseline 不动，无需 rebuild）。
 - **交付**：~/guide/dist/partner/ch1-{land,port}-zh.mp4（49.46/49.48s，8 镜，1920x1080/1080x1920 带音轨）；联络表 ~/mh-jobs/shots/GP1/zh/ch1-contact-{land,port}-zh.png（逐张亲验，8 格齐、字幕↔画面一致、零 @gmail、邀请码掩码、演示邮箱 firstname.demo@example.com）。
 - **item-3 页头平台联系**：ZH 片同 D-15-1 口径（平台自有 WhatsApp/电话/Service@maxhouses.net 保留不遮，铁律15 人眼闸保留）。
+
+## D-16-3 (2026-10-12 第16趟 · ZH ch3 成片 + 跨语言选择器修)
+- **章 / 镜**：第 3 章 提交第一个学生，ZH 横竖。
+- **问题一（AI 预检样例语言）**：3-5/3-6 琥珀条 issues 原为英文注入（RULING §1.2 产品渲染喂样例）。ZH 片应出中文。
+  - **做**：rec.mjs runPre 改 `shot['pre_'+LANG]||shot.pre`；shots-v1.json 为 3-5/3-6 加 `pre_zh`（issues 改中文：成绩单「下半部分模糊——请上传更清晰的版本。」/ 护照「姓名与所填姓名不一致——请核对拼写。」）。产品自身标签（预检提醒/AI 拿不准/footer/checkbox/agg）随 setLang('zh') 自动中文。抽帧复验琥珀条全中文、无豆腐块。
+- **问题二（文本类 hl 在中文 UI MISS）**：3-3 hl=`text=/Date of birth/…`、3-7 hl=`text=/Save draft & exit/` 在中文 UI MISS（首录 3-3/3-7 MISS）。
+  - **做**：rec.mjs hlOn 入参改 `shot['hl_'+LANG]||shot.hl`（预留）；并把 3-3/3-7 base hl 换成**语言无关**选择器 + 文本兜底：3-3=`input[type=date],text=/Date of birth/,text=/出生日期/`；3-7=`[onclick*="_pwzExitChoice"],text=/Save draft & exit/,text=/存草稿/`。EN 不重录故输出不变；ru/fr 复用同选择器。重录后 9 镜全 box 命中。
+- **真 submit + 复位**：照 EN trip12/D-12-2——land 录(真 submit 耗名额 9→10 建 guide-pt-ch3)→st-ch3-cleanup scoped 单删→verify 16/16→port 录→cleanup→verify 16/16。**不跑 rebuild**（本机脸库缺口）。真 app_no land=MH-DDRKCJ（抽帧复验详情 hero 橙框）。
+- **交付**：ch3-{land,port}-zh.mp4（78.77/78.55s，9 镜）；联络表 shots/GP1/zh/ch3-contact-{land,port}-zh.png 逐张亲验（3-5/3-6 琥珀条中文、3-8 真 app_no、零 @gmail、演示名 Demo Aisha）。
+- **改了**：rec/rec.mjs、rec/shots-v1.json（pre_zh×2 + 3-3/3-7 hl）。
+- **成片现状（ZH）**：1·2·3（3/10）。
