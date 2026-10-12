@@ -17,7 +17,8 @@
 - 页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1 批准）。演示生 Serikova Aizhan，无真 PII。
 - 高亮逐张亲眼复验：9-2 框 Audit Service 行、9-3 框 Human-assisted Search 行、9-4 框 Exposure boost 行，各不越界。
 
-## ch5 §三.3（5-2 字幕与画面对不上，返工第24趟 2026-10-12）
+### ch9 v185 定版重录（返工第34趟 2026-10-13，review1 §一 背景）
+trip23 的字幕/高亮（§三.6）照旧正确，本趟只换**录制底座 v184→v185**（漏斗修复已上线，RULING-e）重录 ch9 4 镜，使背景数字落定版。亲验 en-land 9-1/9-2 原始帧 + en-land/port 联络表：增值服务区标题行右「Invested on this student: **¥0**」（缺陷1 销账，无负数）；Audit ¥1,500 / Human-assisted ¥600 / Exposure boost from ¥4,500 三行与字幕逐镜对账仍「是」。4 镜 box 全 resolve、无 MISS、全片 no @gmail。时长 land **22.73s** / port **22.79s**（v185 重录值，替代 trip23 的 22.82/22.78）。开工+收工 verify 17/17 PASS（ch9 读-only 零写库）。
 问题（review1 §三.3）：5-2 旧 EN 字幕「The reason is written in English, so every agent can read it.」声称画面上有"用英文写的退回理由"，但中介端退回详情**不渲染任何自由文本理由**，只渲染本地化裁决芯片（EN「Modification requested」）。ZH/RU/FR 已在 trip16（D-16-5）改成描述真实画面；EN 当初因"英文芯片=英文、自洽"未改。review1 §三.3 明令「不要因为英文已清关就不改」，EN 一并改成描述真实画面。
 改法：EN 字幕改为「The transcript was returned — the Maxhouse review team requested a change.」与 zh/ru/fr 对齐。缓存帧重烧（5-2 为详情弹窗帧，不含工作台漏斗，不碰 DB）——改 `shots-v1.json` capEN[5-2]（烧字幕源）+ `captions-v1.json` shots[5-2].en（配音源）→ 重配 EN 5-2 配音（3.3s→4.4s，仍在 5-2 的 6.51s 视窗内，不越界进 5-3）→ `prod-ch` 重合成 EN ch5 横竖（缓存帧，无需重录）。
 

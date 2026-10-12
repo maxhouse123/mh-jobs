@@ -15,6 +15,9 @@
 - 时长：land 23.82s / port 23.82s。no @gmail。章节条左标签「合作伙伴端」。演示生 Serikova Aizhan，无真 PII。
 - 逐张亲眼复验：各镜框对应行，不越界。
 
+### ch9 v185 定版重录（返工第34趟 2026-10-13，review1 §一 背景）
+trip23 字幕/高亮照旧正确，本趟只换录制底座 v184→v185 重录 ch9 4 镜使背景落定版。亲验 ZH land/port 联络表：增值服务区标题行右「该学生已投入：**¥0**」（缺陷1 销账，无负数）；Audit ¥1,500 / 人工搜索 ¥600 / 付费曝光 ¥4,500 起三行与字幕逐镜对账仍「是」。中文字幕无乱码方块，4 镜 box 全 resolve、无 MISS、no @gmail。时长 land **23.77s** / port **23.76s**（v185 重录值）。ch9 读-only 零写库，开工+收工 verify 17/17 PASS。
+
 ## ch5 §三.4（5-4 字幕说审核中、徽章却 REJECTED，返工第25趟 2026-10-12）
 问题（review1 §三.4）：5-4 字幕「回到审核中，不用整份重交。」，但旧实现用 `setInterval` 把 `.badge-rejected` 伪造成「Under review」= 前端假帧，画面从未真变审核中。
 改法（真态化·零改产品代码）：靠产品自己的 0104 supersede 逻辑——`states/st-pt03-reupload.sql` 给 pt-03 真·新建一行更正版 transcript（version2、uploaded_at 更晚、无新裁决）→ 旧 rejected 裁决被取代 → 详情弹窗徽章真变 `.badge-reviewing`。shot 5-4 去伪造、`hl=.badge-reviewing,.reviewer-row-pending`、`expect=[.badge-reviewing]`、`forbid=[.badge-rejected]`。zh 字幕本就"回到审核中"、与真态一致，不改。复位 `st-pt03-reupload-reset-cleanup.sql`，verify 17/17 往返守住。

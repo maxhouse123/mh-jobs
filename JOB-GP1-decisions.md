@@ -608,3 +608,12 @@
 - **非四种停下情形**：§三.3/.4/.8 + §一全在 §0.3/§0.4 + 成片工装范围，记账继续。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`rec/rec.mjs`(--only/--tagsuffix)、`rec/prod-ch.mjs`(多 tag 拼章)、`rec/gp1-finish.mjs`(chapterShotDurs 合并 companion)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch5 定版段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（5-4 shot 定义 trip25 已落、字幕四语 trip24/16 已 banked）；成片/voice 不入 git；ch5 v1 在 `_v1/` 留底、dist 覆盖定版 v2。四语 ch5 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
 - **下趟**：下一含工作台章定版重录——ch9（9-2/9-3 字幕 trip23 已改·需 v185 背景重录）/ ch10（读-only v185）/ OP-3·4·5 开场快剪（素材 3-8/7-0/7-1 已随 ch3/ch7 定版就位，不再阻塞）。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**
+
+## D-34-1 · ch9 增值服务章 v185 定版重录（返工第34趟 2026-10-13，review1 §一 背景）
+- **背景**：ch9（增值服务章，4 镜 9-1..9-4，读-only·列表卡内联无弹窗）字幕/高亮 trip23（§三.6）已改对——9-1 增值服务区标题、9-2 Audit ¥1,500、9-3 Human-assisted ¥600、9-4 付费曝光 ¥4,500 起，逐镜框对应真行。但 trip23 录制底座仍 v184（有漏斗/负数缺陷）。§一 列 ch9 为背景含工作台数字的章，v185 漏斗修复上线后（RULING-e）须 v185 重录。
+- **做法**：rec.mjs 已在 trip28 切 v185（FILE=partner-portal-v185.html）。本趟纯重录——`node rec.mjs --chapter 9 --orient {land,port} --lang {en,zh,ru,fr}` 8 变体 + `prod-ch --tag *-ch9` 合成 8 片覆盖 dist。字幕/shot 定义一字未改（trip23 已 banked）。ch9 读-only，无置态/复位。
+- **自验**：亲验 en-land 9-1/9-2 原始帧 + ru-land 9-1 原始帧 + 四语 land/port 联络表——增值服务区标题行右「Invested on this student: ¥0 / 该学生已投入：¥0 / Вложено в студента: ¥0 / Investi pour cet étudiant : ¥0」**无负数**（缺陷1 销账，§一达标）；三服务行价与字幕逐镜对账仍「是」；RU/FR chrome 真本地化，Audit Service/Human-assisted Search 等 LL 动态串英文回退（D-18-4 照录不补，留 SUMMARY）。8 片 res OK + audio yes + 4 镜 box 全 resolve + no @gmail。时长 land en22.73/zh23.77/ru26.38/fr24.18 · port en22.79/zh23.76/ru26.46/fr24.30s。
+- **DB**：ch9 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住。
+- **非四种停下情形**：§一背景在 §0.3 范围（无写库）+ 成片工装范围，记账继续。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch9 v185 定版段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（trip23 已 banked）；成片/voice 不入 git；ch9 v1 早在 `_v1/` 留底、dist 覆盖定版 v2；全片不重拼（待全部工作台章完后统一拼）。四语 ch9 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **下趟**：ch10（读-only v185 背景重录）/ OP-3·4·5 开场快剪（素材 3-8/7-0/7-1 已随 ch3/ch7 定版就位）。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**

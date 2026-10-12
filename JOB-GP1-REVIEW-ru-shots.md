@@ -17,6 +17,9 @@ D-18-4：RU 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 - 逐张亲眼复验（含 port 9-3 全分辨率）：各镜框对应行，port 下 Human-assisted Search 标签换行致行加高，高亮只罩该行、未越到 boost 行。
 - item-7 RU 禁用词扫描：0 命中（_scan-ru-forbidden 73 串 PASS）。
 
+### ch9 v185 定版重录（返工第34趟 2026-10-13，review1 §一 背景）
+trip23 字幕/高亮照旧正确，本趟只换录制底座 v184→v185 重录 ch9 4 镜使背景落定版。亲验 RU land 9-1 原始帧 + RU land/port 联络表：增值服务区标题行右「Вложено в студента: **¥0**」（缺陷1 销账，无负数）；chrome 俄文本地化（Центр партнёров / Ожидает / Направлен / Платное продвижение · не активно / Активировать · от ¥4,500 / Настройки）；Audit Service / Human-assisted Search 等 LL 动态串英文回退（D-18-4，照录不补，留 SUMMARY）。4 镜 box 全 resolve、无 MISS、no @gmail。时长 land **26.38s** / port **26.46s**（v185 重录值）。ch9 读-only 零写库，开工+收工 verify 17/17 PASS。
+
 ## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12）
 问题/依据/做法同 EN REVIEW「开场快剪 OP-2」节。本趟只做 OP-2（素材 ch6 6-1/6-2 两份盲 offer）；OP-3/4/5 静止卡面待缺陷2 裁后接做。零改产品代码/迁移。
 
