@@ -27,3 +27,16 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 
 - 亲眼复验（FR land b-roll 中帧）：两份盲 offer、无校名（双盲守住）、无 beta 控件、演示生无真 PII；界面法文本地化（TABLEAU PARTENAIRE·ÉTUDIANT / ÉCOLES INTÉRESSÉES / ACTION REQUISE / DOCS APPROUVÉS）；标题条＝ FR OP-2 卡标题/ED-1 回顾串一字一致；专业名英文回退（D-18-4）。
 - OP-2 卡 11.1s 不变 → 全片 land 446.0s / port 444.7s。
+
+## ch2 §三.1 / §三.2（工作台漏斗 + 卡状态徽章，返工第28趟 2026-10-12 · v185 上线后定版重录）
+缺陷2 已由 v185 修好上线；录制底座切 v185 + 加 offCamera 等待（offers≥5 且 gate_open≥6）。§三.1（2-2）：工作台无「名额已用/剩余」显示→改述屏上真有的录取漏斗。§三.2（2-4）：真标签「Documents validés · mise en relation」是 gate_open 覆盖标签（`.partner-student-status-approved` class 永不存在）→ hl 按真法文标签文本高亮、字幕改述真档。详见 REVIEW-en-shots.md 同节。
+
+| 镜 | 字幕原文（新/未改） | 高亮区 DOM 实际文字（v185 真帧） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 2-1 | Votre espace partenaire réunit tous les étudiants que vous avez recommandés au même endroit. | 工作台整屏 + 9 张推荐生卡（整屏 integral） | 是 |
+| 2-2 | Votre entonnoir de recommandations : soumis, lettre émise, payé, inscrit. | `.partner-stats-funnel` 四段：**9** → 33% → **3** → 67% → **2** → 50% → **1**（下方 5 offer · 人均 0.6） | 是（漏斗四段＝屏上四段 9/3/2/1；段名法文或英文回退 D-18-4） |
+| 2-3 | Chaque fiche indique l'étape actuelle de l'étudiant. | `.partner-students-count`「9 …」推荐生计数药丸 | 是 |
+| 2-4 | Chaque fiche affiche son étape : approuvé et en appariement avec les écoles. | `.partner-student-status`（Mbarga Junior 卡）「**Documents validés · mise en relation**」 | 是（字幕↔屏上同文字标签；6 张卡同档） |
+| 2-5 | Les notifications vous préviennent dès qu'une université agit. | 通知铃（角标 55）→ 开通知面板（≥4 条） | 是 |
+
+- 时长：land 27.68s / port 27.62s。全片 no @gmail。亲眼复验（FR land 联络表）：漏斗 9/3/2/1 无负数全 0、2-4 框「Documents validés · mise en relation」、¥0 保留、演示生无真 PII、无 beta 控件；部分界面串英文回退（D-18-4）。

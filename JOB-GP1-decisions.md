@@ -519,3 +519,17 @@
 - **DB**：全程零写入；开工+收工 verify 17/17 PASS 0 FAIL。
 - **推送纪律（裁决 §二.5/§三）**：主仓库点名提交（v185 文件 + index.html + jobs/JOB-GP1），说明以 `JOB-GP1-PF` 开头，**本机不推**；写 `NEEDS_OWNER_DECISION.md`（标题「v185 漏斗修复已就绪，请 Claude 审核后由业主推送上线」）复制推 mh-jobs，本趟结束等审（停下情形④）。推送上线由业主用卡执行。
 - **下趟（v185 上线、线上确认后循环重开）**：做 review1 里被缺陷2 卡住的定版重录——ch1/2/3/5/7/8/10 带工作台的镜四语横竖、2-2/2-4/7-4/ch8 横幅/节奏(3-1/3-8/5-1)、OP-3/4/5 开场快剪；完后四语过十一项重审写 SUMMARY-GP1。**v185 上线前不录定版**（免视频漏斗与线上不一致，裁决 §三.4）。
+
+## D-28-1
+**第 28 趟（2026-10-12 Mac mini 无人值守）· 录制底座切 v185 + ch2 工作台章定版重录（review1 §三.1/.2）**
+- **前置**：缺陷2 已由中介端 v185 修好并于 2026-10-12 21:38 上线（RULING-20261012d/e）。本趟起接做被缺陷2 卡住的定版重录；录制用本机 v185。
+- **录制底座改（rec.mjs，jobs 下工装，非产品码）**：①`FILE` v184→v185（线上同版）；②在登录后、逐镜前加 offCamera 阻塞等待 `_getPartnerStats().totalOffers≥5 且 _p130_STATS gate_open≥6`（timeout 75s），因这两处靠异步 RPC（get_agent_student_offers / get_agent_boost_stats）加载，录早了漏斗会定格 9/0/0/0、卡状态「匹配中」标签未载定格「已提交·等待审核」。此等待惠及所有含工作台的后续章。
+- **§三.1（2-2）**：只读实证 `_probe-ch2-dom.mjs`——工作台**无「名额已用/剩余」任何显示**（全工作台仅 ch8「Quota raise pending 10→30」横幅提 quota）。按 review1 §三.1「产品没有就最小改字幕述屏上真有的」→ 2-2 改为高亮并描述**录取漏斗**（v185 真值 9→3→2→1·5 offer·人均 0.6）。hl `.partner-stats-title,.partner-stats-hero-card`→`.partner-stats-funnel`；capEN「Here is your referral quota: used and remaining.」→「Your referral funnel: submitted, letter issued, paid, enrolled.」；capZH 同步；ru/fr 重译。
+- **§三.2（2-4）**：实证 `.partner-student-status-approved` **class 永不存在**——卡状态 class＝`partner-student-status-${s.status}`、`s.status=r.stage||'pending'`、`students.stage` 列全库恒 NULL（正是缺陷2 根因同一列）→ 9 张卡 class 恒 `-pending`；屏上「材料已通过·匹配中」是 `_p131T('matching')` **覆盖标签**（`_p130_STATS[sid].gate_open` 为真时显示，演示 gate_open=6）。原字幕列五档全不在屏。按 review1 §三.2「做不到依次框就最小改字幕述真档」→ hl 改按真标签文本逐语言高亮（`text=Documents approved · matching` / zh「材料已通过 · 匹配中」/ ru「Документы одобрены · подбор」/ fr「Documents validés · mise en relation」）；capEN「Under review, ready for offers, offer in progress, accepted, enrolled.」→「Each card shows its stage — approved and matching with schools.」；四语同步。
+- **配音/字幕源同步**：burned en/zh 读 shots-v1.json、ru/fr 读 captions-v1.json、TTS 读 captions-v1.json——三处对 2-2/2-4 同步改；en/zh 两文件逐字一致（已校）。tts-gp1.mjs 加 `--force-ids` 只重配 2-2/2-4（durations.json 仍整体重算完整）。
+- **重出/自验**：四语横竖重录（v185，8 片，全 res OK+audio yes，全片 no @gmail，2-2/2-4 hl 全 resolve）→ prod-ch 合成 → gp1-finish contact（帧取每镜字幕中点，review1）。时长：EN 27.66/27.66·ZH 29.34/29.35·RU 28.23/28.19·FR 27.68/27.62s。四语 land 联络表逐张亲眼复验：2-2 漏斗 9/3/2/1 无负数无全 0、2-4 框真「匹配中」标签、字幕↔屏文一致、¥0 TOTAL PAYMENTS PROCESSED 保留（§一.3）、演示生无真 PII、无 beta 控件、页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。§十一对账四语写入 REVIEW-*-shots.md。
+- **DB**：ch2 全程只读，开工+收工 verify 17/17 PASS 0 FAIL。零置态/零写库。
+- **v1 留底**：ch2 v1 成片早在 `guide/dist/partner/_v1/` 留底（铁律10），本趟覆盖 dist 为 v2。**全片 bookend/film/trailer/segments 本趟不重拼**（仍含 ch2 v1）——待全部工作台章返工完后统一重拼（RULING-20261012d §三.3 末「做完后...写 SUMMARY」）。
+- **留给业主的产品问题（记入 SUMMARY）**：①中介端工作台无「名额已用/剩余」显示；②卡状态徽章色恒 pending 蓝（`students.stage` 列恒 NULL），即便标签已「材料已通过·匹配中」（gate_open 覆盖）——色与标签语义不一致，属产品 stage 列未回填历史问题。
+- **改了**（主仓库，点名提交 JOB-GP1，不推）：rec/rec.mjs、rec/shots-v1.json、captions-v1.json、rec/tts-gp1.mjs、rec/_probe-ch2-dom.mjs(新)、rec/_probe-ch2-sel.mjs(新)、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；四语 ch2 联络表 + 四 REVIEW + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**：接做下一含工作台章的定版重录（ch1 1-8 / ch3 3-1·3-8 节奏 / ch7 7-4 / ch8 横幅 / ch5 5-1 定版 / ch10），一趟一章；OP-3/4/5 开场快剪（素材 3-8/7-0/7-1 现已不阻塞）亦可做。全部完成后四语过十一项重审 + 重拼全片 → 写 SUMMARY-GP1。GP-1 未收官。

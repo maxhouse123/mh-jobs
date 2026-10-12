@@ -51,3 +51,21 @@
 
 - 逐张亲眼复验（EN land+port b-roll 中帧 + 尾帧）：两份盲 offer、无校名（双盲守住）、无 beta/内测/test 控件、演示生 Hussain Bilal 无真 PII、标题条文字＝ EN OP-2 卡标题/ED-1 回顾串一字一致。专业名 "MSc Computer Science" 为产品动态串（D-18-4 已记账）。
 - OP-2 卡总时长 10.4s 不变 → 全片 land 427.9s / port 428.1s（见本趟 DECISIONS/PROGRESS）。
+
+## ch2 §三.1 / §三.2（工作台漏斗 + 卡状态徽章，返工第28趟 2026-10-12 · v185 上线后定版重录）
+前置：缺陷2（工作台录取漏斗/人均 offer 对云端学生全 0）已由中介端 v185 修好并于 2026-10-12 21:38 上线（RULING-20261012d/e）。本趟把录制底座 `rec.mjs` 从 v184 切到线上同版 v185，并对 ch2 工作台章定版重录（四语横竖）。另加录制底座 offCamera 阻塞等待：`_getPartnerStats().totalOffers≥5 且 _p130_STATS gate_open≥6`，确保含工作台的章背景漏斗＝线上真值、卡状态「匹配中」标签已载（否则录早了漏斗定格 9/0/0/0、卡标签定格「已提交·等待审核」）。
+
+- **§三.1（2-2）**：原字幕「Here is your referral quota: used and remaining.」。只读实证（`_probe-ch2-dom.mjs`）：工作台**没有任何「名额已用/剩余」显示**（全工作台仅 ch8 的「Quota raise pending: 10 → 30」横幅提到 quota）。按 review1 §三.1「产品没有这个显示，就把字幕最小改成画面真有的内容」——改为高亮并描述屏上真有的**录取漏斗**（也正是 v185 修好的那块）。
+- **§三.2（2-4）**：原字幕列五档「Under review, ready for offers, offer in progress, accepted, enrolled」，原 hl 选 `.partner-student-status-approved`。实证：该 class **永不存在**——卡状态 class＝`partner-student-status-${s.status}`，而 `s.status=r.stage||'pending'`、`students.stage` 列全库恒 NULL，故 9 张卡 class 恒 `-pending`；真正的「材料已通过·匹配中」是 `_p131T('matching')` **覆盖标签**（当 `_p130_STATS[sid].gate_open` 为真时显示，演示数据 6 张 gate_open）。屏上真有的两档＝3 张「Submitted · awaiting platform review」+ 6 张「Documents approved · matching」。按 review1 §三.2「做不到依次框五档就把字幕最小改成画面真有的阶段」——hl 改为按真标签文本逐语言高亮（`text=Documents approved · matching`），字幕改述该真档。
+
+| 镜 | 字幕原文（新/未改） | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 2-1 | Your Partner Hub shows every student you referred, in one place. | 工作台整屏：Partner Hub / Demo Agency / 统计面板 + 9 张推荐生卡（整屏 integral，无单点高亮） | 是 |
+| 2-2 | Your referral funnel: submitted, letter issued, paid, enrolled. | `.partner-stats-funnel`：SUBMITTED **9** → 33% → LETTER ISSUED **3** → 67% → PAID **2** → 50% → ENROLLED **1**（下方「5 total offers received · avg 0.6 per student」） | 是（字幕四段＝屏上漏斗四段，v185 真值） |
+| 2-3 | Each card carries the student's current stage. | `.partner-students-count`「9 students」（My referred students 区标题右侧计数药丸） | 是（指向推荐生列表） |
+| 2-4 | Each card shows its stage — approved and matching with schools. | `.partner-student-status`（Mbarga Junior 卡）「**Documents approved · matching**」；辅行「✓ Core documents approved · awaiting school matches」 | 是（"approved and matching"↔屏上同文字标签；6 张卡同档） |
+| 2-5 | Notifications tell you the moment a university acts. | `#stuNotifBell` 通知铃（角标 55）→ `openNotif` 开 `#stuNotifList`（≥4 条通知） | 是 |
+
+- 时长：land 27.66s / port 27.66s。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**。
+- 逐张亲眼复验（EN land 联络表 + 2-2/2-4 原始帧）：2-2 漏斗 9/3/2/1 无负数无全 0；2-4 框住「Documents approved · matching」真标签；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）；¥0 TOTAL PAYMENTS PROCESSED 保留（§一.3）；演示生 Mbarga Junior / Islam Rahim 无真 PII；无 beta/内测/test 控件。
+- **记入 SUMMARY「留给业主的产品问题」**：①中介端工作台无「名额已用/剩余」显示（故 2-2 改述漏斗）；②卡状态徽章颜色恒 pending 蓝（`students.stage` 列恒 NULL），即便标签已是「材料已通过·匹配中」（gate_open 覆盖），色与标签语义不一致——属产品层 stage 列未回填的历史问题，非本片可改。

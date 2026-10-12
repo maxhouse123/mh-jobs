@@ -1,3 +1,18 @@
+最后一趟：2026-10-12 22:20 第28趟 返工：**做了**＝v185 上线后(RULING-20261012e)起做被缺陷2 卡住的定版重录第一章 ch2。①录制底座 rec.mjs 切 v184→v185(线上同版)+加 offCamera 等待(offers≥5 且 gate_open≥6, 因漏斗/「匹配中」标签靠异步 RPC 加载, 录早了定格错态 9/0/0/0 与「已提交·等待审核」)——惠及全部后续工作台章。②review1 §三.1(2-2)：只读实证工作台**无「名额已用/剩余」显示**→改高亮并描述屏上真有的录取漏斗(v185 真值 9→3→2→1·5 offer·人均0.6)。③§三.2(2-4)：实证 `.partner-student-status-approved` class **永不存在**(stage 列恒 NULL→class 恒 pending；真「材料已通过·匹配中」是 gate_open 覆盖标签, 6 张)→hl 改按真标签文本逐语言高亮、字幕改述真档。2-2/2-4 四语字幕+配音重做(shots-v1/captions-v1 三源同步, en/zh 逐字一致)。四语横竖重录 v185(8 片, 全 res OK+audio yes, no @gmail, hl 全 resolve)→合成→联络表(帧取字幕中点)。四语 land 联络表逐张亲验:漏斗无负数全0、2-4 框真「匹配中」、¥0 保留(§一.3)、无 beta、演示生无真 PII。§十一对账四语写入 REVIEW-*-shots.md。时长 EN27.66·ZH29.34·RU28.23·FR27.68s(land)。ch2 全程只读, 开工+收工 verify 17/17 PASS。v1 成片在 _v1/ 留底。**全片 bookend/film/trailer 本趟不重拼**(待全部工作台章完后统一拼)。留给业主产品问题2 条(工作台无名额显示 / 卡徽章色恒 pending 蓝)入账待写 SUMMARY。主仓库点名提交 JOB-GP1 不推；联络表+4 REVIEW+决定账+PROGRESS 推 mh-jobs。**下趟**＝下一含工作台章定版重录(ch1 1-8/ch3 3-1·3-8 节奏/ch5 5-1/ch7 7-4/ch8 横幅/ch10)或 OP-3/4/5 开场快剪(素材现已不阻塞)，一趟一章；全部完后四语过十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官，勿据旧『收官』停工。**
+---
+# 第28趟详记：
+## 第 28 趟（2026-10-12 Mac mini 无人值守）· 录制底座切 v185 + ch2 工作台章定版重录
+- **接手核对**：git status 见 NEEDS_OWNER_DECISION.md 被删 + 新出 RULING-20261012d-funnel.md/-e-v185-live.md + 原请示单改名 -resolved-20261012-213841.md → 缺陷2 已裁(选A)、v185 已由业主卡1380 推送上线(线上 0eb0c78)、缺陷2 解除阻塞。loop-tail 查明 16:00 那趟两分钟即停＝误读旧「收官」(返工授权当时刚发未读)——本趟首行开工即改「返工进行中」、收工改完整「做了+下趟」，不复犯。开工 verify **17/17 PASS**。
+- **录制底座切 v185**（rec.mjs，jobs 工装非产品码）：FILE v184→v185；加 offer+gate offCamera 等待（见 D-28-1）。
+- **选题/范围**：按 RULING-20261012d §三.3 / -e「带工作台的章四语横竖定版重录」，挑第一章 ch2（工作台整屏、含 review1 §三.1/.2 两处字幕返工、只读不写库）。
+- **§三.1/.2 两处字幕返工 + 四语重录重出**：详见 DECISIONS D-28-1。只读实证用 `_probe-ch2-dom.mjs` / `_probe-ch2-sel.mjs`（均新建、只读）。
+- **自验**：四语 land 联络表逐张亲眼复验（2-2 漏斗 9/3/2/1 无负数全0、2-4 框真「匹配中」标签、字幕↔屏文一致、¥0 保留、无 beta、演示生无真 PII、页头平台 WhatsApp/Email 不遮）；§十一对账四语写入 REVIEW-*-shots.md；8 片真帧 hl 全 resolve、全片 no @gmail。
+- **DB**：ch2 只读，收工 verify **17/17 PASS 0 FAIL**。零置态/零写库。
+- **改了**（主仓库，不推）：rec/rec.mjs、rec/shots-v1.json、captions-v1.json、rec/tts-gp1.mjs、rec/_probe-ch2-dom.mjs(新)、rec/_probe-ch2-sel.mjs(新)、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git（ch2 v1 在 _v1/ 留底，本趟覆盖 dist v2）；四语 ch2 联络表 + 四 REVIEW + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**：下一含工作台章定版重录或 OP-3/4/5 快剪，一趟一章；全部完后四语十一项重审 + 重拼全片 → 写 SUMMARY-GP1。GP-1 未收官。
+
+---
+# 上一趟（第27趟）首行存档：
 最后一趟：2026-10-12 20:18 第27趟 返工：**做了**＝缺陷2 业主已裁(RULING-20261012d 选 A·先修产品再录)→ 修中介端工作台「录取漏斗/人均 offer」对云端学生算错，partner v184→v185。根因：_getPartnerStats 云端分支读废弃列 students.stage(全库零写入恒 NULL)→漏斗全 0、offer 恒 0、与学生卡矛盾。改按卡面同口径数页面已加载的真 offer 数据 stu._offers(get_agent_student_offers RPC):offer 份数=行数/拿通知书=letter_uploaded_at/已付=letter_paid_at/录取完成=completed_at；avg 零生兜底 0.0；版本串+index.html 四件套齐 v185。全部 diff 仅 4 处逻辑块，TOTAL PAYMENTS PROCESSED 不动(§一.3)。闸全过：①探针算期望 9→3→2→1·offer5·人均0.6；②v185 真登录 guide_partner 四语截图漏斗全 9/3/2/1·5·0.6(shots/GP1/funnel/)；③回归 diff仅4块+四语数字遮罩后文本逐字相同+唯一 console.error 是 v184 同存 file:// 产物+0生态无NaN人均0.0。零 DB 写入，开工+收工 verify 17/17 PASS 0 FAIL。主仓库点名提交(JOB-GP1-PF 开头)**不推**；写 jobs/JOB-GP1/NEEDS_OWNER_DECISION.md「v185 漏斗修复已就绪，请 Claude 审核后由业主推送上线」复制推 mh-jobs(停下情形④)。**本趟结束等审**；v185 上线、线上确认后循环重开。**下趟**＝做 review1 被缺陷2 卡住的定版重录(ch1/2/3/5/7/8/10 带工作台的镜四语横竖、2-2/2-4/7-4/ch8 横幅/节奏 3-1/3-8/5-1、OP-3/4/5 开场快剪)，完后四语过十一项重审写 SUMMARY-GP1；**v185 上线前不录定版**。GP-1 未收官。
 ---
 # 第27趟详记：
