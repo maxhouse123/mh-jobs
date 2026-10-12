@@ -170,3 +170,12 @@
 - **交付**：ch3-{land,port}-zh.mp4（78.77/78.55s，9 镜）；联络表 shots/GP1/zh/ch3-contact-{land,port}-zh.png 逐张亲验（3-5/3-6 琥珀条中文、3-8 真 app_no、零 @gmail、演示名 Demo Aisha）。
 - **改了**：rec/rec.mjs、rec/shots-v1.json（pre_zh×2 + 3-3/3-7 hl）。
 - **成片现状（ZH）**：1·2·3（3/10）。
+
+## D-16-4 (2026-10-12 第16趟 · ZH ch4 成片 + ch4 scoped 复位)
+- **章 / 镜**：第 4 章 委托邀请，ZH 横竖。
+- **rebuild 禁用实锤**：本机 `~/guide/dist/faces/` **空（0/201）**，assign-faces-gp1.mjs L59 对每张 picked 脸无条件 `readFileSync` → 全量 rebuild 必在 step5 崩（坐实 D-12-2）。**本轮所有有置态章一律 scoped 复位，不碰 rebuild-partner.sh**。
+- **ch4 scoped 复位（新 states/st-pt04-reset-cleanup.sql）**：ch4 对 pt-04 的三处改动（intake_mode='delegate' / 4-5 真 submit 写 submitted_at / st-pt04-docs-full 预置 SPECIMEN transcript 行）清回基线。**关键**：先只读探针 pt-04 基线 = intake_mode NULL / submitted_at NULL / **app_no=MH-EXET28（基线即有）** / docs=education,passport,photo(3)；真 submit `if(!app_no)` 不覆写已有 app_no → 复位**不动 app_no**，只清 intake_mode+submitted_at+删 transcript 行。两遍录后均复位→verify 16/16。
+- **hl 选择器**：ch4 全 id/class/attr 选择器（#dlInviteBtn/#dlEmail/#dlInviteList/.dl-card-box/button[data-dl-submit]），语言无关，无需 ZH 改。
+- **交付**：ch4-{land,port}-zh.mp4（42.89/42.84s，5 镜）；联络表 shots/GP1/zh/ch4-contact-{land,port}-zh.png 逐张亲验（邀请→弹窗→已发列表→委托卡时间线+提交钮→提交钮 五镜齐；已发邀请两行邮箱 aizhan.demo@/agency.demo@example.com 全掩码、零 @gmail；中文按钮 复制链接/重发邀请/撤销/已注册）。
+- **改了**：states/st-pt04-reset-cleanup.sql（新）、rec/_probe-pt04-base.sql（探针）。
+- **成片现状（ZH）**：1·2·3·4（4/10）。
