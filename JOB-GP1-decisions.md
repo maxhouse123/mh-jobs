@@ -209,3 +209,20 @@
 - **交付**：ch7-{land,port}-zh.mp4（42.70/41.89s，5 镜）；联络表亲验（抽 mp4 t=6 复证 7-0 ¥0 大字橙框内（MAXHOUSE -¥3000 划除）连续可见 §3.5；t=15 复证 7-1 演示大学去盲+通知书下载钮、无真 PII；7-2 JW202 下载、7-3 建档进度、7-4 已入学；邮箱全 agency.demo@example.com 掩码、SCH/MH/PA 编号非密、零 @gmail）。
 - **改了**：states/st-pt0708-reset-cleanup.sql（新）、rec/_probe-pt0708-base.sql、_probe-pt07-payrow.sql、_probe-pt07-post.sql（探针）。
 - **成片现状（ZH）**：1·2·3·4·5·6·7（7/10）。
+
+## D-16-8 (2026-10-12 第16趟 · ZH ch8 成片)
+- **章 / 镜**：第 8 章 名额与提额，ZH 横竖。**全客户端/零 DB 写入**（8-2/8-3 _qrOpenRaise 内存开表单；8-3 只打字不提交，基线已有 pending 请求 verify#13；8-4 纯 DOM 文本替换伪造已批态，无 st-quota-approve）。
+- **跨语言修**：①8-4 pre 原按 /Quota raise pending/ 匹配 + 注入英文「approved」文本 → ZH MISS+英文。实证 ZH 待审卡=「⏳ 提额申请审核中：现额 10 → 申请 30…」→ 加 pre_zh（匹配 /提额申请审核中/ + 注入中文「✅ 提额已批准：现为 30，立即生效。」）。②8-3 act 打英文理由 → 加 act_zh（中文「预计下一季招生人数会增加。」）+ rec.mjs 加 `act_<lang>` 支持（镜 doAct 用 shot['act_'+LANG]||shot.act）。
+- **交付**：ch8-{land,port}-zh.mp4（28.25/28.23s，4 镜）；联络表亲验（抽 t=20.5 复证 8-3 目标名额=30+中文理由、8-4 绿卡中文「提额已批准…」；零 @gmail）。baseline 16/16（零写）。
+- **改了**：rec/rec.mjs（act_<lang>）、rec/shots-v1.json（8-3 act_zh、8-4 pre_zh）。
+
+## D-16-9 (2026-10-12 第16趟 · ZH ch9 成片 + CONTEXT 按名+轮询)
+- **章 / 镜**：第 9 章 增值服务（pt-10 Fatou Diop detail 内增值区），ZH 横竖。读-only。
+- **修**：CONTEXT['9'] 原 `viewReferredStudent(10)` 硬编码索引（ch5 同病：索引漂移+列表分波加载）→ 改按名 Fatou 轮询解析 viewReferredStudent(n)（照 ch5/ch6）。四镜全命中。
+- **观察（留 EN 一致不改）**：9-2/9-3 同用 `.partner-premium-row` → 高亮同一首行（无限解锁行），与 EN 现状一致（EN 已清关）；captions 按序述三项服务，画面增值区整体可见。若业主要逐行高亮属 EN+ZH 同改，记观察不自改（不重开已清关 EN）。
+- **交付**：ch9-{land,port}-zh.mp4（21.74/21.76s，4 镜）；联络表亲验（Diop Fatou detail 增值区 无限解锁/代办/付费曝光，中文、AI 虚拟脸、零 @gmail）。
+
+## D-16-10 (2026-10-12 第16趟 · ZH ch10 成片 → ZH 十章齐 10/10)
+- **章 / 镜**：第 10 章 账户、语言与安全（guide_partner），ZH 横竖。读-only。CONTEXT['10']=toggleSettingsMenu（菜单内账户设置/语言/退出全可见，trip6 实证）。hl 全 onclick/class 语言无关。
+- **交付**：ch10-{land,port}-zh.mp4（16.32/16.31s，3 镜）；联络表亲验（设置菜单 账户设置/四语切换 EN中РУFR/退出登录，邮箱 agency.demo@example.com 掩码、Partner Code PA-E62FC6FF、零 @gmail）。
+- **成片现状（ZH）**：1·2·3·4·5·6·7·8·9·10 = **10/10 齐**。下阶段：ZH 全片合成（OP/ED overlays + 全片 + 速览 + 20-40s 分段）+ item-7 禁用词扫 + item-8 ED-zh 二维码解码；再 RU/FR。
