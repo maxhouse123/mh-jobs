@@ -422,3 +422,27 @@
 - **下趟可做（不受缺陷2 阻塞）**：①ch9 §三.6（9-2/9-3 服务名字幕 + 重录）；②ch5 §三.3（5-2 缓存帧重烧字幕四语）、§三.4（5-4 置态重录，需可靠 reset）。建议一趟一章专做，照「英文先、再四语」。
 - **改了**：仅本条审计（只读看图），无代码改动。
 - **非四种停下情形**：只读审计，记账继续。
+
+## D-23-1 (2026-10-12 第23趟 · §三.6 ch9 增值服务名四语重出 + 根因修复)
+- **接手**：第22趟做完 §二 ch6 四语 + §三逐镜审计（D-22-2 判 ch9 §三.6 不受缺陷2阻塞）。本趟按「一趟一章」做 ch9 §三.6。开工 verify **17/17 PASS**（ch9 只读，baseline 全程守住）。
+- **只读取证产品真名**（照 review1 §三.6「读 i18n 与界面文字」）：partner-portal v184（录制用版本）
+  - `partner.premium.auditLabel`='🚀 Audit Service'（激活 ¥1,500）；`partner.vapay.auditDesc`='Audit Service — removes the 2-offer basic-tier cap, premium placement, and a 30-day service window.'
+  - `partner.premium.searchLabel`='🤝 Human-assisted Search'（激活 ¥600）；`partner.vapay.searchDesc`='Human-assisted Search — a Maxhouse advisor builds a bespoke shortlist for the student.'
+  - 第三项 = `.partner-premium-row--boost`='📡 Exposure boost · from ¥4,500'（9-4 字幕本就对，保留）。
+  - 旧 9-2 字幕'unlimited unlocks'/9-3'concierge' 皆非产品真名（审计实证两镜还都框在首行）→ 按真名重写。
+- **根因（D-23 关键）**：增值服务区由 `_v107renderPremiumBlock(idx)` 在 `renderPartnerStudentsSection` 内渲染，**嵌在每张推荐生「列表卡」`.partner-student-card` 里，不在详情弹窗**。只读探针实证：`#studentDetailModal`（viewReferredStudent→openStudentDetailModal 打开）内 **0 个 `.partner-premium-block`**；页面共 9 个 block（9 张列表卡各一）。旧 CONTEXT['9'] 开详情弹窗→弹窗遮住列表→`.partner-premium-row` first-visible 回退到弹窗后首张列表卡的行→9-2/9-3 框错行且不在视口（抽帧实证旧版高亮落在「Registered students can't be withdrawn here」通知行，增值服务区根本不在画面）。v1 ch9 亦有此潜伏缺陷。
+- **改法**：
+  1. `rec.mjs` CONTEXT['9'] 改为**不开弹窗**：`(function poll(){var b=document.querySelector('.partner-premium-block');if(b){b.scrollIntoView({block:'center'});}else setTimeout(poll,300);})();`——滚首张列表卡增值服务区到视口中心；逐镜 hl 取 first-visible 真行（9 卡服务行同构同价、字幕不点名学生，取首卡 Serikova Aizhan 即可，其 Audit/Search/boost 均未激活、显 ¥1,500/¥600/¥4,500起，干净）。
+  2. `shots-v1.json`：9-2 hl `.partner-premium-row`→`.partner-premium-block > div:nth-of-type(2)`（Audit 行）；9-3→`nth-of-type(3)`（Search 行）；action/expect 同步改真名；capEN/capZH 换新文案。9-1(`.partner-premium-title`)/9-4(`.partner-premium-row--boost`)选择器不动。
+  3. 字幕四语（`captions-v1.json` en/zh/ru/fr + `shots-v1.json` capEN/capZH 保持 en/zh 同字）：
+     - 9-2 EN "the Audit Service, which removes the basic 2-offer cap and adds 30 days of premium placement," / 中「Audit 服务，解除基础版两个 offer 上限，并提供 30 天优先推荐位；」/ ru / fr 据 EN 重译回译。
+     - 9-3 EN "Human-assisted Search, where a Maxhouse advisor builds a bespoke school shortlist for the student," / 中「人工搜索，由 Maxhouse 顾问为学生定制专属学校清单；」/ ru / fr 同法。
+     - 9-1/9-4 四语不改。
+  4. 重配音：删 voice/{en,zh,ru,fr}/9-2.m4a·9-3.m4a → `tts-gp1.mjs --lang <l>`（不加 --force，只补这两条）。各 lang 恰 2 new、全 in-range（9-2/9-3 时长 en5.5/5.5 zh6.5/5.5 ru7/6.9 fr6.3/5.6）。
+- **四语横竖重出**：rec ch9 land+port×4（首轮循环因 zsh 未对 `$combo` 分词致 TAG 乱名+错 orient，废弃重录；修 CONTEXT 后再录一轮才正确）→ prod-ch 合成 8 片（分辨率/音轨 OK，时长 en22.8/zh23.8/ru26.4/fr24.3s）→ 联络表 gp1-finish --chapter 9 四语。**踩坑**：compose 管道误用 `... | grep -E "->|res="`（本机 grep=ugrep，`-` 头被当选项→grep 立退→SIGPIPE 杀 prod-ch，mp4 未更新、联络表读旧片显错）；去掉 grep 管道重合成修复（LEDGER-3 工装纪律：grep 一律 `-cF -e`，或别用 `-` 头模式）。
+- **逐张亲眼复验**（en/zh/ru/fr land 全 + ru port 9-3 全分辨率 + en-land 原始帧 f00068）：9-1 框 PREMIUM SERVICES 标题、9-2 框 🚀 Audit Service ¥1,500 行、9-3 框 🤝 Human-assisted Search ¥600 行、9-4 框 📡 Exposure boost 行，各不越界；字幕↔所框行指同一服务。port 窄幅下 Human-assisted Search 标签换行致行加高，高亮只罩该行。四语全片 no @gmail、无真 PII（演示生 Serikova Aizhan）。页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。RU/FR 界面服务名英文回退（D-18-4）照录，写进 SUMMARY。
+- **DB**：ch9 全程只读，收工 verify **17/17 PASS 0 FAIL**。零置态/零写库。
+- **对账表**：新建 REVIEW-{en,zh,ru,fr}-shots.md（review1 §十一，ch9 段；随后续返工逐章追加）。
+- **改了**（主仓库，不推）：rec/rec.mjs(CONTEXT['9'])、rec/shots-v1.json(9-2/9-3 hl+文案+action+expect)、captions-v1.json(9-2/9-3 四语)、rec/_probe-ch9-rows.mjs(新)、rec/_probe-ch9-diag.mjs(新)、REVIEW-{en,zh,ru,fr}-shots.md(新)、DECISIONS.md。成片/voice 不入 git；ch9 四语联络表推 mh-jobs。第一版 ch9 成片早已在 guide/dist/partner/_v1/ 留底，本趟覆盖为第二版。
+- **非四种停下情形**：§三.6 全在只读范围，处理完毕记账继续。
+- **下趟**：§三 余下不受缺陷2阻塞镜——ch5 §三.3（5-2 缓存帧重烧字幕四语，不碰DB）或 §三.4（5-4 置态真上传更正件→审核中再框，需可靠 scoped reset）；§五 OP-2(6-1/6-2) 可做。仍受缺陷2阻塞（含工作台漏斗）：§三.1(2-2)/.2(2-4)/.5(7-4)/.7(ch8横幅)/.8(节奏3-1/3-8/5-1) + ch1-8/ch3/ch7/ch8/ch10 工作台帧；最终缺陷2 NEEDS_OWNER_DECISION 待后续。
