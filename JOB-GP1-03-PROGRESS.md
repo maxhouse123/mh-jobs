@@ -1,6 +1,17 @@
-最后一趟：2026-10-12 第12趟 — ch3（提交第一个学生）EN 横竖成片录完：向导四步真机驱动；3-5/3-6 AI 预检照 RULING §1.2 用产品 _aiHintBandHtml 喂样例草稿判词(琥珀条真渲染)；3-8 真 submit 出真 app_no；复位用新 scoped 删 st-ch3-cleanup.sql（本机脸库缺口不跑全量 rebuild，D-12-2），基线 16/16 PASS。**EN 现 9/10，只缺 ch1（注册从零）**。下趟：ch1（需 no-login 注册门 + guide_ptReg 账号，harness 现总先登录，需加不登录路径），然后 EN 十章齐 → overlays/拼接/联络表 → REVIEW-en-self.md 自审 → 中俄法。
+最后一趟：2026-10-12 第13趟 — ch1（注册与开通）EN 横竖成片录完 → **EN 十章齐 10/10**。三登录态一趟走通：1-1..1-4 真·未登录门禁(harness 对 ch1 跳过自动登录)；1-5..1-7 产品 render 喂样例(renderOnboardingView/renderPendingView，因 guide_ptReg 邮箱未验证不能真登录，照 RULING §2.1c ch8 先例)；1-8 真登录 guide_partner 已批工作台 hero。全章**零 DB 写入**，录前/录后 verify 16/16 PASS。harness 加 doLogin(key)+shot.login 多账号能力。联络表 ch1-contact-{land,port}-en.png 已推。下趟：进 EN 自审前置——OP 开场/ED 片尾 overlays 合成 → 整片+速览按镜界切 20-40s 段 → REVIEW-en-self.md 九项自审(§4 已记 1-1「Register your agency」字幕↔按钮待统一) → 全过才录中俄法。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+
+## 第 13 趟（2026-10-12 Mac mini 无人值守）
+- **ch1 注册与开通（EN 横竖成片，~49.4s，8 镜，真帧肉眼复验、零 @gmail）→ EN 十章齐 10/10**：
+  - 本章跨三登录态，一趟内走通、**全程零 DB 写入**（录前 verify 16/16 → 录 land → 录 port → 录后 verify 16/16，基线零漂移，无需 rebuild）。
+  - **1-1..1-4 真·未登录门禁**：harness 对 ch1 开场跳过自动登录，停在真门禁。1-1 整屏登录卡(EN)；1-2 高亮「New agency? Register →」；1-3 注册盒邀请码框(占位 `MAXHOUSE-PARTNER-XXXX`=掩码，非真码)；1-4 高亮「Register」钮(不点，避开真 signUp)。
+  - **1-5..1-7 产品 render 喂样例(RULING §2.1c，ch8 先例)**：实证 `guide_ptReg` 邮箱未验证、无法真登录(被「请先验证邮箱」拦) → 1-5..1-7 改用产品自身 `renderOnboardingView()`(入驻表单，样例预填 Demo Agency Reg/Pakistan/firstname.demo@example.com) / `renderPendingView()`(审核中琥珀卡「Under review」)直渲，零自造界面。
+  - **1-8 真登录已批工作台**：shot `login:'guide_partner'` 镜前真登录(已批伙伴可登) → `renderActiveView` 工作台，高亮 hero「Demo Agency · Partner agency · approved」。只读。
+  - **harness 加固(rec.mjs)**：抽 `doLogin(key)`(任意账号先 goto 回门禁再登)、`CH==='1'` 不自动登录、shot 级 `login` 字段镜前切登录态——供后续跨登录态/多账号章复用。
+  - 交付：成片 ~/guide/dist/partner/ch1-{land,port}-en.mp4(1920x1080 / 1080x1920 带音轨)；联络表 ~/mh-jobs/shots/GP1/en/ch1-contact-{land,port}-en.png(逐张看过，8 格齐、无泄露)；主仓库 commit(不推)。
+  - 自审待办(REVIEW-en-self §4)：1-1 字幕引号内「Register your agency」≠真按钮「New agency? Register →」，EN 自审阶段统一(去引号，口播词不变→voice 不重生)。
+- **成片现状（EN）**：1·2·3·4·5·6·7·8·9·10（**10/10 齐**）。
 
 ## 第 12 趟（2026-10-12 Mac mini 无人值守）
 - **ch3 提交第一个学生（guide-pt-01 向导，EN 横竖成片已出，~69s，9 镜，真帧肉眼复验、零 @gmail）**：

@@ -61,3 +61,21 @@
 - **影响**：trip 开场 verify 16/16（#14 脸 PASS）靠的是基线 9 生**既有脸**（早前在有全库的机器上传桶、DB 指针在）；本机**无法重跑全量 rebuild**（faces 必崩）。幸 cleanup 的 is_test 闸遇 guide-pt-ch3(is_test=false) 整体回滚→9 名基线生未被删、脸原封（故崩后 verify 仍 16/16，无净损）。
 - **选了**：ch3（及后续任何真 submit 的章）复位一律走 scoped 单删（st-ch3-cleanup.sql 式），**不跑 rebuild-partner.sh**；基线 9 生/脸始终不动。
 - **留后趟/业主**：若将来确需全量 rebuild（如重建基线），须在有全脸库的机器(MacBook)上做，或把缺的 129 张脸补到本机 guide/dist/faces/。本条仅记账，不停工（不属 RULING §2.6 四种停下情形）。
+
+---
+
+## 2026-10-12 第13趟（Mac mini 无人值守）
+
+### D-13-1 · ch1 注册与开通全章施工（EN 横竖成片）——未登录门禁 + 产品 render 入驻态 + 真登录已批态三段
+- **章·镜**：ch1 / 1-1..1-8（第13趟，2026-10-12）。EN 由此 **9/10 → 10/10**（此前只缺 ch1）。
+- **问题（分镜与产品对不上·RULING §2.1）**：ch1 跨三登录态（未登录门禁 / pending 伙伴入驻 / 已批工作台）。probe-ch1.mjs 实证：**guide_ptReg 无法真登录**——其邮箱未验证，登录被「请先验证邮箱」拦（locked 不解）。故 1-5..1-7「入驻表单/审核中」无法靠 guide_ptReg 真登录到达。
+- **选项**：(a) 移镜—N/A；(b) 最近真画面；(c) 产品自身 render 函数喂样例（ch8/ch6-6 先例）；(d) 删镜。另：改 auth.users.email_confirmed_at 给 guide_ptReg 验邮箱——**否决**（属改 auth schema 既有行，越铁律9新增型红线 + 越 QUEUE §0.3 表范围，风险高，不自主做）。
+- **选了**：三段式，全部真画面/产品 render，零 DB 写入——
+  - **1-1..1-4 未登录门禁（真·零登录）**：harness 开场对 ch1 **跳过自动登录**，停在真门禁。1-1 整屏录登录卡（EN，`.gate-card`/`.lang-toggle`）；1-2 高亮 `#gateToRegister`「New agency? Register →」+ special `gateShowRegister()`；1-3 `pre` 再调 `gateShowRegister()` 保持注册盒开，高亮 `#regInvite`（占位 `MAXHOUSE-PARTNER-XXXX`=通用掩码，**非真码**，满足 forbid 明文邀请码）；1-4 高亮 `#regBtn`「Register」（**不点**，`doRegister`=真 signUp，零写库）。
+  - **1-5..1-7 入驻态（产品 render 喂样例·RULING §2.1c，ch8 先例）**：`pre` 注入 `document.body.classList.remove('locked')` + `state.onb={org_name_en:'Demo Agency Reg',country:'Pakistan',contact_email:'firstname.demo@example.com',contact_phone:'+92 300 0000000',experience/volume/intro...}` → 调产品自身 `renderOnboardingView()`（1-5/1-6）/ `renderPendingView()`（1-7）。1-5 高亮 `#onbOrgNameEn,#onbCountry`（真表单字段，预填样例值真渲染）；1-6 高亮 `label[for=onbFile_passport]`「Upload files」(Documents 区 Owner passport/ID + Agency proof/license)；1-7 高亮 `.pill-amber`「UNDER REVIEW」（产品真·审核中卡「Your agency materials have been submitted and are under review」）。零 EF/零桶/零自造界面。
+  - **1-8 已批工作台（真登录）**：shot `login:'guide_partner'` → harness 镜前 offCamera 真登录 guide_partner（已批伙伴，可登）→ 产品 `renderActiveView` 工作台，高亮 `.hero`「Demo Agency · Partner agency · approved」。只读，零写库。
+- **harness 加固（rec.mjs，复用后续多态章）**：①登录逻辑抽成 `doLogin(key)`（先 goto 回干净门禁→用 accounts.json[key] 凭据真登录+setLang）；②`CH==='1'` 开场不自动登录（停门禁）；③新增 shot 级 `login` 字段→镜前 offCamera 切登录态。
+- **复位**：**无需复位**——全章零 DB 写入（门禁只高亮不点 signUp；入驻态纯产品 render 注入；已批态只读）。录前 verify 16/16 PASS、录后 verify 16/16 PASS（基线零漂移）。
+- **真帧肉眼复验（iron-law-15）**：8 镜逐帧看过——门禁 EN 干净（#pwdInput 实证 value 空、仅占位圆点，无泄露）；注册盒邀请码掩码占位；入驻表单样例预填 + `firstname.demo@example.com`（非 @gmail）；审核中琥珀卡；已批 hero。横 49.4s / 竖 49.4s，1920x1080 / 1080x1920 带音轨，全链零 @gmail（harness TreeWalker + 肉眼双证）。联络表 ch1-contact-{land,port}-en.png 推 shots/GP1/en（逐张看过 8 格齐、无泄露）。
+- **自审留痕（REVIEW-en-self §4 待办）**：1-1 capEN 引号内「Register your agency」与真按钮「New agency? Register →」非逐字一致。拟在 EN 自审阶段统一处理（去引号改为指令式即可，口播词不变→voice 无需重生）。本趟先记账，不阻断。
+- **改了**：rec.mjs（doLogin 抽取 + ch1 三态驱动 + shot.login）、shots-v1.json（1-3..1-8 pre/login/hl）、probe-ch1.mjs / probe-ch1b.mjs（只读实证工装，新）。成片 ~/guide/dist/partner/ch1-{land,port}-en.mp4。
