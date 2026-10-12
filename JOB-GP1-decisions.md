@@ -190,3 +190,12 @@
 - **改了**：rec/shots-v1.json（5-1/5-2/5-3 pre+waitFor+hl、capZH[5-2]）、captions-v1.json（5-2 zh/ru/fr）、voice/{zh,ru,fr}/5-2.m4a+durations.json。
 - **ru/fr 待办**：ru/fr 5-2 配音已重配（录 ru/fr 时直接用）；录 ru/fr 时 ch5 同样走轮询 pre（已语言无关）。
 - **成片现状（ZH）**：1·2·3·4·5（5/10）。
+
+## D-16-6 (2026-10-12 第16趟 · ZH ch6 成片 + ch6 scoped 复位)
+- **章 / 镜**：第 6 章 收到多校录取（pt-06 Bilal 两盲 offer），ZH 横竖。照 EN trip11 编排（D-11-1/2）。
+- **编排复用**：CONTEXT/6-1 pre 按名 Bilal 解析 viewReferredStudent；6-2 pre 开第一张 school-card 的 openCloudAdmissionModal（offerId 运行时抓）；6-4 真点 `.cloud-offer-unlock`（写 unlocked_at）；6-6 pre 注入 `_p130_SchoolCache`（name_zh='演示大学' + 全 demo 联系：+86…0000/demo@maxhouses.net/maxhouse_demo，非真 PII）→ 产品自身 reveal 重绘；6-7 高亮 `.btn-offer-accept` 不点。删 6-5（¥0 已移 7-0）。
+- **跨语言**：ch6 hl 全 CSS 选择器；**6-3 `text=/Full scholarship/` 在 zh 仍命中**——实证奖学金值 `Full scholarship (tuition waived)` 是 DB 自由文本、产品不本地化（zh 下标签「奖学金」中文、值仍英文），无需改选择器。6-6 产品按 setLang 渲 name_zh='演示大学'。captions 全 zh 自洽（6-2 专业/学费/奖学金可见无校名、6-6 校名揭晓、6-7 接受该专业+开学+奖学金）。
+- **DB scoped 复位（新 states/st-pt06-reset.sql，仅 UPDATE 无 DELETE）**：6-4 写 pt-06 某 offer unlocked_at（agent_unlock_offer 内测只翻状态，student_response 不变）→ 复位把 pt-06 两 offer unlocked_at 清 NULL + student_response 强制 pending → 复 verify#5。6-6 reveal 纯客户端不写库。两遍录后复位 verify 16/16。
+- **交付**：ch6-{land,port}-zh.mp4（42.38/42.24s，6 镜）；联络表亲验（抽 mp4 t=25 复证 6-4 静音/解锁高亮/校名仍盲 SCH-1AD6C8；t=34 复证 6-6 演示大学揭晓/全 demo 联系；零 @gmail）。
+- **改了**：states/st-pt06-reset.sql（新）、rec/_probe-pt06-base.sql（探针）。
+- **成片现状（ZH）**：1·2·3·4·5·6（6/10）。
