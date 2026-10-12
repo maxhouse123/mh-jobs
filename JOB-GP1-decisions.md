@@ -398,3 +398,27 @@
 - **改了**（主仓库，不推）：rec/shots-v1.json(删6-4/6-6、6-3/7-1 capEN/capZH)、captions-v1.json(6-3/7-1 四语、删6-6、_meta narrated 58→57 silent 去6-4)、rec/rec.mjs(HIDE_INIT)、rec/gp1-finish.mjs(TRAILER_CH ch6)、rec/_probe-ch6-blind.mjs(新·只读探针)、DECISIONS.md。成片/voice 不入 git。
 - **下趟**：ch6 ru/fr 重出（同法，RU/FR 7-1/6-3 已备译文+配音）；然后 §三 里不受工作台漏斗阻塞的字幕镜（逐镜核实哪些镜真不含漏斗再定）；§五 快剪中 OP-2(6-1/6-2) 可先做，OP-3/4/5 用 3-8/7-0/7-1 属漏斗/ch7 章待裁决。凡含工作台漏斗章节（ch1/2/3/5/7/8/9/10）定版重出 + 最终 NEEDS_OWNER_DECISION（缺陷2）待后续。
 - **非四种停下情形**：§二 全在 §0.3 只读范围内，处理完毕记账继续。
+
+## D-22-1 (2026-10-12 第22趟 · §二 第6章 RU/FR 重出，完成 §二 四语)
+- **接手**：第21趟做完 §二 第6章去「点解锁→校名揭晓」并重出 ch6 EN/ZH。本趟按 trip21「下趟」计划接做 ch6 RU/FR 重出。开工 verify **17/17 PASS**（baseline 守住）。
+- **资产就绪核实**：captions-v1.json 的 6-1/6-2/6-3/6-7 四语齐（6-3 已是「Compare, then accept」新译：ru「Сравните и примите ту, что вам больше подходит.」/ fr「Comparez, puis acceptez celle que vous préférez.」）；voice/{ru,fr}/6-3.m4a 与 7-1.m4a mtime=10-12 17:09（= captions 17:08 改后重配音，§二重译重配音已落），6-1/6-2/6-7 为原配音未变。
+- **重出 ch6 RU/FR（各横竖，4 镜 6-1/6-2/6-3/6-7）**：
+  - 录制 rec.mjs ch6 ru/fr land+port：高亮全 resolve 无 MISS（6-1 school-card / 6-2 admission-id-tag / 6-3 text=Full scholarship / 6-7 .btn-offer-accept），DOM 扫描四片全 **no @gmail**。rec.mjs HIDE_INIT（D-21-1）对 ru/fr 同样盖住 `.cloud-offer-unlock` beta 链接。
+  - 合成 prod-ch：ch6-{land,port}-{ru,fr}.mp4 分辨率/音轨 OK，时长 ru 26.5/26.7s、fr 26.0/25.9s（capFor 对 ru/fr 从 captions-v1.json 取译文字幕，D-18-1）。
+  - 联络表：gp1-finish --stage contact **新增 `--chapter` 可选形参**（只出单章，不碰仍受缺陷2 阻塞的工作台章旧联络表）→ shots/GP1/{ru,fr}/ch6-contact-{land,port}-{ru,fr}.png。
+  - **逐张亲眼复验**：ru/fr land+port 四张联络表 + ru-land 6-7 全分辨率抽帧。4 镜画面↔字幕一致；盲码 SCH-1AD6C8 / MSc Computer Science / Full scholarship (tuition waived) / 2027-09-01，**无校名**；6-7 全分辨率证 **beta「Unlock to view」链接不可见**（弹窗底部只剩盲码 MAXHOUSE·SCH-1AD6C8，无内测解锁链接），绿色「Принять эту специальность / Accepter」接受钮高亮；章节条左标签 ru/fr 保「Partner Hub」(D-18-5)，右「Глава 6 Предложения от вузов / Chapitre 6 Offres des universités」；全片无真 PII（弹窗注释为 Demo admission 演示文本）。
+- **DB**：ch6 全程只读，收工 verify **17/17 PASS、0 FAIL**（baseline 全程守住）。零置态/零写库。
+- **§二 收口**：第6章「去点解锁揭晓」四语（EN/ZH trip21 + RU/FR 本趟）全部重出完毕。7-1 字幕文本/配音四语已备（trip21），但 7-1 两段高亮 + ch7 重录仍待缺陷2 裁决（ch7 含 7-4 工作台漏斗）。
+- **改了**（主仓库，不推）：rec/gp1-finish.mjs（stageContact 加 `--chapter` 过滤，向后兼容）、DECISIONS.md。成片/voice 不入 git；ch6 ru/fr 联络表推 mh-jobs。原 ch6 ru/fr 第一版成片已在 guide/dist/partner/_v1/ 留底（trip 更早），本趟覆盖 guide/dist/partner/ 为第二版。
+- **非四种停下情形**：§二 ru/fr 全在只读范围内，处理完毕记账继续。
+
+## D-22-2 (2026-10-12 第22趟 · §三 逐镜「是否含工作台漏斗」只读审计，trip21 遗留的「逐镜核实」)
+- **背景**：缺陷2（漏斗读废弃列 students.stage 恒 NULL + 云端硬编码 paid/offers=0，产品算法 bug，D-20-1）使「凡画面含工作台漏斗的章节重出」受阻，须待业主裁决。review1 §三各镜里哪些**真含漏斗**、哪些是详情弹窗/内联卡（不含漏斗、可独立返工）需逐镜核实。本趟读第一版联络表（en ch5/ch9）判定：
+  - **ch5**：5-1「A document was returned」= 工作台主屏 hero（STUDENTS SUBMITTED 9 / TOTAL PAYMENTS ¥-9,000 旧帧 + 漏斗）→ **含漏斗，阻塞**。5-2/5-3/5-4 = viewReferredStudent(3) 详情弹窗（Islam Rahim / Academic transcript REJECTED / Modification requested），**不含漏斗 → 不受缺陷2 阻塞**。
+    - 5-2（§三.3 EN 理由不符）：详情帧已显退回+Modification requested 芯片，字幕改「描述真实画面」后可**缓存帧重烧字幕+四语重配音**（trip15 先例），无需重录、不碰 DB、不含漏斗。
+    - 5-4（§三.4 字幕说审核中/徽章 REJECTED）：需在 §0.3/§0.4 真上传一份 SPECIMEN 更正成绩单使状态真变审核中再高亮 → **要 DB 置态 + 重录**，但帧不含漏斗、不受缺陷2 阻塞（受「要有可靠 reset」约束，建议专趟做）。
+  - **ch9**：9-1..9-4 = 学生列表卡**内联** PREMIUM SERVICES 行（Audit Service ¥1,500 / Human-assisted Search ¥600 / Exposure boost from ¥4,500），滚到卡位，**漏斗已滚出画面 → 不含漏斗 → §三.6(9-2/9-3) 不受缺陷2 阻塞**。§三.6 需：读 i18n 真服务名/说明改写 9-2/9-3 字幕（9-2 现框 Audit Service 却说 unlimited unlocks、9-3 说 concierge）、改各镜高亮对应行、四语重译重配音、重录 ch9（land+port）。9-4 付费曝光字幕本就对（框 Exposure boost），保留。
+  - **仍阻塞（含漏斗，待缺陷2 裁决定版重出）**：ch1(1-8)、ch2(2-x 工作台)、ch3(3-1/3-8)、ch5(5-1)、ch7(7-4)、ch8、ch10 的工作台帧，以及 §三.1(2-2)/§三.2(2-4)/§三.5(7-4)/§三.7(第8章横幅)/§三.8(节奏 3-1/3-8/5-1) 等直接落在工作台章的镜。
+- **下趟可做（不受缺陷2 阻塞）**：①ch9 §三.6（9-2/9-3 服务名字幕 + 重录）；②ch5 §三.3（5-2 缓存帧重烧字幕四语）、§三.4（5-4 置态重录，需可靠 reset）。建议一趟一章专做，照「英文先、再四语」。
+- **改了**：仅本条审计（只读看图），无代码改动。
+- **非四种停下情形**：只读审计，记账继续。
