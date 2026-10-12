@@ -591,3 +591,20 @@
 - **DB**：ch8 开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住（scoped 复位，无全量 rebuild）。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`states/st-ch8-quota-off.sql`(新)、`states/st-ch8-quota-restore.sql`(新)、`rec/shots-v1.json`(8-1 cap+action、8-4 pre/hl/expect 重写)、`captions-v1.json`(8-1 四语)、`rec/_probe-ch8-quota.sql`/`_probe-ch8-qrrow.sql`/`_probe-ch8-fns.mjs`(新·只读)、`REVIEW-{en,zh,ru,fr}-shots.md`、`DECISIONS.md`。voice/8-1 四语重配、成片不入 git；ch8 v1 早在 `_v1/` 留底、dist 覆盖 v2。全片不重拼（待全部工作台章完后统一拼）。四语 ch8 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
 - **下趟**：下一含工作台章定版重录——ch5（5-1 工作台 + 5-4 两态·需 st-pt03-reupload 两态分录）/ ch9（9-2/9-3 已改·需 v185 背景重录）/ ch10（读-only）/ OP-3·4·5 开场快剪。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**
+
+## D-33-1（返工第33趟 2026-10-13）· ch5 材料退回章（两态·state 章）v185 四语横竖定版重录 · review1 §三.3 + §三.4 + §三.8(5-1) + §一
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail/RULING-b-review1/-c-rework/-d-funnel/-e-v185-live/DECISIONS/storyboard/QUEUE。trip32 ch8 已定版；trip32「下趟」列 ch5 首。loop-tail 查明 16:00 那趟两分钟即停＝误读旧「收官」——首行开工即改「返工进行中」。开工 verify **17/17 PASS**（#10 pt-03 退回态在、baseline 守住）。
+- **选题**：ch5 压着三处 review1 遗留——§三.3（5-2 EN 字幕，trip24 已 banked 字幕/配音但为过渡版，5-1 未定版）+ §三.4（5-4 真态机制 trip25 已落、帧捕获明文延后至 ch5 定版重录）+ §三.8（5-1 工作台背景节奏）+ §一（5-1 工作台 v185）。缺陷2 已 v185 修好上线（RULING-d/e），阻塞解除。
+- **两态为何必需**（trip25 D-25-1 实证）：5-2 需退回态 `.reviewer-row-rejected`、5-4 需审核中态 `.badge-reviewing`，apply `st-pt03-reupload` 后 transcript 被 0104 supersede、`.reviewer-row-rejected` 消失 → 单 rec pass 不可兼得。故**两态分录**：退回基线录 5-1/5-2/5-3，置态后单录 5-4。
+- **工具（jobs 工装，非产品码；rec 仍只读，DB 全走 db-run.sh）**：
+  1. `rec/rec.mjs` 加 `--only <csv>`（只录给定镜号子集）+ `--tagsuffix <s>`（同章分趟录到不同 out 目录，timeline.chapter 仍=CH）。
+  2. `rec/prod-ch.mjs` buildChapter 接受逗号分隔多 tag 或 `--tags a,b`，按镜序跨多 timeline/frames 拼一章（ch5 两态：`<lang>-<orient>-ch5` 3 镜 + `...-ch5b` 1 镜 → 4 镜一章）；输出名仍 ch5-<orient>-<lang>.mp4。
+  3. `rec/gp1-finish.mjs` chapterShotDurs 检测 companion `<base>b` out 目录、按镜序合并（联络表取帧、将来全片重拼均据此）。
+- **§三.4 真态（零改产品码、非前端伪造）**：录前 `bash jobs/db-run.sh states/st-pt03-reupload.sql`（新建 transcript v2、uploaded_at 更晚、无新裁决）→ 产品自身 0104 supersede → 详情弹窗 transcript 槽真变 reviewing → 徽章真 `.badge-reviewing`（四语本地化：审核中 / НА ПРОВЕРКЕ / EN EXAMEN / REVIEWING）、矩阵「Awaiting initial review / 等待初步审核 / Ожидает первичной проверки / En attente de la première vérification」。录后 `st-pt03-reupload-reset-cleanup.sql` 删 v2 回退态。
+- **录制闭环（每变体）**：verify 基线退回态 → 录 passA(`--only 5-1,5-2,5-3`) → apply reupload（自检 2/t/1）→ 录 passB(`--only 5-4 --tagsuffix b`) → reset（自检 1/1）→ `prod-ch --tags ...` 拼章。8 变体全 res OK+audio yes+4 镜 hl 全 resolve（passA 3 + passB 1）+全片 no @gmail。
+- **自验**：EN land 4 镜原始帧 + 四语 land 5-4 徽章原始帧亲验（zh 审核中 / ru НА ПРОВЕРКЕ / fr EN EXAMEN 真·本地化，非 EN 回退、非伪造）+ 四语 land/port 联络表（帧取字幕中点）。5-1「Invested ¥0」无负数（§一/缺陷1 销账）；§十一对账四语写 REVIEW-*-shots.md（ch5 定版段）。
+- **时长**：land en36.87/zh36.82/ru36.97/fr36.67 · port en36.83/zh36.77/ru36.84/fr36.81s（4 镜；较过渡版 32s 多 5-4 真态段）。
+- **DB**：ch5 state 章，开工+收工 verify **17/17 PASS 0 FAIL**，往返幂等、收工 clean、零残留（scoped 复位，无全量 rebuild）。
+- **非四种停下情形**：§三.3/.4/.8 + §一全在 §0.3/§0.4 + 成片工装范围，记账继续。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`rec/rec.mjs`(--only/--tagsuffix)、`rec/prod-ch.mjs`(多 tag 拼章)、`rec/gp1-finish.mjs`(chapterShotDurs 合并 companion)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch5 定版段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（5-4 shot 定义 trip25 已落、字幕四语 trip24/16 已 banked）；成片/voice 不入 git；ch5 v1 在 `_v1/` 留底、dist 覆盖定版 v2。四语 ch5 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **下趟**：下一含工作台章定版重录——ch9（9-2/9-3 字幕 trip23 已改·需 v185 背景重录）/ ch10（读-only v185）/ OP-3·4·5 开场快剪（素材 3-8/7-0/7-1 已随 ch3/ch7 定版就位，不再阻塞）。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**

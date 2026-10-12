@@ -98,3 +98,18 @@ D-18-4：RU 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 
 - 时长：land 30.80s / port 30.80s（4 镜）。全 res OK + audio yes，no @gmail，4 镜 hl 全 resolve。
 - 亲验 ru land 联络表四镜：8-1 无横幅框 9、章节条俄文「Глава 8 · Квота и увеличение」、8-4 绿条（EN 回退·产品渲染）；¥0 无负数、无 beta。收工 verify 17/17 PASS。
+
+## ch5 定版重录（两态·v185，返工第33趟 2026-10-13 · 落 §三.3 5-2 + §三.4 5-4 真态 + §三.8 5-1 + §一）
+前置：ch5＝材料退回章（guide-pt-03 Islam Rahim）。此前 trip24 只 banked 5-2 新字幕（过渡版）、trip25 只落 5-4 真态机制与置态/复位脚本（帧捕获明文延后至 ch5 定版重录）。本趟缺陷2 已 v185 修好上线（RULING-20261012d/e），对已修数据**两态定版重录全章**：5-1/5-2/5-3 在退回基线录、5-4 在 apply `st-pt03-reupload` 后单录，由 `prod-ch --tags` 按镜序拼成一章（rec 全程只读，DB 置态/复位走 db-run.sh，录后 reset 回退态、verify 17/17 守住）。工具：rec.mjs 加 `--only`/`--tagsuffix`、prod-ch.mjs 加多 tag 拼章、gp1-finish.mjs chapterShotDurs 合并 companion `b` out 目录。
+- **§三.4（5-4 真态·零改产品码）**：靠产品自己的 0104 supersede——pt-03 真·新建一行更正版 transcript（uploaded_at 更晚、无新裁决）→ `get_partner_student_doc_statuses` 不再返回 reject → 详情弹窗 transcript 槽 `slot.status` 真变 `reviewing`、徽章真变 `.badge-reviewing`、矩阵「Awaiting initial review」。非前端伪造（旧 setInterval 改字已删）。
+- **§一**：5-1 工作台背景 v185，`Invested on this student: ¥0` 无负数（缺陷1 销账）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 5-1 | Документ был возвращён. Откройте студента. | `#__ch5card`（Islam Rahim 学生卡）+ 卡「Invested ¥0」（无负数） | 是 |
+| 5-2 | Транскрипт возвращён — команда Maxhouse просит внести правки. | `.reviewer-row-rejected`「Maxhouse review team · Modification requested」（材料「Академическая выписка · REJECTED」；该行为产品 LL 动态串英文回退，D-18-4 记账） | 是 |
+| 5-3 | Загрузите исправленный файл. | `.replace-box-rej`「Загрузить новую версию」换版框 + 暂存样件 SPECIMEN | 是 |
+| 5-4 | Снова на проверке — не нужно подавать всю заявку заново. | `#studentDetailModal .badge-reviewing`「НА ПРОВЕРКЕ」+「Академическая выписка (транскрипт) · 2 файлов загружено」+ 矩阵「⚙ Система · Ожидает первичной проверки」（真·俄文本地化；同帧无 REJECTED） | 是 |
+- 时长：land 36.97s / port 36.84s（4 镜）。8 片（四语横竖）全 res OK + audio yes；8 录屏 4 镜 hl 全 resolve、零 MISS；全片 DOM 扫描 **no @gmail**。
+- 逐张亲眼复验（EN land 4 镜原始帧 + 四语 land/port 联络表）：5-1「Invested ¥0」无负数（§一/缺陷1 销账）；5-2 框住「Modification requested」退回行（§三.3 达标）；5-4 产品**真·审核中**徽章 REVIEWING + 「Awaiting initial review」（非前端伪造，§三.4 达标）；演示生 Islam Rahim 无真 PII；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- 记账：录前 apply `st-pt03-reupload`（新建 transcript v2）、录后 `st-pt03-reupload-reset-cleanup` 删 v2 回退态；开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住（scoped 复位，无全量 rebuild）。ch5 v1 在 `_v1/` 留底、dist 覆盖为定版 v2。全片不重拼（待全部工作台章完后统一拼）。
