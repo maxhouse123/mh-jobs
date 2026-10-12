@@ -27,3 +27,14 @@
 
 - 时长：land 32.02s / port 32.09s（4 镜）。5-2 段中帧横竖均亲眼复验：高亮框住 "Maxhouse review team · Modification requested" 行、字幕 2 行内不溢出、no @gmail、演示生 Islam Rahim 无真 PII。
 - **⚠ ch5 非最终版（5-1 仍阻塞）**：本趟仅返工 5-2。5-1 是工作台 hero 帧，缓存帧里仍显旧 `TOTAL PAYMENTS PROCESSED ¥-9,000`（缺陷1 已在 D-20-2 数据层修好＝hero ¥0，但此缓存帧录于修复前）且含缺陷2 的全 0 漏斗（产品算法 bug，待业主裁决）。ch5 最终版待缺陷2 NEEDS_OWNER_DECISION 裁决后、对已修数据重录全章（届时 5-1 自动显 ¥0，5-2 新字幕已就位）。5-3/5-4 不含漏斗，字幕与画面一致。
+
+## ch5 §三.4（5-4 字幕说审核中、徽章却 REJECTED，返工第25趟 2026-10-12）
+问题（review1 §三.4）：5-4 字幕「Back under review — no need to resubmit the whole application.」，但旧实现用 `setInterval` 把 `.badge-rejected` 的文字改成「Under review」并改色 = **前端伪造**，画面从未真变审核中。review1 §三.4 要「在 §0.3/§0.4 范围内给 pt-03 真上传一份 SPECIMEN 更正版成绩单，等状态真变成审核中再高亮，录完 scoped 复位」。
+改法（真态化·零改产品代码）：靠产品自己的 0104 supersede 逻辑——给 pt-03 真·新建一行更正版 transcript（`states/st-pt03-reupload.sql`：version2、uploaded_at 更晚、无新裁决）→ `get_partner_student_doc_statuses` 取代旧 rejected → 详情弹窗 `slot.status` 变 `reviewing`。shot 5-4 去伪造、改 `hl=.badge-reviewing,.reviewer-row-pending`、`expect=[.badge-reviewing]`、`forbid=[.badge-rejected]`。字幕四语本就描述"回到审核中"、与真态一致，不改字幕不改配音。复位 `st-pt03-reupload-reset-cleanup.sql` 回退态，verify 17/17 往返守住。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（登录态探针 `_probe-pt03-review.mjs` 从真态 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 5-4 | Back under review — no need to resubmit the whole application. | `.badge-reviewing`（transcript 槽徽章）＝ `status.reviewing` 态；材料矩阵 `.reviewer-row-pending`「⏳ ⚙ System · Awaiting initial review」；同帧 `.badge-rejected=0`、无「Modification requested」 | 是（更正件已上传→成绩单真·回到审核中，待初审；非整份重交） |
+
+- 实证：置态后探针读到 `badge_reviewing=1 / badge_rejected=0 / row_rejected=0 / row_pending=1 / modRequested=false`；复位后 verify 17/17（0 FAIL，#10 退回态恢复）。
+- **帧捕获待 ch5 定版重录**：5-2 需退回态、5-4 需审核中态，单 rec pass 不可兼得（置态后 5-2 的 `.reviewer-row-rejected` 消失）；故 5-4 帧捕获随 ch5 全章定版重录（缺陷2 裁后）按两态录制做，同 trip21 对 7-1「先落字幕/机制、再录」的先例。本趟落「证真态机制 + 改 shot 定义」，DB 全程只读往返、收工 clean。
