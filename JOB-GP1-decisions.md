@@ -647,3 +647,17 @@
 - **非四种停下情形**：§五 全在成片工装/只读范围，记账继续。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`rec/gp1-finish.mjs`(OP_BROLL+OP-3/4/5、nearestFrame/stillConcat、buildQuickCut still/leadin 分支、tpad CFR)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加开场快剪 OP-3/4/5 段)、`DECISIONS.md`。成片/voice 不入 git；dist OP/full/trailer/segments 覆盖为含 OP-3/4/5 快剪+全 v185 章的 v2(原始 v1 早在 `_v1/` 留底)。四语 4 REVIEW+决定账+PROGRESS 推 mh-jobs。
 - **下趟**：**全部工作台章 + 开场快剪(OP-2..5) 返工完毕 + 四语全片/速览已重拼**。下趟＝四语过 review1 §六十一项重审（写/更新 REVIEW-{en,zh}-self.md + ru/fr 自审），全过后照 RULING-20261012c-rework 第4条重写 `~/mh-jobs/SUMMARY-GP1.md`(首行 PUSH_OK=yes，大白话写：返工改了什么/review1 每条怎么处理/查出的产品问题留业主/四语新时长/v1 与 v2 区别)。写完循环自停。**GP-1 未收官。**
+
+## D-37-1 (2026-10-13 第37趟 · 四语过 review1 §六十一项重审 → GP-1 返工收官)
+- **接手核对**：git status（主仓库半成品皆别线/工装残留，本线不碰）+ 读齐 PROGRESS/loop-tail(20261012-163805，辨明 16:00「2 分钟即停」＝误判收官·非真收官)/RULING-b-review1(§六十一项定义)/-c-rework(第4条收官口径)/-gp1(§三前九项+§二停下四情形)/-d-funnel/-e-v185-live/DECISIONS/QUEUE/storyboard。trip36 已把全部工作台章+开场快剪(OP-2..5)返工完、四语全片/速览重拼完→本趟明文列＝四语过十一项重审+写 SUMMARY。首行开工即改「返工进行中」，开工 verify **17/17 PASS**。
+- **本趟性质**：纯复审+文书趟，**零 DB 写入/零置态/零重录**。十一项所需证据多已由 trip21-36 逐镜/逐章落在 REVIEW-{en,zh,ru,fr}-shots.md(第十一项逐镜对账表)，本趟做跨语言汇总复核 + 补三项当场新证：
+  - **第七项（禁用词）新证**：对 `captions-v1.json` 全 **57 镜 × 4 语**正则扫描——禁用词(零中介/没有纠纷/优先审核/半价/绕过 GPA·HSK 的 EN/ZH/RU/FR 变体)+ 真名校名(清华/北大/复旦…中写 + Tsinghua/Peking/Fudan…拉写)，**0 命中**。beta/内测/test 字样同扫 **0 命中**。
+  - **第八项（二维码）新证**：/tmp 装 jsqr+pngjs(不入 git)，对 8 个成片 `ED-{land,port}-{en,zh,ru,fr}.mp4` 抽实帧 jsQR **真帧解码**，全部解出 `https://www.maxhouses.net/partner-portal/?src=video-<语言>` 逐字一致(非再生成，是对实际画面解码)。
+  - **规格新证**：ffprobe 实测四语 full/trailer/OP/ED 时长（见 SUMMARY 时长表），与 trip36 记录逐项一致；segments 计数全语齐(full 12-13/trailer 5-6)。
+- **十一项结论（四语各自）**：全过。逐项证据写入 `REVIEW-{en,zh,ru,fr}-self.md`（EN 为九项版 v1 升级为十一项版 v2，zh/ru/fr 新建）。四张 shots 表 **0 条「否」**(en 文件内唯一「否」字系「否则」prose、非对账行)。
+- **ch6 §二 复核（易误判点·记此防返工）**：trip36 PROGRESS 曾写「ch6 review1 未列照原版入拼」，措辞易误解。实证 D-21-1(trip21) 已完整执行 review1 §二：删 6-4/6-6 + 去 `_p130_SchoolCache` 注入→ch6=6-1→6-2→6-3→6-7 只读、6-3/7-1 字幕四语改+重配音、beta 链接 MASK_INIT 遮、速览镜单改 6-2→7-0/7-1/7-3。ch6 无工作台漏斗背景→§一未列、不需 v185 重录，trip36 直接纳入 trip21 返工版 ch6。核对无缺。ch4(具名邀请章)同理 review1 未标任何缺陷、无工作台背景→照原版入拼。
+- **缺陷2 定性复核**：D-20-? 曾定性为产品算法问题并拟写 NEEDS_OWNER_DECISION；后中介端 v185 已将漏斗修复并 2026-10-12 21:38 上线(RULING-20261012d/e)→不再需停下请示，含工作台章全部 v185 定版重录销账。既存两张 NEEDS_OWNER_DECISION(1914/2017)属旧议题、业主已以 v185 上线作答，本趟不新写停下文件。
+- **收官动作（RULING-c 第4条）**：十一项四语全过→重写 `~/mh-jobs/SUMMARY-GP1.md` 首行 `PUSH_OK=yes`，大白话写：返工改了什么 / review1 每条怎么处理 / 查出的产品问题留业主(在哪·怎么改) / 四语新时长 / v1 与 v2 区别。
+- **非四种停下情形**：全在只读复审+文书范围，不碰端口码/不越 §0.3·0.4/不碰 R2·CF·主仓库推送。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-en-self.md`(九项→十一项 v2)、`REVIEW-{zh,ru,fr}-self.md`(新建十一项)、`DECISIONS.md`。无成片改动(trip36 已定版)、无 shots/captions 改动、零 DB。四语 4 self-review + SUMMARY-GP1 + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**：无。GP-1 四语横竖返工全部完成、十一项四语全过、SUMMARY-GP1 PUSH_OK=yes 已出→循环自停。**不开始 GP-2：不传 R2、不动 Cloudflare、不推主仓库**(留业主另行授权上线)。
