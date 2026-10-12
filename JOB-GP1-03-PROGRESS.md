@@ -1,3 +1,19 @@
+最后一趟：2026-10-12 23:20 第29趟 返工：**做了**＝接 trip28（ch2 定版 v185 已出），本趟做 ch1 工作台章定版重录（review1 §一）。ch1 读-only（1~7 镜注册/入驻 UI 产品自身渲染、1-8 已登录 hub），review1 未标 ch1 任何字幕缺陷→字幕一字不改，纯 v185 底座整章四语横竖定版重录。病灶＝1-8 背景 hero，v184 缓存帧显 `TOTAL PAYMENTS PROCESSED ¥-9,000`（负数，缺陷1；亲看 v184 ch1-contact-land-en 实证）。v185 底座（含 trip28 offCamera 等待）重录后 1-8 自动显 **¥0**。四语 land 1-8 原始帧逐张亲验：四语全 ¥0（负数销账）、STUDENTS SUBMITTED 9、APPROVED/одобрено/approuvé/已通过 徽章橙框、无负数、无 beta、注册号画面 no @gmail+邀请码打码+SPECIMEN+无真 PII、页头平台 WhatsApp/Email 不遮。8 片全 res OK+audio yes+no @gmail+8 镜 hl 全 resolve。§十一对账四语写入 REVIEW-*-shots.md。时长 EN49.43·ZH49.45·RU51.22·FR49.62s(land)。ch1 全程只读，开工+收工 verify 17/17 PASS 0 FAIL。踩坑：批量录 `$combo` 未分词污染 TAG（LEDGER-3 复犯），TaskStop 杀后台改带引号位置参数函数重录。v1 成片在 _v1/ 留底，覆盖 dist 为 v2。**全片 bookend/film/trailer 本趟不重拼**（待全部工作台章完后统一拼）。主仓库点名提交 JOB-GP1 不推；四语 ch1 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。**下趟**＝下一含工作台章定版重录（ch3 3-1·3-8 节奏+§四草稿残留/ch7 7-4/ch8 横幅/ch5 5-1·5-4 两态/ch10/OP-3·4·5 快剪），一趟一章；全部完后四语过十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官，勿据旧『收官』停工。**
+
+---
+# 第29趟详记：
+## 第 29 趟（2026-10-12 Mac mini 无人值守）· ch1 工作台章定版重录 v185（review1 §一）
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail/RULING-b-review1/-c-rework/-d-funnel/-e/DECISIONS/storyboard。trip28 ch2 已定版、缺陷2 已 v185 上线。首行开工即改「返工进行中」（16:00 误读旧收官教训不复犯）。开工 verify **17/17 PASS**。
+- **选题**：挑 ch1——读-only、review1 §一 点名 1-8 背景负数、无 ch1 字幕缺陷→纯 v185 重录。亲看 v184 `ch1-contact-land-en.png` 实证 1-8 hero 显 ¥-9,000。
+- **做法**：rec.mjs（trip28 已切 v185+offCamera 等待）× 4 语 × 2 画幅＝8 片 → prod-ch 合成 → gp1-finish contact 联络表（帧取字幕中点）。字幕/配音/shots/captions 一字未改。
+- **自验**：四语 land 1-8 原始帧亲验 ¥0（负数全销账）+ 9 submitted + 徽章橙框 + 无负数/beta + 注册号脱敏；§十一对账四语 REVIEW-*-shots.md。8 片全 res OK+audio yes+no @gmail。
+- **DB**：ch1 只读，开工+收工 verify **17/17 PASS 0 FAIL**，零置态/零写库。
+- **踩坑**：`for combo in "en port"` + `set -- $combo` 在 Bash 工具未分词 → TAG 污染 `en port---lang-ch1`、compose 崩（LEDGER-3 trip23 同学费复犯）；TaskStop 杀后台、改 `run(){...--orient "$2" --lang "$1"}` 带引号位置参数重录，全 8 片正常。
+- **改了**（主仓库，点名 JOB-GP1，不推）：REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md（rec/out/* gitignore 不入库）。成片/voice 不入 git；四语 ch1 联络表+4 REVIEW+决定账+PROGRESS 推 mh-jobs。v1 在 _v1/ 留底，dist 覆盖 v2；全片不重拼。
+- **下趟**：下一含工作台章（ch3/ch7/ch8/ch5/ch10/OP-3·4·5）定版重录，一趟一章；全部完后十一项重审+重拼全片→写 SUMMARY-GP1。GP-1 未收官。
+
+---
+# 上一趟（第28趟）首行存档：
 最后一趟：2026-10-12 22:20 第28趟 返工：**做了**＝v185 上线后(RULING-20261012e)起做被缺陷2 卡住的定版重录第一章 ch2。①录制底座 rec.mjs 切 v184→v185(线上同版)+加 offCamera 等待(offers≥5 且 gate_open≥6, 因漏斗/「匹配中」标签靠异步 RPC 加载, 录早了定格错态 9/0/0/0 与「已提交·等待审核」)——惠及全部后续工作台章。②review1 §三.1(2-2)：只读实证工作台**无「名额已用/剩余」显示**→改高亮并描述屏上真有的录取漏斗(v185 真值 9→3→2→1·5 offer·人均0.6)。③§三.2(2-4)：实证 `.partner-student-status-approved` class **永不存在**(stage 列恒 NULL→class 恒 pending；真「材料已通过·匹配中」是 gate_open 覆盖标签, 6 张)→hl 改按真标签文本逐语言高亮、字幕改述真档。2-2/2-4 四语字幕+配音重做(shots-v1/captions-v1 三源同步, en/zh 逐字一致)。四语横竖重录 v185(8 片, 全 res OK+audio yes, no @gmail, hl 全 resolve)→合成→联络表(帧取字幕中点)。四语 land 联络表逐张亲验:漏斗无负数全0、2-4 框真「匹配中」、¥0 保留(§一.3)、无 beta、演示生无真 PII。§十一对账四语写入 REVIEW-*-shots.md。时长 EN27.66·ZH29.34·RU28.23·FR27.68s(land)。ch2 全程只读, 开工+收工 verify 17/17 PASS。v1 成片在 _v1/ 留底。**全片 bookend/film/trailer 本趟不重拼**(待全部工作台章完后统一拼)。留给业主产品问题2 条(工作台无名额显示 / 卡徽章色恒 pending 蓝)入账待写 SUMMARY。主仓库点名提交 JOB-GP1 不推；联络表+4 REVIEW+决定账+PROGRESS 推 mh-jobs。**下趟**＝下一含工作台章定版重录(ch1 1-8/ch3 3-1·3-8 节奏/ch5 5-1/ch7 7-4/ch8 横幅/ch10)或 OP-3/4/5 开场快剪(素材现已不阻塞)，一趟一章；全部完后四语过十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官，勿据旧『收官』停工。**
 ---
 # 第28趟详记：

@@ -40,3 +40,17 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 | 2-5 | Les notifications vous préviennent dès qu'une université agit. | 通知铃（角标 55）→ 开通知面板（≥4 条） | 是 |
 
 - 时长：land 27.68s / port 27.62s。全片 no @gmail。亲眼复验（FR land 联络表）：漏斗 9/3/2/1 无负数全 0、2-4 框「Documents validés · mise en relation」、¥0 保留、演示生无真 PII、无 beta 控件；部分界面串英文回退（D-18-4）。
+
+## ch1 §一（1-8 工作台负数金额，返工第29趟 2026-10-12 · v185 定版重录）
+前置：ch1 第 1～7 镜＝注册/入驻 UI（产品自身渲染、零写库），review1 未标 ch1 字幕缺陷；唯 1-8 背景 hero 有 review1 §一 的负数（v184 `TOTAL PAYMENTS PROCESSED ¥-9,000`）。本趟 v185 底座整章四语横竖定版重录，1-8 背景自动显 `¥0`。字幕一字未改。
+
+| 镜 | 字幕原文（未改） | 高亮区 DOM 实际文字（v185 真帧） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 1-1 | Ouvrez le portail partenaire. Touchez « Nouvelle agence ? Inscription ». | 登录门整屏（整屏 integral） | 是 |
+| 1-3 | Saisissez le code d'invitation de la page guide, puis votre e-mail et un mot de passe. | `#regInvite` 邀请码框（已打码） | 是 |
+| 1-5 | Présentez votre agence : nom, pays, personne à contacter, étudiants par an. | 入驻资质表单 | 是 |
+| 1-6 | Téléversez la pièce d'identité du responsable et votre licence d'exploitation. | 上传区（SPECIMEN 样件） | 是 |
+| 1-7 | Soumettez. Notre équipe examine les nouvelles agences sous deux jours ouvrés. | 「审核中」琥珀药丸状态页 | 是 |
+| 1-8 | Une fois approuvé, votre espace partenaire est ouvert. | `.hero`（Demo Agency · Partenaire · approuvé，橙框）；同帧 hero「STUDENTS SUBMITTED 9」「TOTAL PAYMENTS PROCESSED ¥0」（**非 v184 的 ¥-9,000**） | 是 |
+
+- 时长：land 49.62s / port 49.68s（8 镜）。全片 no @gmail。亲眼复验（FR land 1-8 原始帧）：1-8 hero ¥0（负数销账）、STUDENTS SUBMITTED 9、approuvé 徽章橙框；无负数、无 beta 控件；法文 UI（Espace partenaires / Aucun étudiant boosté，部分串英文回退 D-18-4）；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。

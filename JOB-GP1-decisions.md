@@ -533,3 +533,17 @@
 - **留给业主的产品问题（记入 SUMMARY）**：①中介端工作台无「名额已用/剩余」显示；②卡状态徽章色恒 pending 蓝（`students.stage` 列恒 NULL），即便标签已「材料已通过·匹配中」（gate_open 覆盖）——色与标签语义不一致，属产品 stage 列未回填历史问题。
 - **改了**（主仓库，点名提交 JOB-GP1，不推）：rec/rec.mjs、rec/shots-v1.json、captions-v1.json、rec/tts-gp1.mjs、rec/_probe-ch2-dom.mjs(新)、rec/_probe-ch2-sel.mjs(新)、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；四语 ch2 联络表 + 四 REVIEW + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**：接做下一含工作台章的定版重录（ch1 1-8 / ch3 3-1·3-8 节奏 / ch7 7-4 / ch8 横幅 / ch5 5-1 定版 / ch10），一趟一章；OP-3/4/5 开场快剪（素材 3-8/7-0/7-1 现已不阻塞）亦可做。全部完成后四语过十一项重审 + 重拼全片 → 写 SUMMARY-GP1。GP-1 未收官。
+
+## D-29-1 (2026-10-12 第29趟 · ch1 工作台章定版重录 v185 · review1 §一)
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail/RULING-20261012b-review1/-c-rework/-d-funnel/-e-v185-live/DECISIONS/storyboard/QUEUE。trip28 已把 ch2 定版 v185 重录完；缺陷2 已 v185 修好并 21:38 上线。trip28「下趟」＝下一含工作台章定版重录（ch1 1-8 / ch3 / ch5 5-1 / ch7 7-4 / ch8 横幅 / ch10）或 OP-3/4/5。本趟首行即改「返工进行中」（trip26/16:00 误读旧收官即停的教训不复犯）。开工 verify **17/17 PASS**。
+- **选题（我的决定）**：挑 **ch1**。依据：①ch1 读-only（trip18 note「Read-only chapters 1/2/5/8/9/10 direct」，第 1～7 镜＝注册/入驻 UI 产品自身渲染 client-side、1-8 为 guide_partner 已登录 hub，全程零写库）；②review1 §一 点名「第 1 章（1-8）」背景有工作台负数（v184 缓存帧 `TOTAL PAYMENTS PROCESSED ¥-9,000`）——我亲看 v184 的 `ch1-contact-land-en.png` 实证 1-8 cell hero 确显 ¥-9,000；③review1 未标 ch1 任何字幕缺陷→本趟＝纯 v185 底座整章四语横竖定版重录，字幕一字不改，无需改 shots/captions/配音。低风险、按章序为首。
+- **做法（零改产品码/迁移；rec.mjs 已在 trip28 切 v185 + offCamera 等待）**：对 ch1 × 4 语 × 2 画幅＝8 片：`node rec.mjs --chapter 1 --orient <O> --lang <L>`（录帧，8 镜 hl 全 resolve、全片 no @gmail）→ `node prod-ch.mjs --tag <L>-<O>-ch1`（合成，res OK + audio yes）→ `node gp1-finish.mjs --stage contact --lang <L> --chapter 1`（联络表，帧取每镜字幕中点）。
+  - **踩坑（LEDGER-3 复犯·已纠）**：首轮用 `for combo in "en port"...; set -- $combo` 批量录——Bash 工具下 `$combo` 未分词（zsh 行为，正是 trip23 记过的学费），TAG 污染成 `en port---lang-ch1`、compose 崩。立即 TaskStop 杀后台、改用 `run(){ ... --orient "$2" --lang "$1" ...}` 带引号位置参数函数重录，全 8 片正常。污染 out 目录为 gitignore 残留、未入账。
+- **验证（亲眼）**：四语 land 1-8 原始帧（46~48s）逐张复验——**TOTAL PAYMENTS PROCESSED ¥0**（四语全 ¥0，v184 的 ¥-9,000 负数销账，review1 §一 ch1 项销账）、STUDENTS SUBMITTED 9、APPROVED/одобрено/approuvé/已通过 徽章橙框；无负数、无 beta/内测/test 控件；注册号画面 no @gmail、邀请码打码、SPECIMEN 样件、无真护照/电话；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1 批准）。§十一逐镜对账四语写入 REVIEW-{en,zh,ru,fr}-shots.md（ch1 段）。
+- **时长**：EN land 49.43 / port 49.44；ZH 49.45 / 49.48；RU 51.22 / 51.25（RU 配音较长）；FR 49.62 / 49.68s。
+- **记账·1-8 同帧「Quota raise pending 10→30」横幅**：＝基线真实待审提额请求（verify #13），在 ch1 叙事中属真实背景态、不矛盾；其与 ch8 叙事的矛盾（8-1 已显待审 vs 8-2/8-3 才申请）由 review1 §三.7 ch8 返工时 scoped 撤除再录处理，与 ch1 无关、本趟不动。
+- **DB**：ch1 全程只读，开工 + 收工 verify **17/17 PASS 0 FAIL**。零置态 / 零写库。
+- **v1 留底 / 不重拼全片**：ch1 v1 成片早在 `~/guide/dist/partner/_v1/` 留底（8 片在册），本趟覆盖 dist 为 v2。**全片 bookend/film/trailer/segments 本趟不重拼**（仍含旧 ch 混装）——待全部工作台章（ch3/5/7/8/10 + OP-3/4/5）返工完后统一重拼（同 trip28 先例，RULING-20261012d §三.3 末）。
+- **改了**（主仓库，点名提交 JOB-GP1，**不推**）：rec/out/*（gitignore，不入库）、REVIEW-{en,zh,ru,fr}-shots.md、DECISIONS.md。成片/voice 不入 git；四语 ch1 联络表（land+port）+ 四 REVIEW + 决定账 + PROGRESS 推 mh-jobs。
+- **非四种停下情形**：ch1 全在只读 + 成片工装范围，记账继续。
+- **下趟**：接做下一含工作台章定版重录——ch3（3-1/3-8 含 §三.8 节奏，需真 submit 置态 + st-ch3-cleanup 复位 + §四草稿残留处理）或 ch7（7-4 §三.5，需 pt-07/08/09 置态）或 ch8（§三.7 横幅，需 scoped 撤提额请求）或 ch5 5-1/5-4 两态定版 或 ch10（读-only）或 OP-3/4/5 开场快剪（素材 3-8/7-0/7-1 现已不阻塞）。一趟一章；全部完后四语过十一项重审 + 重拼全片 → 写 SUMMARY-GP1。GP-1 未收官。

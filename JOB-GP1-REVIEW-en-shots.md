@@ -69,3 +69,19 @@
 - 时长：land 27.66s / port 27.66s。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**。
 - 逐张亲眼复验（EN land 联络表 + 2-2/2-4 原始帧）：2-2 漏斗 9/3/2/1 无负数无全 0；2-4 框住「Documents approved · matching」真标签；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）；¥0 TOTAL PAYMENTS PROCESSED 保留（§一.3）；演示生 Mbarga Junior / Islam Rahim 无真 PII；无 beta/内测/test 控件。
 - **记入 SUMMARY「留给业主的产品问题」**：①中介端工作台无「名额已用/剩余」显示（故 2-2 改述漏斗）；②卡状态徽章颜色恒 pending 蓝（`students.stage` 列恒 NULL），即便标签已是「材料已通过·匹配中」（gate_open 覆盖），色与标签语义不一致——属产品层 stage 列未回填的历史问题，非本片可改。
+
+## ch1 §一（1-8 工作台负数金额，返工第29趟 2026-10-12 · v185 定版重录）
+前置：ch1 第 1～7 镜＝注册/入驻 UI（产品自身 gateShowRegister/renderPendingView 渲染，client-side 驱动、零写库），review1 未标 ch1 任何字幕缺陷；唯 1-8「切到 guide_partner：APPROVED 徽章 + 工作台」背景里有 review1 §一 点名的工作台数字问题——v184 缓存帧的 hero 显 `TOTAL PAYMENTS PROCESSED ¥-9,000`（负数，缺陷1）。本趟在 v185 底座（含 trip28 offCamera 等待）对 ch1 整章四语横竖定版重录，1-8 背景自动显修好后的 `¥0`。字幕一字未改。
+
+| 镜 | 字幕原文（未改） | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 1-1 | Open the partner portal. Tap "New agency? Register". | 登录门整屏 `.gate-card`＋`.lang-toggle`（Partner portal 登录卡，含「New agency? Register」链接）（整屏 integral，无单点高亮） | 是 |
+| 1-3 | Enter the invite code from the guide page, then your email and a password. | `#regInvite` 邀请码输入框（注册盒 `#gateRegisterBox` 内，邀请码明文已 forbid 打码） | 是 |
+| 1-5 | Tell us about your agency: name, country, contact person, students per year. | `#onbOrgNameEn,#onbCountry`（入驻资质表单：机构名/国家/联系人/年送生量字段区） | 是 |
+| 1-6 | Upload the owner's ID and your business licence. | `label[for="onbFile_passport"],.onb-doc-card`（上传区：负责人证件 + 机构资质 SPECIMEN 样件卡） | 是 |
+| 1-7 | Submit. Our team reviews new agencies within two working days. | `.pill-amber,.card-big`（提交后「审核中」状态页，琥珀药丸 pending 卡） | 是 |
+| 1-8 | Once approved, your Partner Hub is open. | `.hero`（Demo Agency · Partner approved 徽章，橙框）；同帧工作台 hero 统计＝`STUDENTS SUBMITTED 9` / `TOTAL PAYMENTS PROCESSED ¥0`（**非 v184 的 ¥-9,000**） | 是 |
+
+- 时长：land 49.43s / port 49.44s（8 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**。
+- 逐张亲眼复验（EN land 联络表 + 1-8 原始帧 46s）：1-8 hero `TOTAL PAYMENTS PROCESSED ¥0`（负数已消失，review1 §一 销账）、`STUDENTS SUBMITTED 9`、APPROVED 徽章橙框；无负数、无 beta/内测/test 控件；注册演示号画面 no @gmail、邀请码打码、SPECIMEN 样件、无真护照号/电话；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- 记账：1-8 同帧有「Quota raise pending: 10 → 30」横幅＝基线真实待审提额请求（verify #13），在 ch1 叙事中属真实背景态、不矛盾（该横幅与 ch8 叙事的矛盾由 §三.7 ch8 返工时 scoped 撤除后再录处理，与 ch1 无关）。
