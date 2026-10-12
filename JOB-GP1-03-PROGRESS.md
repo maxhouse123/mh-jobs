@@ -1,6 +1,15 @@
-最后一趟：2026-10-12 第15趟 — **EN 英文母版九项自审全过 · EN 清关 ✅**。收口四项：item-2（ch2/5/8/9/10 横竖联络表逐张亲验→10章20张全验）；item-3（页头平台自有联系 WhatsApp/+49…/Service@maxhouses.net，CC 按 RULING §2 自处理定案**选A保留不遮**，非 §2.6 停下情形，口径收窄为"无演示生/机构/第三方私人联系+邀请码+护照明文"，铁律15 人眼闸保留，D-15-1）；item-4（出全镜对账表 REVIEW-en-caption-button-audit.md + 修 1-1「Register your agency→New agency? Register」、3-1「Submit a new student→Submit New Student Referral」两处引号标签逐字对齐真控件，重配 EN 音→缓存帧重出 ch1/ch3 EN 横竖→重拼全片443s/速览177s/重生联络表，抽帧+真Chrome 复证，D-15-2/3/4）；item-8（装 jsqr 对 ED-en 真帧解码，land+port 均=https://www.maxhouses.net/partner-portal/?src=video-en，D-15-5）。本趟**零 DB 操作**（纯合成/自审/解码，baseline 16/16 自 trip14 未动）。ZH 配音已在(58 条)。**下趟：开录中文**——ch1 起走每章固定流程（开工先 verify 16/16 → 置态 → 录 ZH 横竖 → rebuild → verify），ZH 完再 RU/FR（录时逐语做 item-7 禁用词扫描+item-8 二维码解码+item-4 对 RU/FR 3-1 回退标签复核）。本轮不推主仓库、不上线。
+最后一趟：2026-10-12 第16趟 — **开录中文（ZH）启动**。章节条本地化（chapterBar 加 lang，zh=「合作伙伴端 / 第 N 章 + 中文章名」，EN 默认不变，D-16-1）。ZH ch1（注册与开通，8 镜，49.46/49.48s，零 DB 写入）+ ZH ch2（工作台，5 镜，28.16/28.12s，零 DB 写入）横竖成片齐、联络表逐张亲验（字幕↔画面一致、中文 UI、邀请码掩码、演示邮箱 firstname.demo@example.com、零 @gmail）。item-3 页头平台联系同 D-15-1 口径保留。baseline 16/16（开工实测，ch1/ch2 零写未动）。**下趟：ZH ch3**（真 submit，照 EN trip12 编排 + st-ch3-cleanup scoped 复位，AI 预检注入中文样例词），续 ch4..ch10；ZH 完再 RU/FR。本轮不推主仓库、不上线。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+
+## 第 16 趟（2026-10-12 Mac mini 无人值守）· 开录中文 ZH（ch1+ch2）
+- **章节条本地化（D-16-1）**：gp1-overlays.chapterBar 加 `lang` 形参（默认 en，EN 母版逐字节不变）+ BAR_I18N（zh 左标签「合作伙伴端」/前缀「第 N 章」；ru/fr 预留）；prod-ch 加 CH_TITLE_ZH（照 storyboard 10 章名）+ CH_TITLE_FOR，chapterBar 调用传 LANG。抽 ch1 首帧肉眼复验中文正常无豆腐块。
+- **ZH ch1（注册与开通，D-16-2）**：照 EN trip13 三登录态编排仅 `--lang zh`。零 DB 写入（baseline 不动，无需 rebuild）。成片 ch1-{land,port}-zh.mp4（49.46/49.48s，8 镜，1920x1080/1080x1920 带音轨）；联络表 shots/GP1/zh/ch1-contact-{land,port}-zh.png 逐张亲验（8 格齐、1-1→1-8 字幕↔画面一致、邀请码 MAXHOUSE-PARTNER-XXXX 掩码、演示邮箱 firstname.demo@example.com、零 @gmail）。
+- **ZH ch2（工作台）**：CONTEXT 同 EN（2-5 toggleStuNotifPanel）。零 DB 写入。成片 ch2-{land,port}-zh.mp4（28.16/28.12s，5 镜）；联络表亲验（工作台/名额/进度/五档徽章/通知 五镜齐、中文 UI、仅演示生名、零 @gmail）。
+- **item-3 页头平台联系**：ZH 片同 D-15-1 口径（平台自有 WhatsApp/+49…/Service@maxhouses.net 保留不遮，铁律15 人眼闸保留）。
+- **DB**：开工 verify 16/16 PASS；ch1/ch2 零 DB 写入，baseline 未动。
+- **成片现状（ZH）**：1·2（2/10）。
+
 
 ## 第 15 趟（2026-10-12 Mac mini 无人值守）· EN 英文母版九项自审全过 → EN 清关
 - **item-2 收口**：ch2/ch5/ch8/ch9/ch10 横竖联络表逐张亲眼看图（接 trip14 已验 ch1/3/6/7+ch4页头）→ 10 章×横竖 20 张全验。每格画面与该镜字幕一致；演示生邮箱 = agency.demo@example.com（MASK），参考码 PA-xxxx/盲码 SCH-xxxx 为非密标识，全片零 @gmail。

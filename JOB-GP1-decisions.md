@@ -144,3 +144,18 @@
 - **item-2**：ch2/ch5/ch8/ch9/ch10 横竖联络表**逐张亲验**（接 trip14 已验的 ch1/3/6/7/ch4 页头）——每格画面与该镜字幕所述一致；演示生邮箱显示为 agency.demo@example.com（MASK）、机构参考码 PA-xxxx/盲码 SCH-xxxx 为非密标识、无 @gmail。**item-2 ✅**（10 章横竖 20 张全验）。
 - **item-8**：/tmp/qrdecode 装 jsqr@1.4.0 + pngjs（代理下载，不入 git）；对 ED-{land,port}-en.mp4 第 10s 抽帧经 jsQR 解码——横竖两版均 = `https://www.maxhouses.net/partner-portal/?src=video-en`，与 §3.8 期望逐字一致。**item-8 ✅**（真帧解码，非再生成）。RU/FR/ZH 录制时同法逐语解码核 `src=video-<语言>`。
 - **改了**：无代码（装包在 /tmp 不入 git）。
+
+## D-16-1 (2026-10-12 第16趟 · ZH 章节条本地化)
+- **章 / 镜**：全章节条（prod-ch 阶段），ZH 录制。
+- **问题**：章节条右侧原固定英文「Partner Hub / Chapter N / <EN title>」（CH_TITLE 仅英文）。中文观众片若保留英文章节条属本地化缺角。
+- **可选项**：(a) 保留英文章节条；(b) 本地化为中文。
+- **选** (b)：照 RULING §二（本地化，四条重点文字不动；章节标题非四条重点，可本地化）。
+- **做法**：gp1-overlays.chapterBar 增 `lang` 形参（默认 'en'，EN 母版逐字节不变）+ BAR_I18N 表（zh 左标签「合作伙伴端」、前缀「第 N 章」；ru/fr 预留 Глава/Chapitre，左标签暂留 Partner Hub 待各语趟定）；prod-ch 增 CH_TITLE_ZH（照 storyboard 10 章名）+ CH_TITLE_FOR，chapterBar 调用传 LANG。
+- **验**：抽 ch1-land/port-zh.mp4 首帧肉眼复验——章节条「合作伙伴端 / 第 1 章 注册与开通」中文正常渲染（无豆腐块），字幕中文正常，产品 UI 中文（中 选中）。
+- **改了**：rec/gp1-overlays.mjs、rec/prod-ch.mjs（均 JOB-GP1 自有工装，不碰端口码）。
+
+## D-16-2 (2026-10-12 第16趟 · ZH ch1 成片)
+- **章 / 镜**：第 1 章 注册与开通，ZH 横竖。
+- **做法**：照 EN trip13 同编排（三登录态：1-1..1-4 未登录门禁高亮不点 / 1-5..1-7 产品 render 喂样例 / 1-8 guide_partner 真登录工作台），仅 `--lang zh`。**零 DB 写入**（录前 verify 16/16，录中纯浏览/注入，baseline 不动，无需 rebuild）。
+- **交付**：~/guide/dist/partner/ch1-{land,port}-zh.mp4（49.46/49.48s，8 镜，1920x1080/1080x1920 带音轨）；联络表 ~/mh-jobs/shots/GP1/zh/ch1-contact-{land,port}-zh.png（逐张亲验，8 格齐、字幕↔画面一致、零 @gmail、邀请码掩码、演示邮箱 firstname.demo@example.com）。
+- **item-3 页头平台联系**：ZH 片同 D-15-1 口径（平台自有 WhatsApp/电话/Service@maxhouses.net 保留不遮，铁律15 人眼闸保留）。
