@@ -16,3 +16,14 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 - 时长：land 24.27s / port 24.24s。no @gmail。章节条左标签「Partner Hub」(D-18-5)。演示生 Serikova Aizhan，无真 PII。
 - 逐张亲眼复验：各镜框对应行，不越界。
 - item-7 FR 禁用词扫描：0 命中（_scan-fr-forbidden 73 串 PASS）。
+
+## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12）
+问题/依据/做法同 EN REVIEW「开场快剪 OP-2」节。本趟只做 OP-2（素材 ch6 6-1/6-2 两份盲 offer）；OP-3/4/5 静止卡面待缺陷2 裁后接做。零改产品代码/迁移。
+
+| 镜 | 字幕原文（配音，不改） | 快剪后画面（b-roll 中帧 DOM） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-2 前 2.5s | Une seule soumission, de nombreuses universités ／（正文配音） | 重点①卡满屏（紫底橙圈 1 + 法文标题 + 正文） | 是 |
+| OP-2 2.5s~尾 | （同一句配音续） | ch6 法文真实画面：学生 Hussain Bilal 详情「OFFRES D'ADMISSION」列两份盲 offer（SCH-1AD6C8 / SCH-8E561C，均 UNIVERSITÉ · EN ATTENTE、无校名），底部叠「① Une seule soumission, de nombreuses universités」 | 是 |
+
+- 亲眼复验（FR land b-roll 中帧）：两份盲 offer、无校名（双盲守住）、无 beta 控件、演示生无真 PII；界面法文本地化（TABLEAU PARTENAIRE·ÉTUDIANT / ÉCOLES INTÉRESSÉES / ACTION REQUISE / DOCS APPROUVÉS）；标题条＝ FR OP-2 卡标题/ED-1 回顾串一字一致；专业名英文回退（D-18-4）。
+- OP-2 卡 11.1s 不变 → 全片 land 446.0s / port 444.7s。

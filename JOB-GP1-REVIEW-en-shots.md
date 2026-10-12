@@ -38,3 +38,16 @@
 
 - 实证：置态后探针读到 `badge_reviewing=1 / badge_rejected=0 / row_rejected=0 / row_pending=1 / modRequested=false`；复位后 verify 17/17（0 FAIL，#10 退回态恢复）。
 - **帧捕获待 ch5 定版重录**：5-2 需退回态、5-4 需审核中态，单 rec pass 不可兼得（置态后 5-2 的 `.reviewer-row-rejected` 消失）；故 5-4 帧捕获随 ch5 全章定版重录（缺陷2 裁后）按两态录制做，同 trip21 对 7-1「先落字幕/机制、再录」的先例。本趟落「证真态机制 + 改 shot 定义」，DB 全程只读往返、收工 clean。
+
+## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12）
+问题（review1 §五）：开场四条重点卡（OP-2..5）各约 9~16s 全是静止卡面，合计约 50s；速览（招募片）也以这四张卡开头。中介多在手机上从社媒点开，开头长时间静止易被划走。review1 §五 令「现在就做快剪」：每张重点卡总时长不变（=配音+0.5s）、配音不动；先满屏卡面约 2.5s，再切到对应章节真实画面（静音、配音续），画面叠一条重点标题条，直到本卡结束；横竖各用对应画幅素材；四条重点文字一字不改。
+本趟范围：**只有 OP-2 不受缺陷2 阻塞**——其素材是第6章 6-1/6-2 的两份盲 offer（ch6 已在 trip21/22 返工完、beta 链接已遮蔽）。OP-3/4/5 的素材 3-8/7-0/7-1 含工作台/漏斗，仍受缺陷2 阻塞，本趟保持静止卡面，待缺陷2 NEEDS_OWNER_DECISION 裁后接做。
+实现（`gp1-finish.mjs` + `gp1-overlays.mjs`，零改产品代码/迁移）：新增 `keypointStrip` 叠层（重点标题条＝紫带+橙编号圈+标题，置于底部字幕带位置、取代章节字幕）；`buildQuickCut` 对 OP-2 产出 card(2.5s)+b-roll（取 ch6 原始帧 `out/<lang>-<orient>-ch6/frames`、页面定位同 prod-ch、静音、底部叠标题条）+ 全程配音；卡总时长不变（EN 10.4s）。
+
+| 镜 | 字幕原文（配音，不改） | 快剪后画面（b-roll 中帧 DOM） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-2 前 2.5s | One submission, many universities ／ Submit a student once and the same file enters the candidate pools of many Chinese universities at the same time. Offers arrive in parallel… | 重点①卡满屏（紫底橙圈 1 + 标题 + 正文） | 是 |
+| OP-2 2.5s~尾 | （同一句配音续） | ch6 真实画面：学生 Hussain Bilal 详情 ADMISSION OFFERS 列两份盲 offer（SCH-1AD6C8 / SCH-8E561C，均 UNIVERSITY · PENDING DECISION、无校名），底部叠「① One submission, many universities」 | 是（"一次提交→多校同审"↔同一学生拿到两所大学盲 offer） |
+
+- 逐张亲眼复验（EN land+port b-roll 中帧 + 尾帧）：两份盲 offer、无校名（双盲守住）、无 beta/内测/test 控件、演示生 Hussain Bilal 无真 PII、标题条文字＝ EN OP-2 卡标题/ED-1 回顾串一字一致。专业名 "MSc Computer Science" 为产品动态串（D-18-4 已记账）。
+- OP-2 卡总时长 10.4s 不变 → 全片 land 427.9s / port 428.1s（见本趟 DECISIONS/PROGRESS）。

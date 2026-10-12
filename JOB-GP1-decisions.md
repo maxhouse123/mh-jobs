@@ -480,3 +480,26 @@
 - **改了**（主仓库，不推）：states/st-pt03-reupload.sql(新)、states/st-pt03-reupload-reset-cleanup.sql(新)、rec/_probe-pt03-docs.sql(新·只读)、rec/_probe-pt03-review.mjs(新·只读登录态探针)、rec/shots-v1.json(5-4)、rec/CHOREOGRAPHY.md(ch5 §三.4 段+结开放项)、REVIEW-en-shots.md、REVIEW-zh-shots.md(各追加 ch5 §三.4 段)、DECISIONS.md。本趟零成片改动（无新帧）；DB 全程只读往返、收工 clean。
 - **非四种停下情形**：§三.4 全在 §0.3/§0.4 范围内，记账继续。
 - **下趟**：§五 OP-2(6-1/6-2) 开场快剪（6-1/6-2 来自已返工完的 ch6、不含漏斗，不受缺陷2 阻塞，可做）；OP-3/4/5（3-8/7-0/7-1）与 §三.1/.2/.5/.7/.8 + ch1/2/3/5/7/8/9/10 工作台漏斗章定版重出仍受缺陷2 阻塞。**§三/§五 中不受缺陷2 阻塞的部分做完后，即照 review1 §一.3/§八写 jobs/JOB-GP1/NEEDS_OWNER_DECISION.md（缺陷2＝产品漏斗算法 bug）停下、复制一份到 ~/mh-jobs/ 推送。** GP-1 未收官。
+
+## D-26-1 (2026-10-12 第26趟 · §五 开场快剪 OP-2 四语横竖 + 全片/速览重出)
+- **接手核对**：读齐 PROGRESS/loop-tail/RULING-20261012b-review1/-c-rework/-gp1/DECISIONS/QUEUE。loop-tail 查明 16:00 那趟两分钟即停＝误读旧「收官」(返工授权当时刚发未读)——本趟首行开工即改「返工进行中」、收工改完整「做了+下趟」。开工 verify **17/17 PASS**。
+- **选题**：按 trip25「下趟」与 review1 §八顺序挑 §五 开场快剪。§五 要求：每张重点卡总时长不变(=配音+0.5s)、配音不动；先满屏卡面约 2.5s，再切对应章节真实画面(静音、配音续)、叠一条重点标题条，直到本卡结束；横竖各用对应画幅素材；四条重点文字一字不改。素材：OP-2=6-1/6-2、OP-3=3-8、OP-4=7-0、OP-5=7-1。
+- **范围裁决（我的决定）**：**本趟只做 OP-2**。OP-2 素材＝第6章 6-1/6-2 两份盲 offer，ch6 已在 trip21/22 四语返工完（含 HIDE_INIT 遮 beta 链接），**不含工作台漏斗、不受缺陷2 阻塞**。OP-3/4/5 素材 3-8(app_no)/7-0(¥0 付款)/7-1(校名揭晓) 均在工作台/漏斗画面，仍受缺陷2 阻塞→本趟保持静止卡面，待缺陷2 NEEDS_OWNER_DECISION 裁后、工作台章定版重录时接做。
+- **实现（零改产品代码/迁移；只改成片工装）**：
+  1. `gp1-overlays.mjs` 新增 `keypointStrip(w,h,n,title,out)`：重点标题条＝半透明紫带 + 橙色编号圈 + 白色标题（透明底 PNG），尺寸＝ prod-ch 的 subH 带，叠在底部字幕带位置、取代章节字幕。
+  2. `gp1-finish.mjs`：加 `CARD_HOLD=2.5`、`OP_BROLL={'OP-2':{ch:'6',t0:0}}`、`kpNum`、`brollWindow`（同 prod-ch windowConcat 取 [t0,t1] 原始帧定格补尾）、`buildQuickCut`；`buildCardClip` 对配了 b-roll 且有配音、时长够切的 OP 走快剪分支。
+  3. b-roll 用**对应语言/画幅的 ch6 原始帧**(`out/<lang>-<orient>-ch6/frames`，无章节条/无字幕)，页面定位同 prod-ch（scale W:pageH、pad 紫底、pageY=barH），静音，底部叠 keypointStrip；再 concat[card 2.5s + broll]、全程配 OP-2 本语配音（apad 到 segDur）。**卡总时长逐字节不变**：EN 10.4 / ZH 9.5 / RU 12.0 / FR 11.1s；配音文件未动。
+- **四语横竖重出**：bookend（四语，OP-2 变快剪、其余卡不变）→ film（全片）→ trailer（速览，开头四卡含快剪后的 OP-2）。
+  - 全片新时长：EN land 427.9 / port 428.1；ZH 445.3 / 444.4；RU 455.1 / 455.2；FR 446.0 / 444.7s。masterDur==unitSum（零漂移）。
+  - 速览新时长：EN 170.0 / 170.4；ZH 175.5 / 174.4；RU 180.0 / 180.4；FR 172.7 / 171.6s。
+  - 8 全片 + 8 速览真 Chrome 播放全 readyState4 / seek 近尾 / pageErr 0。
+- **逐张亲眼复验**（四语 land+port OP-2 的 card 帧 + b-roll 中帧 + EN 尾帧；montage 存 shots/GP1/<lang>/OP2-quickcut-<lang>.png）：
+  - 前 2.5s＝重点①卡满屏（紫底橙圈 1 + 标题 + 正文），标题＝本语 OP-2 卡标题。
+  - 2.5s~尾＝ch6 真实画面：学生 Hussain Bilal 详情内 ADMISSION OFFERS 列**两份盲 offer**（SCH-1AD6C8 / SCH-8E561C，均 UNIVERSITY · PENDING、**无校名**＝双盲守住），底部叠重点标题条。
+  - 无 beta/内测/test 控件；演示生 Hussain Bilal 无真 PII；标题条文字＝本语 OP-2 卡标题/ED-1 回顾串一字一致（OP/ED 一致）。
+  - 四语界面本地化（EN/中文「录取意向·待决定」/RU「ПРЕДЛОЖЕНИЯ О ПРИЁМЕ·ОЖИДАЕТ РЕШЕНИЯ」/FR「OFFRES D'ADMISSION·EN ATTENTE」）；专业名 "MSc Computer Science" 为产品动态串回退英文（D-18-4 已记账）。
+- **记账·社媒分段 OOR**：全片/速览的 20~40s 分段里，ED 片尾段(~13s)有意独立(<20)、另有个别贪心段(45~50s)略越上限——此为 `groupSegments` 既有行为、与本次快剪无关（快剪保 OP-2 时长不变，分段数学不变），非本趟引入。
+- **DB**：本趟纯成片工装、**零 DB 写入/零置态**；开工 + 收工 verify 均 **17/17 PASS 0 FAIL**。
+- **改了**（主仓库，不推）：`rec/gp1-overlays.mjs`(keypointStrip)、`rec/gp1-finish.mjs`(CARD_HOLD/OP_BROLL/kpNum/brollWindow/buildQuickCut + buildCardClip 分支)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加「开场快剪 OP-2」段)、`DECISIONS.md`。成片/voice 不入 git；OP-2 快剪 montage 四语 + 四 REVIEW + PROGRESS + 决定账推 mh-jobs。dist OP/full/trailer 覆盖为含快剪的 v2（原始 v1 早在 `_v1/` 留底）。
+- **非四种停下情形**：§五 OP-2 全在成片工装、只读范围，记账继续。
+- **下趟 / 阻塞边界**：**§三/§五 中不受缺陷2 阻塞的部分至此全部做完**（§二四语 ch6 ✅ / §三.3 5-2 ✅ / §三.4 5-4 真态机制 ✅ / §三.6 ch9 ✅ / §五 OP-2 ✅）。仍受缺陷2（产品漏斗算法 bug，D-20-1 定性）阻塞的＝§三.1(2-2)/.2(2-4)/.5(7-4)/.7(ch8 横幅)/.8(节奏 3-1/3-8/5-1) + §五 OP-3/4/5 + ch1/2/3/5/7/8/10 工作台漏斗章定版重出 + ch5 5-1/5-4 两态定版重录。**下趟即照 review1 §一.3/§八 写 `jobs/JOB-GP1/NEEDS_OWNER_DECISION.md`（缺陷2＝产品漏斗算法 bug，写清文件/逻辑/真实中介所见/建议改法）停下，并复制一份到 `~/mh-jobs/JOB-GP1-NEEDS_OWNER_DECISION-<年月日-时分>.md` 推送。** GP-1 未收官。
