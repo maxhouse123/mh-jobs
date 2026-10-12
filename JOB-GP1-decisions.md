@@ -297,3 +297,46 @@
 - **成片现状**：EN 全齐(清关) · ZH 全齐 · **RU 十章横竖齐 10/10**(本趟)。RU 全片合成(OP/ED 卡 ru 本地化 + 全片/速览/分段 + item-8 QR)待下趟。
 - **DB**：全程 baseline 16/16 守住；置态章各 scoped 置态+复位，ch7 录前空跑证复位可靠。无全量 rebuild(本机 faces 空)。
 - **改了**：rec/prod-ch.mjs(D-18-1/2)、rec/shots-v1.json(D-18-3)、rec/_patch-ru-shots.mjs(新·工具)、rec/_scan-ru-forbidden.mjs(新·工具)。
+
+## D-19-1 (2026-10-12 第19趟 · RU 全片合成——gp1-finish 卡面 ru 本地化)
+- **章 / 镜**：OP 开场卡(OP-1 品牌/OP-2..5 四条重点/OP-6 目录) + ED 片尾卡(ED-1 回顾/ED-2 二维码)，RU 合成阶段。
+- **问题**：gp1-finish.mjs 的 KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 只有 en/zh 两层；capFor 对非 zh 一律取 capEN → RU 全片的 OP/ED 卡面会显英文(标题+正文)，与 RU 章节不一致。
+- **裁决（照 RULING §二.2）**：四条重点卡标题/回顾四行本地化为 RU——**逐字取自 captions-v1.json ED-1.ru 俄文回顾串**（已翻译+回译自检），保证 OP-2..5 卡标题与 ED-1 回顾四行逐字一致（RULING §二.2 开场/片尾一字一致）。品牌卡/目录卡/eyebrow 补 ru：BRAND_CARD.ru title「MAXHOUSE · Руководство для партнёров」sub「Набор студентов для китайских вузов — одна подача, несколько предложений」；CATALOG_TITLE.ru「Десять коротких глав」(=OP-6.ru 口播);RECAP_EYEBROW.ru「КРАТКО」。目录 10 章标题走已有 CH_TITLE_FOR(n,'ru')(D-18-2)。
+- **capFor 修（与 prod-ch D-18-1 同源）**：gp1-finish capFor 加 ru/fr 分支，OP-2..5 卡正文 + ED-2 二维码说明从 captions-v1.json 取本语译文(译文缺才回退 EN)；en/zh 仍从 shots-v1.json 原样取(EN 母版+ZH 基线逐字节不变)。
+- **四条重点 RU 卡标题**：① Одна подача — много вузов ② Ваш студент остаётся вашим ③ Никаких сборов платформы ④ Заполняет вуз — доставляем вам（= ED-1.ru 四段，一字一致）。
+- **验证（肉眼抽帧 land）**：OP-1 品牌紫橙俄文无豆腐块；OP-5(最长标题④)标题橙+正文俄文含 JW202；OP-6 目录「Десять коротких глав」+10 章 RU 标题齐；ED-1 eyebrow「КРАТКО」+4 行俄文带橙 ✓ = OP-2..5 标题逐字一致；ED-2 QR+URL+「Сканируйте, чтобы зарегистрироваться…」俄文。
+- **改了**：rec/gp1-finish.mjs（KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 加 ru；capFor 加 ru/fr 读 captions-v1.json）。EN 路径逐字节不变。
+
+## D-19-2 (2026-10-12 第19趟 · RU bookend/film/trailer 合成 + item-8)
+- **bookend --lang ru**：OP land/port 59.68s、ED 14.72s，8 张卡全带 RU 配音(voice/ru 齐)。
+- **film --lang ru**：full-land/port 467.4s(14 段)、masterDur==unitSum(零漂移)、res 1920x1080/1080x1920。段 out-of-range 仅 seg14=ED 尾段 14.7s(刻意独立,同 EN/ZH 先例)。短段并回 + 清旧段(gp1-finish 已有)。
+- **trailer --lang ru**：trailer-land/port 187.2/187.5s(22 镜/6 段)。段 out-of-range = seg05 42.8s + seg06 ED 尾段 14.7s(见 D-19-3)。速览镜单照 RULING §1(删 6-5，6/7 章段 6-2/6-6→7-0/7-1/7-3)。
+- **item-8（RU 二维码解码）**：/tmp/qrdecode jsQR 对 ED-{land,port}-ru.mp4 第 10s 抽帧**真帧解码**——横竖均 = `https://www.maxhouses.net/partner-portal/?src=video-ru`，与 RULING §3.8 逐字一致。✅
+- **真 Chrome 播放复证（_playchk）**：full-land/port、trailer-land/port、full/trailer-seg01 land+port 全 readyState4、seek 近尾、pageErr=0。
+- **成片现状**：EN 全齐(清关) · ZH 全齐 · **RU 四件套全齐**(本趟:十章横竖+OP/ED+全片+速览+分段)。FR 待录。
+- **改了**：无新增代码(用 D-19-1 的 gp1-finish)；成片(~/guide/dist/partner，不入 git/mh-jobs)。
+
+## D-19-3 (2026-10-12 第19趟 · RU 速览 seg05 = 42.8s 略超 40 上限，接受并记账)
+- **问题（RULING §三.9 分段 20~40s）**：RU 速览 seg05=[6-2,6-6,7-0,7-1,7-3]=42.8s，超 40 上限 2.8s。EN/ZH 同段仅 28s(RU 配音更长)。
+- **根因**：groupSegments 贪心按镜界切，7-3 被切成孤段(9.8s<20 下限)，收尾「不足 lo 短段并回上段」把 7-3 并回 seg05 → 42.8s。此 collapse 逻辑是 EN/ZH 已发货的同一共享工装，RU 配音更长使落点不同。
+- **可选项**：(a) 接受 42.8s;(b) 留 7-3 作 9.8s 孤段(破 20s 下限,更糟);(c) 改 groupSegments 阈值(动共享工装、全语回归风险，§二.4「不原地打转」)。
+- **选 (a) 接受并记账**：镜界不可中切，两害取其轻——并回保证所有内容段 ≥20(仅刻意的 ED 尾段短)，优于 <20 孤段。2.8s 超幅轻微、数据驱动非代码缺陷，同 EN/ZH 已过自审的 collapse 策略一致。非四种停下情形。
+- **改了**：无。
+
+## D-19-4 (2026-10-12 第19趟 · FR 工装prep + 十章横竖成片齐 10/10)
+- **工装prep（照 RU D-18 先例）**：① prod-ch 加 CH_TITLE_FR（EN 母版逐章译+控宽）+ CH_TITLE_FOR fr 分支；② _patch-fr-shots.mjs（新）为 3-5/3-6 加 pre_fr（AI 预检样例法文：成绩单「La moitié inférieure du scan… floue — veuillez téléverser une copie plus nette.」/ 护照「Le nom sur le passeport ne correspond pas… vérifiez l'orthographe.」）+ 8-3 加 act_fr（#qrReason 法文「Nous attendons plus d'étudiants à la prochaine rentrée.」）；③ capFor 已通用（gp1-finish/prod-ch 均在 D-19-1/D-18-1 加 ru/fr 读 captions-v1.json）。FR voice 59 件+durations 齐、captions 58/58 有 fr。
+- **章节条左标签**：BAR_I18N.fr.hub 保持「Partner Hub」（= RU 先例 BAR_I18N.ru.hub；仅 ZH 本地化为「合作伙伴端」）。理由：该英文品牌词亦逐字出现在产品自身 FR 门禁页头「ESPACE PARTENAIRES · PARTNER HUB」；为与已发货 RU 一致、不为一个条标签重录 RU，FR 照 RU 保英文。业主眼验闸(铁律15)可一句话要求 RU+FR 同本地化（仅重烧章节条，代价小）。记账不停（非四种停下）。
+- **逐章录制**：每章 verify→(置态)→录横竖→(复位)→verify。读-only章(1/2/5/8/9/10)直录；置态章复用语言无关 scoped 件——ch3=st-ch3-cleanup(录后单删，真 submit app_no 如 MH-7CTJXC，两版各 DELETE 1×2+COMMIT→verify 16/16)；ch4=st-pt04-docs-full 置态+st-pt04-reset-cleanup 复位(UPDATE1+DELETE1，两版 verify16)；ch6=录后 st-pt06-reset(UPDATE1，两版 verify16)；ch7=录前空跑证复位(pre→reset→verify16)可靠，再 st-pt07-pay-cleanup+st-pt08-jw202 置态→录→st-pt0708-reset-cleanup 复位(真¥0付 DELETE1+基线¥0单 INSERT1，两版 verify16)。全程 baseline 16/16 守住。
+- **真帧肉眼复验**：ch1 门禁法文「Connexion partenaire / Nouvelle agence ? Inscription」+章节条「Chapitre 1 Inscription et activation」；ch3 3-8 真 app_no MH-7CTJXC 橙框+「Demo Aisha」+3-9「en attente」；ch6 6-6 揭晓全 demo 联系(maxhouse_demo/demo@maxhouses.net/+86…0000)「L'université est révélée」无真 PII、6-7 SCH-1AD6C8 盲码+全奖学金；ch7 7-0 ¥0.00 橙框内+划除¥3,000·MAXHOUSE−¥3,000+masked agency.demo@example.com/MH-NEPTRN。20 录屏 DOM 扫描全 ✅ no @gmail。
+- **item-7（FR 禁用词扫）**：_scan-fr-forbidden.mjs（新）扫 74 条 FR 串(caption fr+keypoint fr+CH_TITLE_FR+AI 注入)对 5 类禁用词(FR 正则)+真实名校名 → 0 命中，FR 过。
+- **交付**：ch1..10-{land,port}-fr.mp4（带音轨）；联络表 ~/mh-jobs/shots/GP1/fr/ch1..10-contact-{land,port}-fr.png（20 张，8.8M）。
+- **改了**：rec/prod-ch.mjs(CH_TITLE_FR)、rec/shots-v1.json(3-5/3-6 pre_fr、8-3 act_fr)、rec/_patch-fr-shots.mjs(新)、rec/_scan-fr-forbidden.mjs(新)。
+
+## D-19-5 (2026-10-12 第19趟 · FR 全片合成 + item-8 → FR 四件套全齐)
+- **gp1-finish fr 卡面**：KEYPOINT_TITLE/RECAP_LINES 逐字取自 captions-v1.json ED-1.fr 法文回顾串（① Une seule soumission, de nombreuses universités ② Votre étudiant reste le vôtre ③ Aucuns frais de plateforme ④ Rempli par l'université, livré chez vous，OP/ED 一字一致）；BRAND_CARD.fr「MAXHOUSE · Guide partenaire」/sub 法文；CATALOG_TITLE.fr「Dix courts chapitres」(=OP-6.fr)；RECAP_EYEBROW.fr「EN BREF」；目录走 CH_TITLE_FOR(n,'fr')。
+- **合成**：bookend fr OP 56.01s/ED 13.92s(land+port 带音轨)；film fr full-land 460.3s/full-port 458.9s(13 段)、masterDur==unitSum(零漂移)；trailer fr 179.9/178.8s(22 镜/6 段)。
+- **分段 out-of-range**：film seg12=45.4s(超40)——[8-4,9-1..9-4,10-2..10-4] ch9+ch10 尾段，collapse 把孤段并回所致；**ZH film seg12 同为 44.9s(已过自审发货)**，同一共享工装 collapse 策略、同一先例，接受不改（两害取其轻，孤段<20更糟，镜界不可中切）。film seg13 + trailer seg06 = ED 尾段 13.9s(刻意独立)。照 D-19-3 同理记账。
+- **item-8（FR 二维码）**：/tmp/qrdecode jsQR 对 ED-{land,port}-fr.mp4 第 10s 真帧解码 = `https://www.maxhouses.net/partner-portal/?src=video-fr`（横竖均一致）✅。
+- **真 Chrome 播放**：full/trailer land+port + full-seg01 全 readyState4、seek 近尾、pageErr=0。卡面肉眼复验：OP-6「Dix courts chapitres」+10 章 FR 标题、ED-1「EN BREF」+4 行=OP 标题一致，无豆腐块。
+- **成片现状**：**EN·ZH·RU·FR 四语四件套全齐**（十章横竖+OP/ED+全片+速览+20~40s 分段）。GP-1 视频制作收官在望。
+- **改了**：rec/gp1-finish.mjs（KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 加 fr）。成片(~/guide/dist/partner，不入 git/mh-jobs)。

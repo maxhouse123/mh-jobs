@@ -1,6 +1,26 @@
-最后一趟：2026-10-12 第18趟 — **RU 俄语十章横竖成片齐 10/10 ✅**。先修两处工装病根(RU 片本会带错内容)：(D-18-1) prod-ch capFor 对 ru/fr 原直返 capEN→RU 字幕带曾烧成英文；改为 ru/fr 从 captions-v1.json 取译文(en/zh 不动、EN 母版逐字节不变)。(D-18-2) 加 CH_TITLE_RU 章节条标题本地化(章节条逐章烧、film 只拼接不重烧，不本地化会永久英文)。(D-18-3) 加 3-5/3-6 pre_ru(琥珀 AI 预检卡俄文样例)+8-3 act_ru(提额理由俄文)。(D-18-4) 实证并记账：RU 画面=俄文(词典覆盖)+英文(LL 动态串回退)混排=真实产品，照录不补(改它须动端口 i18n 码,§0.2禁)。逐章 verify16/16→(置态)→录横竖→(复位)→verify：读-only章(1/2/5/8/9/10)直录；置态章(ch3/4/6/7)复用 ZH 趟 scoped 件(语言无关)，ch7 录前空跑证复位可靠。真写库镜(ch3真submit MH-Y68WT2/ch4 submitted_at/ch6 unlocked_at/ch7 ¥0真付)均录后 scoped 复位，**全程 baseline 16/16 守住**。真帧肉眼复验：ch1俄文门禁/入驻/工作台、ch3琥珀卡RU+app_no、ch6揭晓Demo University全demo联系无真PII、ch7 ¥0橙框(§3.5)+masked邮箱、ch8俄文理由、ch4邀请邮箱全掩码；20录屏DOM扫描✅no @gmail。item-7 RU禁用词扫74串0命中PASS。20张联络表推 mh-jobs/shots/GP1/ru/。**下趟：RU 全片合成(gp1-finish KEYPOINT_TITLE/BRAND_CARD/CATALOG/RECAP/RECAP_EYEBROW 补 ru 分支→bookend/film/trailer --lang ru→OP/ED/full/trailer-ru+分段+item-8 解 ED-ru 期望 ...?src=video-ru)；再 FR（FR 需同样补 capFor已通用/CH_TITLE_FR/pre_fr·act_fr/gp1-finish fr 卡面）**。不推主仓库、不上线。
+最后一趟：2026-10-12 第19趟 — **GP-1 视频制作收官：EN·ZH·RU·FR 四语四件套全齐 ✅**。本趟先补完 RU 全片合成(D-19-1/2/3)，再全程做完 FR(D-19-4/5)。① RU 全片合成：gp1-finish 的 KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 补 ru(标题逐字取 ED-1.ru 回顾串保 OP/ED 一字一致)+capFor 加 ru/fr 读 captions-v1.json；bookend/film/trailer --lang ru → full 467.4s(14段零漂移)/trailer 187s(6段)/OP59.7/ED14.7；item-8 解 ED-ru=...?src=video-ru；真 Chrome 播放全 readyState4/pageErr0；五卡肉眼复验俄文无豆腐块。② FR：工装 prep(CH_TITLE_FR + 3-5/3-6 pre_fr + 8-3 act_fr + gp1-finish fr 卡面，capFor 已通用)；逐章 verify16/16→(置态)→录横竖→(复位)→verify，置态章复用语言无关 scoped 件(ch3 真submit MH-7CTJXC 两版DELETE1×2复位/ch4/ch6/ch7 ¥0真付 DELETE1+基线INSERT1)，**全程 baseline 16/16 守住**；真帧复验 ch1法文门禁+章节条/ch3 app_no/ch6 demo联系无真PII/ch7 ¥0橙框+masked邮箱；20录屏 DOM 扫描 no @gmail；item-7 FR 74串0命中PASS；FR 合成 full 460.3s(13段)/trailer 179.9s(6段)/OP56/ED13.9；item-8 解 ED-fr=...?src=video-fr；真 Chrome 全过。四语对账 0 缺(各 20 章+4 bookend+2 full+2 trailer+分段齐，联络表各20张推 mh-jobs/shots/GP1/<lang>/)。full 时长 EN443/ZH459/RU467/FR460s。章节条左标签 ru/fr 保"Partner Hub"(=产品FR门禁页头字面，与 RU 发货一致，业主眼验可一句话要求 RU+FR 同本地化)。film seg12(FR45.4=ZH44.9先例)/trailer seg05(RU42.8)略超40 = collapse 并孤段所致，接受记账。**下趟：GP-1 已收官——写 SUMMARY-GP1.md(PUSH_OK=yes)即停；不开 GP-2(不传R2/不动Cloudflare/不推主仓库)**。成片在本机 guide/dist/partner/，不入 git/mh-jobs。不推主仓库、不上线。
 
-# JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+# JOB-GP1-03 进度交接（**视频制作已收官 · EN·ZH·RU·FR 四语全齐**）
+
+## 第 19 趟（2026-10-12 Mac mini 无人值守）· RU 全片合成 + FR 全程 → GP-1 视频制作收官
+### A. RU 全片合成（D-19-1/2/3）
+- **gp1-finish ru 卡面**：KEYPOINT_TITLE/RECAP_LINES 逐字取 captions-v1.json ED-1.ru 俄文回顾串(① Одна подача — много вузов ② Ваш студент остаётся вашим ③ Никаких сборов платформы ④ Заполняет вуз — доставляем вам，OP/ED 一字一致)；BRAND_CARD.ru/CATALOG_TITLE.ru「Десять коротких глав」/RECAP_EYEBROW.ru「КРАТКО」；capFor 加 ru/fr 读 captions-v1.json(OP-2..5 正文+ED-2 说明本语，en/zh 不动)。
+- **合成**：bookend OP 59.7s/ED 14.7s；film full-land/port 467.4s(14 段,masterDur==unitSum 零漂移)；trailer 187.2/187.5s(6 段)。item-8 ED-ru 横竖=`...?src=video-ru`。真 Chrome 播放全 readyState4/seek 近尾/pageErr0。五卡(OP-1/5/6、ED-1/2)肉眼复验俄文无豆腐块、品牌紫橙、OP/ED 四条一字一致。
+- **分段 OOR**：trailer seg05=42.8s(超40，[6-2,6-6,7-0,7-1,7-3])——collapse 把 7-3 孤段并回所致(RU 配音更长落点不同)；接受(两害取其轻，孤段<20更糟)。film 仅 ED 尾段 14.7s(刻意)。
+### B. FR 全程（D-19-4/5）
+- **工装 prep**：prod-ch 加 CH_TITLE_FR(+CH_TITLE_FOR fr)；_patch-fr-shots.mjs 为 3-5/3-6 加 pre_fr(AI 预检法文样例)+8-3 act_fr(提额理由法文)；gp1-finish 卡面加 fr(标题取 ED-1.fr)。capFor 已通用。FR voice 59件+durations、captions 58/58 有 fr 齐。
+- **逐章录制**：每章 verify→(置态)→录横竖→(复位)→verify。读-only(1/2/5/8/9/10)直录；置态章复用语言无关 scoped 件——ch3=st-ch3-cleanup(真 submit app_no MH-7CTJXC，两版各 DELETE1×2+COMMIT→verify16)；ch4=st-pt04-docs-full 置态+st-pt04-reset-cleanup(UPDATE1+DELETE1,两版 verify16)；ch6=st-pt06-reset(UPDATE1,两版 verify16)；ch7=录前空跑证复位可靠→st-pt07-pay-cleanup+st-pt08-jw202 置态→录→st-pt0708-reset-cleanup(真¥0付 DELETE1+基线¥0单 INSERT1,两版 verify16)。**全程 baseline 16/16 守住**。
+- **真帧肉眼复验**：ch1 门禁「Connexion partenaire / Nouvelle agence ? Inscription」+章节条「Chapitre 1 Inscription et activation」；ch3 3-8 app_no MH-7CTJXC 橙框+Demo Aisha+3-9「en attente」；ch6 6-6 揭晓全 demo 联系(maxhouse_demo/demo@maxhouses.net/+86…0000)「L'université est révélée」无真 PII、6-7 SCH-1AD6C8 盲码；ch7 7-0 ¥0.00 橙框内+划除¥3,000·MAXHOUSE−¥3,000+masked agency.demo@example.com/MH-NEPTRN。20 录屏 DOM 扫描全 ✅ no @gmail。
+- **item-7 FR**：_scan-fr-forbidden.mjs 扫 74 条 FR 串 → 0 命中(5 类禁用词+真名校名)，PASS。
+- **FR 合成**：bookend OP 56.0s/ED 13.9s；film full-land 460.3/port 458.9s(13 段零漂移)；trailer 179.9/178.8s(6 段)。item-8 ED-fr=`...?src=video-fr`。真 Chrome 全过。OP-6「Dix courts chapitres」+10 章 FR 标题、ED-1「EN BREF」+4 行=OP 标题一致，无豆腐块。
+- **分段 OOR**：film seg12=45.4s([8-4,9-1..9-4,10-2..10-4])——与 **ZH film seg12=44.9s(已过自审发货)同一先例**，collapse 并孤段，接受记账。ED 尾段 13.9s(刻意)。
+### C. 四语对账 + 章节条左标签
+- **对账 0 缺**：EN/ZH/RU/FR 各 20 章 mp4 + 4 bookend + 2 full + 2 trailer；分段 full(en/zh/fr 26=13×2、ru 28=14×2)+trailer(12=6×2)；联络表各 20 张(en 21)推 ~/mh-jobs/shots/GP1/<lang>/。full-land 时长 EN443/ZH459/RU467/FR460s。
+- **章节条左标签 ru/fr 保「Partner Hub」**：= 产品 FR 门禁页头字面「ESPACE PARTENAIRES · PARTNER HUB」+与已发货 RU 一致；仅 ZH 本地化为「合作伙伴端」。业主眼验闸(铁律15)可一句话要求 RU+FR 同本地化(仅重烧章节条,代价小)。
+- **改了(主仓库,不推)**：rec/gp1-finish.mjs(ru+fr 卡面、capFor ru/fr)、rec/prod-ch.mjs(CH_TITLE_FR + capFor ru/fr 已在 D-18-1)、rec/shots-v1.json(3-5/3-6 pre_fr、8-3 act_fr)、rec/_patch-fr-shots.mjs(新)、rec/_scan-fr-forbidden.mjs(新)、DECISIONS.md。成片/voice 不入 git/mh-jobs。
+### D. 收官状态
+- **GP-1 视频制作收官**：四语横竖四件套全齐在本机 guide/dist/partner/。EN 九项自审全过(trip15,REVIEW-en-self.md)；RU/FR 逐趟做 item-7 禁用词扫+item-8 QR 解码+真帧脱敏复验+真 Chrome 播放。DB 全程 baseline 16/16 守住。
+- **下一步=写 SUMMARY-GP1.md(PUSH_OK=yes)即停**。不开 GP-2：不传 R2、不动 Cloudflare、不推主仓库。
 
 ## 第 18 趟（2026-10-12 Mac mini 无人值守）· 开录俄语 RU → RU 十章横竖齐 10/10
 - **工装两修（RU 片本会带错内容，先修再录）**：
