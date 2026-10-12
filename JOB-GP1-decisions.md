@@ -79,3 +79,32 @@
 - **真帧肉眼复验（iron-law-15）**：8 镜逐帧看过——门禁 EN 干净（#pwdInput 实证 value 空、仅占位圆点，无泄露）；注册盒邀请码掩码占位；入驻表单样例预填 + `firstname.demo@example.com`（非 @gmail）；审核中琥珀卡；已批 hero。横 49.4s / 竖 49.4s，1920x1080 / 1080x1920 带音轨，全链零 @gmail（harness TreeWalker + 肉眼双证）。联络表 ch1-contact-{land,port}-en.png 推 shots/GP1/en（逐张看过 8 格齐、无泄露）。
 - **自审留痕（REVIEW-en-self §4 待办）**：1-1 capEN 引号内「Register your agency」与真按钮「New agency? Register →」非逐字一致。拟在 EN 自审阶段统一处理（去引号改为指令式即可，口播词不变→voice 无需重生）。本趟先记账，不阻断。
 - **改了**：rec.mjs（doLogin 抽取 + ch1 三态驱动 + shot.login）、shots-v1.json（1-3..1-8 pre/login/hl）、probe-ch1.mjs / probe-ch1b.mjs（只读实证工装，新）。成片 ~/guide/dist/partner/ch1-{land,port}-en.mp4。
+
+---
+
+## 2026-10-12 第14趟（Mac mini 无人值守）· EN 自审前置：OP/ED 叠层 + 全片 + 速览
+
+### D-14-1 · 新建 rec/gp1-finish.mjs：OP/ED 卡成片 + 全片拼接 + 速览 + 20~40s 分段
+- **阶段**：EN 十章齐后进自审前置（PROGRESS 第13趟「下趟」）。本趟产出 OP 开场 / ED 片尾叠层卡成片 + 全片 master + 速览，皆按镜界切 20~40s 段。
+- **做法**：新脚本 `rec/gp1-finish.mjs` 三 stage——`bookend`（OP-1..6 + ED-1..2 满帧卡，复用 gp1-overlays 的 brandCard/keypointCard/recapCard/qrCard，逐卡定格到配音时长+0.5s，混本语配音，编码同 prod-ch crf21/aac）；`film`（OP 卡 + 各章 mp4 按镜界切子片 + ED 卡 → master full-<orient>-en.mp4 + segments/<orient>/full-en-segNN.mp4）；`trailer`（速览镜头清单子片 → trailer-<orient>-en.mp4 + segments/.../trailer-en-segNN.mp4）。
+- **分镜边界实证**：prod-ch 每镜段时长公式 `segDur=max(max(0.6,end-start), hasVoice?vdur+0.45:0)`，重算累计与各章成片实测 diff ≤0.07s（见 trip14 实测），故按此切子片镜界精确；splitChapter 末镜对齐真实片尾（scale 摊平累计误差）。
+- **分段**：贪心聚 20~40s，ED 片尾卡强制独立成 13s 尾段（片与速览一致的品牌收尾 ED-1 回顾 + ED-2 二维码）。全片 13 段（12×[28~39s] + ED 13s），速览 6 段（5×[28~39s] + ED 13s）。单镜最长 15.6s（OP-3），故每刀都落真镜界。
+- **QR**：qrcode 模块按 `https://www.maxhouses.net/partner-portal/?src=video-en` 生成，嵌 ED-2 卡（深紫前景）。decode 逐语核验留自审阶段（本机暂无 zbar/jsqr，装在自审趟）。
+- **验证**：OP/ED 卡逐张肉眼复验（品牌紫橙、目录列 10 章、回顾 4✓、二维码+网址+「邀请码见引导页」）；真 Chrome 播放 full-land/full-port/trailer-land/trailer-port + seg01 全 readyState4、seek 近尾、零 pageErr；全 13 段逐段 probe 有 video+audio、段时长和=master（443.2s land/port）。
+- **成片**：~/guide/dist/partner/{OP,ED,full,trailer}-{land,port}-en.mp4 + segments/{land,port}/*.mp4 + manifest-en.json（不进 git/mh-jobs）。改了：rec/gp1-finish.mjs（新）。
+
+### D-14-2 · OP-2..5 四条重点「快剪」插入暂缓（卡面承载，不改文字）
+- **问题（分镜 vs 现实·RULING §2.1）**：storyboard OP-2..5 写「重点X卡 + 第N章画面快剪2秒」。快剪=在重点卡中插 2s 章节画面。
+- **选了**：本趟先出重点卡满帧（卡面标题+正文=该重点 capEN 逐字，文字一字未改，合 RULING §2.2），**快剪插入暂缓**作上线前润色项。重点卡本身已完整承载四条重点（卡面即字幕文本），快剪为视觉点缀、非信息必需；OP-4 已按 RULING §1 指向 7-0 的 ¥0（素材在，快剪可后补）。
+- **理由**：不属四种停下情形；快剪为(b)/(d)类最小处理，卡面达意；上线阶段（本轮不做）可据各章成片补 2s 快剪，不影响旁白/配音时序（卡定格时长=配音时长，快剪将叠于卡面或接在卡后，voice 不动）。
+- **留后趟/上线**：OP-2→ch6 多校 offer、OP-3→ch3 提交成功、OP-4→ch7 7-0 ¥0、OP-5→ch7 通知书下载，各取 2s 快剪叠入。记账不停。
+
+### D-14-3 · ⚠ 自审 item-3 发现：中介端 portal 页头常驻平台自有联系方式（WhatsApp/电话/邮箱）——待业主定遮蔽口径
+- **发现（item-3 全片无电话/WhatsApp/邮箱 闸）**：登录后的 partner-portal 页头（ch2..ch10 几乎每镜）右上常驻平台自有联系：WhatsApp/电话 `+49 152 24910967` + `✉ Service@maxhouses.net`（maxhouses.net 平台自有域）。现 MASK 只盖 @gmail（演示生/测试号→agency.demo@example.com），**不盖**此平台页头联系。
+- **性质判断**：这是**平台自有公开客服联系**（非学生 PII、非对手校身份、非双盲破墙、非付款账号）。storyboard 画面规则「不露电话/WhatsApp」本意=不泄演示生/机构私人联系；而自审 item-3 字面=「全片任何帧不出现…电话…WhatsApp…」为绝对措辞。二者在「平台自有页头联系」上存在解释歧义。
+- **为何不写停止单**：不属 RULING §2.6 四种情形（遮蔽属 harness/后期范畴，不动产品代码/不越数据范围/不碰线上）。故按 §2 自处理+记账+醒目上报，不停工。
+- **选项（供业主一句话定）**：
+  - A 视为平台自有营销联系、**保留不遮**（指南片展示客服联系属正常，片尾本就引导注册）——则 item-3 口径收窄为「不露演示生/机构私人联系」，自审此条判过。
+  - B 严格 item-3、**必须遮**——则需 ①扩 MASK 盖页头联系后**重录 ch2..ch10**（代价大），或 ②对 master/segments 页头区后期打码（land 右上固定区，port 手机布局位置不同，须逐版核）。
+- **本趟处置**：**未遮、未重录**；在 REVIEW-en-self.md item-3 标「⚠ 待业主定」，并把本条复制进 mh-jobs 回执醒目列出。业主上线前亲验（铁律15）时一并定夺；若选 B 下趟据裁决执行。
+- **改了**：无（仅记账+自审标注）。

@@ -1,6 +1,18 @@
-最后一趟：2026-10-12 第13趟 — ch1（注册与开通）EN 横竖成片录完 → **EN 十章齐 10/10**。三登录态一趟走通：1-1..1-4 真·未登录门禁(harness 对 ch1 跳过自动登录)；1-5..1-7 产品 render 喂样例(renderOnboardingView/renderPendingView，因 guide_ptReg 邮箱未验证不能真登录，照 RULING §2.1c ch8 先例)；1-8 真登录 guide_partner 已批工作台 hero。全章**零 DB 写入**，录前/录后 verify 16/16 PASS。harness 加 doLogin(key)+shot.login 多账号能力。联络表 ch1-contact-{land,port}-en.png 已推。下趟：进 EN 自审前置——OP 开场/ED 片尾 overlays 合成 → 整片+速览按镜界切 20-40s 段 → REVIEW-en-self.md 九项自审(§4 已记 1-1「Register your agency」字幕↔按钮待统一) → 全过才录中俄法。
+最后一趟：2026-10-12 第14趟 — EN 自审前置：**OP 开场 + ED 片尾 overlays 合成齐 → 全片 master(443s/7分23) + 速览(177s) + 20~40s 分段(全片13段/速览6段) 全出**，真 Chrome 播放全过。新建 rec/gp1-finish.mjs(bookend/film/trailer/contact 四 stage)。开 REVIEW-en-self.md 九项自审(**进行中·未全过**)：item 5/6/7/9 ✅、item 1 ✅(录制时闸)、item 2 部分(10章×横竖20张联络表已生成，已亲验 ch1/3/6/7，余 ch2/5/8/9/10 待逐张看)；**item 3 ⚠待业主定**(发现 portal 页头常驻平台自有联系 WhatsApp/电话+49…/Service@maxhouses.net，非学生PII，字面 item-3 禁电话↔平台营销联系有歧义，A保留/B必遮待裁，见 D-14-3)；item 4(字幕↔按钮对账表+修1-1措辞)、item 8(二维码解码·待装jsqr) 待下趟。**EN 未清关、未开录中俄法**。下趟：收 item 2/4/8 + 按业主 item-3 裁决处置 → 全过后开录 中/俄/法。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+
+## 第 14 趟（2026-10-12 Mac mini 无人值守）· EN 自审前置合成 + 开审
+- **OP/ED 叠层卡成片**（新 rec/gp1-finish.mjs，复用 gp1-overlays 的 brand/keypoint/recap/qr 卡）：OP-1 品牌卡 / OP-2..5 四条重点卡（卡面=四条重点逐字文案，文字未改）/ OP-6 目录卡（列10章）；ED-1 四条回顾（4✓）/ ED-2 二维码（qrcode 生成 ...?src=video-en + 网址 + 「邀请码见引导页」）。逐卡定格到配音时长+0.5s，混本语配音，编码同 prod-ch(crf21/aac)。横竖各出，卡逐张肉眼复验品牌紫橙正。
+- **全片拼接 + 分段**：OP 卡 + 各章 mp4 按镜界切子片 + ED 卡 → `full-{land,port}-en.mp4`(443.2s) + `segments/{orient}/full-en-segNN.mp4`(13段)。分镜边界用 prod-ch 段时长公式重算(与各章成片实测 diff≤0.07s)，splitChapter 末镜对齐真尾。贪心聚 20~40s，ED 强制独立成 13s 收尾段。
+- **速览(招募片)**：照 RULING §1 镜单(OP-1~6→1-1/1-7/1-8→2-1/2-4→3-1/3-8→4-1/4-5→6-2/6-6→7-0/7-1/7-3→ED-1/ED-2) → `trailer-{land,port}-en.mp4`(177s) + 6 段。删 6-5、第6/7章段改 6-2/6-6→7-0/7-1/7-3 已落。
+- **验证**：真 Chrome 播放 full/trailer land+port + seg01 全 readyState4、seek 近尾、零 pageErr；全段逐段 probe 有 A+V、段和=master；OP/ED 卡 + ch6/ch7 联络表 + 6-2 字幕带 + 7-0 ¥0 橙框 + 页头区 皆肉眼复验。
+- **联络表**：gp1-finish `contact` stage 生成全 10 章×横竖共 20 张(每镜段中一帧网格)推 shots/GP1/en/。drawtext 未编入此 ffmpeg → 无镜号标注，镜序见 stage 输出。
+- **九项自审(REVIEW-en-self.md，进行中)**：见该文件。**item-3 发现**最关键（D-14-3，待业主一句话定遮蔽口径）。
+- **成片**(不入 git/mh-jobs)：~/guide/dist/partner/{full,trailer,OP,ED}-{land,port}-en.mp4 + segments/。改了(主仓库，不推)：rec/gp1-finish.mjs(新)、DECISIONS.md、REVIEW-en-self.md(新)。
+- **DB**：本趟**零 DB 操作**(纯合成/自审，不碰库，基线 16/16 不动)。
+
+## 第 13 趟（2026-10-12 Mac mini 无人值守）
 
 ## 第 13 趟（2026-10-12 Mac mini 无人值守）
 - **ch1 注册与开通（EN 横竖成片，~49.4s，8 镜，真帧肉眼复验、零 @gmail）→ EN 十章齐 10/10**：
