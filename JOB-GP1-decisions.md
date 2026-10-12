@@ -179,3 +179,14 @@
 - **交付**：ch4-{land,port}-zh.mp4（42.89/42.84s，5 镜）；联络表 shots/GP1/zh/ch4-contact-{land,port}-zh.png 逐张亲验（邀请→弹窗→已发列表→委托卡时间线+提交钮→提交钮 五镜齐；已发邀请两行邮箱 aizhan.demo@/agency.demo@example.com 全掩码、零 @gmail；中文按钮 复制链接/重发邀请/撤销/已注册）。
 - **改了**：states/st-pt04-reset-cleanup.sql（新）、rec/_probe-pt04-base.sql（探针）。
 - **成片现状（ZH）**：1·2·3·4（4/10）。
+
+## D-16-5 (2026-10-12 第16趟 · ZH ch5 成片 + 两处病根修)
+- **章 / 镜**：第 5 章 材料被退回（pt-03 Rahim Islam），ZH 横竖。读-only 章（pt-03 退回态=基线 verify#10，零 DB 写入）。
+- **病根一·索引漂移（viewReferredStudent(8)≠Rahim）**：shots 原硬编码 viewReferredStudent(8)，但本机基线 Rahim 在 index 2（EN 当初在 8，不同机器 ordering）。且 recon 发现**推荐列表分两波渲染**（~1.5s 顶部摘要卡 5 个→~4s 全列表 19 个含 Rahim），且**全列表持续重渲**会把一次性 id 标记冲掉（直查 Rahim 在、#__ch5card 没了）。EN 的静态 `viewReferredStudent(8)` 选择器因高亮引擎每帧重解析而存活，一次性 id-tag 不行。
+  - **修**：5-1 pre 改**持续轮询按名重标**（每 250ms 找含 Rahim 的卡 → 重设 id='__ch5card'，首次 scrollIntoView），waitFor+hl=`#__ch5card` → 高亮引擎每帧重解析始终指向当前 Rahim 卡；5-2/5-3 pre 改**轮询到 Rahim 再 viewReferredStudent(n)**（n 运行时抓）+ waitFor 各自红行/换版区。全语言无关、抗重渲、抗索引漂移。四镜横竖全 box 命中。
+- **病根二·5-2 字幕与画面不符（"退回理由用英文写"）**：源码+真机实证——中介端退回详情**不渲染自由文本理由**，只渲染**本地化裁决状态芯片**（zh「要求修改」/ en「Modification requested」）。storyboard 5-2 假设"英文退回理由可见"**产品根本没有**。EN 片凑巧过（英文芯片=英文）；ZH 片芯片是中文「要求修改」→"用英文写"falsified。
+  - **裁（RULING §2.1b 最接近真实画面+最小字幕改 / §2.2 俄法据新义重译）**：每语各自自洽——**EN 不动**（英文芯片与"reason in English"自洽，不重开已清关）；zh/ru/fr 改述真实画面：zh「成绩单被退回，迈克豪斯审核团队要求修改。」(对齐屏上"成绩单/迈克豪斯审核团队/要求修改")；ru/fr 平行重写。改 shots-v1.capZH[5-2] + captions-v1.shots[5-2].{zh,ru,fr}；**重配 zh/ru/fr 5-2 配音**（say 同 tts 管线，dur zh4.8/ru4.2/fr3.7）+ 更新三语 durations.json。rebuild ch5 复证字幕=画面。
+- **交付**：ch5-{land,port}-zh.mp4（35.09/35.15s，4 镜）；联络表亲验（5-1 高亮 Islam Rahim 卡、5-2 字幕=屏上芯片、5-3 换版、5-4 徽章；零 @gmail、仅演示生名）。
+- **改了**：rec/shots-v1.json（5-1/5-2/5-3 pre+waitFor+hl、capZH[5-2]）、captions-v1.json（5-2 zh/ru/fr）、voice/{zh,ru,fr}/5-2.m4a+durations.json。
+- **ru/fr 待办**：ru/fr 5-2 配音已重配（录 ru/fr 时直接用）；录 ru/fr 时 ch5 同样走轮询 pre（已语言无关）。
+- **成片现状（ZH）**：1·2·3·4·5（5/10）。
