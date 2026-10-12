@@ -199,3 +199,13 @@
 - **交付**：ch6-{land,port}-zh.mp4（42.38/42.24s，6 镜）；联络表亲验（抽 mp4 t=25 复证 6-4 静音/解锁高亮/校名仍盲 SCH-1AD6C8；t=34 复证 6-6 演示大学揭晓/全 demo 联系；零 @gmail）。
 - **改了**：states/st-pt06-reset.sql（新）、rec/_probe-pt06-base.sql（探针）。
 - **成片现状（ZH）**：1·2·3·4·5·6（6/10）。
+
+## D-16-7 (2026-10-12 第16趟 · ZH ch7 成片 + ch7 scoped 复位，最复杂章)
+- **章 / 镜**：第 7 章 通知书、JW202 与建档（pt-07 Nilufar ¥0付/pt-08 Abena JW202/pt-09 Dmitri 建档入学），ZH 横竖。照 EN trip11 编排（D-11-3/4）。
+- **编排复用**：7-0 名解 Nilufar + 步进机（开详情→admission modal→#cloudAdmPayBtn→#couponInput='MAXHOUSE'+_couponApply→等 _couponApplied→勾 #paymentConsent→sentinel）hl `.payment-amount-value`（¥0 橙框）act 点 #payConfirmBtn（真付）；7-1/7-2/7-3/7-4 名解 Nilufar/Abena/Dmitri + 步进机开 admission modal（letter/jw202 下载钮）/.offer-progress/#gp1-74-card。hl 全 CSS/id 语言无关。
+- **DB 实证关键**：真 ¥0 付（coupon_agent_pay_offer）**只写 letter_paid_at + 建 1 条 coupon_redemption，不建 payment_order**；基线 ¥0 单(order_no=GP1-07-UNLOCK)是 build-core seed，被 st-pt07-pay-cleanup 删后真付不重建 → **verify#7 必须靠复位重建**。
+- **ch7 scoped 复位（新 states/st-pt0708-reset-cleanup.sql）**：先实证基线（pt-07 accepted/unlocked/letter 未传/已付/1条¥0 MAXHOUSE paid 单 order_no=GP1-07-UNLOCK offer_id=f243f3fa.../0核销；pt-08 letter传/jw202未传）→ 复位：① pt-07 letter_uploaded/path/expires 清 NULL + letter_paid_at 复基线刻（抗真付成败）② 删 pt-07 全部付款单+核销 + **精确重建基线 ¥0 单**（verify#7）③ pt-08 jw202 清 NULL。
+- **安全闸（无人值守+rebuild 禁用高风险）**：录前**先空跑状态往返**（pre-state→reset→verify）证复位可靠=16/16，再录；两遍录后各 reset→verify 16/16。全程基线可控，未破。
+- **交付**：ch7-{land,port}-zh.mp4（42.70/41.89s，5 镜）；联络表亲验（抽 mp4 t=6 复证 7-0 ¥0 大字橙框内（MAXHOUSE -¥3000 划除）连续可见 §3.5；t=15 复证 7-1 演示大学去盲+通知书下载钮、无真 PII；7-2 JW202 下载、7-3 建档进度、7-4 已入学；邮箱全 agency.demo@example.com 掩码、SCH/MH/PA 编号非密、零 @gmail）。
+- **改了**：states/st-pt0708-reset-cleanup.sql（新）、rec/_probe-pt0708-base.sql、_probe-pt07-payrow.sql、_probe-pt07-post.sql（探针）。
+- **成片现状（ZH）**：1·2·3·4·5·6·7（7/10）。
