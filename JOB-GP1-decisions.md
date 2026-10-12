@@ -257,3 +257,43 @@
 - **item-8（ZH 片尾二维码）**：jsQR 对 out/_book/zh/{land,port}/ED-2.mp4 抽帧真帧解码 → 横竖均 = `https://www.maxhouses.net/partner-portal/?src=video-zh`，与 RULING §3.8 逐字一致。✅
 - **ZH 现状**：10 章横竖 + OP/ED + 全片 + 速览 + 20-40s 分段 + QR 全齐。RU/FR 资产就绪（captions ru/fr 58/58、voice ru/fr 各 59 m4a+durations）。下趟开录 RU（再 FR）。
 - **RU/FR 全片合成待办（勘明）**：gp1-finish 的 KEYPOINT_TITLE/BRAND_CARD/CATALOG_TITLE/RECAP_LINES/RECAP_EYEBROW 目前只 en/zh，ru/fr 回退 en；CH_TITLE_FOR 仅 zh 本地化（ru/fr 回退 EN）、chapterBar BAR_I18N 已有 ru/fr 左标签+章前缀。录 RU/FR 章节用 EN 章节标题（storyboard 定 ru/fr 由 EN 译出），全片合成阶段再按同法补 ru/fr 卡面文案。
+
+## D-18-1 (2026-10-12 第18趟 · prod-ch capFor 补 ru/fr 字幕源 — RU 片曾烧成英文字幕)
+- **章 / 镜**：全章（prod-ch 字幕带），RU 录制。
+- **问题（病根）**：prod-ch.mjs capFor() 对 ru/fr 直接返回 `capEN`（注释「ru/fr 全片阶段再处理」），但 shots-v1.json 只带 capEN/capZH 两语，ru/fr 译文只在 captions-v1.json。film 阶段只拼接分段、绝不重烧字幕 → 若照原注释，RU 章节会永久带英文字幕。首帧实证：ch1 UI 俄文、字幕带却是英文「Enter the invite code…」。
+- **选项**：(a) 照原注释留英文字幕待 film 处理（实为做不到，film 不重烧）；(b) capFor 对 ru/fr 从 captions-v1.json 取译文。
+- **裁决**：选 (b)。capFor 仅 ru/fr 分支改读 captions-v1.json（按 shot id 取 c[lang]）；en/zh 仍从 shots-v1.json 原样取（EN 母版 + ZH 基线逐字节不变，保护已清关 EN）。captions-v1.json 本就是 ru 维护源（5-2 重写、1-1 更新均落此）。
+- **验证**：重烧 ch1 → 字幕带「Введите код приглашения со страницы-гида, затем ваш e-mail и пароль.」俄文正常。
+- **改了**：rec/prod-ch.mjs（capFor + CAPS_V1 载入；JOB-GP1 自有工装，不碰端口码）。
+
+## D-18-2 (2026-10-12 第18趟 · CH_TITLE_RU 章节条标题本地化)
+- **章 / 镜**：全章节条（prod-ch 阶段），RU 录制。
+- **问题**：CH_TITLE_FOR 对 ru 回退英文（D-17-3 原计划「RU 章节用 EN 标题，全片阶段再补」）。但章节条是**逐章烧录**（film 只拼接不重烧），照原计划 RU 章节条会永久英文「Registration & activation」，与 ZH 章节条(中文)不一致、属本地化缺角。
+- **裁决**：照 RULING §二.2（章节标题非四条重点，可本地化；ru/fr 据 EN 译出+回译自检），现**在章节阶段**补 CH_TITLE_RU（照 EN 母版逐章译、从简控宽以免 42% 省略框溢出），CH_TITLE_FOR 加 ru 分支。与 ZH 走 CH_TITLE_ZH 同处理。
+- **10 章 RU 标题**：注册与激活/中心伙伴/首个学生/приглашение студента…（见 prod-ch.mjs CH_TITLE_RU，逐条对 EN 母版）。
+- **验证**：ch1-port-ru 章节条「Глава 1  Регистрация и активация」无省略、俄文正常；ch8「Глава 8  Квота и увеличение」等逐帧复验无溢出。
+- **改了**：rec/prod-ch.mjs（CH_TITLE_RU + CH_TITLE_FOR ru 分支）。
+
+## D-18-3 (2026-10-12 第18趟 · 3-5/3-6 pre_ru + 8-3 act_ru)
+- **3-5/3-6（AI 预检样例 RU）**：照 D-16-3 ZH 先例，为 3-5/3-6 加 pre_ru，琥珀条 issues 注入俄文样例（成绩单「Нижняя половина скана аттестата размыта — загрузите более чёткую копию.」/ 护照「Имя в паспорте не совпадает с введённым — проверьте написание.」）。产品自身 _wzRender 渲染（RULING §1.2），标签随 setLang('ru') 自动俄文。真帧复验：琥珀卡「Напоминания предварительной проверки」全俄文、我注入的 RU issue 正常显示。
+- **8-3（提额理由 RU）**：加 act_ru，#qrReason 打俄文「Ожидаем больше студентов в следующем наборе.」（自由文本，匹配旁白语言）。真帧复验：目标名额30 + 俄文理由在框内。
+- **改了**：rec/shots-v1.json（3-5/3-6 pre_ru、8-3 act_ru），经 rec/_patch-ru-shots.mjs 落盘。
+
+## D-18-4 (2026-10-12 第18趟 · RU UI 俄/英混排 = 真实产品，照录不补)
+- **现象**：partner-portal v184 的 RU 支持 = REP_I18N ru 词典 + I18N_RU(按中文串键) + LL(zh,en) 两语助手。LL 动态拼接串（如「Quota raise pending: 10 → 30」「Your referral performance」「STUDENTS SUBMITTED」）在 ru 下回退英文；t()/I18N_RU 覆盖的键显俄文。→ RU 画面是**俄文(词典覆盖处)+英文(动态/未覆盖处回退)混排**。
+- **裁决**：照 RULING §二.1「照真实流程/真实画面录」。此混排是产品现状，**修它须改端口 i18n 码（§0.2 铁律禁止，亦属 §二.6② 停下情形）**；CC 不改产品、照录真实画面、记账继续。字幕/旁白/章节条/用户输入均俄文；产品 chrome 英文回退处不动。业主上线前亲验（铁律15）可据此判是否要求产品补 i18n（属端口码改动、另立工单）。
+- **影响镜例**：ch1-8 工作台(Quota raise pending/Your referral performance 英文)、ch8 提额弹窗(Referral quota reached/Target quota 英文)、ch4 Resend 钮英文 等；均真实产品。
+
+## D-18-5 (2026-10-12 第18趟 · 8-4 已批卡保持英文)
+- **问题**：8-4 前端示意「已批」卡，base pre 按英文正则 `/Quota raise pending/i` 匹配待审卡并注入英文「approved」文本。RU 下该待审卡本就回退英文(D-18-4)，故 base pre 在 ru 下命中（真帧 box 2200x127 已证）。
+- **裁决**：**不加 pre_ru，8-4 保持英文已批卡**。理由：RU 下待审卡=英文回退，注入英文已批卡与周边产品渲染一致；若强注俄文已批卡反与英文待审卡上下文割裂。属 RULING §二.1「最接近真实画面」。旁白字幕仍俄文(caption ru)。
+- **改了**：无（沿用 base pre）。
+
+## D-18-6 (2026-10-12 第18趟 · RU 十章横竖成片齐 10/10)
+- **流程**：每章照 EN/ZH 逐章 verify16/16→(置态)→录横竖→(复位)→verify。读-only/零DB 章(1/2/5/8/9/10)直录；置态章用 ZH 趟已建 scoped 件(ch3=st-ch3-cleanup / ch4=st-pt04-docs-full+reset-cleanup / ch6=st-pt06-reset / ch7=st-pt07-pay-cleanup+st-pt08-jw202+st-pt0708-reset-cleanup，均语言无关)。ch7 录前先空跑状态往返(置态→复位→verify=16/16)证复位可靠再录。每章录后 reset→verify 16/16，全程基线守住。
+- **真写库镜**：ch3 3-8 真 submit(耗名额9→10,真 app_no 如 MH-Y68WT2)；ch4 4-5 真 submit(写 submitted_at)；ch6 6-4 真解锁(写 unlocked_at)；ch7 7-0 真 ¥0 付(写 letter_paid_at+核销)。均录后 scoped 复位，baseline 16/16 复证。
+- **真帧复验(抽帧肉眼)**：ch1 门禁/入驻/工作台俄文；ch3 琥珀卡 RU + app_no MH-Y68WT2；ch6 6-6 揭晓「Demo University · 演示大学 · Wuhan/武汉 · SCH-1AD6C8」全 demo 联系无真 PII；ch7 7-0 ¥0 橙框内(§3.5)+划除¥3000·MAXHOUSE、masked agency.demo@example.com；ch8 8-3 目标30+俄文理由；ch4 已发邀请两行 aizhan.demo@/agency.demo@example.com 全掩码。全 20 录屏 DOM 扫描 ✅ no @gmail。
+- **item-7（RU 禁用词扫）**：rec/_scan-ru-forbidden.mjs 扫 74 条 RU 串(caption ru + keypoint ru + CH_TITLE_RU + AI 注入) → 0 命中(零中介/没有纠纷/优先审核/半价/绕过GPA·HSK/真实名校名)。RU 过。
+- **成片现状**：EN 全齐(清关) · ZH 全齐 · **RU 十章横竖齐 10/10**(本趟)。RU 全片合成(OP/ED 卡 ru 本地化 + 全片/速览/分段 + item-8 QR)待下趟。
+- **DB**：全程 baseline 16/16 守住；置态章各 scoped 置态+复位，ch7 录前空跑证复位可靠。无全量 rebuild(本机 faces 空)。
+- **改了**：rec/prod-ch.mjs(D-18-1/2)、rec/shots-v1.json(D-18-3)、rec/_patch-ru-shots.mjs(新·工具)、rec/_scan-ru-forbidden.mjs(新·工具)。
