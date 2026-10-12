@@ -1,6 +1,14 @@
-最后一趟：2026-10-12 第16趟 — **ZH 中文十章全部成片 10/10 ✅**。章节条本地化(D-16-1)+harness 加 pre_<lang>/hl 语言无关/act_<lang>。逐章横竖成片+联络表逐张亲验、每章 verify 16/16：ch1 注册·ch2 工作台·ch3 提交(真submit)·ch4 委托(scoped复位)·ch5 退回(修索引漂移+5-2字幕对齐真画面重配zh/ru/fr音)·ch6 多校录取(6-4真解锁+复位)·ch7 通知书/JW202/建档(7-0真¥0付+复位重建基线¥0单,录前空跑状态往返验证)·ch8 提额(全客户端)·ch9 增值(按名轮询)·ch10 账户语言安全。全量 rebuild 本机禁用(faces 空0/201)→有置态章一律 scoped 复位(新建 st-pt04/06/0708-reset)。零 @gmail、演示邮箱/邀请码全掩码。ZH item-7 禁用词扫已过(0命中/120串)。**下趟：ZH 全片合成——先给 gp1-finish 加 lang 感知(OP-1 brandCard/OP-6 目录卡换 CH_TITLE_ZH/OP-2..5 KEYPOINT_TITLE,ED-1/capFor 已语言感知)，再跑 bookend/film/trailer --lang zh 出 OP/ED/full(443s)/trailer(177s)+20-40s分段，item-8 对 ED-zh 二维码解码(期望 ...?src=video-zh)；ZH 全齐后录 RU/FR**。本轮不推主仓库、不上线。
+最后一趟：2026-10-12 第17趟 — **ZH 中文全片合成完成 → ZH 四件套全齐（10 章横竖 + OP/ED + 全片 + 速览 + 20-40s 分段 + QR）✅**。给 gp1-finish 加 lang 感知(D-17-1：OP-1 brandCard/OP-6 目录卡 CH_TITLE_ZH/OP-2..5 KEYPOINT_TITLE zh/ED-1 recap zh + eyebrow「要点回顾」，均逐字取自 storyboard §一定稿、EN 母版逐字节不变)；跑 bookend/film/trailer --lang zh → full-{land,port}-zh 459.4/458.3s(13段)、trailer 182.7/181.5s(22镜6段)、OP 59.16s/ED 12.62s。分段短段并回修(D-17-2：ZH 10-4 跨阈单切 5.5s 微段→并回上段 44.9s；film 加清旧段；EN no-op不重跑)。item-8(D-17-3)：jsQR 解 ED-zh 横竖 = ...?src=video-zh ✅。真 Chrome 播放 full/trailer/seg01 land+port 全 readyState4/seek近尾/pageErr=0，unitSum==master。六张 OP/ED 卡逐张肉眼复验中文无豆腐块、品牌紫橙正。RU/FR 资产就绪(captions ru/fr 58/58、voice ru/fr 各 59 m4a+durations)。**下趟：开录 RU（照 EN/ZH 逐章 verify16/16→置态→录横竖→复位→verify，章节条用 EN 标题[storyboard 定 ru/fr 由 EN 译出]、BAR_I18N 已有 ru 标签）；RU 十章齐后同法 ZH 全片合成补 ru 卡面文案(gp1-finish 的 KEYPOINT_TITLE/BRAND_CARD/CATALOG/RECAP 加 ru 分支)+item-8 解 ED-ru(期望 src=video-ru)；再 FR**。本轮零 DB 操作(纯合成/自审，baseline 16/16 自 trip16 未动)。不推主仓库、不上线。
 
 # JOB-GP1-03 进度交接（**进行中 · 视频制作跑到收官**）
+
+## 第 17 趟（2026-10-12 Mac mini 无人值守）· ZH 全片合成 → ZH 四件套全齐
+- **gp1-finish 加 lang 感知（D-17-1）**：bookend 卡面硬编码英文本地化为 zh（照 storyboard §一「四条重点·定稿」中文标题 + CH_TITLE_ZH，逐字取、不自造、不改四条重点口径）。KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE 改 {en,zh} 两层；recapCard 加 eyebrow 形参（EN「IN SHORT」不变／zh「要点回顾」）；OP-6 列表改用 CH_TITLE_FOR(n,'zh')。EN 路径（LANG 默认 en）逐字节不变。
+- **ZH 合成（D-17-2）**：bookend/film/trailer --lang zh。full-{land,port}-zh 459.4/458.3s(13段)、trailer 182.7/181.5s(6段)、OP 59.16s、ED 12.62s；分段 out-of-range 仅 ED 尾段(12.6s，同 EN 13s 先例有意保留)。短段并回：groupSegments 把 <20s 内容短段并回上段（ED 尾段不动）；film stage 加清 full-*-seg 旧段（防段数变动残留，为 RU/FR 防残留）。
+- **item-8（D-17-3）**：jsQR 真帧解 ED-zh 横竖 = `https://www.maxhouses.net/partner-portal/?src=video-zh`，与 RULING §3.8 一致 ✅。
+- **验证**：六张 OP/ED 卡(OP-1/3/5/6、ED-1/2 land)逐张肉眼复验——中文无豆腐块、品牌紫橙、OP-5 最长标题换行正、OP-6 十章中文齐、ED-1 四点中文=OP 标题一致、eyebrow=要点回顾、ED-2 QR+「扫码注册…」。真 Chrome 播放 full/trailer/seg01 land+port 全 readyState4/seek 近尾/pageErr=0；unitSum==master 零漂移；分段 land/port 各 full 13 + trailer 6。
+- **DB**：本趟**零 DB 操作**（纯合成，baseline 16/16 自 trip16 未动）。
+- **成片现状**：EN 全齐(trip15 清关) · **ZH 全齐**(本趟) · RU/FR 待录（资产就绪）。
 
 ## 第 16 趟（2026-10-12 Mac mini 无人值守）· 开录中文 ZH（ch1+ch2）
 - **章节条本地化（D-16-1）**：gp1-overlays.chapterBar 加 `lang` 形参（默认 en，EN 母版逐字节不变）+ BAR_I18N（zh 左标签「合作伙伴端」/前缀「第 N 章」；ru/fr 预留）；prod-ch 加 CH_TITLE_ZH（照 storyboard 10 章名）+ CH_TITLE_FOR，chapterBar 调用传 LANG。抽 ch1 首帧肉眼复验中文正常无豆腐块。

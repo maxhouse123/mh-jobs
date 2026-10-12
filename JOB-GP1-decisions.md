@@ -231,3 +231,29 @@
 - **item-7（ZH 禁用词扫）**：脚本扫 120 条 ZH 串（全镜 capZH + captions zh + keypoints zh）对 10 条禁用词 + 13 个真名校名 → **0 命中**，ZH 过。注：7-0「不收中介费，不收报名费」=定价陈述（¥0 解锁免费），非「零中介」存在性虚假宣称，EN 已过 item-7 同词，ZH 同判过。
 - **ZH 全片合成前置（下趟待办，已勘明落点）**：gp1-finish bookend 卡文案部分硬编码英文需本地化：①OP-1 brandCard 标题/副标硬编码英文 ②OP-6 目录卡用 CH_TITLE（英文）需换 CH_TITLE_ZH + 「Ten short chapters」表头译中 ③OP-2..5 keypointCard 用 KEYPOINT_TITLE（待核是否英文硬编码）④ED-2 qrCard URL 文案（URL 本身留，capFor('ED-2') 已语言感知）。ED-1 recapCard 用 RECAP_LINES[LANG]（已语言感知）、章内字幕 capFor 已用 capZH。→ 下趟先给 gp1-finish 加 lang 感知（同 chapterBar 做法），再跑 bookend/film/trailer --lang zh，出 OP/ED/full/trailer-zh + 20-40s 分段，再 item-8 对 ED-zh 二维码解码（期望 ...?src=video-zh）。
 - **本趟 DB 账**：全程 baseline 16/16 守住；有置态章（ch3/4/6/7）各 scoped 置态+复位，录后每次 verify 16/16；ch7 录前空跑状态往返验证复位可靠。新增复位件：st-pt04-reset-cleanup / st-pt06-reset / st-pt0708-reset-cleanup（均 scoped、授权内）。全量 rebuild 本机禁用（faces 空 0/201）。
+
+## D-17-1 (2026-10-12 第17趟 · gp1-finish 加 lang 感知 → ZH 全片合成)
+- **章 / 镜**：OP-1..6 / ED-1/ED-2 叠层卡（开场/片尾），ZH 横竖。
+- **问题**：gp1-finish bookend 卡文案部分硬编码英文（接 D-16-11 勘明）：OP-1 brandCard 标题/副标、OP-6 目录卡表头+CH_TITLE（英文）、OP-2..5 keypointCard 标题 KEYPOINT_TITLE（英文硬编码）、ED-1 recapCard eyebrow「IN SHORT」。
+- **选项与裁决**：按 RULING §二.1/§二.2（四条重点文字一字不改、开场片尾一致），照 storyboard-v1.md §一「四条重点·定稿」的**中文标题**本地化，不自造文案：
+  - KEYPOINT_TITLE 改 {en,zh} 两层；zh = ①一次提交，多校同审 ②学生归你，没人绕开你 ③学生不交平台费，你的服务费全归你 ④奖学金学校亲自填，通知书 JW202 直发，学校系统平台代录（逐字取自 storyboard §一「中文标题」列）。
+  - RECAP_LINES 补 zh（= 四条重点中文标题，开场片尾一字一致）。
+  - BRAND_CARD = {en,zh}；OP-1 zh 标题「迈克豪斯 · 合作机构操作指南」副标「为中国高校招收学生 —— 一次提交，多校录取」（镜像 EN 母版 "Recruit students for Chinese universities — one submission, many offers"）。CATALOG_TITLE zh「十个短章节」+ OP-6 列表改用 CH_TITLE_FOR(n,'zh')（prod-ch CH_TITLE_ZH）。
+  - ED-1 eyebrow 本地化：recapCard 加 eyebrow 形参（默认 'IN SHORT'，EN 母版不变），zh 传「要点回顾」。brandCard/qrCard 的「MAXHOUSE」eyebrow = 品牌名，全语保留不译。
+- **自决理由**：这些是 storyboard 已定稿的既有文案在卡面的本地化，非新造、非改四条重点口径；EN 路径逐字节不变（LANG 默认 en，新增均为 zh 分支）。
+- **改了**：rec/gp1-finish.mjs（KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 分语言 + renderCard 用 CH_TITLE_FOR + import CH_TITLE_FOR）、rec/gp1-overlays.mjs（recapCard 加 eyebrow 形参）。
+- **验证**：抽 OP-1/OP-3/OP-5/OP-6/ED-1/ED-2 land 帧**逐张肉眼复验**——中文无豆腐块、品牌紫橙正、OP-5 最长标题(④)正常换行、OP-6 十章中文标题齐、ED-1 四点中文=OP 标题一致、eyebrow=要点回顾、ED-2 QR+「扫码注册，邀请码见引导页。」。
+
+## D-17-2 (2026-10-12 第17趟 · ZH 全片/速览/分段合成 + 短段并回)
+- **问题**：film 分段时 ZH 的 10-4 镜在 land/port 均跨 40s 阈值一镜之差，被单独切成 5.5s 微段（seg13），夹在正常段与 ED 尾段之间，串播突兀（EN 无此问题：10-4 正好并入 seg12=38.2s）。
+- **选项**：(a) 留 5.5s 微段；(b) 把 10-4 并回上一段使其 44.9s；(c) 放宽 hi 阈值。
+- **裁决**：选 (b)。groupSegments 加收尾清理——把不足 lo(20s) 的**内容短段**并回上一段（强制独立的 ED 尾段 breakBefore 不动，ED<lo 是有意保留）。44.9s（超 40 约 12%）优于 5.5s 孤儿微段的串播体验；EN 无内容短段→逻辑 no-op，EN 成片不受影响、不重跑。
+- **film stage 加清旧段**：原 film 不清 full-*-seg 旧文件（仅 trailer 清），段数 14→13 时残留 seg14。加 `full-${LANG}-seg` 清理（同 trailer 做法），避免 manifest(13)与磁盘(14)不符；为 RU/FR 未来段数变动防残留。
+- **改了**：rec/gp1-finish.mjs（groupSegments 短段并回 + stageFilm 清旧段）。
+- **产物（本机 ~/guide/dist/partner/，不入 git）**：full-{land,port}-zh.mp4（459.4/458.3s，13 段）、trailer-{land,port}-zh.mp4（182.7/181.5s，22 镜，6 段）、OP-{land,port}-zh.mp4（59.16s）、ED-{land,port}-zh.mp4（12.62s）、segments/{orient}/full-zh-seg01..13 + trailer-zh-seg01..06。段 out-of-range 仅 ED 尾段（12.6s，同 EN 13s 先例，有意保留）。
+- **验证**：真 Chrome 播放 full/trailer land+port + seg01 全 readyState4、seek 近尾、pageErr=0；unitSum==master（零累计漂移）。
+
+## D-17-3 (2026-10-12 第17趟 · ZH item-8 二维码解码)
+- **item-8（ZH 片尾二维码）**：jsQR 对 out/_book/zh/{land,port}/ED-2.mp4 抽帧真帧解码 → 横竖均 = `https://www.maxhouses.net/partner-portal/?src=video-zh`，与 RULING §3.8 逐字一致。✅
+- **ZH 现状**：10 章横竖 + OP/ED + 全片 + 速览 + 20-40s 分段 + QR 全齐。RU/FR 资产就绪（captions ru/fr 58/58、voice ru/fr 各 59 m4a+durations）。下趟开录 RU（再 FR）。
+- **RU/FR 全片合成待办（勘明）**：gp1-finish 的 KEYPOINT_TITLE/BRAND_CARD/CATALOG_TITLE/RECAP_LINES/RECAP_EYEBROW 目前只 en/zh，ru/fr 回退 en；CH_TITLE_FOR 仅 zh 本地化（ru/fr 回退 EN）、chapterBar BAR_I18N 已有 ru/fr 左标签+章前缀。录 RU/FR 章节用 EN 章节标题（storyboard 定 ru/fr 由 EN 译出），全片合成阶段再按同法补 ru/fr 卡面文案。
