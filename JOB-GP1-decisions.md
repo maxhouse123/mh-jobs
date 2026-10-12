@@ -340,3 +340,32 @@
 - **真 Chrome 播放**：full/trailer land+port + full-seg01 全 readyState4、seek 近尾、pageErr=0。卡面肉眼复验：OP-6「Dix courts chapitres」+10 章 FR 标题、ED-1「EN BREF」+4 行=OP 标题一致，无豆腐块。
 - **成片现状**：**EN·ZH·RU·FR 四语四件套全齐**（十章横竖+OP/ED+全片+速览+20~40s 分段）。GP-1 视频制作收官在望。
 - **改了**：rec/gp1-finish.mjs（KEYPOINT_TITLE/RECAP_LINES/BRAND_CARD/CATALOG_TITLE/RECAP_EYEBROW 加 fr）。成片(~/guide/dist/partner，不入 git/mh-jobs)。
+
+## D-20-1 (2026-10-12 第20趟 · 返工开工 · RULING-20261012c §八 第一步：review1 第一节只读查清工作台负数金额与全 0 漏斗根因)
+- **背景**：第 19 趟 15:11 出的第一版四语成片在收官，但 Claude 14:00 的复核 RULING-20261012b-review1 §一 指出工作台数字不合理（TOTAL PAYMENTS PROCESSED ¥-9,000；pt-07/08/09 卡 Invested ¥-3,000；漏斗 9 submitted→0 letter→0 paid→0 enrolled、0 offers，与卡面 2 offer/3 付/1 入学矛盾）。业主 16:00 授权返工。本趟＝§八 第一步：只读查清（db-run.sh + 源码），判 demo 数据问题 vs 产品算法问题。
+- **只读证据**：
+  - 源码 partner v184：`_getPartnerStats`(L6061) 对 `stu._cloud` 走分支(L6074-79)——仅按 `stu.status||stu.stage` 映射 gotLetter(stage∈admitted/enrolled)/enrolled(stage=enrolled)，`paid` 与 `totalOffers` **对云端生硬编码 0**（L6075 注释自述「paid 无云支付数据=0」）。云装载(L7296) `status: r.stage||'pending'`。
+  - hero `totalPaid`(L6093-94)+卡 `invested`(L6763-67) 均 = `_p130_STATS[sid].paid_total`，来自 RPC `get_agent_boost_stats`(0185 L134) `paid_total = sum(po.amount - coalesce(po.discount,0)) where status='paid' and payer_uid=auth.uid()`。
+  - db-run 探针（_probe-rework-stats.sql）实况：9 个演示生 `students.stage` 列**全 NULL**；真实进度在 offer_decisions（pt-06 两 pending offer / pt-07 accepted·unlocked·letter未传·letter_paid_at=t / pt-08 accepted·letter传·paid·jw202未 / pt-09 enrolled 全齐）。payment_orders 仅 3 行 GP1-07/08/09-UNLOCK，均 amount=0 discount=3000 status=paid → `amount-discount=-3000` ×3 = **-9,000**。coupon_redemptions **0 行**。
+  - 全库 `students.stage` 仅 6 行非空(旧种子)，其余 65+ 全 NULL；**全部 migration 与五端口 JS 对 students.stage 零写入**（grep 两次皆空）。真实 stage 由函数 `student_global_stage()`/`get_students_global_stage()`(0154/0155) 从 offer_decisions 现算，列已废弃不维护。
+  - RPC `coupon_agent_pay_offer`(0069 L172) 真 ¥0 付＝调 `agent_pay_offer_letter`（只 `update offer_decisions set letter_paid_at=now()`，**不建 payment_order**）+ 建 1 条 coupon_redemption(original=3000/discount=3000/final=0/code=MAXHOUSE/lane=agent)。`agent_pay_offer_letter`(0054 L142) **letter_uploaded_at 为空即 raise「admission letter not uploaded yet」**——真实流程付款前通知书必须已上传。
+- **判定（分两个缺陷）**：
+  - **缺陷1 · 负数金额 ¥-9,000/¥-3,000 ＝ DEMO 数据问题**（review1 §一第2种，§0.3 可修）。根因：build-core 为 pt-07/08/09 各造一条 ¥0 payment_order(amount=0,discount=3000)，真实 ¥0 优惠码付款链(coupon_agent_pay_offer)**从不建 payment_order**（只 letter_paid_at+coupon_redemption；探针证 coupon_redemptions=0、letter_paid_at=t，即基线用错表征）。`amount-discount` 本身非产品 bug：真实曝光单 amount>discount，只有这仨假种子 amount<discount 才出负。→ **本趟修**：删 3 假单、按真实流程补 coupon_redemption、pt-07 改为 accepted+通知书已传+未付（＝ agent_pay_offer_letter 要求的、7-0 录前合法态）。
+  - **缺陷2 · 漏斗 0 letter/0 paid/0 enrolled/0 offers（与卡面矛盾）＝ 产品算法问题**（review1 §一第3种，§二第6条②要改产品代码）。根因：漏斗读废弃列 `students.stage`（真实生恒 NULL）且对云端生硬编码 paid=0/offers=0。**任何真实中介的云端推荐生都会看到与卡面矛盾的空漏斗**，非演示数据所能修（给 students.stage 填值＝「造真实流程不会产生的数据」，§1.2 禁；paid/offers 硬编码 0 须改端口码，§0.2 禁）。→ **不伪造、不改产品码**；照 §1.3/§八：先做完不依赖它的部分（缺陷1 修复、§四草稿残留、§二 ch6、§三部分字幕、§五快剪），**最后**写 NEEDS_OWNER_DECISION.md 停下，列清文件/行/真实中介所见/建议改法。
+- **影响面**：缺陷2 使「凡画面含工作台的章节重出」(§1.4/§3)被产品码阻塞——这些重出须待业主对缺陷2 裁决后方可定版。本趟与后续趟先推进纯数据/脚本与不含工作台的重出。
+- **改了（本条仅判定；修复见 D-20-2）**：新增只读探针 rec/_probe-rework-stats.sql、rec/_probe-coupon-id.sql。
+
+## D-20-2 (2026-10-12 第20趟 · 修复缺陷1：工作台负数金额 = DEMO 数据，照 review1 §一第2条改成真实流程表征)
+- **病根**（见 D-20-1）：build-core 为 pt-07/08/09 各造一条 ¥0 payment_order(amount=0,discount=3000,status=paid)。RPC get_agent_boost_stats 的 paid_total=sum(amount-discount) → 每生 -3000、hero -9,000。真实 coupon_agent_pay_offer 走 agent_pay_offer_letter(只写 letter_paid_at)+建 1 条 coupon_redemption，**从不建 payment_order**；且 agent_pay_offer_letter 要求 letter_uploaded_at 非空才能付款（付款前通知书必已上传）。
+- **改成真实流程会写出来的样子**（§0.3/§0.4 授权；逐个状态与真实顺序一致，不为数字好看造假数据）：
+  - **pt-07** = 已接受 + 通知书已上传 + **未付款**（清 letter_paid_at/paid_at/payment_reference_id/unlocked_at、置 letter_uploaded_at+file+expires）= 7-0 的合法录前态（原基线「未传通知书却已付」是真实流程产生不了的不可能态）。
+  - **pt-08 / pt-09** = 删假 ¥0 单 + 补 1 条真 coupon_redemption(coupon=MAXHOUSE/original 3000/discount 3000/final 0/lane agent/payer=Demo Agency uid)；letter_paid_at 等保持基线。
+  - 结果：全 guide-pt **零 payment_order** → hero「TOTAL PAYMENTS PROCESSED」=¥0、卡 Invested=¥0，**负数消失**。¥0 = 真实中介只用 100% 券解锁时产品本就显示的值（payment_orders 记真实过账金额，¥0 券不过账），合理非 bug。
+- **落点（主仓库，均已本机实证）**：
+  - 新增 states/st-rework-paylane-cleanup.sql（活库迁移：删 3 假单 + pt-07 改未付态 + pt-08/09 补核销；幂等）→ 已跑，活库 payorders_left=0 / redemptions pt-08·pt-09 各 1 / pt-07 letter_up+unpaid+notunlocked。
+  - 改 states/build-core.sql（源头真值：加 CPN 常量；pt-07 不付+传通知书；pt-08/09 用 coupon_redemption 代 payment_order，on conflict(offer_id) do nothing）。本机不重跑（faces 空，D-16-4），供他机。
+  - 改 states/verify.sql #6/#7（真实流程断言；总数仍 16）→ 16/16 PASS。
+  - 改 states/st-pt0708-reset-cleanup.sql（复位到新基线：pt-07 清付款/解锁、不再重建 ¥0 单；pt-08 jw202 清，基线核销不动）→ 复位后 verify 16/16 PASS（幂等往返实证）。
+  - 改 states/st-pt07-pay-cleanup.sql（7-0 录前态头注更新 + 并清 paid_at/payment_reference_id/unlocked_at）。
+- **影响重出**：凡画面含工作台 hero/卡的章节（1-8、2、3、5、7、8、9、10）负数已从数据层根除；但漏斗全 0（缺陷2·产品码）仍在，这些章节的定版重出须待业主对缺陷2 裁决（见 D-20-1）。本趟不重录（无录制）。
+- **非四种停下情形**：缺陷1 属 §0.3 可修的演示数据，照 review1 §一第2条处理完毕、记账继续。
