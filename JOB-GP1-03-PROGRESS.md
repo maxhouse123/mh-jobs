@@ -1,3 +1,19 @@
+最后一趟：2026-10-12 19:40 第24趟 返工：**做了**＝§三.3 ch5 5-2 EN 字幕返工（review1 §三.3）。旧 EN「The reason is written in English…」声称画面有英文退回理由，但退回详情只渲染「Modification requested」裁决芯片、无自由文本（ZH/RU/FR 已在 D-16-5 改述真实画面，EN 当初以"英文芯片自洽"未改；review1 §三.3 明令照改）。EN 改为「The transcript was returned — the Maxhouse review team requested a change.」与三语对齐。缓存帧重烧（详情弹窗帧、不含漏斗、不碰 DB）：改 shots-v1.json capEN[5-2]+captions-v1.json en[5-2]→重配 EN 5-2 配音（3.3→4.4s，仍在 6.51s 视窗内不越界）→prod-ch 缓存帧重合成 EN ch5 横竖（32.02/32.09s）。抽段中帧横竖亲验：高亮框 "Maxhouse review team·Modification requested" 行、字幕不溢出、no @gmail、演示生 Islam Rahim 无真 PII。联络表 ch5-contact-{land,port}-en.png 重出。开工+收工 verify 17/17 PASS 0 FAIL（零 DB 写入）。**⚠ ch5 过渡版**：5-1 工作台 hero 缓存帧仍显旧 ¥-9,000（缺陷1 数据层已修=¥0，但缓存帧录于修前）+缺陷2 全0漏斗（产品bug待裁），ch5 最终版待缺陷2 裁决后对已修数据重录全章。**下趟**＝§三.4（5-4 置态真上传更正件→审核中再框，需新建 pt-03 scoped 置态+可靠 reset，专趟）或 §五 OP-2(6-1/6-2) 开场快剪。仍受缺陷2阻塞（含工作台漏斗）：§三.1/.2/.5/.7/.8+ch1/2/3/7/8/10 工作台帧+ch5 5-1；最终缺陷2 NEEDS_OWNER_DECISION 待后续。**GP-1 未收官，勿据旧『收官』停工。**
+
+---
+# 第24趟详记：
+## 第 24 趟（2026-10-12 Mac mini 无人值守）· 返工 §三.3 ch5 5-2 EN 字幕（缓存帧重烧）
+- **接手核对**：读齐 PROGRESS/loop-tail/RULING-20261012b-review1/-c-rework/-gp1/DECISIONS。loop-tail 查明「上趟两分钟结束」＝16:00 那趟误读旧『收官』即停（返工授权 RULING-c 当时刚发未读到）——本趟首行开工即改『返工进行中』、收工改完整『做了+下趟』，不复犯。开工 verify **17/17 PASS**（baseline 守住）。
+- **选题**：按 trip23「下趟」与 review1 §八 顺序，挑 §三 余下不受缺陷2阻塞镜中最安全的 §三.3（5-2，纯字幕/配音、不碰 DB）。§三.4（5-4 真上传，需新建置态+可靠 reset）trip23 已标「建议专趟做」→留下趟。
+- **实证现状**：5-2 的 zh/ru/fr 已在 D-16-5 改述真实画面并重配音、RU/FR ch5 在 trip18/19 已用新字幕录过；唯 EN capEN 仍是旧的"英文退回理由"错述。故 §三.3 ＝只补 EN。
+- **缓存帧重烧（见 D-24-1）**：改 shots-v1.json(capEN+action)+captions-v1.json(en)→mv 旧 5-2.m4a 后 tts 仅重配 5-2（EN 母版其余音频不动）→新配音 4.85s<5-2 视窗 6.51s，不越界进 5-3→prod-ch 缓存帧重合成 EN ch5 横竖。新时长 land 32.02s/port 32.09s。
+- **亲验**：5-2 段中帧横竖均——高亮 .reviewer-row-rejected 框 "⚠ Maxhouse review team · Modification requested"（材料 Academic transcript · REJECTED），字幕↔屏上芯片同指；no @gmail、无真 PII。REVIEW-en-shots.md 追加 ch5 §三.3 段（§十一对账）。
+- **DB**：全程只读，收工 verify **17/17 PASS 0 FAIL**。零置态/零写库。
+- **⚠ ch5 过渡版记账**：只 banked 5-2；5-1（工作台 hero，缺陷1缓存帧¥-9,000+缺陷2全0漏斗）仍阻塞，ch5 最终版待缺陷2 NEEDS_OWNER_DECISION 裁后重录全章。
+- **改了**（主仓库，不推）：rec/shots-v1.json、captions-v1.json、REVIEW-en-shots.md、DECISIONS.md。成片/voice/durations 不入 git；EN ch5 联络表推 mh-jobs。第一版 ch5 EN 成片早在 _v1/ 留底，本趟覆盖 dist 为过渡版。
+
+---
+# 上一趟（第23趟）首行存档：
 最后一趟：2026-10-12 18:20 第23趟 返工：**做了**＝§三.6 ch9「增值服务名」四语重出。根因＝增值服务区(PREMIUM SERVICES)只在推荐生列表卡渲染、不在详情弹窗(探针实证#studentDetailModal内0个.partner-premium-block)，旧CONTEXT开弹窗遮住列表→高亮回退弹窗后首卡行→9-2/9-3框错行且不在视口；改rec.mjs CONTEXT[9]不开弹窗、滚首卡增值服务区、9-2 hl→nth-of-type(2)Audit Service¥1,500行/9-3→nth-of-type(3)Human-assisted Search¥600行。9-2/9-3字幕按产品vapay真名真说明四语重写(9-2解除2offer上限+优先推荐位30天/9-3 Maxhouse顾问定制学校清单)+重配音，横竖四语重录重合成(en22.8/zh23.8/ru26.4/fr24.3s)+联络表。逐张亲眼复验(en/zh/ru/fr land全+ru-port 9-3全分辨率+原始帧)：各镜框对应真行不越界、字幕↔行同指、no @gmail、无真PII。新建REVIEW-{en,zh,ru,fr}-shots.md(§十一对账)。ch9只读、verify 17/17全程守住。踩坑：①zsh未对$combo分词致乱TAG重录②ugrep `|grep -E "->|res="`管道SIGPIPE杀prod-ch致mp4没更新→去管道重合成(LEDGER-3)。**下趟**＝§三余下不受缺陷2阻塞镜：ch5 §三.3(5-2缓存帧重烧字幕四语，不碰DB)或§三.4(5-4置态真上传更正件→审核中再框，需可靠reset)；§五OP-2(6-1/6-2)可做。仍受缺陷2阻塞的工作台漏斗章(§三.1/.2/.5/.7/.8+ch1/2/3/7/8/10工作台帧)定版重出+最终缺陷2 NEEDS_OWNER_DECISION待后续。**GP-1 未收官，勿据旧『收官』停工。**
 
 ## 第 23 趟（2026-10-12 Mac mini 无人值守）· 返工 §三.6 ch9 增值服务名四语重出 + 根因修复

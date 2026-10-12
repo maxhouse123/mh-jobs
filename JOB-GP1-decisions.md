@@ -446,3 +446,19 @@
 - **改了**（主仓库，不推）：rec/rec.mjs(CONTEXT['9'])、rec/shots-v1.json(9-2/9-3 hl+文案+action+expect)、captions-v1.json(9-2/9-3 四语)、rec/_probe-ch9-rows.mjs(新)、rec/_probe-ch9-diag.mjs(新)、REVIEW-{en,zh,ru,fr}-shots.md(新)、DECISIONS.md。成片/voice 不入 git；ch9 四语联络表推 mh-jobs。第一版 ch9 成片早已在 guide/dist/partner/_v1/ 留底，本趟覆盖为第二版。
 - **非四种停下情形**：§三.6 全在只读范围，处理完毕记账继续。
 - **下趟**：§三 余下不受缺陷2阻塞镜——ch5 §三.3（5-2 缓存帧重烧字幕四语，不碰DB）或 §三.4（5-4 置态真上传更正件→审核中再框，需可靠 scoped reset）；§五 OP-2(6-1/6-2) 可做。仍受缺陷2阻塞（含工作台漏斗）：§三.1(2-2)/.2(2-4)/.5(7-4)/.7(ch8横幅)/.8(节奏3-1/3-8/5-1) + ch1-8/ch3/ch7/ch8/ch10 工作台帧；最终缺陷2 NEEDS_OWNER_DECISION 待后续。
+
+## D-24-1 (2026-10-12 第24趟 · §三.3 ch5 5-2 EN 字幕返工 · 缓存帧重烧)
+- **章 / 镜**：第 5 章 5-2（pt-03 Islam Rahim 退回材料详情弹窗）。EN 横竖。全程只读，零 DB 写入（开工+收工 verify 均 17/17 PASS 0 FAIL）。
+- **问题（review1 §三.3）**：5-2 旧 EN 字幕「The reason is written in English, so every agent can read it.」声称画面有"英文退回理由"，但中介端退回详情只渲染本地化裁决芯片（EN「Modification requested」）、无自由文本理由。ZH/RU/FR 已在 D-16-5 改述真实画面；EN 当初以"英文芯片=英文自洽"未改。review1 §三.3 明令「不要因为英文已清关就不改」。
+- **裁决**：EN 一并改成描述真实画面，与 zh/ru/fr 对齐——「The transcript was returned — the Maxhouse review team requested a change.」（"transcript"↔Academic transcript；"Maxhouse review team"↔屏上同名裁决芯片；"requested a change"↔Modification requested，均 DOM 实证于段中帧）。
+- **缓存帧重烧（trip15/trip23 §三.3 法）**：5-2 为 viewReferredStudent 详情弹窗帧，不含工作台漏斗、不受缺陷2 阻塞，不需重录、不碰 DB。
+  - 改 `rec/shots-v1.json` 5-2 capEN（烧字幕源，en 从 shots-v1.json 取）+ action 描述（"英文退回理由"→"『要求修改/Modification requested』芯片"）。
+  - 改 `captions-v1.json` shots[5-2].en（配音源，tts-gp1.mjs 从此取）。
+  - 重配 EN 5-2 配音：mv 旧 5-2.m4a 至 /tmp（rm 被权限拒→改 mv）→ `node tts-gp1.mjs --lang en`（仅 1 new=5-2，其余 skip，EN 母版音频逐字节不动）→ 新时长 4.4s（旧 3.3s）。
+  - 新 5-2 配音 4.4s + 0.45 pad = 4.85s < 5-2 视窗 6.51s(land)/6.52s(port)，segDur 仍取视窗 6.51s，**不越界进 5-3 帧**；字幕全段可见，画面静态芯片全程在框。
+  - `node prod-ch.mjs --tag en-land-ch5` / `--tag en-port-ch5` 缓存帧重合成 → ch5-{land,port}-en.mp4（32.02/32.09s，4 镜，res OK，audio yes）。
+- **逐帧亲验**：抽 5-2 段中帧（~11.4s）横竖——高亮 `.reviewer-row-rejected` 框住 "⚠ Maxhouse review team · Modification requested" 行（材料 Academic transcript · REJECTED）；字幕横 1 行/竖 2 行不溢出；no @gmail；演示生 Islam Rahim 无真 PII。联络表 ch5-contact-{land,port}-en.png 四镜段中帧重出亲验。
+- **⚠ ch5 非最终版（5-1 阻塞记账）**：本趟只动 5-2。5-1 工作台 hero 缓存帧仍显旧 `TOTAL PAYMENTS PROCESSED ¥-9,000`（缺陷1 已在 D-20-2 数据层修＝hero ¥0，但缓存帧录于修复前）且含缺陷2 全 0 漏斗（产品算法 bug，待业主裁决）。ch5 最终版＝缺陷2 NEEDS_OWNER_DECISION 裁后对已修数据重录全章（届时 5-1 自动 ¥0、5-2 新字幕已就位）。本趟 ch5 成片为**过渡版**，仅 banked 5-2 修复，未 banked 5-1。
+- **非四种停下情形**：§三.3 全在只读范围，处理完记账继续。
+- **改了**（主仓库，不推）：rec/shots-v1.json(5-2 capEN+action)、captions-v1.json(5-2 en)、REVIEW-en-shots.md(追加 ch5 §三.3 段)、DECISIONS.md。成片/voice/durations 不入 git；EN ch5 联络表推 mh-jobs。第一版 ch5 EN 成片早已在 guide/dist/partner/_v1/ 留底，本趟覆盖 dist 为过渡版。
+- **下趟**：§三.4（5-4 置态真上传更正件→审核中再框，需新建 pt-03 scoped 置态+可靠 reset，专趟做）；或 §五 OP-2(6-1/6-2) 开场快剪。仍受缺陷2阻塞（含工作台漏斗）：§三.1(2-2)/.2(2-4)/.5(7-4)/.7(ch8横幅)/.8(节奏3-1/3-8/5-1) + ch1-8/ch3/ch7/ch8/ch10 工作台帧 + ch5 5-1；最终缺陷2 NEEDS_OWNER_DECISION 待后续。
