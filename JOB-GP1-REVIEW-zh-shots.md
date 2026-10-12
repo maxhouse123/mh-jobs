@@ -94,3 +94,16 @@
 
 - 时长：land 43.997846s / port 43.244172s（5 镜）。横竖 2 片 res OK + audio yes，no @gmail，5 镜 hl 全 resolve（7-1 含 hl2）。亲验 zh-land 联络表：7-0 ¥0 橙框、7-1 校名条揭晓、7-4 状态行「录取完成」= 字幕逐字、「Invested ¥0」无负数、页头平台 WhatsApp/Email 不遮。
 - 记账（留业主·已知产品问题）：7-4 卡徽章「材料已通过·匹配中」对已入学生恒显矛盾（根因 students.stage 恒 NULL），未改产品码（§三.5 兜底），留 SUMMARY。
+
+## ch8 §三.7（横幅：录前 scoped 撤待审提额）+ §一（工作台 v185，返工第32趟 2026-10-13）
+处理同 REVIEW-en-shots 的 ch8 节：录前 scoped 置该 pending quota_request `status='approved'`（decided_at NULL）→ 去横幅；8-1 字幕随 §11 改为述屏真有的「STUDENTS SUBMITTED 9」；8-4 改调产品自身 `_qrApplyBanner` 喂样例（§8 先例），中文横幅走产品真中文渲染。录后 restore 回 pending。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字 | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 8-1 | 你已提交九名学生。 | `.partner-stats-hero-card`「已提交学生总数 · 9」（无提额横幅；同屏 ¥0 无负数、漏斗 9→3→2→1·5 offer·人均 0.6） | 是 |
+| 8-2 | 在这里申请提额。 | `.modal-bg.show .modal-body`「推荐名额已用完 · 当前 9/10 席已用。可向平台申请提额，批准后立即生效。」+ 表单 | 是 |
+| 8-3 | 填预计人数，平台 2 个工作日内审核。 | `.modal-bg.show .btn-primary`「提交申请」（表单已填目标 30 + 理由；不真提交） | 是 |
+| 8-4 | 已批，名额随业绩增长。 | `#qrPendingBanner`「✓ 提额申请已批准：配额已调整为 30 席。」（产品自身 `_qrApplyBanner` 喂样例·绿条） | 是 |
+
+- 时长：land 28.31s / port 28.26s（4 镜）。全 res OK + audio yes，no @gmail，4 镜 hl 全 resolve。
+- 亲验 zh land 联络表四镜：8-1 无横幅框 9、8-2 真中文「推荐名额已用完」、8-4 真中文绿条「提额申请已批准：配额已调整为 30 席」；¥0 无负数、演示生无真 PII、无 beta。收工 verify 17/17 PASS。

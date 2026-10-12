@@ -85,3 +85,16 @@ D-18-4：RU 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 
 - 时长：land 43.293401s / port 43.234512s（5 镜）。横竖 2 片 res OK + audio yes，no @gmail，5 镜 hl 全 resolve（7-1 含 hl2）。章节条左标签 Partner Hub（D-18-4/RULING-c §3）；页头平台 WhatsApp/Email 不遮。
 - 记账（留业主·已知产品问题）：7-4 卡徽章「Документы одобрены · подбор」对已入学生恒显矛盾（根因 students.stage 恒 NULL），未改产品码（§三.5 兜底），留 SUMMARY。
+
+## ch8 §三.7（横幅：录前 scoped 撤待审提额）+ §一（工作台 v185，返工第32趟 2026-10-13）
+做法同 en/zh 节。RU 界面动态串走产品 LL 的 EN 回退（D-18-4 记录的真产品行为），故 8-2「Referral quota reached」/8-4「Quota raise approved: now 30 seats」横幅为英文；字幕为俄文，描述同一件事。8-1 字幕随 §11 改述「STUDENTS SUBMITTED 9」。
+
+| 镜 | 字幕原文(ru) | 高亮区 DOM 实际文字（产品 EN 回退） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 8-1 | Вы подали заявки на девять студентов. | `.partner-stats-hero-card`「STUDENTS SUBMITTED · 9」（无横幅；¥0 无负数、漏斗 9→3→2→1） | 是 |
+| 8-2 | Запросите увеличение прямо здесь. | `.modal-bg.show .modal-body`「Referral quota reached · used 9/10 seats」+ 表单 | 是 |
+| 8-3 | Укажите, сколько ещё студентов вы ожидаете; мы рассмотрим запрос за два рабочих дня. | `.modal-bg.show .btn-primary`「Submit request」（表单已填 30 + 理由） | 是 |
+| 8-4 | Одобрено — квота растёт вместе с вашими результатами. | `#qrPendingBanner`「✓ Quota raise approved: your quota is now 30 seats.」（产品自身 `_qrApplyBanner` 喂样例） | 是 |
+
+- 时长：land 30.80s / port 30.80s（4 镜）。全 res OK + audio yes，no @gmail，4 镜 hl 全 resolve。
+- 亲验 ru land 联络表四镜：8-1 无横幅框 9、章节条俄文「Глава 8 · Квота и увеличение」、8-4 绿条（EN 回退·产品渲染）；¥0 无负数、无 beta。收工 verify 17/17 PASS。

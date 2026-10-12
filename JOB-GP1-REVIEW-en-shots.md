@@ -127,3 +127,21 @@
 - 时长：land 44.66s / port 43.29s（5 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**；8 录屏 5 镜 hl 全 resolve（7-1 含 hl2），零 MISS。
 - 逐张亲眼复验（EN land 全 5 镜原始帧）：7-0 ¥0.00 橙框 + ¥3,000 删除线 + MAXHOUSE（邮箱掩码 agency.demo@example.com、app id MH-NEPTRN）；7-1 phase1 框校名条、phase2 框下载钮（§二.3 达标）；7-4 状态行「⏳ Admission complete」= 字幕逐字、「Invested ¥0」无负数（§一/缺陷1 销账）；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
 - 记账（留业主·已知产品问题）：7-4 卡**徽章**「Documents approved · matching」（蓝 pending）对已入学生恒显矛盾——根因 `s.status = r.stage||'pending'`（L7311）读废弃列 students.stage（恒 NULL），非本趟引入，未改产品码（§三.5 兜底），留 SUMMARY。收工 verify 17/17 PASS，baseline 守住。
+
+## ch8 §三.7（横幅：录前 scoped 撤待审提额）+ §一（工作台 v185，返工第32趟 2026-10-13 · 定版重录）
+前置：ch8 是 state 章。基线有一张 pending quota_request（verify #13）→ 工作台顶恒显 amber「Quota raise pending: 10→30」，与 8-2/8-3「才去申请」叙事矛盾（review1 §三.7）。
+- **§三.7 做法**：录前 scoped 把该行 `status='approved'`（`decided_at` 保持 NULL）→ 产品 `_qrApplyBanner` 判非 pending 且最新行未裁决 → 横幅清空（8-1/8-2/8-3 无横幅）；`partners.referral_quota` 不动（仍 10）。录后 restore 还原 pending，verify #13 回基线。
+- **8-1 字幕随 §11 改**：产品**无常驻名额表**（review1 §三.1 已证），去横幅后 8-1 高亮的 `.partner-stats-hero-card` 只显「STUDENTS SUBMITTED 9」→ 字幕由「Your quota is almost used up.」改述屏真有的数「You've submitted nine students.」（四语重配音）；「名额已满」语境由 8-2 弹窗标题「Referral quota reached · used 9/10」承接。
+- **8-4 改前端示意为产品自身渲染**：旧 8-4 改写 pending 卡文本造绿条（去横幅后无此卡）→ 改调产品自身 `_qrApplyBanner()` 喂样例已批数据（§8 先例「用产品自己的渲染函数喂样例」），渲染真·绿条；横幅四语由产品 LL 本地化（zh 真中文、en/ru/fr 走产品 LL 的 EN 回退＝D-18-4 记录的真产品行为）。
+- **§一**：8-1/8-4 工作台 hero「TOTAL PAYMENTS PROCESSED ¥0」无负数（缺陷1 销账）；hero 卡**不显名额数**，故 8-4「now 30 seats」横幅与屏上无任何名额数字冲突。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 8-1 | You've submitted nine students. | `.partner-stats-hero-card`「STUDENTS SUBMITTED · 9」（**无** pending 横幅；同屏 TOTAL PAYMENTS PROCESSED ¥0 无负数、漏斗 9→3→2→1·5 offer·人均 0.6） | 是 |
+| 8-2 | Request a raise right here. | `.modal-bg.show .modal-body`「Referral quota reached · You have used 9/10 seats. Request a raise below — it takes effect once approved.」+ 目标名额/理由表单 | 是 |
+| 8-3 | Tell us how many more students you expect; we review it within two working days. | `.modal-bg.show .btn-primary`「Submit request」（表单已填目标 30 + 理由；不真提交·零写库） | 是 |
+| 8-4 | Approved — your quota grows with your results. | `#qrPendingBanner`「✓ Quota raise approved: your quota is now 30 seats.」（产品自身 `_qrApplyBanner` 喂样例渲染·§8 先例·绿条） | 是 |
+
+- 时长：land 30.32s / port 30.07s（4 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**；8 录屏 4 镜 hl 全 resolve、零 MISS。
+- 逐张亲眼复验（EN land 8-1/8-4 原始帧 + 四语 land 联络表 + en-port 联络表）：8-1 **无 pending 横幅**、框住 STUDENTS SUBMITTED 9（§三.7 达标）；8-4 产品绿条「approved: now 30 seats」（非伪造 HTML）；全程 ¥0 无负数、Demo Agency 无真 PII、邮箱掩码、无 beta/内测/test 控件、页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- 记账：8-3 不真提交（零写库）；录前 st-ch8-quota-off（status→approved/decided_at NULL）、录后 st-ch8-quota-restore（→pending）；开工+收工 verify 17/17 PASS，baseline 守住（scoped 复位，无全量 rebuild）。
