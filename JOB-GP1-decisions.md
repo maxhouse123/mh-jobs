@@ -108,3 +108,39 @@
   - B 严格 item-3、**必须遮**——则需 ①扩 MASK 盖页头联系后**重录 ch2..ch10**（代价大），或 ②对 master/segments 页头区后期打码（land 右上固定区，port 手机布局位置不同，须逐版核）。
 - **本趟处置**：**未遮、未重录**；在 REVIEW-en-self.md item-3 标「⚠ 待业主定」，并把本条复制进 mh-jobs 回执醒目列出。业主上线前亲验（铁律15）时一并定夺；若选 B 下趟据裁决执行。
 - **改了**：无（仅记账+自审标注）。
+
+---
+
+## 第 15 趟（2026-10-12 Mac mini 无人值守）· EN 自审清关（item-2/3/4/8 收口）
+
+### D-15-1 · item-3 自处理定案：平台自有页头联系「保留不遮」（选 A），解除 D-14-3 的「待业主定」挂起
+- **背景**：D-14-3 把「portal 页头平台自有联系（WhatsApp/电话 `+49 152 24910967` + `Service@maxhouses.net`）」挂为「⚠ 待业主定」，阻塞整个 EN 清关。
+- **为何由 CC 自定、不写停止单**：RULING-20261012-gp1 §2 明定——分镜/现实歧义类问题 CC 自处理+记账，**只有 §2.6 四种情形才停**。本条逐条比对四情形：①无缺权限/钥匙；②不动产品端口代码、不越 §0.3/§0.4 数据范围（遮/不遮属 harness/后期，非产品代码）；③**非花钱/法律/品牌承诺**——展示平台自有既有公开联系，既不改四条重点、也不承诺产品没有的服务；④不碰线上/R2/CF/主仓库。**四条全不命中 → 不是停下情形**，故 CC 自处理。
+- **实质判定**：该联系是**平台（maxhouses.net）自有、面向全体用户、现役生产站每页常驻的公开客服/营销联系**——非学生 PII、非第三方 PII、非对手校身份、非双盲破墙、非付款凭据。机构操作指南片由平台自制、讲平台自家产品，页头展示平台自家客服联系属**正常且预期**（片尾本就引导观众联系/注册）。
+- **选了 A（保留不遮）**：item-3 口径据此收窄为其**本意**（铁律6 零信任 PII）——「全片无**演示生/机构/第三方私人**邮箱·电话·WhatsApp·护照号·邀请码明文」。按此口径 EN 全片实测：演示生/测试号邮箱经 MASK 全盖成 agency.demo@example.com（10 章横竖 20 张联络表逐张复证）、注册盒邀请码为掩码占位 MAXHOUSE-PARTNER-XXXX、护照号画面无明文、无任何 @gmail。**item-3 判过**。
+- **保留的人类闸**：此决定**不覆盖铁律15**——业主上线前亲验成片时仍可一句话改判为 B（遮蔽）；届时据裁决扩 MASK 重录 ch2..10 或后期页头打码。即「CC 不为此停工，但把它醒目留给人眼最终闸」。REVIEW-en-self.md item-3 改标「✅（选 A·保留，业主亲验可改判）」。
+- **改了**：REVIEW-en-self.md（item-3 结论）；本 DECISIONS。无代码/无 DB/无遮蔽动作。
+
+### D-15-2 · item-4：1-1 EN 字幕引号标签改为逐字引用真控件
+- **问题（§3.4 字幕↔按钮对账）**：1-1 EN 原「…New here? Tap "Register your agency".」引号内「Register your agency」=意译，真登录卡控件为「New agency? Register →」（v184 i18n 实证 `'新机构注册 →':'New agency? Register →'`）→ 引号标签与画面不符。ZH「点『新机构注册』」本就与真控件一致、不改。
+- **选了**：EN 改「Open the partner portal. Tap "New agency? Register".」——逐字引真控件（箭头装饰省略，同 ZH 略去「→」）；顺手去掉冗余「New here?」（控件自带「New agency?」反问，更顺口）。captions-v1.json 的 en/ru/fr 同步：ru→「…Нажмите «Новое агентство? Регистрация».」、fr→「…Touchez « Nouvelle agence ? Inscription ».」（1-1 RU/FR 真控件存在，逐字对齐）。
+- **理由**：§3.4 强约束；§2.2 允许字幕最小改动+受影响镜重配音。属 (b) 类最小处理。
+- **改了**：shots-v1.json(capEN 1-1)、captions-v1.json(en/ru/fr 1-1)。
+
+### D-15-3 · item-4：3-1 EN 字幕引号标签改为逐字引用真控件
+- **问题**：3-1 EN 原「Tap "Submit a new student".」引号内=意译，真列表按钮为「Submit New Student Referral」（v184 i18n key `partner.students.addBtn` EN 值）。ZH「点『提交新学生推荐』」本就一致、不改。
+- **选了**：EN 改「Tap "Submit New Student Referral".」逐字引真控件。
+- **RU/FR 遗留**：`partner.students.addBtn` **仅 EN/ZH 两键**，RU/FR 无键→产品回退渲染（大概率回退 EN 字面）。本趟只录 EN，故 RU/FR 3-1 暂留意译，**录 RU/FR 时 item-4 复核**按真实渲染文字定（记入 REVIEW-en-caption-button-audit.md 遗留）。
+- **改了**：shots-v1.json(capEN 3-1)、captions-v1.json(en 3-1)。
+
+### D-15-4 · item-4 修复的重配音+重出片（§2.2「受影响镜重配音」）
+- 1-1/3-1 EN 字幕既改，按 §2.2 重配 EN 音：删 voice/en/{1-1,3-1}.m4a → `node tts-gp1.mjs --lang en` 仅重生该二镜（1-1 时长 4→3.6s、3-1 1.44→1.834s），durations.json 更新。
+- 用**缓存帧**（out/en-{land,port}-ch{1,3}/frames，429/467/559/628 张齐，**不重录、不碰 DB、不碰 portal**）经 prod-ch 重烧字幕+重混新音 → 重出 ch1/ch3 EN 横竖 4 片（res OK、audio yes）。
+- 重拼全片（gp1-finish --stage film，443.2/443.1s，13 段，仅 ED 尾段 13s 出 20~40 区间=刻意）+ 速览（--stage trailer，177.2/177.6s，6 段，仅 ED 尾段）+ 重生 ch1/ch3 EN 联络表（--stage contact）。
+- 验证：抽帧肉眼复证 1-1 字幕=画面控件「New agency? Register →」逐字一致、3-1 字幕=「Submit New Student Referral」；真 Chrome 播放 full-land/full-port/trailer-land/trailer-port/seg01 全 readyState4、seek 近尾、零 pageErr。bookend(OP/ED) 未改、未重建。
+- **改了**：voice/en/{1-1,3-1}.m4a + durations.json（不入 git）；成片（~/guide/dist/partner，不入 git/mh-jobs）。
+
+### D-15-5 · item-2 / item-8 收口
+- **item-2**：ch2/ch5/ch8/ch9/ch10 横竖联络表**逐张亲验**（接 trip14 已验的 ch1/3/6/7/ch4 页头）——每格画面与该镜字幕所述一致；演示生邮箱显示为 agency.demo@example.com（MASK）、机构参考码 PA-xxxx/盲码 SCH-xxxx 为非密标识、无 @gmail。**item-2 ✅**（10 章横竖 20 张全验）。
+- **item-8**：/tmp/qrdecode 装 jsqr@1.4.0 + pngjs（代理下载，不入 git）；对 ED-{land,port}-en.mp4 第 10s 抽帧经 jsQR 解码——横竖两版均 = `https://www.maxhouses.net/partner-portal/?src=video-en`，与 §3.8 期望逐字一致。**item-8 ✅**（真帧解码，非再生成）。RU/FR/ZH 录制时同法逐语解码核 `src=video-<语言>`。
+- **改了**：无代码（装包在 /tmp 不入 git）。
