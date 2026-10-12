@@ -109,3 +109,21 @@
 - 时长：land 60.23s / port 60.25s（9 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**；8 录屏 9 镜 hl 全 resolve、零 MISS。
 - 逐张亲眼复验（EN land 联络表 + 3-1尾/3-2首中/3-8首中/3-9中 原始帧）：3-1 全程框按钮无空白环、3-2 开录即向导、3-8 app_no 全窗口在画面（§三.8 达标）；3-9「Invested ¥0」无负数（§一.3/缺陷1 销账）；注册演示生 Demo Aisha 无真 PII、护照 DE1234567 样号、邮箱掩码 agency.demo@example.com；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
 - 记账：真 submit（submit_referral）仅 insert students、不发邮件/站内通知（trip20 实证）；每变体真码不同（录后 scoped 删）；收工 verify 17/17 PASS、draft 回基线。
+
+## ch7 §二.3（7-1 两段高亮）+ §三.5（7-4 字幕对账）+ §一（工作台 v185，返工第31趟 2026-10-12 · 定版重录）
+前置：ch7 是 state 章（7-0 真付 ¥0 写 letter_paid_at）。v185 底座四语横竖定版重录。处理 review1 三处：
+- **§二.3（7-1）**：高亮改两段（rec.mjs 新增 `hl2`）——先框真揭晓校名条 `.admission-id-tag--unlocked`，再框下载钮 `.admission-doc-btn-letter`。7-1 字幕/配音 trip21 已改，本趟只改高亮。
+- **§三.5（7-4）**：病根＝卡徽章 `s.status` 读废弃列 students.stage（恒 NULL，与漏斗同根）→ 恒 pending、gate_open 覆盖成蓝「Documents approved · matching」，产品从不在卡徽章真显 enrolled（已知产品问题，留 SUMMARY）。但卡**状态行**（`.partner-student-issue`，源 cloudTl.completed）稳定真显「⏳ Admission complete」。→ 走 review1 §三.5 兜底，字幕由「Enrolled. Done.」改**与状态行逐字一致**的「Admission complete.」。
+- **§一**：7-4 卡「Invested on this student: ¥0」无负数（v185）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 7-0 | Enter the coupon code — ¥0. No agency fee, no application fee. | `.payment-amount-value`「¥0.00」（UNLOCK FEE — TOTAL DUE；下方 ¥3,000.00 删除线 · MAXHOUSE −¥3,000.00） | 是 |
+| 7-1 | The university is revealed — download the admission letter here. | 两段：①`.admission-id-tag--unlocked`「🔓 Demo University · 演示大学 · 📍 Wuhan / 武汉 · SCH-1AD6C8」(揭晓校名条) ②`.admission-doc-btn-letter`「Admission Letter · Official PDF · 录取通知书 ⬇」(下载钮) | 是（§二.3 两段先校名后下载） |
+| 7-2 | The JW202 follows the same way. | `.admission-doc-btn-jw`「JW202 Form · 签证申请用 · For visa application ⬇」 | 是 |
+| 7-3 | The platform files the student into the university's own enrolment system for you. | `.offer-progress`「✓ Accept offer · ✓ School issues admission letter · ✓ School issues JW202 · ✓ Enrolled」(建档进度条含 ✓入学) | 是 |
+| 7-4 | Admission complete. | `#gp1-74-card` 内状态行「⏳ Admission complete · MSc Mechanical Engineering · 1w ago」（整卡高亮；卡「Invested on this student: ¥0」无负数） | 是（字幕=状态行逐字） |
+
+- 时长：land 44.66s / port 43.29s（5 镜）。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**；8 录屏 5 镜 hl 全 resolve（7-1 含 hl2），零 MISS。
+- 逐张亲眼复验（EN land 全 5 镜原始帧）：7-0 ¥0.00 橙框 + ¥3,000 删除线 + MAXHOUSE（邮箱掩码 agency.demo@example.com、app id MH-NEPTRN）；7-1 phase1 框校名条、phase2 框下载钮（§二.3 达标）；7-4 状态行「⏳ Admission complete」= 字幕逐字、「Invested ¥0」无负数（§一/缺陷1 销账）；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
+- 记账（留业主·已知产品问题）：7-4 卡**徽章**「Documents approved · matching」（蓝 pending）对已入学生恒显矛盾——根因 `s.status = r.stage||'pending'`（L7311）读废弃列 students.stage（恒 NULL），非本趟引入，未改产品码（§三.5 兜底），留 SUMMARY。收工 verify 17/17 PASS，baseline 守住。

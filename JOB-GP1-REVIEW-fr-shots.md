@@ -71,3 +71,17 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 | 3-9 | Désormais, cet étudiant vous est rattaché. | `.partner-student-status-pending`（pending 标签，基线生卡；同卡 Invested ¥0 无负数） | 是 |
 
 - 时长：land 69.59s / port 69.51s（9 镜）。横竖 2 片 res OK + audio yes，no @gmail，9 镜 hl 全 resolve。亲验同 EN/RU：3-8 app_no 全窗口、3-9 ¥0 无负数、演示生无真 PII、无 beta、页头不遮。
+
+## ch7 §二.3（7-1 两段高亮）+ §三.5（7-4 字幕对账）+ §一（工作台 v185，返工第31趟 2026-10-12 · 定版重录）
+前置：ch7 state 章，v185 定版重录。§二.3＝7-1 两段高亮（先 `.admission-id-tag--unlocked` 揭晓校名条、再 `.admission-doc-btn-letter` 下载钮）；§三.5＝7-4 字幕由「Inscrit. Terminé.」改成与卡状态行逐字一致的「Admission terminée.」。亲验 fr-land 7-4 真帧：产品**真本地化**渲染状态行「⏳ Admission terminée」（非英文回退），与字幕逐字一致；卡徽章蓝「Documents validés · mise en relation」＝已知产品问题（留 SUMMARY）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 7-0 | Saisissez le code promo — ¥0. Pas de frais d'agence, pas de frais de dossier. | `.payment-amount-value`「¥0.00」（应付总额；下方 ¥3,000.00 删除线 · MAXHOUSE −¥3,000.00） | 是 |
+| 7-1 | L'université est révélée — téléchargez la lettre d'admission ici. | 两段：①`.admission-id-tag--unlocked`「🔓 Demo University · 演示大学 · 📍 Wuhan / 武汉 · SCH-1AD6C8」②`.admission-doc-btn-letter`「录取通知书 · Official PDF ⬇」 | 是（两段先校名后下载） |
+| 7-2 | Le JW202 se télécharge de la même façon. | `.admission-doc-btn-jw`「JW202 Form · For visa application ⬇」 | 是 |
+| 7-3 | La plateforme inscrit l'étudiant dans le système d'inscription de l'université à votre place. | `.offer-progress` 建档进度条「✓ Accept offer · ✓ admission letter · ✓ JW202 · ✓ Enrolled」 | 是 |
+| 7-4 | Admission terminée. | `#gp1-74-card` 内状态行「⏳ Admission terminée · MSc Mechanical Engineering · 1w ago」（整卡高亮；卡「Investi pour cet étudiant : ¥0」无负数） | 是（字幕=状态行逐字） |
+
+- 时长：land 43.596644s / port 43.518685s（5 镜）。横竖 2 片 res OK + audio yes，no @gmail，5 镜 hl 全 resolve（7-1 含 hl2）。章节条左标签 Partner Hub（D-18-4/RULING-c §3）；页头平台 WhatsApp/Email 不遮。
+- 记账（留业主·已知产品问题）：7-4 卡徽章「Documents validés · mise en relation」对已入学生恒显矛盾（根因 students.stage 恒 NULL），未改产品码（§三.5 兜底），留 SUMMARY。

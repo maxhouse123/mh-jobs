@@ -80,3 +80,17 @@
 | 3-9 | 从现在起，这名学生与你绑定。 | `.partner-student-status-pending`「已提交·等待平台审核」（基线生卡；同卡「Invested ¥0」无负数） | 是 |
 
 - 时长：land 70.52s / port 70.46s（9 镜）。横竖 2 片 res OK + audio yes，no @gmail，9 镜 hl 全 resolve。亲验同 EN：3-1 全程框按钮、3-8 app_no 全窗口、3-9 ¥0 无负数、演示生无真 PII、无 beta、页头平台 WhatsApp/Email 不遮。
+
+## ch7 §二.3（7-1 两段高亮）+ §三.5（7-4 字幕对账）+ §一（工作台 v185，返工第31趟 2026-10-12 · 定版重录）
+前置：ch7 是 state 章（7-0 真付 ¥0）。v185 底座定版重录。§二.3＝7-1 高亮改两段（先框揭晓校名条 `.admission-id-tag--unlocked`、再框下载钮）；§三.5＝7-4 字幕由「已入学，完成。」改成与卡状态行逐字一致的「录取完成。」（卡状态行 `.partner-student-issue` 稳定真显「⏳ 录取完成」；卡徽章蓝「材料已通过·匹配中」＝已知产品问题，根因 s.status 读废弃列 students.stage 恒 NULL，留 SUMMARY）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 7-0 | 输入优惠码，应付 0 元。不收中介费，不收报名费。 | `.payment-amount-value`「¥0.00」（应付总额；下方 ¥3,000.00 删除线 · MAXHOUSE −¥3,000.00） | 是 |
+| 7-1 | 校名揭晓，录取通知书就在这里下载。 | 两段：①`.admission-id-tag--unlocked`「🔓 演示大学 · Demo University · 📍 Wuhan / 武汉 · SCH-1AD6C8」(揭晓校名条) ②`.admission-doc-btn-letter`「录取通知书 · Official PDF ⬇」(下载钮) | 是（两段先校名后下载） |
+| 7-2 | JW202 同样在这里。 | `.admission-doc-btn-jw`「JW202 Form · 签证申请用 ⬇」 | 是 |
+| 7-3 | 平台替你把学生录入学校自己的报名系统。 | `.offer-progress`「✓接受 offer · ✓学校发放录取通知书 · ✓学校发放 JW202 表 · ✓入学」(建档进度条) | 是 |
+| 7-4 | 录取完成。 | `#gp1-74-card` 内状态行「⏳ 录取完成 · MSc Mechanical Engineering · 1w ago」（整卡高亮；卡「Invested ¥0」无负数） | 是（字幕=状态行逐字） |
+
+- 时长：land 43.997846s / port 43.244172s（5 镜）。横竖 2 片 res OK + audio yes，no @gmail，5 镜 hl 全 resolve（7-1 含 hl2）。亲验 zh-land 联络表：7-0 ¥0 橙框、7-1 校名条揭晓、7-4 状态行「录取完成」= 字幕逐字、「Invested ¥0」无负数、页头平台 WhatsApp/Email 不遮。
+- 记账（留业主·已知产品问题）：7-4 卡徽章「材料已通过·匹配中」对已入学生恒显矛盾（根因 students.stage 恒 NULL），未改产品码（§三.5 兜底），留 SUMMARY。
