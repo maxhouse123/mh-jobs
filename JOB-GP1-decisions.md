@@ -503,3 +503,9 @@
 - **改了**（主仓库，不推）：`rec/gp1-overlays.mjs`(keypointStrip)、`rec/gp1-finish.mjs`(CARD_HOLD/OP_BROLL/kpNum/brollWindow/buildQuickCut + buildCardClip 分支)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加「开场快剪 OP-2」段)、`DECISIONS.md`。成片/voice 不入 git；OP-2 快剪 montage 四语 + 四 REVIEW + PROGRESS + 决定账推 mh-jobs。dist OP/full/trailer 覆盖为含快剪的 v2（原始 v1 早在 `_v1/` 留底）。
 - **非四种停下情形**：§五 OP-2 全在成片工装、只读范围，记账继续。
 - **下趟 / 阻塞边界**：**§三/§五 中不受缺陷2 阻塞的部分至此全部做完**（§二四语 ch6 ✅ / §三.3 5-2 ✅ / §三.4 5-4 真态机制 ✅ / §三.6 ch9 ✅ / §五 OP-2 ✅）。仍受缺陷2（产品漏斗算法 bug，D-20-1 定性）阻塞的＝§三.1(2-2)/.2(2-4)/.5(7-4)/.7(ch8 横幅)/.8(节奏 3-1/3-8/5-1) + §五 OP-3/4/5 + ch1/2/3/5/7/8/10 工作台漏斗章定版重出 + ch5 5-1/5-4 两态定版重录。**下趟即照 review1 §一.3/§八 写 `jobs/JOB-GP1/NEEDS_OWNER_DECISION.md`（缺陷2＝产品漏斗算法 bug，写清文件/逻辑/真实中介所见/建议改法）停下，并复制一份到 `~/mh-jobs/JOB-GP1-NEEDS_OWNER_DECISION-<年月日-时分>.md` 推送。** GP-1 未收官。
+
+## D-26-2 (2026-10-12 第26趟收尾 · 写缺陷2 NEEDS_OWNER_DECISION 停下)
+- §五 OP-2 做完后，review1 §三/§五 中**不受缺陷2 阻塞的部分至此全部交付**（§一缺陷1✅/§四✅/§二 ch6✅/§三.3✅/§三.4 机制✅/§三.6✅/§五 OP-2✅）。为免下一趟空转，本趟收尾即照 review1 §一.3/§八 + 卡规矩 7 写 `jobs/JOB-GP1/NEEDS_OWNER_DECISION.md`（缺陷2＝合作伙伴端工作台录取漏斗产品码算错：`_getPartnerStats`(partner v184 L6061, 云端分支 L6074-79 读废弃列 students.stage + 硬编码 paid/totalOffers=0) + hero/卡 paid_total 只认 payment_orders 不认 coupon_redemptions；真实进度在 offer_decisions / student_global_stage()）。
+- 收尾前只读复跑 `_probe-rework-stats.sql` 复核活库：9 演示生 stage 列全 NULL、payment_orders 0 行、coupon_redemptions pt-08/09 各 1、offer_decisions 真实进度在册——缺陷2 实证不变。
+- 请示单列清：业主一句话版 + 技术版(文件/行/根因) + 只读实证表 + 建议改法(改用 student_global_stage()/offer_decisions、paid 不硬编码、hero 覆盖两条付款车道) + 阻塞清单 + 已交付清单；给出 A/B/C 三选项。复制 `~/mh-jobs/JOB-GP1-NEEDS_OWNER_DECISION-20261012-1914.md` 推送。
+- **循环应在此停下等业主裁决**。GP-1 未收官；业主回复前不重录带工作台章、不写 SUMMARY-GP1、不碰上线/R2/Cloudflare/主仓库推送。
