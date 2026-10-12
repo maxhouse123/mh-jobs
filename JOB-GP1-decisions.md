@@ -617,3 +617,15 @@
 - **非四种停下情形**：§一背景在 §0.3 范围（无写库）+ 成片工装范围，记账继续。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch9 v185 定版段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（trip23 已 banked）；成片/voice 不入 git；ch9 v1 早在 `_v1/` 留底、dist 覆盖定版 v2；全片不重拼（待全部工作台章完后统一拼）。四语 ch9 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
 - **下趟**：ch10（读-only v185 背景重录）/ OP-3·4·5 开场快剪（素材 3-8/7-0/7-1 已随 ch3/ch7 定版就位）。一趟一章；全部完后四语十一项重审+重拼全片→写 SUMMARY-GP1。**GP-1 未收官。**
+
+## D-35-1 (2026-10-13 第35趟 · ch10 设置章（读-only）v185 工作台背景定版重录 · review1 §一)
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail(20261012-163805)/RULING-b-review1/-c-rework/DECISIONS/QUEUE/shots。trip34 已把 ch9 定版 v185 重录完，下趟明文列 ch10 首。查明 16:00 那趟「2 分钟即停」＝误读旧「收官」（loop-tail 实证：trip19 15:11 写过 v1 SUMMARY，业主 16:00 授权返工后 trip1 误判已完成即停）——首行开工即改「返工进行中」，开工 verify **17/17 PASS**。
+- **选题（我的决定）**：挑 **ch10**。依据：①ch10 读-only（设置章 3 镜 10-2/10-3/10-4＝高亮 hub 已登录态的账户设置/语言切换/退出菜单项，client-side 渲染、全程零写库、无弹窗置态，同 ch1/ch9 profile）；②review1 §一 点名 ch10 为「背景含工作台数字」章，v184 缓存帧 hero 有负数/漏斗（缺陷1/2），v185 漏斗修复上线后（RULING-e）须 v185 重录；③review1 未标 ch10 任何字幕缺陷→纯 v185 底座重录，字幕/高亮/shots/captions 一字未改。低风险、按 trip34「下趟」为首。
+- **做法（零改产品码/迁移；rec.mjs trip28 已切 v185 FILE=partner-portal-v185.html）**：ch10 × 4 语 × 2 画幅＝8 片：`node rec.mjs --chapter 10 --orient "$O" --lang "$L"`（带引号位置参数函数批量，避 LEDGER-3 分词学费）→ `node prod-ch.mjs --tag "$L-$O-ch10"`（合成）→ `node gp1-finish.mjs --stage contact --lang "$L" --chapter 10`（联络表，帧取每镜字幕中点）。
+- **自验**：8 片全 res OK + audio yes；8 录屏 3 镜 hl 全 resolve、零 MISS；全片 DOM 扫描 no @gmail。亲验 en-land 10-2 原始帧 f00022 + fr-land 10-2 原始帧 f00022 + 四语 land 联络表：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」**无负数**（缺陷1 销账）、「STUDENTS SUBMITTED 9」；三下拉项高亮逐镜对账「是」；RU/FR 高亮目标真本地化（Настройки аккаунта/Выйти、Paramètres du compte/Se déconnecter，非 EN 回退）；Demo Agency 无真 PII、邮箱掩码 agency.demo@example.c…、Partner Code PA-E62FC6FF；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。§十一对账四语写 REVIEW-*-shots.md（ch10 §一段）。
+- **D-18-4 一致**：ch10 hero 卡标签（TOTAL PAYMENTS PROCESSED/STUDENTS SUBMITTED/Partner Code/Agency）+ 提额待审横幅在 RU/FR 下为产品 LL 动态串英文回退，照录不补，与 ch1/ch9 同背景、D-18-4 已记入 SUMMARY，非本趟引入。
+- **DB**：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住，零置态/零写库。
+- **时长**：land en16.31/zh16.33/ru16.32/fr16.30·port en16.32/zh16.32/ru16.32/fr16.29s（3 镜）。
+- **非四种停下情形**：§一背景在 §0.3 范围（无写库）+ 成片工装只读范围，记账继续。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch10 §一段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（ch10 字幕从未需改）；成片/voice 不入 git；ch10 v1 早在 `_v1/` 留底、dist 覆盖定版 v2；全片不重拼（待全部工作台章完后统一拼）。四语 ch10 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **下趟**：OP-3·4·5 开场快剪（§五，素材 3-8 app_no/7-0 ¥0/7-1 校名揭晓已随 ch3/ch7 v185 定版就位，不再阻塞；OP-2 trip26 已做，仿其做法）。OP-3·4·5 做完即全部工作台章+开场快剪返工完毕→四语过十一项重审（REVIEW-*-self.md）+ 重拼全片（bookend/film/trailer/segments 四语横竖，纳入全部 v185 定版章）→ 写 SUMMARY-GP1（首行 PUSH_OK=yes）。**GP-1 未收官。**
