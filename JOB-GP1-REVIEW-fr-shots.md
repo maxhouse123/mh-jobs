@@ -129,3 +129,17 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 - 时长：land 16.30s / port 16.29s（3 镜）。8 片（四语横竖）全 res OK + audio yes；8 录屏 3 镜 hl 全 resolve、零 MISS；全片 DOM 扫描 **no @gmail**。
 - 逐张亲眼复验（fr land 10-2 原始帧 f00022 + fr land 联络表）：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」**无负数**（缺陷1 销账，§一达标）、「STUDENTS SUBMITTED 9」；下拉三项高亮逐镜对账「是」，FR 本地化真帧（Paramètres du compte/Se déconnecter 非 EN 回退）；Demo Agency 无真 PII、邮箱掩码（no @gmail）；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮。
 - 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住（零置态/零写库）。ch10 v1 在 `_v1/` 留底、dist 覆盖为定版 v2。全片不重拼。
+
+## Montage rapide d'intro OP-3 / OP-4 / OP-5（review1 §五，返工第36趟 2026-10-13）
+做法同 trip26 OP-2、同 EN（见 REVIEW-en-shots.md）：卡前 2.5s 满屏→切对应镜真实画面（静音·配音续·底叠重点标题条），卡总时长/配音不变；按镜号从 ch3/ch7 的 fr timeline 取窗；OP-4 定格 ts≈4.5 干净 ¥0 发票避 beta 吐司；tpad 补满 30fps CFR。
+
+| 镜 | 字幕原文（配音，不改·法） | 快剪后画面（b-roll 帧 DOM） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-3 前 2.5s | Votre étudiant reste le vôtre ／ … | 重点②卡满屏（橙圈 2 + 法标题/正文） | 是 |
+| OP-3 2.5s~尾 | （同句配音续） | ch3 3-8：演示生 Demo Aisha 详情·真 app_no「MH-xxxxxx」（橙框）· 法本地化状态·#10，底叠「② Votre étudiant reste le vôtre」 | 是 |
+| OP-4 前 2.5s | Aucuns frais de plateforme ／ … | 重点③卡满屏（橙圈 3 + 法标题/正文） | 是 |
+| OP-4 2.5s~尾 | （同句配音续） | ch7 7-0 定格：付款单「**¥0.00**」· ¥3,000·MAXHOUSE −¥3,000 · 演示生 demo 邮箱 · MH-NEPTRN · SCH-1AD6C8，底叠「③ Aucuns frais de plateforme」 | 是（¥0 全程在画面） |
+| OP-5 前 2.5s | Rempli par l'université, livré chez vous ／ … | 重点④卡满屏（橙圈 4 + 法标题/正文） | 是 |
+| OP-5 2.5s~尾 | （同句配音续） | ch7 7-1：录取详情「Détails d'admission · Lettre d'admission prête — JW202 à venir」· 揭晓校名条 演示大学·Wuhan·SCH-1AD6C8（橙框）· 下载钮「Lettre d'admission PDF officiel」（橙框）· École révélée·coordonnées，底叠「④ Rempli par l'université…」 | 是（亲验 FR land OP-5） |
+
+- 亲验（FR land OP-5＝校名揭晓+下载法本地化）：无负数、无 beta/test、演示生无真 PII、邮箱掩码 no @gmail、双盲守住（校名揭晓＝付款解锁后合法态）、标题条＝FR OP 卡标题/ED-1 回顾一字一致（D-18-4：产品动态串英文回退照录）。卡总时长不变（FR OP-3 15.4 / OP-4 9.3 / OP-5 15.2s），配音未动。

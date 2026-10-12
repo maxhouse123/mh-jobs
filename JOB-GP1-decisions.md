@@ -629,3 +629,21 @@
 - **非四种停下情形**：§一背景在 §0.3 范围（无写库）+ 成片工装只读范围，记账继续。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch10 §一段)、`DECISIONS.md`。shots-v1.json/captions-v1.json 本趟未改（ch10 字幕从未需改）；成片/voice 不入 git；ch10 v1 早在 `_v1/` 留底、dist 覆盖定版 v2；全片不重拼（待全部工作台章完后统一拼）。四语 ch10 联络表(land+port)+4 REVIEW+决定账+PROGRESS 推 mh-jobs。
 - **下趟**：OP-3·4·5 开场快剪（§五，素材 3-8 app_no/7-0 ¥0/7-1 校名揭晓已随 ch3/ch7 v185 定版就位，不再阻塞；OP-2 trip26 已做，仿其做法）。OP-3·4·5 做完即全部工作台章+开场快剪返工完毕→四语过十一项重审（REVIEW-*-self.md）+ 重拼全片（bookend/film/trailer/segments 四语横竖，纳入全部 v185 定版章）→ 写 SUMMARY-GP1（首行 PUSH_OK=yes）。**GP-1 未收官。**
+
+## D-36-1 (2026-10-13 第36趟 · §五 开场快剪 OP-3/4/5 四语横竖 + 四语全片/速览重拼)
+- **接手核对**：git status + 读齐 PROGRESS/loop-tail(20261012-163805)/RULING-b-review1/-c-rework/-d-funnel/-e-v185-live/-gp1/DECISIONS/QUEUE/storyboard/D-26-1(OP-2 先例)。trip35 已把 ch10 定版 v185 重录完，下趟明文列 OP-3·4·5 开场快剪（仿 trip26 OP-2）。首行开工即改「返工进行中」，开工 verify **17/17 PASS**。
+- **选题（我的决定）**：挑 **OP-3/4/5 开场快剪**（review1 §五最后一块）。依据：trip26 已做 OP-2；OP-3/4/5 素材 3-8(真 app_no)/7-0(¥0 付款)/7-1(校名揭晓+下载) 曾因缺陷2(工作台漏斗)阻塞，缺陷2 已随中介端 v185 修好 2026-10-12 21:38 上线(RULING-e)、ch3/ch7 亦 trip30/31 v185 定版重录→素材就位、解除阻塞。做完即「全部工作台章+开场快剪返工完毕」→ 本趟重拼四语全片/速览。
+- **实现（`gp1-finish.mjs`，零改产品代码/迁移，复用 trip26 keypointStrip/buildQuickCut）**：`OP_BROLL` 加 OP-3/4/5，按**镜号**从该章 timeline 取起止（逐语言/画幅各异，非硬编码时刻），并解决三处内容定位：
+  - **OP-3**(ch3 3-8)：窗口 [3-8.start, min(3-8.end,+brollDur)]，3-8 整镜＝提交成功页，动态播完末帧定格真 app_no。
+  - **OP-4**(ch7 7-0，加 `still:4.5`)：取证发现 7-0 的 pre 在镜内跑(非 offCamera)——ts0~3 开窗转场、ts~4 ¥0 发票落定、再点付款→成功页带「Paid (beta placeholder)」吐司，且各语言付款时点不一(ru-port ts9 已「处理中」)。动态窗必漂入 beta 成功页(§六.10 违规)→改**定格 ts≈4.5 干净 ¥0 发票单帧**(¥0 全程在画面＝本重点「零平台费」)，彻底避 lead-in/处理中/beta 吐司。新增 `nearestFrame`/`stillConcat`。
+  - **OP-5**(ch7 7-1，加 `leadin:1.0`)：跳开窗转场 1s，落录取详情(揭晓校名条 + 下载通知书钮两段高亮)，末帧定格下载钮高亮。
+  - b-roll ff 加 `tpad=stop_mode=clone` 补满 brollDur + 强制 **30fps CFR**(定格窗短于 brollDur 时避免低帧率/VFR 致全片拼接 A/V 漂移)；实测四语 OP-3/4/5 帧数＝时长×30 整。
+- **beta/脱敏取证（只读）**：读 rec.mjs 实证 `HIDE_INIT`(遮 `.cloud-offer-unlock` beta 链接) + `MASK_INIT`(@gmail→demo 邮箱) 均 setInterval+MutationObserver 在**录制时改活 DOM**→原始帧即已遮/脱敏(OP-5 的 7-1 beta 链接在原始帧不现、邮箱皆 agency.demo@example.com)。7-0 末尾「Paid (beta placeholder)」吐司不属 `.cloud-offer-unlock`、原始帧不遮→OP-4 以定格 ts4.5 规避(见上)。
+- **自验**：四语 land OP-3(app_no:en MH-EYJ5EE/zh MH-M4S9FH)/OP-4(¥0:en+ru-land+ru-port+zh)/OP-5(reveal+download:en+fr)+ en-port OP-4 原始/成片帧亲验：真 app_no、¥0 无负数、校名揭晓+下载；全程无 beta/内测/test、演示生无真 PII、邮箱掩码 no @gmail、双盲守住(OP-5 校名揭晓＝付款解锁后合法态)、标题条＝本语 OP 卡标题/ED-1 回顾一字一致。卡总时长＝配音+0.5 不变、配音未动：EN OP-3 15.6/OP-4 9.1/OP-5 14.5·ZH 16.0/9.1/18.0·RU 15.5/10.5/16.0·FR 15.4/9.3/15.2s。§十一对账四语写 REVIEW-*-shots.md(开场快剪 OP-3/4/5 段)。
+- **四语全片/速览重拼**（bookend 四语 OP 全变快剪 → film → trailer，纳入全部 v185 定版章 + OP-3/4/5）：全片 land/port＝EN 426.6/424.7·ZH 441.1/440.3·RU 449.9/449.6·FR 440.3/439.8s(masterDur≈unitSum·drift≤0.1·零漂移)；速览＝EN 164.3/162.8·ZH 168.4/167.6·RU 172.3/172.2·FR 165.8/165.5s。8 全片+8 速览真 Chrome 播放全 readyState4/seek 近尾/pageErr 0。
+  - 章节底座：ch1-3/5/7-10 为 trips 28-35 v185 定版；ch4(Oct11)/ch6(Oct12 17:16) review1 §一未列(无工作台漏斗)、§二/§三 未触 ch4→照原版入拼，非本趟改。
+- **社媒分段 OOR**：全片各语 seg12/13(~43-45s 贪心段略越 40 + ED 尾段 ~13s 有意独立<20)、速览 seg04/05 同——`groupSegments` 既有贪心行为(D-26-1 已记)，OP 卡总时长不变故分段数学随 v185 章时长微移、非快剪引入。
+- **DB**：本趟纯成片工装，**零 DB 写入/零置态**；开工+收工 verify 均 **17/17 PASS 0 FAIL**，baseline 守住。
+- **非四种停下情形**：§五 全在成片工装/只读范围，记账继续。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`rec/gp1-finish.mjs`(OP_BROLL+OP-3/4/5、nearestFrame/stillConcat、buildQuickCut still/leadin 分支、tpad CFR)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加开场快剪 OP-3/4/5 段)、`DECISIONS.md`。成片/voice 不入 git；dist OP/full/trailer/segments 覆盖为含 OP-3/4/5 快剪+全 v185 章的 v2(原始 v1 早在 `_v1/` 留底)。四语 4 REVIEW+决定账+PROGRESS 推 mh-jobs。
+- **下趟**：**全部工作台章 + 开场快剪(OP-2..5) 返工完毕 + 四语全片/速览已重拼**。下趟＝四语过 review1 §六十一项重审（写/更新 REVIEW-{en,zh}-self.md + ru/fr 自审），全过后照 RULING-20261012c-rework 第4条重写 `~/mh-jobs/SUMMARY-GP1.md`(首行 PUSH_OK=yes，大白话写：返工改了什么/review1 每条怎么处理/查出的产品问题留业主/四语新时长/v1 与 v2 区别)。写完循环自停。**GP-1 未收官。**

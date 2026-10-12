@@ -174,3 +174,24 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 - 时长：land 16.31s / port 16.32s（3 镜）。8 片（四语横竖）全 res OK + audio yes；8 录屏 3 镜 hl 全 resolve、零 MISS；全片 DOM 扫描 **no @gmail**。
 - 逐张亲眼复验（EN land 10-2 原始帧 f00022 + 四语 land 联络表）：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」**无负数**（缺陷1 销账，§一达标）、「STUDENTS SUBMITTED 9」；下拉三项高亮逐镜对账「是」；演示生/机构 Demo Agency 无真 PII、邮箱掩码 `agency.demo@example.c…`（no @gmail）、Partner Code PA-E62FC6FF；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
 - 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住（零置态/零写库）。ch10 v1 早在 `_v1/` 留底、dist 覆盖为定版 v2。全片不重拼（待全部工作台章完后统一拼）。
+
+## 开场快剪 OP-3 / OP-4 / OP-5（review1 §五，返工第36趟 2026-10-13 · 缺陷2 v185 上线后接做）
+前置：trip26 已做 OP-2 快剪（素材 ch6 盲 offer，不受阻塞）；OP-3/4/5 的素材 3-8（真 app_no）/7-0（¥0 付款）/7-1（校名揭晓+下载）当时含工作台/漏斗、受缺陷2 阻塞。缺陷2 已随中介端 v185 修好并 2026-10-12 21:38 上线（RULING-e），ch3/ch7 亦于 trip30/31 v185 定版重录，素材就位→本趟接做 OP-3/4/5，仿 trip26 OP-2 做法。
+要求（review1 §五，同 OP-2）：每张重点卡总时长不变（=配音+0.5s）、配音一字不动；先满屏卡面 2.5s，再切对应章节真实画面（静音、配音续），底部叠重点标题条，直到本卡结束；横竖各用对应画幅素材；四条重点文字一字不改。
+实现（`gp1-finish.mjs`，零改产品代码/迁移，复用 trip26 `keypointStrip`/`buildQuickCut`）：`OP_BROLL` 加 OP-3/4/5 三条，按**镜号**从该章 timeline 取起止（逐语言/画幅各异，非硬编码时刻）。
+- **OP-3**（ch3 3-8）：窗口 [3-8.start, min(3-8.end, +brollDur)]，3-8 整镜＝提交成功页，动态播完后末帧定格 app_no。
+- **OP-4**（ch7 7-0，`still:4.5`）：7-0 的 pre 在镜内跑（非 offCamera），ts0~3 开窗转场、ts~4 ¥0 发票落定、再点付款→成功页带「Paid (beta placeholder)」吐司（各语言付款时点不一·ru-port ts9 已处理中）。故 OP-4 **不取动态窗**（会漂入 beta 成功页），改**定格 ts≈4.5 的干净 ¥0 发票单帧**（¥0 全程在画面＝本重点「零平台费」），彻底避开 lead-in/处理中/beta 吐司。
+- **OP-5**（ch7 7-1，`leadin:1.0`）：窗口 [7-1.start+1.0, min(7-1.end, +brollDur)]，跳过开窗转场 1s，落在录取详情（揭晓校名条 `.admission-id-tag--unlocked` + 下载通知书钮 `.admission-doc-btn-letter` 两段高亮），末帧定格在下载钮高亮。
+- 均加 `tpad=clone` 把末帧克隆补满 brollDur 并强制 **30fps CFR**（定格窗短于 brollDur 时避免低帧率/VFR 致全片拼接 A/V 漂移）；实测四语 OP-3/4/5 帧数＝时长×30 整。
+
+| 镜 | 字幕原文（配音，不改） | 快剪后画面（b-roll 帧 DOM） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-3 前 2.5s | Your student stays yours ／ Submitting binds the student to you… The platform never takes your student. | 重点②卡满屏（紫底橙圈 2 + 标题 + 正文） | 是 |
+| OP-3 2.5s~尾 | （同句配音续） | ch3 3-8 真实画面：演示生 Demo Aisha 详情「YOUR APPLICATION ID **MH-EYJ5EE**」（橙框）· DOCUMENTS UNDER REVIEW · #10 Demo Aisha · Pakistan · bachelor · 2026-fall，底叠「② Your student stays yours」 | 是（"提交即绑定、学生归你"↔同一学生提交成功拿到专属申请编号） |
+| OP-4 前 2.5s | Zero platform fees ／ There is no platform fee, no application fee… the service fee you agreed with the student is entirely yours. | 重点③卡满屏（紫底橙圈 3 + 标题 + 正文） | 是 |
+| OP-4 2.5s~尾 | （同句配音续） | ch7 7-0 定格：付款单「UNLOCK FEE — TOTAL DUE **¥0.00**」· ¥3,000.00 · MAXHOUSE −¥3,000.00 · Applicant/Paid by `agency.demo@example.com` · MH-NEPTRN · SCH-1AD6C8，底叠「③ Zero platform fees」 | 是（"零平台费"↔优惠码后应付 ¥0 全程在画面） |
+| OP-5 前 2.5s | Written by the university, delivered to you ／ The admission letter is written by the university… you download it and hand it to the student. | 重点④卡满屏（紫底橙圈 4 + 标题 + 正文） | 是 |
+| OP-5 2.5s~尾 | （同句配音续） | ch7 7-1 真实画面：录取详情「Admission Letter Ready — JW202 coming soon」· 揭晓校名条 Demo University · 演示大学 · Wuhan/武汉 · SCH-1AD6C8（橙框）· 下载钮「Admission Letter Official PDF · 录取通知书」↓（橙框）· School revealed · contact details，底叠「④ Written by the university, delivered to you」 | 是（"校名揭晓·通知书直发给你下载"↔同一画面校名解锁+下载钮） |
+
+- 逐张亲眼复验（EN land OP-3/4/5 card 帧 + b-roll 帧 + 尾帧；EN port OP-4 复验）：OP-3 真 app_no、OP-4 ¥0（无负数）、OP-5 校名揭晓+下载；全程**无 beta/内测/test 控件**（7-1 的 `.cloud-offer-unlock` beta 链接由录制层 HIDE_INIT 在原始帧即遮；OP-4 定格 ts4.5 避开 7-0 末尾「Paid (beta placeholder)」吐司）；演示生/机构无真 PII、邮箱掩码 `agency.demo@example.com`（no @gmail）；双盲守住（OP-5 校名揭晓＝付款解锁后合法态，非盲态泄校名）；标题条文字＝ EN OP-3/4/5 卡标题/ED-1 回顾串一字一致。
+- 卡总时长不变（EN OP-3 15.6 / OP-4 9.1 / OP-5 14.5s，=配音+0.5），配音未动。OP-3/4/5 做完→全部工作台章+开场快剪返工完毕，本趟重拼四语横竖全片/速览（纳入全部 v185 定版章）。
