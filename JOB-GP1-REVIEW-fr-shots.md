@@ -20,7 +20,7 @@ D-18-4：FR 界面里产品动态串回退成英文（PREMIUM SERVICES / Audit S
 ### ch9 v185 定版重录（返工第34趟 2026-10-13，review1 §一 背景）
 trip23 字幕/高亮照旧正确，本趟只换录制底座 v184→v185 重录 ch9 4 镜使背景落定版。亲验 FR land/port 联络表：增值服务区标题行右「Investi pour cet étudiant : **¥0**」（缺陷1 销账，无负数）；chrome 法文本地化（Espace partenaires 等）；Audit Service / Human-assisted Search 等 LL 动态串英文回退（D-18-4，照录不补，留 SUMMARY）。4 镜 box 全 resolve、无 MISS、no @gmail。时长 land **24.18s** / port **24.30s**（v185 重录值）。ch9 读-only 零写库，开工+收工 verify 17/17 PASS。
 
-## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12）
+## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12） ⟶ **已被第50趟（第三轮 OP 重做）取代**
 问题/依据/做法同 EN REVIEW「开场快剪 OP-2」节。本趟只做 OP-2（素材 ch6 6-1/6-2 两份盲 offer）；OP-3/4/5 静止卡面待缺陷2 裁后接做。零改产品代码/迁移。
 
 | 镜 | 字幕原文（配音，不改） | 快剪后画面（b-roll 中帧 DOM） | 同一件事？ |
@@ -315,3 +315,25 @@ ch10＝设置/语言/账户章，3 镜 10-2/10-3/10-4。**读-only·零 DB 写**
 - 时长（最终成片，秒）：land fr 16.27（en 16.31 / zh 16.30 / ru 16.32）；port fr 16.31（en 16.31 / zh 16.31 / ru 16.23）。8 片全 res OK + audio yes + 3 镜 box 全 resolve、全片 no @gmail。
 - 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住。ch10 v1 在 `_v1/`、v2 在 `_v2/` 留底、dist 覆盖第三轮定版。全片待 OP 重做后统一重拼。
 - 联络表：`~/mh-jobs/shots/GP1/fr/ch10-contact-{land,port}-fr.png`。
+
+## 第三轮十一项重审 · 开场 OP-1~OP-6 + 片尾 ED + 速览（当独立片查）对账（第50趟 2026-10-14 · RULING-20261013b §四.6 · 用最终成片重生成）
+> trip26 OP-2 节已标「已被第50趟取代」；fr shots.md 原无 trip36 OP-3/4/5 节，本节首次补齐 OP-1~6 法文对账。第三轮（trip49）OP-2~5 用 v185 新素材重做。OP-3 法文真申请号第三轮＝**MH-BMNWDB**。
+> **查法**：十章横竖联络表用 `gp1-finish --stage contact` 对**最终 dist 成片** `ch<N>-<orient>-fr.mp4` 重生成（每镜字幕中点取帧）亲眼看；OP/ED 另从**最终成片 per-shot 段** `out/_book/fr/land/OP-*.mp4`/`ED-*.mp4` 抽帧亲眼看；二维码从**最终 ED 成片** jsQR 真帧解码。
+
+| 镜 | 卡标题/字幕（配音） | b-roll/卡 真画面（亲眼） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-1 | MAXHOUSE · Guide partenaire — Recruter des étudiants pour les universités chinoises — une soumission, plusieurs offres | 品牌卡满屏 | 是 |
+| OP-2 卡 | ① Une seule soumission, de nombreuses universités | 重点①卡满屏 | 是 |
+| OP-2 b-roll | （同句配音续） | ch6 盲 offer 详情：OFFRE D'ADMISSION·OFFICIEL / 盲码 **SCH-1AD6C8**（pending）/ **MSc Computer Science**（专业无校名）/ NOTE DE L'ÉCOLE 演示串 / Accepter cette filière 钮，底叠「① Une seule soumission…」 | 是（**双盲守住无校名**） |
+| OP-3 卡 | ② Votre étudiant reste le vôtre | 重点②卡满屏 | 是 |
+| OP-3 b-roll | （同句配音续） | ch3 3-8 TABLEAU PARTENAIRE·ÉTUDIANT Demo Aisha：VOTRE NUMÉRO DE CANDIDATURE **MH-BMNWDB**（橙框）· EN COURS · SUIVI EN DIRECT · #10 Demo Aisha，底叠「② Votre étudiant…」（顶部 Withdraw 条 EN 回退 D-18-4 照录） | 是（新素材 MH-BMNWDB） |
+| OP-4 卡 | ③ Aucuns frais de plateforme | 重点③卡满屏 | 是 |
+| OP-4 b-roll | （同句配音续） | ch7 7-0 定格：FRAIS DE DÉVERROUILLAGE — TOTAL DÛ **¥0.00** · ¥3,000.00 删除线 · MAXHOUSE −¥3,000.00 · Candidat/Payé par `agency.demo@example.com` · MH-NEPTRN · SCH-1AD6C8，底叠「③ Aucuns frais…」 | 是（**¥0 无 beta·无非白名单负数·邮箱 example.com**） |
+| OP-5 卡 | ④ Rempli par l'université, livré chez vous | 重点④卡满屏 | 是 |
+| OP-5 b-roll | （同句配音续） | ch7 7-1 录取详情：揭晓校名条 **Demo University · 演示大学 · SCH-1AD6C8** · 下载通知书钮 ↓，底叠「④ Rempli par l'université…」 | 是（校名揭晓＝解锁后合法态） |
+| OP-6 | Dix courts chapitres | 目录卡满屏 | 是 |
+| ED-1 | EN BREF：四条＝四条重点标题 | 片尾回顾卡四行＝ Une seule soumission, de nombreuses universités / Votre étudiant reste le vôtre / Aucuns frais de plateforme / Rempli par l'université, livré chez vous | 是（与 OP 卡一字一致） |
+| ED-2 | 二维码 → partner-portal | **jsQR 真帧解码（land+port 均）= `https://www.maxhouses.net/partner-portal/?src=video-fr`** 逐字一致 | 是 |
+
+**速览（trailer）当独立片查**：最终 `trailer-{land,port}-fr.mp4`（land 168.4s），镜单同 EN（21 镜/5 段，§三.11 不变）。seg04 的 6-2 盲 offer 无校名、7-0 优惠码 ¥0 **无 beta**、7-1 校名揭晓（解锁后）——复用 ch7 成片同批 per-shot 段（HIDE_INIT+actOff）。俄法界面动态串英文回退照录（D-18-4）。自成可独立看懂的招募片。
+**整镜扫描（§四.5）**：OP/ED 卡文案受控常量、b-roll 取自各章第三轮成片（§四.5 逐章 ALL CLEAN），hi-res 亲验 ¥0 无 beta、无非白名单负数、邮箱全 example.com → **0 命中**。

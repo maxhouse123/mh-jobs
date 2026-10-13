@@ -866,3 +866,14 @@
 - **非四种停下情形**：全在成片/录制工装层 + 既有 gp1-finish 工具，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json/rec 脚本改动（OP 源 ch6 的 out/ 帧 cp 落在 .gitignore 的 `rec/out/`·不入 git）。决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：四语各过十一项重审（§四.6·联络表全用最终成片重新生成·不沿用旧联络表/旧结论·REVIEW-<语言>-shots.md 追加新对账行+旧行标「已被第 N 趟取代」·REVIEW-<语言>-self.md 写明每项查法）→ 四语全过十一项后才重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes·照裁决第六节）。**GP-1 第三轮返工未收官**，仍不开始 GP-2（不传 R2、不动 Cloudflare、不推主仓库）。
+
+## D-50-1 · 四语各过十一项重审（§四.6）+ 重写 SUMMARY-GP1 收官（第50趟 2026-10-14 · RULING-20261013b-video-only · Mac mini 无人值守）
+- **背景**：第三轮返工十章 v185 定版重录（trip38~48）+ OP-2~5 新素材重做/四语全片速览分段重拼（trip49）已收尾。本趟＝裁决 §四.6 四语各过十一项重审 → 全过后 §六重写 SUMMARY-GP1 收官。本轮不改任何端口代码（开工核验 `git diff origin/main --stat -- partner-portal` 空、无未跟踪 partner 文件、无 v186）。开工+收工 verify 均 **17/17 PASS 0 FAIL**（纯复审·零 DB 写）。
+- **联络表全用最终成片重生成（§四.6「不沿用旧联络表」）**：`gp1-finish --stage contact --lang {en,zh,ru,fr}` 对最终 dist 成片 `ch<N>-<orient>-<lang>.mp4` 重生成四语×横竖×10 章 = 80 张联络表（每镜字幕中点取帧），推 `~/mh-jobs/shots/GP1/<lang>/`。
+- **OP/ED 另抽帧亲验（contact 阶段不覆盖 OP/ED）**：从最终成片 per-shot 段 `out/_book/<lang>/land/OP-*.mp4`/`ED-*.mp4` 抽卡帧+b-roll 中帧，拼四语 OP/ED montage 亲眼看 + hi-res 复核 OP-2 盲 offer（双盲守住 SCH-1AD6C8 无校名·专业 MSc Computer Science）/OP-4 ¥0 发票（四语均 ¥0·−¥3,000 MAXHOUSE 优惠码白名单·邮箱全 agency.demo@example.com·无 beta/placeholder）/OP-3 真 app_no（**en MH-22MSY7·zh MH-5T6PPH·ru MH-B75TP6·fr MH-BMNWDB**，均真序列号·证第三轮新素材≠v2 MH-EYJ5EE）/OP-5 校名揭晓 Demo University（解锁后合法态）。
+- **片尾二维码真帧解码（§四 项8）**：从最终 ED 成片 `ED-{land,port}-{en,zh,ru,fr}.mp4` 抽帧用 jsQR **真帧解码**，8 片（四语×横竖）全解出 `https://www.maxhouses.net/partner-portal/?src=video-<语言>` 逐字一致。
+- **速览当独立片查（§三.11）**：最终 trailer 四语横竖镜单 = OP-1~6 → 章节高亮（1-1/1-7/1-8/2-1/2-4/3-1/3-8/4-1/4-5/6-2/7-0/7-1/7-3）→ ED-1/2（21 镜/5 段，review1 §二.5 镜单不变）；seg04（含 6-2 盲 offer/7-0 ¥0/7-1 揭晓）逐帧抽查无校名泄露、¥0 无 beta（复用 ch7 成片同批 per-shot 段 HIDE_INIT+actOff，beta 帧从未进片）；seg04=45.4s/seg05(ED 尾)=13s 为固定镜单按真镜界切的固有结果、非缺陷。开场重做 OP 卡 + 收尾 ED 回顾/二维码，自成可独立看懂的招募片。
+- **文书**：4 REVIEW-{语言}-shots.md 旧 OP 节（trip26/trip36）标「已被第50趟取代」+ 追加「开场 OP-1~6 + 片尾 ED + 速览」第三轮对账节（**0 条「否」**）；4 REVIEW-{语言}-self.md 升 v3（十一项逐条注明本轮查法、覆盖取代 trip37 v2、改正 v2 对第 4/6 章沿用旧录像/旧结论的说法）。
+- **工装事故+修复（如实记账）**：本趟为 QR 解码误在 `rec/node_modules`（＝指向 ../../JOB-GP0/node_modules 的符号链接）里 `npm install jsqr`，npm 把符号链接替换成只含 jsqr 的实目录、致 qrcode/playwright 等失联。修＝移走坏目录、重建符号链接 `rec/node_modules → ../../JOB-GP0/node_modules`，验 qrcode/playwright import OK；jsqr 改装在 /tmp/qrtool（连同 pngjs）跑解码，不污染任何 JOB 目录。node_modules 不入 git。
+- **四语十一项全过 → 照 §六重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes）**。GP-1 第三轮返工收官，循环自停。不开始 GP-2：不传 R2、不动 Cloudflare、不推主仓库。
+- **账目**：主仓库点名提交 JOB-GP1（4 REVIEW-shots + 4 REVIEW-self + DECISIONS），**未推**。四语 80 章联络表 + 4 REVIEW-shots + 4 REVIEW-self + SUMMARY-GP1 + 决定账 + PROGRESS 推 mh-jobs。

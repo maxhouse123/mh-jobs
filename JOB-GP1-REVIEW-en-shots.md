@@ -40,7 +40,7 @@ trip23 的字幕/高亮（§三.6）照旧正确，本趟只换**录制底座 v1
 - 实证：置态后探针读到 `badge_reviewing=1 / badge_rejected=0 / row_rejected=0 / row_pending=1 / modRequested=false`；复位后 verify 17/17（0 FAIL，#10 退回态恢复）。
 - **帧捕获待 ch5 定版重录**：5-2 需退回态、5-4 需审核中态，单 rec pass 不可兼得（置态后 5-2 的 `.reviewer-row-rejected` 消失）；故 5-4 帧捕获随 ch5 全章定版重录（缺陷2 裁后）按两态录制做，同 trip21 对 7-1「先落字幕/机制、再录」的先例。本趟落「证真态机制 + 改 shot 定义」，DB 全程只读往返、收工 clean。
 
-## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12）
+## 开场快剪 OP-2（review1 §五，返工第26趟 2026-10-12） ⟶ **已被第50趟（第三轮 OP 重做）取代**
 问题（review1 §五）：开场四条重点卡（OP-2..5）各约 9~16s 全是静止卡面，合计约 50s；速览（招募片）也以这四张卡开头。中介多在手机上从社媒点开，开头长时间静止易被划走。review1 §五 令「现在就做快剪」：每张重点卡总时长不变（=配音+0.5s）、配音不动；先满屏卡面约 2.5s，再切到对应章节真实画面（静音、配音续），画面叠一条重点标题条，直到本卡结束；横竖各用对应画幅素材；四条重点文字一字不改。
 本趟范围：**只有 OP-2 不受缺陷2 阻塞**——其素材是第6章 6-1/6-2 的两份盲 offer（ch6 已在 trip21/22 返工完、beta 链接已遮蔽）。OP-3/4/5 的素材 3-8/7-0/7-1 含工作台/漏斗，仍受缺陷2 阻塞，本趟保持静止卡面，待缺陷2 NEEDS_OWNER_DECISION 裁后接做。
 实现（`gp1-finish.mjs` + `gp1-overlays.mjs`，零改产品代码/迁移）：新增 `keypointStrip` 叠层（重点标题条＝紫带+橙编号圈+标题，置于底部字幕带位置、取代章节字幕）；`buildQuickCut` 对 OP-2 产出 card(2.5s)+b-roll（取 ch6 原始帧 `out/<lang>-<orient>-ch6/frames`、页面定位同 prod-ch、静音、底部叠标题条）+ 全程配音；卡总时长不变（EN 10.4s）。
@@ -199,7 +199,7 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 - 逐张亲眼复验（EN land 10-2 原始帧 f00022 + 四语 land 联络表）：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」**无负数**（缺陷1 销账，§一达标）、「STUDENTS SUBMITTED 9」；下拉三项高亮逐镜对账「是」；演示生/机构 Demo Agency 无真 PII、邮箱掩码 `agency.demo@example.c…`（no @gmail）、Partner Code PA-E62FC6FF；无 beta/内测/test 控件；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。
 - 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住（零置态/零写库）。ch10 v1 早在 `_v1/` 留底、dist 覆盖为定版 v2。全片不重拼（待全部工作台章完后统一拼）。
 
-## 开场快剪 OP-3 / OP-4 / OP-5（review1 §五，返工第36趟 2026-10-13 · 缺陷2 v185 上线后接做）
+## 开场快剪 OP-3 / OP-4 / OP-5（review1 §五，返工第36趟 2026-10-13 · 缺陷2 v185 上线后接做） ⟶ **已被第50趟（第三轮 OP 重做·新素材）取代**
 前置：trip26 已做 OP-2 快剪（素材 ch6 盲 offer，不受阻塞）；OP-3/4/5 的素材 3-8（真 app_no）/7-0（¥0 付款）/7-1（校名揭晓+下载）当时含工作台/漏斗、受缺陷2 阻塞。缺陷2 已随中介端 v185 修好并 2026-10-12 21:38 上线（RULING-e），ch3/ch7 亦于 trip30/31 v185 定版重录，素材就位→本趟接做 OP-3/4/5，仿 trip26 OP-2 做法。
 要求（review1 §五，同 OP-2）：每张重点卡总时长不变（=配音+0.5s）、配音一字不动；先满屏卡面 2.5s，再切对应章节真实画面（静音、配音续），底部叠重点标题条，直到本卡结束；横竖各用对应画幅素材；四条重点文字一字不改。
 实现（`gp1-finish.mjs`，零改产品代码/迁移，复用 trip26 `keypointStrip`/`buildQuickCut`）：`OP_BROLL` 加 OP-3/4/5 三条，按**镜号**从该章 timeline 取起止（逐语言/画幅各异，非硬编码时刻）。
@@ -386,3 +386,26 @@ ch10＝设置/语言/账户章（Account, language & security），3 镜 10-2/10
 - 时长（最终成片，秒）：land en 16.31 / zh 16.30 / ru 16.32 / fr 16.27；port en 16.31 / zh 16.31 / ru 16.23 / fr 16.31。8 片全 res OK + audio yes + 3 镜 box 全 resolve、全片 no @gmail。
 - 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住（零置态/零写库·scoped quota off→restore）。ch10 v1 在 `_v1/` 留底、v2 在 `_v2/` 留底、dist 覆盖为第三轮定版。全片不重拼（待 OP 快剪重做后统一重拼）。
 - 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch10-contact-{land,port}-<lang>.png`。
+
+## 第三轮十一项重审 · 开场 OP-1~OP-6 + 片尾 ED + 速览（当独立片查）对账（第50趟 2026-10-14 · RULING-20261013b §四.6 · 用最终成片重生成）
+> 上面 trip26 OP-2 节、trip36 OP-3/4/5 节已标「已被第50趟取代」：第三轮（trip49）OP-2~5 用 v185 新素材重做、四语全片/速览/分段重拼，OP-3 的真 app_no 由 v2 的 MH-EYJ5EE 变成第三轮的 **MH-22MSY7**（证真新素材）。
+> **查法**：十章横竖联络表用 `gp1-finish --stage contact` 对**最终 dist 成片** `ch<N>-<orient>-en.mp4` 重生成（每镜字幕中点取帧），逐张亲眼看；OP/ED 的 contact 阶段不覆盖，另从**最终成片的 per-shot 段** `out/_book/en/land/OP-*.mp4`/`ED-*.mp4` 抽卡帧+b-roll 中帧亲眼看；片尾二维码从**最终 ED 成片** `ED-{land,port}-en.mp4` 抽帧用 jsQR **真帧解码**。
+
+| 镜 | 卡标题/字幕（配音，不改） | b-roll/卡 真画面（亲眼） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| OP-1 | MAXHOUSE Partner Guide — Recruit students for Chinese universities — one submission, many offers | 品牌卡满屏（紫底 MAXHOUSE 标+副标） | 是（品牌开场） |
+| OP-2 卡 | ① One submission, many universities | 重点①卡满屏（橙圈1+标题+正文） | 是 |
+| OP-2 b-roll | （同句配音续） | ch6 盲 offer 详情：ADMISSION OFFER·OFFICIAL / 盲码 **SCH-1AD6C8**（时钟 pending）/ **MSc Computer Science**（专业，无校名）/ 校注 "Demo admission…" / Accept 钮，底叠「① One submission…」 | 是（一次提交→多校盲 offer，**双盲守住无校名**） |
+| OP-3 卡 | ② Your student stays yours | 重点②卡满屏（橙圈2） | 是 |
+| OP-3 b-roll | （同句配音续） | ch3 3-8 提交成功：Demo Aisha 详情「YOUR APPLICATION ID **MH-22MSY7**」（橙框）· DOCUMENTS UNDER REVIEW · #10 Demo Aisha·Pakistan·bachelor·2026-fall，底叠「② Your student stays yours」 | 是（提交即绑定→专属真申请号；新素材 MH-22MSY7≠v2 MH-EYJ5EE） |
+| OP-4 卡 | ③ Zero platform fees | 重点③卡满屏（橙圈3） | 是 |
+| OP-4 b-roll | （同句配音续） | ch7 7-0 定格发票：UNLOCK FEE — TOTAL DUE **¥0.00** · ¥3,000.00 删除线 · MAXHOUSE −¥3,000.00 · Applicant/Paid by `agency.demo@example.com` · MH-NEPTRN · SCH-1AD6C8，底叠「③ Zero platform fees」 | 是（零平台费→优惠码后 ¥0 全程在画面；**无 beta/placeholder·无负数（−¥3,000 为优惠码白名单行）·邮箱 example.com**） |
+| OP-5 卡 | ④ Written by the university, delivered to you | 重点④卡满屏（橙圈4） | 是 |
+| OP-5 b-roll | （同句配音续） | ch7 7-1 录取详情：Admission Letter Ready — JW202 coming soon · 揭晓校名条 **Demo University · 演示大学 · SCH-1AD6C8** · 下载钮 Admission Letter Official PDF ↓，底叠「④ Written by the university…」 | 是（校名揭晓+通知书下载＝付款解锁后合法态，非盲态泄名；Demo University 为演示校名非真 PII） |
+| OP-6 | Ten short chapters | 目录卡满屏（十章一句话清单） | 是（目录） |
+| ED-1 | IN SHORT：四条回顾＝四条重点标题 | 片尾回顾卡：✓ One submission, many universities / ✓ Your student stays yours / ✓ Zero platform fees / ✓ Written by the university, delivered to you | 是（与 OP-2~5 卡标题一字一致） |
+| ED-2 | 二维码 → partner-portal | 二维码卡；**jsQR 真帧解码（land+port 均）= `https://www.maxhouses.net/partner-portal/?src=video-en`** 逐字一致 | 是 |
+
+**速览（trailer）当独立片查**：最终 `trailer-{land,port}-en.mp4`（land master 166.3s）镜单＝OP-1~6 → 1-1/1-7/1-8/2-1/2-4/3-1/3-8/4-1/4-5/6-2/7-0/7-1/7-3 → ED-1/ED-2（共 21 镜/5 段，review1 §二.5 镜单，§三.11 不变）。开场＝同一批重做 OP 卡、收尾＝ED 回顾+二维码，自成一部可独立看懂的招募片。seg04（4-5/6-2/7-0/7-1/7-3）逐帧抽查：6-2 盲 offer 无校名、7-0 优惠码 ¥0 **无 beta/placeholder**、7-1 校名揭晓（解锁后）+下载——速览里的 7-0/7-1 复用与 ch7 成片同一批 per-shot 段（HIDE_INIT 遮 beta + actOff 付款在镜外），beta 帧从未进片。seg04=45.4s 略超 40s 上限、seg05（ED 尾）=13s＝按真镜界切的固有结果（镜单固定、ED 刻意独立成尾段），非新缺陷。
+
+**整镜扫描（§四.5）结论**：OP 卡文案/ED 回顾/目录卡均为受控常量（KEYPOINT_TITLE/BRAND_CARD/CATALOG_TITLE/RECAP_LINES），无 beta/test/负数/真邮箱；b-roll 取自 ch3/ch6/ch7 第三轮成片（各章 §四.5 逐章 ALL CLEAN）；OP-4 ¥0 发票与 OP-2 盲 offer hi-res 亲验无 beta、无非白名单负数、邮箱全 example.com。四语 OP/ED → **0 命中**。

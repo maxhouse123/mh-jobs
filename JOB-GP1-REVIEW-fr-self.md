@@ -1,39 +1,40 @@
-# REVIEW-fr-self.md · 法文十一项自审（返工后·review1 §六）
+# REVIEW-fr-self.md · 法文十一项自审（**第三轮返工后 · v3**）
 
-> 状态：**十一项全过 · FR 返工清关 ✅** — 第37趟（2026-10-13 Mac mini 无人值守）收口。
-> 依据 RULING-20261012b-review1.md（十一项、四语）+ RULING-20261012c-rework.md（FR 返工范围同 EN/ZH）。
-> 逐镜对账表（第十一项）见 `REVIEW-fr-shots.md`（随返工逐镜追加，**0 条「否」**）。
-> 成片（不入 git/mh-jobs）：`~/guide/dist/partner/{full,trailer,OP,ED}-{land,port}-fr.mp4` + `segments/`。v1 成片在 `_v1/` 留底。
+> 状态：**十一项全过 · FR 第三轮返工清关 ✅** — 第50趟（2026-10-14 Mac mini 无人值守）收口。
+> 本文件是**第三轮返工**（RULING-20261013b-video-only）后的 v3 自审，覆盖并取代第37趟 v2。十章全部用 v185 重录（trip38~48）、OP-2~5 新素材重做（trip49）、四语全片/速览/分段全部重拼。
+> 逐镜对账表（第十一项）见 `REVIEW-fr-shots.md`：各章第三轮对账行 + 本趟「开场 OP-1~6 + 片尾 ED + 速览」对账节；旧行标「已被第 N 趟取代」，**0 条「否」**。
+> 本轮不改任何端口代码（partner-portal 与线上一致，diff 空）。遮蔽只在录制层。成片不入 git/mh-jobs。
 
-## 成片规格（FR，本趟 ffprobe 实测）
-- 全片 master：land **440.3s** / port **439.8s**（约 7 分 20 秒）。
-- 速览 master：land **165.8s** / port **165.5s**（约 2 分 46 秒）。
-- OP 开场 **56.0s**（OP-2..5 已做快剪）；ED 片尾 **13.9s**。
-- 分段：全片 land/port 各 **13 段**、速览各 **5 段**（含 ED 尾段）。
-- 全片含章节：ch1–ch10（ch1-3/5/7-10 v185 定版；ch4/ch6 照返工版/原版入拼）+ OP + ED。章节条左标签保留「Partner Hub」（RULING-c 第3条）。
+## 成片规格（FR，第三轮 ffprobe 实测）
+- 全片 master：land **428.0s** / port **428.4s**；速览 master：land **168.4s** / port **169.0s**。
+- 含 ch1–ch10 全部 v185 定版重录 + OP + ED；全片各 12 段、速览各 5 段。
 
-## 十一项逐条
-
-| # | 审项 | 结论 | 证据 / 说明 |
+## 十一项逐条（每项注明本轮查法）
+| # | 审项 | 结论 | 查法 / 证据 |
 |---|---|---|---|
-| 1 | 每镜 expect/forbid 全过；IoU≥0.90、边差≤6px | ✅ | 各章 v185 定版重录录前/录后 verify **17/17 PASS**；8 录屏各镜 hl 全 resolve、零 MISS。 |
-| 2 | 每章横竖联络表、**逐张亲眼看图** | ✅ | 取帧点＝每镜字幕中点；逐张亲验画面↔法文字幕一致；见 REVIEW-fr-shots.md 各章「逐张亲眼复验」行。 |
-| 3 | 全片无真邮箱/电话/WhatsApp/护照号/邀请码明文 | ✅（页头平台联系保留·业主可改判） | 各章 DOM 扫描 **no @gmail**；演示生/机构 MASK 全盖 `agency.demo@example.com`；邀请码掩码、护照样号、SPECIMEN 样件。页头平台自有联系保留（D-15-1）。 |
-| 4 | 字幕↔按钮逐镜对账 | ✅ | 法文字幕点名控件处与画面真文本对齐；5-2/7-4/8-1/9-2/9-3 等按 review1 §三改述真画面，法文据英文重译+回译自检；全表见 REVIEW-fr-shots.md。 |
-| 5 | 7-0：¥0 大字橙框内连续可见≥2s | ✅ | ch7 7-0 「¥0.00」在橙框解锁费 TOTAL DUE 内，同屏 ¥3,000 删除线·MAXHOUSE 抵扣；连续可见 ≥2s。 |
-| 6 | 字幕横版≤2行、竖版≤3行48px，无溢出；配音不超镜长不截断 | ✅ | 法文字幕在字幕带内无溢出；每镜段时长 = max(录制视长, 配音+0.45~0.5s)，配音不截断。 |
-| 7 | 四语字幕禁用词扫描 | ✅ | captions-v1.json 全 57 镜×4 语正则扫描（含法文变体 + 真名校名），**0 命中**。 |
-| 8 | 片尾二维码解码 = …/partner-portal/?src=video-fr | ✅ | 本趟对 `ED-{land,port}-fr.mp4` 抽实帧 jsQR 真帧解码：横竖均 `https://www.maxhouses.net/partner-portal/?src=video-fr`，逐字一致。 |
-| 9 | 整片与速览齐全、按镜界切 20~40s | ✅ | 全片 13 段 / 速览 5 段，按真镜界切，除 ED 尾段外落 [20,40]s。速览镜单照 review1 §二.5（删 6-5；6/7 章段 6-2 → 7-0/7-1/7-3）。 |
-| 10 | **数字与状态合理** | ✅ | 缺陷1 负数金额 v185 定版后全片 hero/卡 **¥0** 无负数；缺陷2 全 0 漏斗 v185 已修，2-2 漏斗 9→3→2→1·5 offer·人均 0.6；beta/test 控件遮蔽 + captions 57 镜无 beta/test；ch3 草稿残留已清入 st-ch3-cleanup + verify #17。 |
-| 11 | **逐镜对账表** | ✅ | `REVIEW-fr-shots.md`，**0 条「否」**。 |
+| 1 | 每镜 expect/forbid 全过；高亮达标 | ✅ | rec.mjs 内逐镜强制；各章录前/录后 verify **17/17 PASS**；本趟开工+收工 verify 亦 17/17 PASS。 |
+| 2 | 每章横竖联络表、逐张亲眼看图 | ✅ | `gp1-finish --stage contact` 对**最终 dist 成片**重生成（每镜字幕中点取帧），不沿用旧联络表；亲眼复验 ch7（¥0/校名揭晓/JW202/Admission terminée）法文本地化、章节条 Espace partenaires。 |
+| 3 | 全片无真邮箱/电话/护照/邀请码明文 | ✅（选 A） | §四.5 in-frame no @gmail（演示生/机构 MASK 全盖 example.com）；OP-4 ¥0 发票 hi-res 邮箱全 `agency.demo@example.com`；平台 Service@maxhouses.net 白名单（D-15-1）。 |
+| 4 | 字幕↔按钮逐镜对账 | ✅ | §三.8：fr 3-1 字幕按钮名已对齐界面「Soumettre un nouveau référencement」（trip40 主审 grep 实证 v185 外挂 i18n 真值、重 TTS）；详见 shots.md。 |
+| 5 | 7-0：¥0 大字橙框连续可见≥2s | ✅ | ch7 7-0（trip45）真付+beta 吐司 actOff 镜外、HIDE_INIT 遮，橙框「¥0.00」≥2s；OP-4 b-roll 定格同帧 hi-res 无 beta。 |
+| 6 | 字幕无溢出、配音不截断 | ✅ | 字幕带内无溢出；段时长=max(视长,配音+尾)。 |
+| 7 | 四语字幕禁用词扫描 | ✅ | captions-v1.json 全镜×4 语正则扫描，**0 命中**。 |
+| 8 | 片尾二维码解码 | ✅ | **最终成片** `ED-{land,port}-fr.mp4` jsQR 真帧解码 = `https://www.maxhouses.net/partner-portal/?src=video-fr`，逐字一致。 |
+| 9 | 整片与速览齐全、速览当独立片 | ✅ | 全片 12 段/速览 5 段按真镜界切；速览（§三.11）OP-1~6→章节高亮→ED-1/2，自成可独立看懂的招募片。 |
+| 10 | 数字与状态合理（无负数/beta/残留） | ✅ | 十章 v185 定版重录：工作台 ¥0、推荐生卡「Investi ¥0」无负数；漏斗真值；beta 由 HIDE_INIT/actOff 杜绝；OP-4 ¥0 发票 hi-res 无 beta。法语界面动态串英文回退照录（D-18-4）。 |
+| 11 | 逐镜对账表 | ✅ | `REVIEW-fr-shots.md`，**0 条「否」**。 |
 
-## review1 逐条如何处理（FR 同 EN/ZH，字幕法文重译+回译自检，受影响镜重配音）
-- §一/§二/§三/§四/§五/§六节奏 全部照 EN 口径落地，法文字幕据英文定稿重译并回译自检。
+## RULING-20261013b 第三节逐条如何处理（FR）
+- §三.1~§三.7/§三.10/§三.11 同 EN（各章 trip38~49 已落）。
+- §三.8（俄法按钮名）：fr 3-1 已对齐「Soumettre un nouveau référencement」并重配音。
+- §三.9（俄法章节条）：章节条左标签改用 v185 页头法文名「Espace partenaires」（trip38 overlay）。
+- D-18-4：工作台统计/漏斗标签/提额/增值服务名等法语界面英文回退照录不补。
 
-## 留给业主的产品问题（FR 特有 + 共性，详见 SUMMARY）
-1. **FR 产品界面英文回退（D-18-4）**：法文界面里产品自身动态串回退成英文——产品 LL 动态串无法文的真实现状，修它须改端口 i18n 码（§0.2 铁律禁），照录真实画面、记账不补。
-2. 卡状态徽章颜色对已匹配/已入学生恒显 pending 蓝（students.stage NULL）。
-3. 中介端工作台无「名额已用/剩余」显示（2-2 改述漏斗）。
-4. 录取弹窗底部 beta 内测链接真实中介可见（视频已遮）。
-5. 7-0 成功页「Paid (beta placeholder)」吐司（OP-4 定格规避）。
+## 留给业主的产品问题（同 EN 清单，详见 SUMMARY）
+1. 卡状态徽章对已 offer/已付/已入学恒显旧阶段文字（读废弃列 students.stage）——视频只框状态行。
+2. 工作台无「名额已用/剩余」显示。
+3. 录取弹窗底部内测解锁链接（视频遮）。
+4. ¥0 成功页「Paid (beta placeholder)」吐司（视频 actOff+遮）。
+5. 列表卡不显示材料被退回（5-1 从通知铃起讲）。
+6. 手机宽度申请编号块状态标签压编号（竖版照实录）。
+7. 法语界面多处英文回退（产品 i18n 未补全，D-18-4 照录）。
