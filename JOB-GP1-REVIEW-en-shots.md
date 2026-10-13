@@ -186,6 +186,7 @@ RULING-20261013b §三.1 复核第二版查出：**2-3** 原来框的是 `.partn
 - 记账：录前 apply `st-pt03-reupload`（新建 transcript v2）、录后 `st-pt03-reupload-reset-cleanup` 删 v2 回退态；开工+收工 verify **17/17 PASS 0 FAIL**，baseline 守住（scoped 复位，无全量 rebuild）。ch5 v1 在 `_v1/` 留底、dist 覆盖为定版 v2。全片不重拼（待全部工作台章完后统一拼）。
 
 ## ch10 §一（设置章·读-only·v185 工作台背景定版重录，返工第35趟 2026-10-13）
+> ⚠ **本节（含下表 10-2/10-3/10-4 三行）已被第 48 趟（第三轮返工 RULING-20261013b §三.10）取代**——第二版（trip35）虽已换 v185 底座重录，但第三轮裁决要求十章全部用 v185 定版重录一次、不沿用任何旧录像，并补 §三.7 去提额横幅 + §三.9 俄法章节条实帧复验；见文末「ch10 §三.10」节。
 ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已登录 hub 上高亮设置菜单项·读-only·零写库·无弹窗置态。review1 未标 ch10 任何字幕缺陷→字幕/高亮一字未动；review1 §一列 ch10 为「背景含工作台数字」章，v184 缓存帧 hero 有负数/漏斗（缺陷1/2），v185 漏斗修复上线后（RULING-e）须 v185 重录使背景数字落定版。本趟纯换录制底座 v184→v185 重录 ch10 3 镜 × 四语 × 横竖＝8 片覆盖 dist。
 
 | 镜 | 字幕原文 | 高亮区 DOM 实际文字（从 v185 真帧 DOM 读） | 同一件事？ |
@@ -364,3 +365,24 @@ ch9＝增值服务章（Optional / value-added services）。**读-only·零 DB 
 - 亲帧复验：EN land 9-1(f30 PREMIUM SERVICES 框·Invested ¥0·无横幅)/9-2(f75 Audit ¥1,500)/9-4(f165 Exposure boost ¥4,500)；zh land f75(增值服务/Audit 服务 激活 ¥1,500·该学生已投入 ¥0·章节条 合作伙伴中心)、ru land f30(章节条 Центр партнёров·Вложено в студента ¥0·PREMIUM/Audit/Human-assisted EN 回退 D-18-4)；联络表四语逐镜复验。Demo 生 Serikova Aizhan / Okoye Emeka 无真 PII、双盲守住（无校名）。
 - 时长（最终成片，秒）：land en 22.82 / zh 23.80 / ru 26.35 / fr 24.32；port en 22.78 / zh 23.75 / ru 26.39 / fr 24.27。8 片全 res OK + audio yes + 4 镜 box 全 resolve。
 - 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch9-contact-{land,port}-<lang>.png`（逐镜字幕中点）。
+
+## ch10 §三.10（+§三.7+§一+§三.9）（第三轮返工 · RULING-20261013b，第48趟 2026-10-14 · v185 定版重录·设置/语言/账户章·读-only·十章重录收尾）
+ch10＝设置/语言/账户章（Account, language & security），3 镜 10-2/10-3/10-4。**读-only·零 DB 写**：CONTEXT['10'] 仅 `toggleSettingsMenu` 开设置下拉菜单（不开 asModal，使 Account settings/语言/Sign out 全程在菜单内可见），逐镜高亮菜单项 / 顶条语言切换器，全程零点击提交、零写库。字幕四语未改（review1/review2 未标 ch10 任何镜级缺陷；§三.10 仅要求 v185 定版重录一次）。ch10 是第十章，本趟即十章全部 v185 定版重录收尾。
+- **§三.10（定版重录·本趟目的）**：ch10 整章四语横竖 8 片用 v185 重录→`_prodch10.sh` 合成覆盖 dist→`gp1-finish --stage contact --chapter 10` 四语联络表。md5 比对 dist vs `_v2/` 8 片全差异（真重录非 stale；覆盖前先 cp 第二版 8 片入 `_v2/`，_v2 原无 ch10）。
+- **§三.7（提额横幅·RULING 明列第 10 章顶部有「Quota raise pending 10→30」横幅）**：设置菜单浮在工作台之上、露 hero 顶部。录前 `st-ch8-quota-off`（quota_requests 单列 pending→approved·decided_at 保持 NULL→产品清横幅）、录后 `st-ch8-quota-restore`（收工 verify#13 回 pending）。读-only：一次 off→录全 8 变体→一次 restore。亲帧四语横竖联络表 header 与 hero 间**无 amber 提额横幅**。
+- **§一（负数销账）**：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」无负数（亲帧四语横竖联络表）、「STUDENTS SUBMITTED 9」；§四.5 in-frame 扫描四语横竖负数全 CLEAN。
+- **§三.9**：ru 章节条「Центр партнёров」/fr「Espace partenaires」（trip38 overlay 继承·本趟联络表实帧亲验 land+port 均已本地化）；zh「合作伙伴端」/en「Partner Hub」不动。
+- **§四.4（引用按钮名逐字）N/A**：ch10 四语字幕均未用引号（" " / 「」/ « »）引界面按钮或标签名——全为描述性散文（"under the gear" / "Four interface languages" 等无引号），无逐字比对对象。
+
+| 镜 | 字幕原文（EN·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 10-2 | Account settings live under the gear. | `#settingsMenu [onclick*="openAccountSettings"]`「⚙ Account settings」橙环框（设置下拉 ACCOUNT 区·齿轮项） | 是 |
+| 10-3 | Four interface languages. | 顶条 `.lang-switcher`「EN · 中 · РУ · FR」四语切换按钮组橙环框 | 是 |
+| 10-4 | Sign out when you share a computer. | `#settingsMenu [onclick*="settingsSignOut"]`「⟶ Sign out」橙环框（设置下拉底部红色退出项） | 是 |
+
+- §四.2：10-2/10-3/10-4 高亮均在打开的设置菜单内（10-3 在顶条语言器），全程≥90% 可见、dwell≥70%；box 三镜全 resolve（land 705×93 / 383×80 / 705×93；port 752×99 / 408×85 / 752×99）。
+- §四.5 整镜扫描（in-frame·MASK+HIDE 复现录制层·`_scan-ch10-forbidden.mjs`·4 语×2 视口）：**ALL CLEAN**——beta/placeholder/test/内测/测试 0 命中、负数 0 命中、真邮箱 0 命中（账户邮箱 @gmail MASK→agency.demo@example.com）。页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- 亲帧复验（四语 land+port 联络表逐镜）：设置菜单 ACCOUNT 区邮箱掩码 `agency.demo@example.c…`、Partner Code PA-E62FC6FF、Agency Demo Agency（无真 PII）；三项高亮逐镜对账全「是」；¥0 无负数、无提额横幅、无 beta/内测/test；ru/fr 菜单项真本地化（Настройки аккаунта/Выйти · Paramètres du compte/Se déconnecter，非 EN 回退）、zh 全中文（账户设置/退出登录）；hero「Your referral performance」等动态 LL 串在 ru/fr 仍 EN 回退（D-18-4 照录不补）。
+- 时长（最终成片，秒）：land en 16.31 / zh 16.30 / ru 16.32 / fr 16.27；port en 16.31 / zh 16.31 / ru 16.23 / fr 16.31。8 片全 res OK + audio yes + 3 镜 box 全 resolve、全片 no @gmail。
+- 记账：ch10 读-only，开工+收工 verify **17/17 PASS 0 FAIL**，baseline 全程守住（零置态/零写库·scoped quota off→restore）。ch10 v1 在 `_v1/` 留底、v2 在 `_v2/` 留底、dist 覆盖为第三轮定版。全片不重拼（待 OP 快剪重做后统一重拼）。
+- 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch10-contact-{land,port}-<lang>.png`。

@@ -826,3 +826,20 @@
 - **留底（§三.12/点10）**：覆盖前已把第二版 ch9 8 片 cp 到 `guide/dist/partner/_v2/ch9-*.mp4`（同一文件只留一次，_v2 原无 ch9）；_v1 首版 ch9 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
 - **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch9.sh`/`rec/_prodch9.sh`/`rec/_scan-ch9-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch9 第三轮节）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch9 字幕四语不变）。四语 ch9 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：ch10（设置/语言/账户章·读-only·§三.10 照样 v185 重录一次；10 已在 trip 序列·CONTEXT['10'] 开设置菜单不开 asModal）。**GP-1 第三轮返工未收官**，后续 ch10→OP-2~5 重做 + 四语全片/速览重拼 + 四语十一项重审 → 才重写 SUMMARY-GP1。
+
+## D-48-1 · ch10 设置/语言/账户章 §三.10 定版重录（读-only）+ §三.7 + §一 + §三.9（第48趟 2026-10-14 · RULING-20261013b-video-only · Mac mini 无人值守）· 十章重录收尾
+- **第〇节代码核验**：`git diff origin/main --stat -- partner-portal` 空、partner-portal 下无未跟踪文件、无 v186、index.html `url=./maxhouse-partner-portal-v185`→无需还原，本轮不改五端口代码（每趟复核在案）。
+- **开工 verify**：**17/17 PASS 0 FAIL**（#13 quota_request pending requested 30 基线在）。
+- **本趟＝ch10（设置/语言/账户章 Account, language & security·§三.10 定版重录·十章重录收尾）**：照 §三.10「十章全部 v185 重录·不沿用任何旧录像」对 ch10 整章四语横竖 8 片**重新录制**。ch10 是第十章，本趟即十章全部 v185 定版重录收尾。字幕四语不改（review1/review2 未标 ch10 任何镜级缺陷；§三.10 仅要求 v185 定版重录一次）。
+- **零 DB 写（读-only 章）**：CONTEXT['10'] 仅 `toggleSettingsMenu(new Event('click'))` 开设置下拉菜单（不开 asModal，使 Account settings/语言切换/Sign out 全程在菜单内可见，trip6 实证），逐镜高亮 10-2 账户设置项 / 10-3 顶条 `.lang-switcher` 四语器 / 10-4 菜单内退出项，全程零点击提交、零写库。照 ch6/ch9 读-only 工序：一次 `st-ch8-quota-off` → 录全 8 变体 → 一次 `st-ch8-quota-restore`。
+- **§三.7（提额横幅·RULING 明列第 10 章顶部有「Quota raise pending 10→30」横幅）**：设置菜单浮在工作台之上·露 hero 顶部。录前 `st-ch8-quota-off`（单列可逆 UPDATE pending→approved·decided_at NULL·referral_quota 不动→产品清横幅）、录后 `st-ch8-quota-restore` 还原 pending（收工 verify#13 回 pending）。亲帧四语横竖联络表 header 与 hero 间无 amber 提额横幅。
+- **§一（负数销账）**：背景 hero「TOTAL PAYMENTS PROCESSED ¥0」无负数（亲帧四语横竖联络表）；§四.5 in-frame 扫描四语横竖负数全 CLEAN。ru/fr hero 卡标签为产品 LL 动态串英文回退（D-18-4 照录·入 SUMMARY），¥0 数值正常，与 ch1/ch9 同背景、非本趟引入。
+- **§三.9（俄法章节条）**：ru 章节条「Центр партнёров」/fr「Espace partenaires」（trip38 gp1-overlays.mjs overlay 继承·本趟 land+port 联络表实帧亲验已本地化）；zh「合作伙伴端」/en「Partner Hub」不动。
+- **§四.4（引用按钮名逐字）N/A**：ch10 四语字幕均未用引号（" " / 「」/ « »）引界面按钮或标签名——全为描述性散文；高亮框住的菜单项（Account settings/账户设置/Настройки аккаунта/Paramètres du compte 及 Sign out/退出登录/Выйти/Se déconnecter）本身即对应语言本地化，与叙述一致。
+- **§四.2 高亮可见**：10-2/10-3/10-4 高亮均在打开的设置菜单内（10-3 在顶条语言器），全程≥90% 可见、dwell≥70%；box 三镜全 resolve（land 705×93 / 383×80 / 705×93；port 752×99 / 408×85 / 752×99）。
+- **§四.5 scan（`_scan-ch10-forbidden.mjs` 4 语×2 视口·CONTEXT 开设置菜单同录制态）**：**ALL CLEAN**——beta/placeholder/test/内测/测试 0 命中、负数 0 命中、真邮箱 0 命中（账户邮箱 @gmail 由 MASK_INIT→agency.demo@example.com）。页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- **真重录实证**：md5 比对 dist vs `_v2/` 8 片全差异（非 stale）；开工+收工 verify 均 17/17 PASS。时长（最终成片，秒）：land en 16.31/zh 16.30/ru 16.32/fr 16.27；port en 16.31/zh 16.31/ru 16.23/fr 16.31。8 片全 res OK + audio yes + 3 镜 box 全 resolve、全片 no @gmail。
+- **留底（§三.12/点10）**：覆盖前已把第二版 ch10 8 片 cp 到 `guide/dist/partner/_v2/ch10-*.mp4`（同一文件只留一次·_v2 原无 ch10）；_v1 首版 ch10 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
+- **非四种停下情形**：全在成片/录制工装 + §三.7 授权置态范围，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
+- **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch10.sh`/`rec/_prodch10.sh`/`rec/_scan-ch10-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch10 第三轮节 + 标注 trip35 旧节已取代）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch10 字幕四语不变）。四语 ch10 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**（§五 顺序）：十章全部 v185 定版重录完毕 → 开场快剪 OP-2~5 用新素材重做（§三.11·仿 trip26/trip36）→ 四语全片/速览/分段全部重拼（速览当独立片查）→ 四语各过十一项重审（§四.6·联络表全用最终成片重生成）→ 才重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes）。**GP-1 第三轮返工未收官**，仍不开始 GP-2（不传 R2、不动 Cloudflare、不推主仓库）。
