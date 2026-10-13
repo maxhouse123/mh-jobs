@@ -170,3 +170,15 @@ RULING-20261013b §三.10 要求十章全部用 v185 重录。本趟 ch1 整章�
 - 时长：land 49.68s / port 49.59s（8 镜）。横竖 2 片 res OK + audio yes，no @gmail，8 镜 box 全 resolve。
 - 亲眼复验（FR land 章节条裁帧 + FR land/port 联络表）：章节条「Espace partenaires」、页头法文本地化；1-8 ¥0 无负数、无横幅、STUDENTS 9；无 beta/test。hero 卡部分 LL 动态串英文回退＝D-18-4 照录不补。
 - 联络表：`~/mh-jobs/shots/GP1/fr/ch1-contact-{land,port}-fr.png`。
+
+## ch3 §三.3 + §三.4 + §三.8 + §三.7 + §三.10（第三轮返工 · RULING-20261013b，第40趟 2026-10-13 · v185 定版重录）
+ch3 四语横竖 8 片 v185 重录。法文镜本趟核心＝**§三.8（3-1 引用按钮名对齐界面）**：主审 grep 实证 v185 `maxhouse-partner-i18n-v183-fr.js` 真值 `'partner.students.addBtn':'Soumettre un nouveau référencement'`。v2 法 3-1 字幕引「Soumettre un nouvel étudiant」对不上→本趟改 captions-v1.json 法 3-1＝「Touchez « Soumettre un nouveau référencement ».」（最小改·回译＝submit a new referral＝按钮+EN 原意），重 TTS。另落 §三.3（3-3 preOff→停档案字段）、§三.4（3-9 框 Demo Aisha #10）、§一（¥0）、§三.7（去横幅）。
+
+| 镜 | 字幕原文（配音·FR·本趟改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 3-1 | Touchez « Soumettre un nouveau référencement ». | 橙环框「+ Soumettre un nouveau référencement」按钮（«»内＝按钮文字逐字一致·§四.4 过） | 是 |
+| 3-3 | Étape deux : le profil de l'étudiant, exactement comme sur le passeport. | 第二步「Profil」激活；橙环框「Date de naissance」日期框，右侧「N° de passeport」可见（档案字段，非表单底） | 是 |
+| 3-9 | Désormais, cet étudiant vous est rattaché. | 橙环框 #10「Demo Aisha」整卡（à l'examen · Pakistan · bachelor · Invested ¥0），其下 #9 Serikova 未框 | 是（刚提交即绑定＝#10 Demo Aisha） |
+
+- 法界面英文回退片段（增值服务名等）＝产品 i18n 回退，D-18-4 照录不补；高亮/引用的按钮名（Soumettre un nouveau référencement）、字段名（Date de naissance/N° de passeport）、章节条（Espace partenaires）均真本地化。
+- §四.5：8 片 DOM 全 no @gmail；无 beta/test；¥ 皆正数或 ¥0。时长 land fr 58.99 / port fr 58.95。联络表 `~/mh-jobs/shots/GP1/fr/ch3-contact-{land,port}-fr.png`。

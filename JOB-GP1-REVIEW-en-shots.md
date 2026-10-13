@@ -228,3 +228,23 @@ RULING-20261013b §三.10 要求十章全部用 v185 重录、不再沿用任何
 - 时长（最终成片，秒）：land en 49.45 / zh 49.44 / ru 51.21 / fr 49.68；port en 49.45 / zh 49.49 / ru 51.26 / fr 49.59。8 片全 res OK + audio yes，录制全 **no @gmail**。8 镜 box 全 resolve。
 - 亲眼逐帧复验：EN land 1-8 原始帧 f00402（hero 橙框·¥0·无横幅·STUDENTS 9）、EN port 1-8 原始帧 f00438（竖版同·无横幅·¥0）、RU land 章节条「Центр партнёров」、FR land 章节条「Espace partenaires」。全程无 beta/placeholder/test、¥0 无负数；注册段邀请码打码、SPECIMEN 样件、无真护照号/电话、演示机构 Demo Agency 无真 PII；页头平台 WhatsApp/Email（Service@maxhouses.net）不遮（D-14-3/D-15-1）。
 - 联络表（本节证据）：`~/mh-jobs/shots/GP1/<lang>/ch1-contact-{land,port}-<lang>.png`（逐镜中点，四语全部用本趟最终成片重新生成）。
+
+## ch3 §三.3 + §三.4 + §三.8 + §三.7 + §三.10（第三轮返工 · RULING-20261013b，第40趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+ch3＝提交第一个学生章（state 章：3-8 真 submit 建 guide-pt-ch3，录后 st-ch3-mark-test 安全标 + st-ch3-cleanup scoped 单删还原基线草稿，不跑全量 rebuild，D-12-2）。本趟四语横竖 8 片全部用 v185 重录，落 review2 的三处镜级缺陷 + §三.7 横幅：
+
+- **§三.3（3-3 中俄法横竖：整段停在档案字段并高亮）**：review2 指 v2 的 zh/ru/fr 3-3 字幕中点画面停在表单最底（个人陈述/页脚），看不到出生日期/护照号也看不到高亮。**根因**：3-3 原非 preOff，向导第一步→第二步的 `_wzNext` 渲染+等待在镜内跑（字幕从 s.start 起即覆盖这段转场），长字幕语言（zh/ru/fr）的字幕中点可能落在转场/滚动未定帧。**改法（纯录制层）**：shots-v1.json 给 3-3 加 `preOff:true`——把「填第一步+翻到第二步+等 Date of birth 出现」整段放镜外（offCamera），录制从「第二步·档案」已渲染好起录，随即 `input[type="date"]`（语言无关）滚到视口中并打环，dwell+tail 全程画面停在 DOB/护照行。字幕/高亮选择器一字未改。
+- **§三.4（3-9 滚到刚提交的 Demo Aisha 卡再框）**：review2 指 v2 的 3-9 框住 #9 Serikova Aizhan（旧 hl `.partner-student-status-pending` 取首个 pending 卡），而 3-8 刚提交的是 #10 Demo Aisha。**改法**：3-9 的 `pre` 在 `loadMyReferrals()` 后轮询（最多 25×400ms）找名字含「Aisha」的 `.partner-student-card` 打 `data-mh39` 标，hl/waitFor 改 `[data-mh39]`——环即框住刚提交的 #10 Demo Aisha 整卡。
+- **§三.8（俄法 3-1 引用按钮名对齐界面，§四.4 逐字）**：主审 grep 实证 v185 外挂 i18n 包的真值——`maxhouse-partner-i18n-v183-ru.js`：`'partner.students.addBtn':'Направить нового студента'`；`-fr.js`：`'Soumettre un nouveau référencement'`（`.partner-add-student-btn` span `data-i18n="partner.students.addBtn"`，第 6386 行）。v2 俄法 3-1 字幕引的是「Отправить нового студента」/「Soumettre un nouvel étudiant」，与按钮对不上。**改法**：captions-v1.json 俄 3-1→「Нажмите «Направить нового студента».」、法 3-1→「Touchez « Soumettre un nouveau référencement ».」（最小改·回译自检：Направить нового студента＝Refer a new student；nouveau référencement＝submit a new referral，均＝按钮+EN 原意），重 TTS 俄法 3-1。EN/ZH 3-1 本已逐字对（EN 按钮 Submit New Student Referral／ZH 提交新学生推荐），不改。
+- **§三.7（去提额横幅）**：ch3 的 3-1/3-9 在工作台 my-referrals 列表上。录前 `st-ch8-quota-off.sql`（quota_requests pending→approved、decided_at 留 NULL→`_qrApplyBanner` 清横幅）、录后 `st-ch8-quota-restore.sql` 还原；收工 verify #13 回 pending、17/17 PASS。
+- **§一（工作台背景 ¥0 无负数）**：3-9 的 Demo Aisha 卡增值服务区「Invested on this student: ¥0」无负数。
+
+| 镜 | 字幕原文（配音·EN·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 3-1 | Tap "Submit New Student Referral". | 橙环框「+ Submit New Student Referral」按钮（引号内文字＝按钮文字逐字一致） | 是 |
+| 3-3 | Step two: the student's profile, exactly as in the passport. | 第二步「Profile」激活；橙环框「Date of birth」日期输入框，右侧「Passport no.」可见（档案字段，非表单底/个人陈述） | 是 |
+| 3-9 | From now on this student is bound to you. | 橙环框 #10「Demo Aisha」整卡（Documents under review · Pakistan · bachelor · Referred 10/13/2026 · Invested ¥0），其下 #9 Serikova Aizhan 未框 | 是（刚提交即绑定的那名学生＝#10 Demo Aisha） |
+
+- §四.5 整镜扫描：ch3 画面＝登录（offCamera 不录）+ 工作台列表 + 推荐向导，无付款/内测/offer-解锁元素；8 片录制 DOM 全 **no @gmail**（rec 逐镜 leak 检均 ✅）；无 beta/placeholder/test 字样；唯一 ¥ 金额＝增值服务「Activate ¥1,500/¥600/from ¥4,500」（正数）与「Invested ¥0」（零，非负）。演示生 Demo Aisha、演示机构 Demo Agency 无真 PII，邮箱 agency.demo@example.com；页头平台 WhatsApp/Email（Service@maxhouses.net）不遮（D-14-3/D-15-1）。
+- **port 3-9 注记（§二.5 港宽约束照实录）**：竖版 Demo Aisha 卡含增值服务区，整卡高度≈竖版页面区满高，scrollIntoView-center 后姓名行落在吸顶页头下沿、#10 徽章+增值 ¥0 仍在框内——该卡仍被唯一框住（对比其下未框的 #9 Serikova），与 review1 §二.5「手机宽度下照实录」同性质；横版整卡全可见。
+- 时长（最终成片，秒）：land en 58.62 / zh 59.92 / ru 59.96 / fr 58.99；port en 58.61 / zh 59.83 / ru 59.97 / fr 58.95。8 片全 res OK + audio yes。
+- 联络表（本节证据，四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch3-contact-{land,port}-<lang>.png`（逐镜字幕中点）。
