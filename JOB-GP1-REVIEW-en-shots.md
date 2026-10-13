@@ -248,3 +248,21 @@ ch3＝提交第一个学生章（state 章：3-8 真 submit 建 guide-pt-ch3，�
 - **port 3-9 注记（§二.5 港宽约束照实录）**：竖版 Demo Aisha 卡含增值服务区，整卡高度≈竖版页面区满高，scrollIntoView-center 后姓名行落在吸顶页头下沿、#10 徽章+增值 ¥0 仍在框内——该卡仍被唯一框住（对比其下未框的 #9 Serikova），与 review1 §二.5「手机宽度下照实录」同性质；横版整卡全可见。
 - 时长（最终成片，秒）：land en 58.62 / zh 59.92 / ru 59.96 / fr 58.99；port en 58.61 / zh 59.83 / ru 59.97 / fr 58.95。8 片全 res OK + audio yes。
 - 联络表（本节证据，四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch3-contact-{land,port}-<lang>.png`（逐镜字幕中点）。
+
+## ch4 §三.10 + §一（第三轮返工 · RULING-20261013b，第41趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+ch4＝具名邀请（委托学生自传）章（state 章：pt-04 置 intake_mode='delegate' + 必传材料齐 4/4，4-5 真 submit 写 submitted_at；每变体录前 `st-pt04-docs-full.sql` 置态、录后 `st-pt04-reset-cleanup.sql` scoped 复位——清 intake_mode/submitted_at + 删预置 SPECIMEN transcript 行，不动 app_no=MH-EXET28、不跑全量 rebuild，D-12-2）。review1/review2 未标 ch4 任何字幕缺陷→**字幕/高亮一字未改**。本趟按 §三.10「十章全部用 v185 重录、不沿用任何旧录像」把 ch4 整章四语横竖（8 片）用 v185 重录、合成、覆盖 dist。
+- **§一（负数金额销账·本趟核心）**：第二版（trip36「照原版入拼」）对 ch4 沿用 v184 旧录像，英文 4-4/4-5 委托卡右侧「Invested on this student: ¥-3,000」为负数（漏斗缺陷1，v185 已修）。本趟 v185 重录后，四语 4-4/4-5 委托卡所在页面增值服务区金额＝**¥0（无负数）**——亲帧复验 EN land 4-4 原始帧 f00215 /（4-5 窗口）f00298「Invested on this student: ¥0」；ZH land 4-4 f00215「该学生已投入：¥0」；RU land 4-4 f00214「Вложено в студента: ¥0」；FR land 4-4 f00212「Investi pour cet étudiant : ¥0」。
+- **§三.7（提额横幅）N/A**：ch4 全 5 镜画面均在工作台「已发邀请/委托卡/学生卡」区（scrollIntoView 后处于列表中段），不露工作台顶部 hero，故无「Quota raise pending」amber 横幅——亲帧 EN land 4-1 原始帧 f00025（吸顶页头下即「Submit New Student Referral / Invite student to self-upload / Sent invites」，header 与内容之间无 amber 横幅）。本趟 ch4 不需 st-ch8-quota-off。
+- **§三.9（俄法章节条左标签）**：ru→「Центр партнёров」、fr→「Espace partenaires」（gp1-overlays BAR_I18N，trip38 已改并 commit；本趟 ch4 重烧继承）。联络表实帧亲验：ru 章节条＝「Центр партнёров」、fr＝「Espace partenaires」；zh＝「合作伙伴端」、en＝「Partner Hub」。
+
+| 镜 | 字幕原文（配音·EN·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 4-1 | Too many files to collect? Let the student upload them. | 橙环框「✉ Invite student to self-upload」按钮（其上另有 Submit New Student Referral） | 是 |
+| 4-2 | Fill in the student's email and the plan you agreed. Send. | 邀请弹窗表单：#dlName 填「Aizhan Serikova」、#dlEmail 填「aizhan.demo@example.com」（演示号·no @gmail） | 是 |
+| 4-3 | Copy the link or resend it. | 橙环框「Sent invites」列表行：Aizhan Serikova · agency.demo@example.com · Sent/Registered（Copy/Resend 钮，链接 token 未明文） | 是 |
+| 4-4 | The student registers and uploads; you watch the progress. | 橙环框委托卡：Delegated·student uploads / Required documents 3/4 / 时间线 Invite sent→Student registered 2026-10-12→Documents complete 3/4→You submitted（Waiting for you） | 是 |
+| 4-5 | The submit button stays with you — only you file the application. | 橙环框「Submit application」按钮（Required documents 4/4 齐·按钮由灰变绿可点） | 是 |
+
+- §四.5 整镜扫描：ch4 画面＝登录（offCamera 不录）+ 工作台邀请区 + 委托卡；无付款/offer-解锁元素；8 片录制 DOM 全 **no @gmail**（演示邮箱 aizhan.demo@/agency.demo@example.com）；无 beta/placeholder/test 字样；¥ 金额＝增值服务「Activate ¥1,500/¥600/from ¥4,500」（正数）与「Invested ¥0」（零，非负）。演示生 Aizhan Serikova/Okoye Emeka、演示机构 Demo Agency 无真 PII；页头平台 WhatsApp +49 152 24910967/Email Service@maxhouses.net 不遮（D-14-3/D-15-1）。俄法委托卡所在页面若干动态串（Premium services / All documents currently under review 等）英文回退＝D-18-4 照录不补。
+- 时长（最终成片，秒）：land en 42.87 / zh 42.96 / ru 43.12 / fr 42.85；port en 42.58 / zh 42.86 / ru 42.86 / fr 42.78。8 片全 res OK + audio yes。
+- 联络表（本节证据，四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch4-contact-{land,port}-<lang>.png`（逐镜字幕中点）。

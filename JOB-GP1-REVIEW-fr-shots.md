@@ -182,3 +182,20 @@ ch3 四语横竖 8 片 v185 重录。法文镜本趟核心＝**§三.8（3-1 引
 
 - 法界面英文回退片段（增值服务名等）＝产品 i18n 回退，D-18-4 照录不补；高亮/引用的按钮名（Soumettre un nouveau référencement）、字段名（Date de naissance/N° de passeport）、章节条（Espace partenaires）均真本地化。
 - §四.5：8 片 DOM 全 no @gmail；无 beta/test；¥ 皆正数或 ¥0。时长 land fr 58.99 / port fr 58.95。联络表 `~/mh-jobs/shots/GP1/fr/ch3-contact-{land,port}-fr.png`。
+
+## ch4 §三.10 + §一（第三轮返工 · RULING-20261013b，第41趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+ch4＝具名邀请（委托学生自传）章（state 章：pt-04 置 intake_mode='delegate' + 必传材料 4/4，4-5 真 submit；每变体录前 `st-pt04-docs-full.sql` 置态、录后 `st-pt04-reset-cleanup.sql` scoped 复位，不动 app_no=MH-EXET28、不跑全量 rebuild，D-12-2）。review1/review2 未标 ch4 字幕缺陷→**字幕/高亮一字未改**，纯按 §三.10 v185 重录四语横竖 8 片覆盖 dist。
+- **§一（负数销账·核心）**：第二版「照原版入拼」沿用 v184 旧录像，英文 4-4/4-5 委托卡「Invested ¥-3,000」为负（漏斗缺陷1，v185 已修）。本趟 v185 重录后四语 4-4/4-5 页面金额＝**¥0（无负数）**——亲帧 FR land 4-4 f00212「Investi pour cet étudiant : ¥0」、EN land 4-4 f00215「Invested ¥0」、ZH land 4-4 f00215「该学生已投入：¥0」、RU land 4-4 f00214「Вложено ¥0」。
+- **§三.7 N/A**：ch4 全 5 镜在工作台已发邀请/委托卡/学生卡区（列表中段），不露工作台顶部 hero→无提额横幅（亲帧 EN land 4-1 f00025），不需 st-ch8-quota-off。
+- **§三.9**：fr 章节条＝「Espace partenaires」（trip38 已改 overlay，本趟继承，联络表实帧亲验）；ru＝「Центр партнёров」、zh＝「合作伙伴端」、en＝「Partner Hub」。
+
+| 镜 | 字幕原文（配音·法·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 4-1 | Trop de fichiers à rassembler ? Laissez l'étudiant les téléverser. | 橙环框「✉ Invite student to self-upload」委托邀请钮（产品该串英文回退 D-18-4） | 是 |
+| 4-2 | Renseignez l'e-mail de l'étudiant et le projet convenu. Envoyez. | 邀请弹窗表单：姓名「Aizhan Serikova」+邮箱「aizhan.demo@example.com」（演示号·no @gmail） | 是 |
+| 4-3 | Copiez le lien ou renvoyez-le. | 橙环框已发邀请行：Aizhan Serikova · agency.demo@example.com ·（复制/重发钮） | 是 |
+| 4-4 | L'étudiant s'inscrit et téléverse ; vous suivez la progression. | 橙环框委托卡：Délégué·l'étudiant téléverse / Documents obligatoires 3/4 / 时间线 Invitation envoyée→Étudiant inscrit 2026-10-12→Documents complets 3/4→Vous avez soumis | 是 |
+| 4-5 | Le bouton d'envoi reste chez vous — vous seul déposez le dossier. | 橙环框「Soumettre la candidature」按钮（Documents obligatoires 4/4·由灰变绿可点） | 是 |
+
+- §四.5：ch4 画面＝登录（offCamera）+ 工作台邀请区 + 委托卡；无付款/内测元素；8 片 DOM 全 no @gmail（aizhan.demo@/agency.demo@example.com）；无 beta/test；¥＝增值服务（Activer ¥1,500/¥600/dès ¥4,500，正数）与「Investi ¥0」（非负）；法界面英文回退片段（Premium services 等）＝D-18-4 照录不补；演示生/机构无真 PII；页头平台联系方式不遮（D-14-3/D-15-1）。
+- 时长（秒）：land fr 42.85；port fr 42.78。联络表 `~/mh-jobs/shots/GP1/fr/ch4-contact-{land,port}-fr.png`。
