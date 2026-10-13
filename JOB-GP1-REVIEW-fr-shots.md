@@ -199,3 +199,35 @@ ch4＝具名邀请（委托学生自传）章（state 章：pt-04 置 intake_mod
 
 - §四.5：ch4 画面＝登录（offCamera）+ 工作台邀请区 + 委托卡；无付款/内测元素；8 片 DOM 全 no @gmail（aizhan.demo@/agency.demo@example.com）；无 beta/test；¥＝增值服务（Activer ¥1,500/¥600/dès ¥4,500，正数）与「Investi ¥0」（非负）；法界面英文回退片段（Premium services 等）＝D-18-4 照录不补；演示生/机构无真 PII；页头平台联系方式不遮（D-14-3/D-15-1）。
 - 时长（秒）：land fr 42.85；port fr 42.78。联络表 `~/mh-jobs/shots/GP1/fr/ch4-contact-{land,port}-fr.png`。
+
+## ch5 第三轮返工（RULING-20261013b §三.2(a)+§三.7+§一+§三.9·第42趟 2026-10-13 · v185 两态定版重录）
+取代 trip33 节 5-1 行。5-1 改从通知铃：urgent 退回通知标题本地化「Document de votre étudiant renvoyé」与字幕同义→字幕不改、不重配音。录制层补 `.stu-notif-list` 启用滚动 + preOff。§三.7 去横幅。§一 ¥0。§三.8 N/A。§三.9 章节条「Espace partenaires」（trip38 overlay 继承，land 5-1 成片帧亲验）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（字幕中点+亲帧） | 同一件事？ |
+|---|---|---|---|
+| 5-1 | Un document a été renvoyé. Ouvrez l'étudiant. | 铃 urgent 通知标题「Document de votre étudiant renvoyé」+ desc「Le transcript de Rahim Islam a été renvoyé. Motif : …」（理由 EN 回退 D-18-4） | 是 |
+| 5-2 | Le relevé de notes est renvoyé — l'équipe Maxhouse demande une correction. | `.reviewer-row-rejected`：⚠ Maxhouse review team · Modification requested（材料 Relevé de notes · REJECTED） | 是 |
+| 5-3 | Téléversez le fichier corrigé. | 换版区「Téléverser la version corrigée」红钮 + 提示 | 是 |
+| 5-4 | De nouveau en examen — pas besoin de resoumettre tout le dossier. | transcript 槽徽章 `.badge-reviewing`＝EN EXAMEN；矩阵「⚙ Système · En attente de la première vérification」（真态） | 是 |
+
+- §四.2：5-1 ~88%；弹窗镜≥90%。§四.5：beta/test/负数 0 命中；MASK_INIT 遮 @gmail；页头平台不遮。法文动态串 EN 回退＝D-18-4 照录。
+- 亲帧复验：FR land 5-1(f22「Document de votre étudiant renvoyé」高亮·无横幅·¥0·章节条 Espace partenaires)/5-4(ch5b EN EXAMEN 徽章)。演示生 Islam Rahim 无真 PII、双盲守住。
+- 时长：land 32.39s / port 32.46s。
+
+## ch6 §三.10 + §三.7 + §一 + §三.9（第三轮返工 · RULING-20261013b，第43趟 2026-10-14 · v185 定版重录·不沿用旧录像）
+ch6＝盲态进度章：读-only（开委托生 Bilal 详情→两盲 offer 卡；开盲态录取弹窗；6-7 高亮「接受该专业」affordance 不点、不写库）。§二 trip21(D-21-1) 已执行，本趟按 §三.10 用 v185 重录整章四语横竖（8 片）。字幕/高亮一字未改。
+- §一（负数销账·复核）：v185 base 探针各镜负数 (none)；§四.5 in-frame 扫描全 CLEAN。
+- §三.7（提额横幅）：ch6 各镜 `#qrPendingBanner` 在屏→录前 st-ch8-quota-off 去横幅、录后 restore（verify#13 回 pending）。
+- §三.8 N/A（无引号引用按钮名）。
+- **§三.9（法文章节条·本语言重点）**：fr 章节条左标签＝「Espace partenaires」（gp1-overlays BAR_I18N，trip38 改并 commit；本趟重烧继承）。联络表实帧亲验 fr land/port 章节条＝「Espace partenaires」、右「Chapitre 6 · Offres des universités」。
+
+| 镜 | 字幕原文（配音·FR·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 6-1 | Deux universités ont admis cet étudiant. | 委托生 Hussain Bilal 详情·橙环框两盲 offer 卡区（SCH-1AD6CR·MSc Computer Science / SCH-B6X61C，均盲码无校名） | 是 |
+| 6-2 | Avant le déblocage, vous voyez le programme, les frais et la bourse — saisis par l'université elle-même — mais pas son nom. | 录取弹窗·橙环框盲码「SCH-1AD6CR」；MSc Computer Science·学费/奖学金行，无校名 | 是 |
+| 6-3 | Comparez, puis acceptez celle que vous préférez. | 橙环框奖学金行「Full scholarship (tuition waived)」（盲态·LL 英文回退 D-18-4） | 是 |
+| 6-7 | Acceptez le programme — la date de rentrée et la bourse sont indiquées ici. | 橙环框「✓ Accept this programme」绿钮（旁开学日期 2027-09-01 + 奖学金，不点不写库） | 是 |
+
+- §四.5 整镜扫描（in-frame·MASK+HIDE）：fr 横竖全 CLEAN——无 beta/placeholder/test、无负数、无真邮箱。双盲守住（盲码 SCH-xxxxxx）。法文弹窗内动态串英文回退＝D-18-4 照录不补。页头平台不遮（D-14-3/D-15-1）。
+- 时长（秒）：land fr 25.99；port fr 25.89（全 res OK + audio yes + 4 镜 resolve）。
+- 联络表：`~/mh-jobs/shots/GP1/fr/ch6-contact-{land,port}-fr.png`。

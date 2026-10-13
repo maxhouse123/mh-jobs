@@ -266,3 +266,37 @@ ch4＝具名邀请（委托学生自传）章（state 章：pt-04 置 intake_mod
 - §四.5 整镜扫描：ch4 画面＝登录（offCamera 不录）+ 工作台邀请区 + 委托卡；无付款/offer-解锁元素；8 片录制 DOM 全 **no @gmail**（演示邮箱 aizhan.demo@/agency.demo@example.com）；无 beta/placeholder/test 字样；¥ 金额＝增值服务「Activate ¥1,500/¥600/from ¥4,500」（正数）与「Invested ¥0」（零，非负）。演示生 Aizhan Serikova/Okoye Emeka、演示机构 Demo Agency 无真 PII；页头平台 WhatsApp +49 152 24910967/Email Service@maxhouses.net 不遮（D-14-3/D-15-1）。俄法委托卡所在页面若干动态串（Premium services / All documents currently under review 等）英文回退＝D-18-4 照录不补。
 - 时长（最终成片，秒）：land en 42.87 / zh 42.96 / ru 43.12 / fr 42.85；port en 42.58 / zh 42.86 / ru 42.86 / fr 42.78。8 片全 res OK + audio yes。
 - 联络表（本节证据，四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch4-contact-{land,port}-<lang>.png`（逐镜字幕中点）。
+
+## ch5 第三轮返工（RULING-20261013b §三.2(a)+§三.7+§一·第42趟 2026-10-13 · v185 两态定版重录）
+**取代上方 trip33「ch5 定版重录」节的 5-1 行**（旧 5-1 高亮列表卡、与字幕「A document was returned」对不上=review2 §三.2 病灶）。本趟 5-1 改从通知铃取镜：铃内有 urgent 退回通知，标题本地化「Your student had a document returned」与字幕同义→字幕一字不改、不重配音。录制层给产品漏挂类的 `#stuNotifList` 补产品自带 `.stu-notif-list`（启用产品本设计的滚动，产品 bug 入 SUMMARY）+ preOff 把开铃/定位放镜外（§四.2 高亮占比 ~88%）。§三.7 land 5-1 露 hero→st-ch8-quota-off 去「Quota raise pending」横幅、录后 restore（verify#13 回 pending）。§一 工作台 ¥0 无负数。§三.8 N/A（ch5 字幕无引号引用按钮名）。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（字幕中点 DOM 读+亲帧复验） | 同一件事？ |
+|---|---|---|---|
+| 5-1 | A document was returned. Open the student. | 通知铃 urgent 通知标题「Your student had a document returned」+ desc「The transcript of Rahim Islam was returned. Reason: …」（理由 EN 回退 D-18-4） | 是（铃内退回通知↔字幕「a document was returned」；随后 5-2 开学生） |
+| 5-2 | The transcript was returned — the Maxhouse review team requested a change. | `.reviewer-row-rejected`：⚠ Maxhouse review team · Modification requested（材料 Academic transcript · REJECTED） | 是 |
+| 5-3 | Upload the corrected file. | 换版区「Upload corrected version」红钮 + 提示「Choose the corrected file …」 | 是 |
+| 5-4 | Back under review — no need to resubmit the whole application. | transcript 槽徽章 `.badge-reviewing`＝REVIEWING；矩阵「⚙ System · Awaiting initial review」（2 files uploaded，真·0104 supersede 态，非伪造） | 是 |
+
+- §四.2：5-1 字幕窗 ~5.4s、高亮通知可见 ~88%（≥70%）；5-2/5-3/5-4 高亮全程在弹窗内≥90% 可见。
+- §四.5 整镜扫描：beta/placeholder/test/负数 **0 命中**；@gmail 录制层 MASK_INIT 遮（rec 8/8 no @gmail）；页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- 亲帧复验：EN land 5-1(f29 铃+退回通知高亮·无横幅·¥0·STUDENTS 9)/5-2(f76 Modification requested 行)/5-4(ch5b f20 REVIEWING 徽章)；EN port 5-1(f25 全宽面板退回通知高亮)。演示生 Islam Rahim 无真 PII、双盲守住、无 beta/负数。
+- 时长：land 32.47s / port 32.49s（4 镜）。
+
+## ch6 §三.10 + §三.7 + §一 + §三.9（第三轮返工 · RULING-20261013b，第43趟 2026-10-14 · v185 定版重录·不沿用旧录像）
+ch6＝盲态进度（Offers from several universities）章：读-only（viewReferredStudent 开委托生 Bilal 详情→两盲 offer 卡；openCloudAdmissionModal 开盲态录取弹窗；6-7 高亮「接受该专业」affordance 不点、不写库）。§二（删 6-4/6-6 揭晓、改只读流程）在 trip21(D-21-1) 已执行，本趟仅按 §三.10「十章全部用 v185 重录、不沿用任何旧录像」把 ch6 整章四语横竖（8 片）用 v185 重录、合成、覆盖 dist。review1/review2 未标 ch6 任何字幕缺陷→**字幕/高亮一字未改**。
+- **§一（负数销账·复核）**：第二版 ch6 为 v184 旧录像（review2 §一.1「第6章同样是 v184 录的」）。本趟 v185 base 探针（`_probe-ch6-hero.mjs`）实证各镜负数金额 **(none)**；§四.5 in-frame 扫描四语横竖全 CLEAN（无 ¥- 负数）。亲帧复验 EN land 6-1/6-2/6-3/6-7：盲 offer 卡与弹窗金额＝正数学费/奖学金，无负数。
+- **§三.7（提额横幅·本趟处理）**：`_probe-ch6-hero.mjs` 实证 ch6 各镜（含详情/弹窗态）`#qrPendingBanner`「⏳ Quota raise pending: 10 → 30」在屏（产品常驻顶部横幅）→ 录前 `st-ch8-quota-off.sql` 去横幅、录后 `st-ch8-quota-restore.sql` 还原 pending（读-only 章：一次 off→录全 8 变体→一次 restore）。亲帧复验 EN land 6-1 contact：header「Partner Hub / Hussain Bilal」与内容间**无 amber「Quota raise pending」横幅**。收工 verify #13 回 pending、17/17 PASS。
+- **§三.8 N/A**：ch6 字幕无引号引用按钮/标签名。
+- **§三.9（俄法章节条左标签）**：ru→「Центр партнёров」、fr→「Espace partenaires」（gp1-overlays BAR_I18N，trip38 已改并 commit；本趟 ch6 重烧继承）。联络表实帧亲验：ru 章节条＝「Центр партнёров」、fr＝「Espace partenaires」；zh＝「合作伙伴端」、en＝「Partner Hub」。
+- **@gmail 记账**：录制首轮 en-land 6-2 leak 检报 ⚠GMAIL——`_probe-ch6-gmail.mjs` 定位＝委托邀请列表 `.dl-inv-sub` / 审核值 `.review-val` 的 `maxhouseapp+guide-pt-04/06@gmail.com`，文档位置 top≈4263/4348px（视口仅 543px 高）**off-screen·inFrame:false**，从不在录制裁剪帧内；成因＝leak 检扫整个 body.innerText（含屏外）取到 MASK 下次 sweep（每 80ms）前的 <80ms 瞬态。重录 en-land 一次即 ✅ no @gmail；§四.5 in-frame 扫描四语横竖 MAIL 全 CLEAN。最终 8 片画面无真邮箱。
+
+| 镜 | 字幕原文（配音·EN·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 6-1 | Two universities admitted this student. | 委托生 Hussain Bilal 详情·橙环框两盲 offer 卡区（SCH-1AD6CR·UNIVERSITY·MSc Computer Science·MATCHED / SCH-B6X61C·UNIVERSITY·View full offer，均盲码无校名） | 是 |
+| 6-2 | Before unlock you see the programme, tuition and scholarship — written by the university itself — but not its name. | 录取弹窗 Admission Details·橙环框盲码标签「SCH-1AD6CR」；弹窗内 MSc Computer Science·学费/奖学金行（学校所填），无校名 | 是 |
+| 6-3 | Compare, then accept the one you prefer. | 橙环框奖学金行「Full scholarship (tuition waived)」（盲态·学校所填数据·LL 恒英文回退 D-18-4） | 是 |
+| 6-7 | Accept the programme — the start date and scholarship are right here. | 橙环框「✓ Accept this programme」绿钮（旁 Start date 2027-09-01 + Full scholarship，affordance 高亮不点·不写库） | 是 |
+
+- §四.5 整镜扫描（in-frame·MASK+HIDE 复现录制层）：四语横竖全 **CLEAN**——无 beta/placeholder/test/内测/测试、无负数金额、无真邮箱（`.cloud-offer-unlock` beta 解锁链接 HIDE_INIT 遮）。演示生 Hussain Bilal 无真 PII、双盲守住（offer 卡/弹窗全程盲码 SCH-xxxxxx，无真校名）。页头平台 WhatsApp/Email（Service@maxhouses.net）不遮（D-14-3/D-15-1）。俄法弹窗内学费/奖学金/开学等动态串英文回退＝D-18-4 照录不补。
+- 时长（最终成片，秒）：land en 25.91 / zh 26.28 / ru 26.55 / fr 25.99；port en 25.83 / zh 26.36 / ru 26.68 / fr 25.89。8 片全 res OK + audio yes + 4 镜 box 全 resolve。
+- 联络表（本节证据，四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/<lang>/ch6-contact-{land,port}-<lang>.png`（逐镜字幕中点）。

@@ -207,3 +207,35 @@ ch4＝具名邀请（委托学生自传）章（state 章：pt-04 置 intake_mod
 
 - §四.5：ch4 画面＝登录（offCamera）+ 工作台邀请区 + 委托卡；无付款/内测元素；8 片 DOM 全 no @gmail（aizhan.demo@/agency.demo@example.com）；无 beta/test；¥＝增值服务「¥1,500/¥600/¥4,500 起」（正数）与「已投入 ¥0」（非负）；演示生/机构无真 PII；页头平台联系方式不遮（D-14-3/D-15-1）。
 - 时长（秒）：land zh 42.96；port zh 42.86。联络表 `~/mh-jobs/shots/GP1/zh/ch4-contact-{land,port}-zh.png`。
+
+## ch5 第三轮返工（RULING-20261013b §三.2(a)+§三.7+§一·第42趟 2026-10-13 · v185 两态定版重录）
+取代上方 trip33「ch5 定版重录」节的 5-1 行。本趟 5-1 改从通知铃取镜：铃内 urgent 退回通知标题本地化「你的学生有材料被退回」与字幕同义→字幕一字不改、不重配音。录制层给 `#stuNotifList` 补产品自带 `.stu-notif-list` 启用滚动（产品 bug 入 SUMMARY）+ preOff。§三.7 land 5-1 去「Quota raise pending」横幅、录后 restore。§一 工作台 ¥0 无负数。§三.8 N/A。
+
+| 镜 | 字幕原文 | 高亮区 DOM 实际文字（字幕中点+亲帧） | 同一件事？ |
+|---|---|---|---|
+| 5-1 | 有材料被退回，打开学生详情。 | 通知铃 urgent 通知标题「你的学生有材料被退回」+ desc「Rahim Islam 的「transcript」被退回。原因：…」（理由 EN 回退 D-18-4） | 是 |
+| 5-2 | 成绩单被退回，迈克豪斯审核团队要求修改。 | `.reviewer-row-rejected`：⚠ Maxhouse review team · 要求修改（材料 Academic transcript · 已拒绝/REJECTED） | 是 |
+| 5-3 | 上传修正后的文件。 | 换版区「上传修正版」红钮 + 提示 | 是 |
+| 5-4 | 回到审核中，不用整份重交。 | transcript 槽徽章 `.badge-reviewing`＝审核中；矩阵「⚙ 系统 · 等待初步审核」（真·0104 supersede 态，非伪造） | 是 |
+
+- §四.2：5-1 高亮可见 ~88%（≥70%）；5-2/5-3/5-4 弹窗内≥90%。§四.5：beta/test/负数 0 命中；MASK_INIT 遮 @gmail；页头平台不遮（D-14-3/D-15-1）。
+- 亲帧复验：ZH land 5-1(f22 铃+「你的学生有材料被退回」高亮·无横幅·¥0·已提交 9)/5-4(ch5b 审核中徽章) + zh land 联络表四镜。演示生 Islam Rahim 无真 PII、双盲守住。
+- 时长：land 32.35s / port 32.36s。
+
+## ch6 §三.10 + §三.7 + §一 + §三.9（第三轮返工 · RULING-20261013b，第43趟 2026-10-14 · v185 定版重录·不沿用旧录像）
+ch6＝盲态进度章：读-only（开委托生 Bilal 详情→两盲 offer 卡；开盲态录取弹窗；6-7 高亮「接受该专业」affordance 不点、不写库）。§二 trip21(D-21-1) 已执行，本趟按 §三.10 用 v185 重录整章四语横竖（8 片）。字幕/高亮一字未改。
+- §一（负数销账·复核）：v185 base 探针各镜负数 (none)；§四.5 in-frame 扫描全 CLEAN。
+- §三.7（提额横幅）：ch6 各镜 `#qrPendingBanner` 在屏→录前 st-ch8-quota-off 去横幅、录后 restore（verify#13 回 pending）。亲帧 ZH land 6-1 contact 工作台顶部无「Quota raise pending」横幅。
+- §三.8 N/A（无引号引用按钮名）。
+- §三.9：ru「Центр партнёров」/fr「Espace partenaires」（trip38 overlay 继承）；zh 章节条＝「合作伙伴端」。
+
+| 镜 | 字幕原文（配音·ZH·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 6-1 | 两所学校录取了这名学生。 | 委托生 Hussain Bilal 详情·橙环框两盲 offer 卡区（SCH-1AD6CR·MSc Computer Science·MATCHED / SCH-B6X61C，均盲码无校名） | 是 |
+| 6-2 | 解锁前能看到专业、学费、奖学金——都是学校亲自填的——但看不到校名。 | 录取弹窗·橙环框盲码「SCH-1AD6CR」；弹窗内 MSc Computer Science·学费/奖学金行，无校名 | 是 |
+| 6-3 | 比较之后，接受你中意的那份。 | 橙环框奖学金行「Full scholarship (tuition waived)」（盲态·学校所填·LL 英文回退 D-18-4） | 是 |
+| 6-7 | 接受这个专业——开学日期和奖学金都在这里。 | 橙环框「✓ Accept this programme」绿钮（旁开学日期 2027-09-01 + 奖学金，不点不写库） | 是 |
+
+- §四.5 整镜扫描（in-frame·MASK+HIDE）：四语横竖全 CLEAN——无 beta/placeholder/test/内测/测试、无负数、无真邮箱。演示生 Hussain Bilal 无真 PII、双盲守住（全程盲码 SCH-xxxxxx）。页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- 时长（秒）：land zh 26.28；port zh 26.36（全 res OK + audio yes + 4 镜 resolve）。
+- 联络表：`~/mh-jobs/shots/GP1/zh/ch6-contact-{land,port}-zh.png`。
