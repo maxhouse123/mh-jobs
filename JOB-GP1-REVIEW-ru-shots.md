@@ -231,3 +231,43 @@ ch6＝盲态进度章：读-only（开委托生 Bilal 详情→两盲 offer 卡�
 - §四.5 整镜扫描（in-frame·MASK+HIDE）：ru 横竖全 CLEAN——无 beta/placeholder/test、无负数、无真邮箱。双盲守住（盲码 SCH-xxxxxx）。俄文弹窗内学费/奖学金/开学等动态串英文回退＝D-18-4 照录不补。页头平台不遮（D-14-3/D-15-1）。
 - 时长（秒）：land ru 26.55；port ru 26.68（全 res OK + audio yes + 4 镜 resolve）。
 - 联络表：`~/mh-jobs/shots/GP1/ru/ch6-contact-{land,port}-ru.png`。
+
+## ch7 §三.5 + §三.6 + §三.7 + §一 + §三.9（第三轮返工 · RULING-20261013b，第45趟 2026-10-14 · v185 定版重录·state 章 pt-07/08 置态）
+ch7＝通知书/JW202/建档章。state 章：每变体 st-pt07-pay-cleanup + st-pt08-jw202 置态，7-0 真付 ¥0 优惠码路，录全 8 变体后 st-pt0708-reset-cleanup + st-ch8-quota-restore 复位。字幕不变。
+- **§三.5（7-0 beta 提示）**：7-0 ¥0 发票 dwell 在镜内（橙框「¥0.00」≥2s）；真付确认点击+等待（产品付款成功「Paid (beta placeholder)」浮条 ~2.6s）全在镜外（actOff）跑 → 内测 toast 帧永不入片。双保险 HIDE_INIT 遮含 beta/placeholder/内测/测试 浮条。真付 DB 照写。
+- **§三.6（7-4 只框状态行）**：7-4 橙环框状态行 `.partner-student-issue`（`#gp1-74-issue` rAF 贴合），box≈826×99（状态行高，非整卡），不框徽章。字幕不变。
+- **§三.7（提额横幅）**：录前 st-ch8-quota-off 去横幅、录后 restore（verify#13 回 pending）。
+- **§一（负数销账）**：7-0 折扣行「MAXHOUSE −¥3,000.00」＝优惠码抵扣（白名单）；应付 ¥0.00；卡「Invested …¥0」无负数。§四.5 扫描 CLEAN。
+- **§三.9（俄文章节条·本语言重点）**：ru 章节条左标签＝「Центр партнёров」（gp1-overlays BAR_I18N，trip38 改并 commit；本趟重烧继承）。联络表实帧亲验 ru land/port 章节条＝「Центр партнёров」。
+
+| 镜 | 字幕原文（配音·RU·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读；动态串 LL 英文回退 D-18-4） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 7-0 | Введите промокод — ¥0. Без платы агентству, без регистрационного сбора. | 付款弹窗·橙环框应付大字「¥0.00」（下方 ¥3,000.00·MAXHOUSE −¥3,000.00 抵扣行；Applicant/Paid by = agency.demo@example.com 脱敏） | 是 |
+| 7-1 | Название вуза раскрыто — скачайте письмо о зачислении здесь. | 录取弹窗：先框揭晓校名条，后框「Download admission letter」钮（两段高亮） | 是 |
+| 7-2 | Форма JW202 — таким же образом. | 橙环框「JW202」下载钮 | 是 |
+| 7-3 | Платформа сама заносит студента в систему регистрации вуза за вас. | 橙环框建档进度（MSc Mechanical Engineering + 清单含 Enrollment ✓） | 是 |
+| 7-4 | Зачисление завершено. | 橙环框列表卡状态行「Admission complete · MSc Mechanical Engineering · …」（只框状态行，不框整卡/徽章；动态串 EN 回退 D-18-4） | 是 |
+
+- §四.5 整镜扫描（in-frame·MASK+HIDE）：ru 横竖全 CLEAN——beta/placeholder/test 0、负数 0（抵扣行白名单）、真邮箱 0。俄文弹窗/状态行动态串英文回退＝D-18-4 照录不补。页头平台不遮（D-14-3/D-15-1）。
+- 时长（秒）：land ru 38.20；port ru 38.16（全 res OK + audio yes + 5 镜 resolve）。
+- 联络表：`~/mh-jobs/shots/GP1/ru/ch7-contact-{land,port}-ru.png`。
+
+## ch8 §三.7（照 D-32-1）+ §一 + §三.9 + §三.10（第三轮返工 · RULING-20261013b，第46趟 2026-10-14 · v185 定版重录·名额与提额章）
+ch8＝名额与提额章（Quota & requesting more）。**零 DB 写**：8-1 读工作台统计卡；8-2/8-3 用 `pre` 调产品 `_qrOpenRaise({used:9,quota:10})` 开弹窗、填数量 30+理由但**不点提交**；8-4 调产品自身 `_qrApplyBanner` 喂样例已批数据渲染真绿条（§8 先例·不写库）。字幕四语未改（review1/review2 未标 ch8 字幕缺陷；trip32 已 bank）。
+- **§三.7（提额横幅·照 D-32-1）**：基线有 1 张 pending `quota_request`（verify#13）→ 工作台顶部恒显 amber「Quota raise pending: 10→30」，与 8-2/8-3「才去申请」叙事矛盾 → 录前 `st-ch8-quota-off`（该行 status pending→approved·decided_at 保持 NULL → 产品 `_qrApplyBanner` 判非 pending 且无裁决 → box 清空无横幅；`partners.referral_quota` 不动仍 10、hero 数字不变），录后 `st-ch8-quota-restore` 还原 pending（收工 verify#13 回 pending）。读-only：一次 quota-off → 录全 8 变体 → 一次 restore。
+- **§一（负数销账）**：v185 base 工作台背景「TOTAL PAYMENTS PROCESSED ¥0」无负数（亲帧 EN land 8-1 f15 / 8-4 f157）。§四.5 in-frame 扫描四语横竖负数全 CLEAN。
+- **§三.9**：ru 章节条「Центр партнёров」/fr「Espace partenaires」（trip38 overlay 继承·联络表实帧亲验）；zh「合作伙伴端」/en「Partner Hub」不动。
+- **§四.4（引用按钮名逐字）N/A**：ch8 四镜字幕均未用引号引界面按钮/标签名（8-2「Request a raise right here」、8-3 描述动作、8-4「Approved…」），无逐字比对对象。
+
+| 镜 | 字幕原文（RU·captions-v1） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 8-1 | Вы подали заявки на девять студентов. | 工作台统计卡「STUDENTS SUBMITTED 9」橙环框（右侧「TOTAL PAYMENTS PROCESSED ¥0」无负数；§三.7 去横幅后 header 与内容间无 amber「Quota raise pending」横幅） | 是 |
+| 8-2 | Запросите увеличение прямо здесь. | 「Referral quota reached · 当前 9/10 席已用」提额弹窗 body 橙环框（zh 本地化「推荐名额已用完」；ru/fr 弹窗标题 EN 回退 D-18-4） | 是 |
+| 8-3 | Укажите, сколько ещё студентов вы ожидаете; мы рассмотрим запрос за два рабочих дня. | 提额弹窗「Submit request / 提交申请」提交钮橙环框（目标名额填 30 + 理由；高亮全程贴合提交钮，填表在后半段完成——亲帧 zh-port f148 默认 15、f181 已填 30+理由） | 是 |
+| 8-4 | Одобрено — квота растёт вместе с вашими результатами. | 产品自身 `_qrApplyBanner` 喂样例渲染绿条「Quota raise approved: your quota is now 30 seats」橙环框（§8 先例·零写库；zh 本地化「提额申请已批准：配额已调整为 30 席」；ru/fr EN 回退 D-18-4） | 是 |
+
+- §四.2：8-1/8-2/8-4 高亮全程在视口内≥90% 可见、dwell≥70%；8-3 高亮＝提交钮，f148 与 f181 皆橙框在屏（highlight 全程≥90%），填表值 15→30 在窗口后半完成（caption 述「填预计人数」＝表单动作，与画面一致）。
+- §四.5 整镜扫描（in-frame·MASK+HIDE 复现录制层·`_scan-ch8-forbidden.mjs`·4 语×2 视口）：**ALL CLEAN**——beta/placeholder/test/内测/测试 0 命中、负数 0 命中、真邮箱 0 命中（@gmail MASK→agency.demo@example.com）。页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- 亲帧复验：EN land 8-1(f15 9 学生·¥0·无横幅)/8-4(f157 产品绿条非伪造·¥0)；ru land + fr land + zh port 联络表逐镜复验（章节条 ru/fr 本地化、zh 弹窗全中文、ru/fr 弹窗与绿条 EN 回退 D-18-4 照录）；Demo Agency 无真 PII。
+- 时长（最终成片，秒）：land 30.82 / port 30.75。8 片全 res OK + audio yes + 4 镜 box 全 resolve。
+- 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/ru/ch8-contact-{land,port}-ru.png`。

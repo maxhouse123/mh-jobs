@@ -763,6 +763,7 @@
 - **留底（§三.12/点10）**：覆盖前已把第二版 ch6 8 片 cp 到 `guide/dist/partner/_v2/ch6-*.mp4`（同一文件只留一次，_v2 原无 ch6）；_v1 首版 ch6 完好未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch6 §三.10+§三.7+§一+§三.9 第三轮节）、`DECISIONS.md`（本条）、新增 `rec/_runch6.sh`/`rec/_probe-ch6-hero.mjs`/`rec/_probe-ch6-gmail.mjs`/`rec/_scan-ch6-forbidden.mjs`。无 shots/captions/产品码/迁移改动（§三.10 纯重录，§三.7 用既有 state，§三.9 用 trip38 既有 overlay）。四语 ch6 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：ch7（§三.5 7-0 付款成功页 beta 提示遮 + ¥0 大字橙框 ≥2s + §三.6 7-4 只框状态行「⏳ Admission complete」不框整卡 + §一/§三.7 工作台背景；ch7 是 state 章需 pt-07/08 置态）。**GP-1 第三轮返工未收官**，后续 ch8→ch10 逐章做，再 OP 重做+重拼+十一项重审→才重写 SUMMARY-GP1。
+
 ## D-45-1 (2026-10-14 第45趟 · ch7 通知书/JW202/建档章 §三.5+§三.6+§三.7+§一(+§三.9) v185 四语横竖定版重录·state 章 pt-07/08 置态 · RULING-20261013b-video-only)
 - **背景/接手**：trip44（第44趟）已把 ch7 全部工装/代码做完（rec.mjs HIDE_INIT 加 beta-toast 遮 + hlReassert 分支 + actOff 镜外跑 + diag74；shots-v1.json 7-0 actOff / 7-4 改框状态行 `#gp1-74-issue`；新建 `rec/_runch7.sh`/`rec/_prodch7(本趟建)`/`rec/_scan-ch7-forbidden.mjs` 及一批 `_probe-ch7-*`），并录了 en-land/en-port 两片，但 **zh/ru/fr 6 变体仍是旧 v2 录像、未备份 _v2、未合成 dist、未 verify、未提交**（trip44 回执首行「开工 verify 待跑」＝被打断在录制阶段）。本趟＝接 trip44 把 ch7 录完收尾。
 - **开工 verify（铁律·先修 trip44 遗留脏态）**：首次 verify **#6/#8/#13 FAIL**——正是 trip44 为录 en 置的态（pt-07 已真付→letter_paid_at 有值；pt-08 已传 jw202；quota 已 approve），trip44 被打断未跑 reset tail 故 baseline 脏。跑 `st-pt0708-reset-cleanup.sql`（清 pt-07 付款/核销回未付+pt-08 jw202 回 NULL，QUEUE §0.3/§0.4 授权·幂等）+ `st-ch8-quota-restore.sql`（quota 回 pending 30）→ 复 verify **17/17 PASS**，baseline 复原。
@@ -781,3 +782,25 @@
 - **留底（§三.12/点10）**：覆盖前已把第二版 ch7 8 片 cp 到 `guide/dist/partner/_v2/ch7-*.mp4`（同一文件只留一次，_v2 原无 ch7）；_v1 首版 ch7 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`rec/rec.mjs`（trip44 的 HIDE_INIT beta-toast 遮+hlReassert+actOff+diag74，本趟随 ch7 一并提交）、`rec/shots-v1.json`（7-0 actOff / 7-4 改框状态行 #gp1-74-issue）、新增 `rec/_runch7.sh`/`rec/_prodch7.sh`/`rec/_scan-ch7-forbidden.mjs` 及 `rec/_probe-ch7-*`/`rec/_dbg-port74.mjs`/`rec/_dbg-toast.mjs`/`rec/_chk-banner.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch7 第三轮节）、`DECISIONS.md`（本条）。无产品码/迁移/captions 改动（7-0/7-4 字幕四语不变）。四语 ch7 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：ch8（名额与提额章·§三.7 照 D-32-1 做·state 章）。**GP-1 第三轮返工未收官**，后续 ch8→ch9→ch10 逐章做，再 OP-2~5 重做 + 四语全片/速览重拼 + 四语十一项重审 → 才重写 SUMMARY-GP1。
+
+## D-46-1 (2026-10-14 第46趟 · ch8 名额与提额章 §三.7(照 D-32-1)+§一+§三.9+§三.10 v185 四语横竖定版重录 · RULING-20261013b-video-only)
+- **接手核对**：git status（主仓库半成品皆别线/工装残留，本线不碰）+ 读齐 PROGRESS/loop-tail(20261013-192852)/RULING-20261013b-video-only(本轮总纲)/-gp1(§二停下四情形)/DECISIONS(D-45-1)/storyboard/shots。首行开工即改「第46趟 第三轮返工进行中」。
+- **第〇节代码核验（每趟必做）**：`git diff origin/main --stat -- partner-portal` 空、`git status` 里 partner-portal 下无未跟踪文件、partner-portal 仅 `maxhouse-partner-portal-v185.html`（无 v186）、index.html 指向 v185 → 无需还原，本轮不改五端口代码。
+- **开工 verify**：**17/17 PASS 0 FAIL**（#13 quota_request pending requested 30 基线在）。
+- **本趟＝ch8（名额与提额章·§三.10 定版重录·照 D-32-1）**：trip32（第二版）已对 ch8 做 v185 定版重录并定下做法（去横幅 + 8-1 字幕述屏真有数 + 8-4 改调产品自身 `_qrApplyBanner`）；本趟照 §三.10「十章全部 v185 重录·不沿用任何旧录像」对 ch8 整章四语横竖 8 片**重新录制**，字幕四语不改（review1/review2 未标 ch8 字幕缺陷，trip32 已 bank）。
+- **零 DB 写（读-only 章）**：8-1 读工作台统计卡；8-2/8-3 用 `pre` 调产品 `_qrOpenRaise({used:9,quota:10})` 开弹窗、act 填目标名额 30 + 理由但**不点提交**（shot 8-3 hl=`.btn-primary` 提交钮，零写库）；8-4 调产品自身 `_qrApplyBanner` 喂样例已批行（status approved/requested 30/current 10）渲染真绿条（§8 先例·不写库）。故照 ch6 读-only 工序：一次 `st-ch8-quota-off` → 录全 8 变体 → 一次 `st-ch8-quota-restore`。
+- **§三.7（提额横幅·照 D-32-1）**：基线 pending `quota_request`（verify#13）→ 工作台顶恒显 amber「Quota raise pending: 10→30」，与 8-2/8-3「才去申请」矛盾 → 录前 `st-ch8-quota-off`（单列可逆 UPDATE 置该行 status pending→approved·decided_at 保持 NULL → 产品 `_qrApplyBanner` 判非 pending 且无裁决 → box 清空无横幅；`partners.referral_quota` 不动仍 10、hero 数字不变），录后 `st-ch8-quota-restore` 还原 pending（收工 verify#13 回 pending）。亲帧 EN land 8-1(f15)：header 与「Your referral performance」间无 amber 横幅。
+- **§一（负数销账）**：v185 base 工作台背景「TOTAL PAYMENTS PROCESSED ¥0」无负数（亲帧 EN land 8-1 f15 / 8-4 f157）。§四.5 in-frame 扫描四语横竖负数全 CLEAN。
+- **§三.9（俄法章节条）**：ru「Центр партнёров」/fr「Espace partenaires」（trip38 D-38-1 overlay，本趟 ch8 重烧继承）；联络表实帧亲验 ru land / fr land 章节条已本地化；zh「合作伙伴端」/en「Partner Hub」不动。
+- **§四.4（引用按钮名逐字）N/A**：ch8 四镜字幕均未用引号引界面按钮/标签名，无逐字比对对象（不同于 3-1）。
+- **8-3 填表时序观察（非缺陷·记账）**：zh-port 8-3 字幕中点帧(f148)目标名额仍是默认 15、理由空；窗口后半(f181)已填 30 + 理由「预计下一季招生人数会增加。」。即 act 填表落在 8-3 字幕窗后半，但**高亮（提交钮 .btn-primary）全程橙框在屏**（§四.2 ≥90%），字幕「填预计人数…」述表单动作与画面一致（§四.3）。EN land 中点已是 30+理由（act 更早落定）——各语配音长短致中点落点不同，非缺陷。
+- **自验（亲眼逐帧/联络表·铁律15）**：EN land 原始帧 8-1(f15: STUDENTS SUBMITTED 9 橙框·¥0·无横幅)/8-4(f157: 产品 `_qrApplyBanner` 绿条「Quota raise approved: your quota is now 30 seats」橙框·非伪造·¥0) + zh-port 8-3(f148/f181) + 四语联络表（en/zh/ru/fr land+port）逐镜：9 学生/提额弹窗/填 30+理由/已批绿条。无 beta/placeholder/test、¥0 无负数、双盲守住、Demo Agency 无真 PII、邮箱 agency.demo@example.com（no @gmail）、页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）、俄法弹窗标题与绿条 EN 回退 D-18-4 照录不补（zh 弹窗「推荐名额已用完」全中文、绿条「提额申请已批准：配额已调整为 30 席」）。
+- **工具/工序**：新建 `rec/_runch8.sh`（quota-off → 每变体 rec.mjs --chapter 8 → quota-restore 自成闭环·dbrun 用 `local out` 避 trip45 的 orient 污染 bug）+ `rec/_prodch8.sh`（逐变体 `prod-ch.mjs --tag <lang>-<orient>-ch8`）合成覆盖 dist + `gp1-finish --stage contact --chapter 8 --lang <lang>` 四语联络表 + 新建 `rec/_scan-ch8-forbidden.mjs`（§四.5 扫描·复现 MASK+HIDE 录制层·驱 8-1/8-2/8-3/8-4 流程）。ru-land 首轮 0 帧（偶发）→ 单独重录 182 帧过。8 片 res OK + audio yes + 4 镜 box 全 resolve。
+- **成片正确性护栏（接 trip45 学费）**：合成后 md5 比对 dist vs `_v2/` 证 ch8-{land,port}-{en,zh,ru,fr} 全**差异**（真重录非 stale）；dist 全 Oct 14 01:23 新写。
+- **时长（最终成片，秒）**：land en 30.14 / zh 28.20 / ru 30.82 / fr 31.78；port en 30.09 / zh 28.24 / ru 30.75 / fr 31.79（与 trip32 记录 land en30.32/zh28.31/ru30.80/fr31.89 逐项近似·字幕未改）。
+- **DB**：开工+收工 verify 均 **17/17 PASS 0 FAIL**，baseline 守住（scoped quota 置态/复位，无全量 rebuild，D-12-2）。写入=无（ch8 零写库）；临时置态=st-ch8-quota-off（录后 restore 复位 verify#13）。
+- **§四.5 scan（`_scan-ch8-forbidden.mjs` 4 语×2 视口）**：**ALL CLEAN**——beta/placeholder/test/内测/测试 0 命中、负数 0 命中、真邮箱 0 命中。
+- **非四种停下情形**：全在成片/录制工装 + §三.7 授权置态范围，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
+- **留底（§三.12/点10）**：覆盖前已把第二版 ch8 8 片 cp 到 `guide/dist/partner/_v2/ch8-*.mp4`（同一文件只留一次，_v2 原无 ch8）；_v1 首版 ch8 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
+- **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch8.sh`/`rec/_prodch8.sh`/`rec/_scan-ch8-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch8 第三轮节）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch8 字幕四语不变）。四语 ch8 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**（§五 顺序）：ch9（增值服务章·读-only·§一 背景；trip34 已 v185 定版重录过，§三.10 照样重录一次）。**GP-1 第三轮返工未收官**，后续 ch9→ch10→OP-2~5 重做 + 四语全片/速览重拼 + 四语十一项重审 → 才重写 SUMMARY-GP1。
