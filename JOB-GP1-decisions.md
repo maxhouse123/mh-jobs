@@ -804,3 +804,25 @@
 - **留底（§三.12/点10）**：覆盖前已把第二版 ch8 8 片 cp 到 `guide/dist/partner/_v2/ch8-*.mp4`（同一文件只留一次，_v2 原无 ch8）；_v1 首版 ch8 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
 - **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch8.sh`/`rec/_prodch8.sh`/`rec/_scan-ch8-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch8 第三轮节）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch8 字幕四语不变）。四语 ch8 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：ch9（增值服务章·读-only·§一 背景；trip34 已 v185 定版重录过，§三.10 照样重录一次）。**GP-1 第三轮返工未收官**，后续 ch9→ch10→OP-2~5 重做 + 四语全片/速览重拼 + 四语十一项重审 → 才重写 SUMMARY-GP1。
+
+## D-47-1 · ch9 增值服务章 §三.10 定版重录（读-only）+ §三.7 + §一 + §三.9（第47趟 2026-10-14 · RULING-20261013b-video-only · Mac mini 无人值守）
+- **第〇节代码核验**：`git diff origin/main --stat -- partner-portal` 空、partner-portal 下无未跟踪文件、无 v186、index.html `url=./maxhouse-partner-portal-v185`→无需还原，本轮不改五端口代码（每趟复核在案）。
+- **开工 verify**：**17/17 PASS 0 FAIL**（#13 quota_request pending requested 30 基线在）。
+- **本趟＝ch9（增值服务章 Optional / value-added services·§三.10 定版重录）**：照 §三.10「十章全部 v185 重录·不沿用任何旧录像」对 ch9 整章四语横竖 8 片**重新录制**。字幕四语不改（review1/review2 未标 ch9 任何镜级缺陷；§三.10 仅要求 v185 定版重录一次）。
+- **零 DB 写（读-only 章）**：CONTEXT['9'] 仅 `document.querySelector('.partner-premium-block').scrollIntoView({block:'center'})` 把首张推荐生列表卡的增值服务区滚到视口中心（9 张卡服务行同构同价·字幕不点名学生·取首卡即可，D-23-1 实证 premium block 在列表卡内非详情弹窗），逐镜高亮 9-1 标题/9-2 Audit 行/9-3 Human-assisted 行/9-4 boost 行，全程零点击、零写库。故照 ch6 读-only 工序：一次 `st-ch8-quota-off` → 录全 8 变体 → 一次 `st-ch8-quota-restore`。
+- **§三.7（提额横幅·安全·照 ch6 读-only 先例）**：虽 9-* 把 premium block 滚到视口中心、hero 顶部横幅多滚出视口（§四.5 扫描只计视口内可见文字），为杜绝「Quota raise pending 10→30」amber 横幅任何残留，录前 `st-ch8-quota-off`（单列可逆 UPDATE pending→approved·decided_at NULL·referral_quota 不动）、录后 `st-ch8-quota-restore` 还原 pending（收工 verify#13 回 pending）。
+- **§一（负数销账）**：每张卡「Invested on this student: ¥0 / 该学生已投入：¥0 / Вложено в студента: ¥0 / Investi pour cet étudiant : ¥0」无负数（亲帧 EN land 9-1 f30 / zh f75 / ru f30 / fr f165）；服务价 ¥1,500 / ¥600 / 从 ¥4,500 起均正数。§四.5 in-frame 扫描四语横竖负数全 CLEAN。
+- **§三.9（俄法章节条）**：ru「Центр партнёров」/fr「Espace partenaires」（trip38 D-38-1 overlay·本趟 ch9 重烧继承·成片帧亲验 ru land f30 / fr land f165）；zh「合作伙伴中心」/en「Partner Hub」不动。
+- **§四.4（引用按钮名逐字）N/A**：程序扫 ch9 四语 captions（EN/ZH 取 shots-v1.json，RU/FR 取 captions-v1.json）引号标记（" " / «» / 「」）**0 命中**——全为描述性散文（"the Audit Service" / "Human-assisted Search" / "paid exposure" 及四语对应均无引号），无逐字比对对象。
+- **§四（9-4 shot forbid）**：9-4 高亮行 EN「Exposure boost · inactive / Best for students below a school task's bar or with no news after a long wait」/ zh「付费曝光·未激活」/ ru「Платное продвижение · не активно」/ fr「Boost de visibilité · inactif」，**无「优先审核 / priority review」字样**（forbid 满足，亲帧 f165 四语）。
+- **D-18-4（俄法英文回退·照录不补）**：9-1 PREMIUM SERVICES 标题 / 9-2 Audit Service / 9-3 Human-assisted Search 等 premium 动态串在 ru/fr 下英文回退（LL 未译），照录不补；9-4 boost 行 ru/fr 本地化（ru「Платное продвижение」/ fr「Boost de visibilité」）。zh 全本地化（增值服务/Audit 服务/人工搜索/付费曝光）。
+- **自验（亲眼逐帧/联络表·铁律15）**：EN land 原始帧 9-1(f30: PREMIUM SERVICES 橙框·Invested ¥0·无横幅)/9-2(f75: Audit Service·Activate ¥1,500)/9-4(f165: Exposure boost·Activate from ¥4,500·无优先审核字样) + zh land f75（增值服务/Audit 服务 激活 ¥1,500·该学生已投入 ¥0·章节条 合作伙伴中心）+ ru land f30（章节条 Центр партнёров·Вложено ¥0·premium EN 回退·boost ru 本地化）+ fr land f165（章节条 Espace partenaires·Investi pour cet étudiant ¥0·boost fr「Boost de visibilité · inactif / Activer · dès ¥4,500」）+ 四语联络表（en/zh/ru/fr land+port）逐镜字幕中点。无 beta/placeholder/test、¥0 无负数、双盲守住（无校名）、Demo 生 Serikova Aizhan / Okoye Emeka 无真 PII、邮箱 agency.demo@example.com（no @gmail）、页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- **工具/工序**：新建 `rec/_runch9.sh`（quota-off → 每变体 rec.mjs --chapter 9 → quota-restore 自成闭环·dbrun 用 `local out` 避 trip45 orient 污染）+ `rec/_prodch9.sh`（逐变体 `prod-ch.mjs --tag <lang>-<orient>-ch9`）合成覆盖 dist + `gp1-finish --stage contact --chapter 9 --lang <lang>` 四语联络表 + 新建 `rec/_scan-ch9-forbidden.mjs`（§四.5 扫描·复现 MASK+HIDE 录制层·滚 premium block 到视口中心后扫视口内可见文字）。8 片 res OK + audio yes + 4 镜 box 全 resolve。
+- **成片正确性护栏**：合成后 md5 比对 dist vs `_v2/` 证 ch9-{land,port}-{en,zh,ru,fr} 全**差异**（真重录非 stale）。
+- **时长（最终成片，秒）**：land en 22.82 / zh 23.80 / ru 26.35 / fr 24.32；port en 22.78 / zh 23.75 / ru 26.39 / fr 24.27。
+- **DB**：开工+收工 verify 均 **17/17 PASS 0 FAIL**，baseline 守住（scoped quota 置态/复位，无全量 rebuild，D-12-2）。写入=无（ch9 零写库）；临时置态=st-ch8-quota-off（录后 restore 复位 verify#13）。
+- **§四.5 scan（`_scan-ch9-forbidden.mjs` 4 语×2 视口）**：**ALL CLEAN**——beta/placeholder/test/内测/测试 0 命中、负数 0 命中、真邮箱 0 命中。
+- **非四种停下情形**：全在成片/录制工装 + §三.7 授权置态范围，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
+- **留底（§三.12/点10）**：覆盖前已把第二版 ch9 8 片 cp 到 `guide/dist/partner/_v2/ch9-*.mp4`（同一文件只留一次，_v2 原无 ch9）；_v1 首版 ch9 未动；dist 覆盖为第三轮 v185 版。成片/voice 不入 git。
+- **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch9.sh`/`rec/_prodch9.sh`/`rec/_scan-ch9-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch9 第三轮节）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch9 字幕四语不变）。四语 ch9 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
+- **下趟**（§五 顺序）：ch10（设置/语言/账户章·读-only·§三.10 照样 v185 重录一次；10 已在 trip 序列·CONTEXT['10'] 开设置菜单不开 asModal）。**GP-1 第三轮返工未收官**，后续 ch10→OP-2~5 重做 + 四语全片/速览重拼 + 四语十一项重审 → 才重写 SUMMARY-GP1。

@@ -279,3 +279,25 @@ ch8＝名额与提额章（Quota & requesting more）。**零 DB 写**：8-1 读
 - 亲帧复验：EN land 8-1(f15 9 学生·¥0·无横幅)/8-4(f157 产品绿条非伪造·¥0)；ru land + fr land + zh port 联络表逐镜复验（章节条 ru/fr 本地化、zh 弹窗全中文、ru/fr 弹窗与绿条 EN 回退 D-18-4 照录）；Demo Agency 无真 PII。
 - 时长（最终成片，秒）：land 28.20 / port 28.24。8 片全 res OK + audio yes + 4 镜 box 全 resolve。
 - 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/zh/ch8-contact-{land,port}-zh.png`。
+
+## ch9 §三.10（+§三.7+§一+§三.9）（第三轮返工 · RULING-20261013b，第47趟 2026-10-14 · v185 定版重录·增值服务章·读-only）
+ch9＝增值服务章（增值服务 / value-added services）。**读-only·零 DB 写**：CONTEXT['9'] 仅把首张推荐生列表卡的 `.partner-premium-block` 滚到视口中心，逐镜高亮服务行，全程零点击、零写库。字幕四语未改（review1/review2 未标 ch9 缺陷；§三.10 仅要求 v185 定版重录一次）。
+- **§三.10**：ch9 整章四语横竖 8 片用 v185 重录→合成覆盖 dist→四语联络表。md5 比对 dist vs `_v2/` 8 片全差异（真重录）。
+- **§三.7（安全·照 ch6 读-only 先例）**：录前 `st-ch8-quota-off` 去「Quota raise pending 10→30」横幅、录后 `st-ch8-quota-restore`（verify#13 回 pending）。读-only：一次 off→录全 8 变体→一次 restore。
+- **§一**：每张卡「该学生已投入：¥0」无负数（亲帧 zh land f75）；¥1,500/¥600/¥4,500 起均正数。§四.5 扫描四语横竖负数全 CLEAN。
+- **§三.9**：ru 章节条「Центр партнёров」/fr「Espace partenaires」（trip38 继承）；zh「合作伙伴端」/en「Partner Hub」不动。
+- **§四.4 N/A**：ch9 四语字幕均未用引号引界面按钮名（全描述性散文），无逐字比对对象。
+- **§四（9-4 forbid）**：9-4 高亮行「付费曝光·未激活 / 材料够不着学校任务门槛、或提交很久没动静的学生，最适合开通」，**无「优先审核」字样**。
+
+| 镜 | 字幕原文（ZH·不改） | 字幕中点画面高亮区实际文字（成片实帧肉眼读） | 同一件事？ |
+|----|------------------------|------------------------------------------------|-----------|
+| 9-1 | 可选的增值服务，用不用都行： | `.partner-premium-title`「🎁 增值服务」橙环框（右侧「该学生已投入：¥0」无负数；§三.7 去横幅后无提额横幅） | 是 |
+| 9-2 | Audit 服务，解除基础版两个 offer 上限，并提供 30 天优先推荐位； | premium 第 2 行橙环框「🚀 Audit 服务 · 未激活 · 激活 ¥1,500」 | 是 |
+| 9-3 | 人工搜索，由 Maxhouse 顾问为学生定制专属学校清单； | premium 第 3 行橙环框「🤝 人工搜索 · 未激活 · 激活 ¥600」 | 是 |
+| 9-4 | 付费曝光，让学生进入更多学校的候选池。 | `.partner-premium-row--boost` 橙环框「📈 付费曝光·未激活·激活·¥4,500 起」（无「优先审核」字样） | 是 |
+
+- §四.2：9-1..9-4 高亮均在滚到视口中心的 premium block 内，全程≥90% 可见、dwell≥70%；box 四镜全 resolve。
+- §四.5 整镜扫描（in-frame·MASK+HIDE·`_scan-ch9-forbidden.mjs`·4 语×2 视口）：**ALL CLEAN**——beta/test/内测/测试 0、负数 0、真邮箱 0（@gmail→agency.demo@example.com）。页头平台 WhatsApp/Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- 亲帧复验：zh land f75（增值服务/Audit 服务 激活 ¥1,500·该学生已投入 ¥0·章节条 合作伙伴中心）；EN/ru/fr 联络表逐镜复验。Demo 生 Serikova Aizhan / Okoye Emeka 无真 PII、双盲守住（无校名）。
+- 时长（最终成片，秒）：land zh 23.80（en 22.82 / ru 26.35 / fr 24.32）；port zh 23.75（en 22.78 / ru 26.39 / fr 24.27）。8 片全 res OK + audio yes + 4 镜 box 全 resolve。
+- 联络表（四语全部用本趟最终成片重生成）：`~/mh-jobs/shots/GP1/zh/ch9-contact-{land,port}-zh.png`。
