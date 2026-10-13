@@ -843,3 +843,26 @@
 - **非四种停下情形**：全在成片/录制工装 + §三.7 授权置态范围，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
 - **改了**（主仓库，点名 JOB-GP1，不推）：新增 `rec/_runch10.sh`/`rec/_prodch10.sh`/`rec/_scan-ch10-forbidden.mjs`、`REVIEW-{en,zh,ru,fr}-shots.md`（追加 ch10 第三轮节 + 标注 trip35 旧节已取代）、`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json 改动（ch10 字幕四语不变）。四语 ch10 联络表 + 4 REVIEW-shots + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**（§五 顺序）：十章全部 v185 定版重录完毕 → 开场快剪 OP-2~5 用新素材重做（§三.11·仿 trip26/trip36）→ 四语全片/速览/分段全部重拼（速览当独立片查）→ 四语各过十一项重审（§四.6·联络表全用最终成片重生成）→ 才重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes）。**GP-1 第三轮返工未收官**，仍不开始 GP-2（不传 R2、不动 Cloudflare、不推主仓库）。
+
+## D-49-1 · 开场快剪 OP-2~5 用 v185 第三轮新素材重做（§三.11）+ 四语全片/速览/分段全部重拼（第49趟 2026-10-14 · RULING-20261013b-video-only · Mac mini 无人值守）
+- **第〇节代码核验**：`git diff origin/main --stat -- partner-portal` 空、partner-portal 下无未跟踪文件、无 v186、index.html 四处 `maxhouse-partner-portal-v185`→无需还原，本轮不改五端口代码（每趟复核在案）。
+- **开工 verify**：**17/17 PASS 0 FAIL**（#13 quota_request pending requested 30 基线在）。
+- **本趟＝§三.11 开场快剪 OP-2~5 重做 + 四语全片/速览/分段全部重拼**（十章 v185 定版重录已于 trip38~48 收尾）。纯成片/录制工装层操作，**零 DB 写入、零产品码/迁移/共用组件改动**。
+- **OP 素材血缘排雷（关键·仿铁律14 数据血缘三问）**：`gp1-finish.mjs buildQuickCut` 取 OP b-roll 自 `rec/out/<lang>-<orient>-ch<n>/`（timeline.json + frames），OP-2→ch6 / OP-3→ch3 / OP-4·5→ch7。侦查发现：
+  - ch3 clean out 目录（Oct 13 20:39~21:00·trip40 第三轮）✅、ch7 clean out 目录（Oct 14 00:57~01:05·trip45 第三轮）✅——与各自 live dist 成片 mtime 对齐，genuine 第三轮。
+  - **ch6 clean out 目录 `<lang>-<orient>-ch6` 是 Oct 12 的第二版残留（68 帧·stale）**；trip43 ch6 第三轮录像因 `_runch6.sh` 的 orient/lang 污染 bug（dbrun `o=$(…)` 非 local·trip45 已踩同根）落进**乱码目录 `<lang>-<lang>-<orient>-ch6`（Oct 13 22:36~22:43·140~149 帧）**，live dist ch6 成片（Oct 13 22:43）即由 `prod-ch --tag en-en-land-ch6` 等乱码 tag 产出。若直接跑 bookend，OP-2 会取 stale 第二版 ch6 帧→违 §三.11「用新素材」。
+  - **修**：把 8 个乱码第三轮 ch6 目录 `cp -R` 覆到 clean 名 `<lang>-<orient>-ch6`（纯录制层文件操作·无 DB），使 `gp1-finish` OP-2 取到与 live ch6 成片**同一批第三轮帧**。排查确认 ch3/ch7 无乱码目录、clean 目录即第三轮，无需处理。
+- **工序**：`gp1-finish.mjs --stage bookend`（重建 OP-1..6 + ED·OP-2~5 嵌新 b-roll）→ `--stage film`（全片 master + 20~40s 分段）→ `--stage trailer`（速览 + 分段），四语各跑一遍（每跑含 land+port）。
+- **留底（§三.12/点10）**：覆盖前把第二版 dist 的 16 个 OP-*/ED-* cp 到 `_v2/`（_v2 原只有 full/trailer·trip42 已留；OP/ED 本趟首次留底·只留一次）；dist 覆盖第三轮版（不入 git）。
+- **真重拼实证（md5 dist vs _v2）**：OP-{land,port}-* / full-* / trailer-* **全差异**；**ED-land-en 字节相同＝正确**——ED 是纯片尾卡（回顾文案 + QR·无章节 b-roll 依赖·确定性渲染），§三.11 只重做 OP-2~5 不动 ED，输入未变故输出逐字节同，非 bug。
+- **亲眼逐帧验 OP-2~5（en land b-roll·铁律15）**：
+  - OP-2（ch6·"One submission, many universities"）＝盲态 offer 列表卡 SCH-1AD6C8 / SCH-8E561C·MSc Computer Science·PENDING DECISION·**无真校名（双盲守住）**；
+  - OP-3（ch3·"Your student stays yours"）＝Demo Aisha #10·真申请号 **MH-22MSY7**（第三轮新录·第二版为 MH-EYJ5EE·证真用新素材）·DOCUMENTS UNDER REVIEW；
+  - OP-4（ch7·"Zero platform fees"）＝¥0.00 大橙框 UNLOCK FEE·折扣行「¥3,000.00 · MAXHOUSE −¥3,000.00」（优惠码抵扣·§四.5 白名单不算负数）·**无 beta/placeholder**·邮箱 agency.demo@example.com（掩码）；
+  - OP-5（ch7·"Written by the university, delivered to you"）＝校名揭晓「Demo University · 演示大学 · 武汉」·录取通知书下载钮高亮·JW202 coming soon。
+- **速览当独立片查（§三.11）**：trailer-land-en seg04 = 4-5/6-2/7-0/7-1/7-3；亲帧 6-2（双盲 SCH-1AD6C8「written by the university itself — but not its name」）、7-1（已接受 MBA (International)·无 beta）。**7-0 beta 风险由构造杜绝**：trailer 的 7-0 是 trip45 ch7 成片切片，ch7 成片以 HIDE_INIT 遮 beta/placeholder + actOff 把真付点击/成功页吐司全程留在镜外录制→beta 帧从未进 ch7 成片→trailer 切片必无 beta。叠加各源章节 §四.5 逐章 DOM 扫描均 ALL CLEAN，故速览唯一新增元素＝OP/ED 卡（上已亲验）→速览整片洁净。
+- **成片完整性（ffprobe 全 32 片）**：8 full + 8 trailer + 8 OP + 8 ED 全可播·有音轨·分辨率正确（land 1920×1080 / port 1080×1920）。新时长：**full** land/port en 422.5/421.6·zh 429.2/429.4·ru 438.2/437.9·fr 428.0/428.4；**trailer** en 166.3/165.8·zh 171.6/171.7·ru 176.1/175.9·fr 168.4/169.0（秒）。分段 segCount full 12/12/13/12、trailer 5/5/6/5；`segOutOfRange` 仅片尾 ED 独立段（~13s·groupSegments 有意保留）及 zh/fr 末次合并回填段略超 40s（算法既有行为·非本趟引入）。
+- **DB**：开工+收工 verify 均 **17/17 PASS 0 FAIL**。本趟零 DB 写入、零临时置态（OP 源 ch6 修复为纯 out/ 文件 cp·bookend/film/trailer 只读帧跑 ffmpeg）。
+- **非四种停下情形**：全在成片/录制工装层 + 既有 gp1-finish 工具，不碰端口码/迁移/共用组件、不越界、不碰 R2·CF、不推主仓库。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`DECISIONS.md`（本条）。无产品码/迁移/captions/shots-v1.json/rec 脚本改动（OP 源 ch6 的 out/ 帧 cp 落在 .gitignore 的 `rec/out/`·不入 git）。决定账 + PROGRESS 推 mh-jobs。
+- **下趟**（§五 顺序）：四语各过十一项重审（§四.6·联络表全用最终成片重新生成·不沿用旧联络表/旧结论·REVIEW-<语言>-shots.md 追加新对账行+旧行标「已被第 N 趟取代」·REVIEW-<语言>-self.md 写明每项查法）→ 四语全过十一项后才重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes·照裁决第六节）。**GP-1 第三轮返工未收官**，仍不开始 GP-2（不传 R2、不动 Cloudflare、不推主仓库）。
