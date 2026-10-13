@@ -70,6 +70,29 @@ trip23 的字幕/高亮（§三.6）照旧正确，本趟只换**录制底座 v1
 - 时长：land 27.66s / port 27.66s。8 片（四语横竖）全 res OK + audio yes。全片 DOM 扫描 **no @gmail**。
 - 逐张亲眼复验（EN land 联络表 + 2-2/2-4 原始帧）：2-2 漏斗 9/3/2/1 无负数无全 0；2-4 框住「Documents approved · matching」真标签；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）；¥0 TOTAL PAYMENTS PROCESSED 保留（§一.3）；演示生 Mbarga Junior / Islam Rahim 无真 PII；无 beta/内测/test 控件。
 - **记入 SUMMARY「留给业主的产品问题」**：①中介端工作台无「名额已用/剩余」显示（故 2-2 改述漏斗）；②卡状态徽章颜色恒 pending 蓝（`students.stage` 列恒 NULL），即便标签已是「材料已通过·匹配中」（gate_open 覆盖），色与标签语义不一致——属产品层 stage 列未回填的历史问题，非本片可改。
+- ⚠ 上表 2-3 / 2-4 两行**已被第 38 趟（第三轮返工 RULING-20261013b §三.1）取代**——见下节。
+
+## ch2 §三.1（第三轮返工 · RULING-20261013b，第38趟 2026-10-13 · v185 定版重录）
+RULING-20261013b §三.1 复核第二版查出：**2-3** 原来框的是 `.partner-students-count`「9 students」**计数药丸**，不是卡片；**2-4** 原来只框一张卡的徽章文字，没做到 review1 §三.2 首选的「依次框各张卡」，而每张卡的**状态行 `.partner-student-issue`** 其实真实显示不同阶段。本趟按 §三.1 重做（四语横竖全部用 v185 重录；另按 §三.7 录前 `st-ch8-quota-off`、录后 `st-ch8-quota-restore` 去掉工作台顶部「Quota raise pending」横幅，收工 verify 17/17 回基线）：
+- **2-3**：高亮改框列表**第一张学生卡整卡**（`.partner-students-list .partner-student-card:nth-of-type(1)`＝Serikova Aizhan），字幕不改。
+- **2-4**：改为**依次框 5 张处在不同真实阶段的卡的状态行**（`.partner-student-card:nth-of-type(N) .partner-student-issue`，N=1/4/5/6/8；录制层 rec.mjs 新增 `hlseq` 多段高亮，每段 hold 1.3s、环不熄仅移动，逐段占其时段 ~76% ≥70%）。字幕按屏上依次出现的阶段、用产品说法写、**不加引号**（避 §四.4 逐字比对），四语重配音。不框徽章。
+- 实证底座 `_probe-ch2-nth.mjs`：四语 land 下 5 个 nth 状态行均 resolve+可见；8 片 timeline 2-4 `seq` 全 `YYYYY`（5/5 resolved）。
+
+| 镜 | 字幕原文（新/未改） | 高亮区 DOM 实际文字（从最终成片实帧亲验） | 同一件事？ |
+|----|----------|---------------------|-----------|
+| 2-3 | Each card carries the student's current stage.（未改） | 整框第一张学生卡 Serikova Aizhan（含姓名/徽章「Submitted · awaiting platform review」/状态行/增值服务区） | 是（框的是卡片本身，不再是计数药丸） |
+| 2-4 seg1 | （同下整句）under review … | nth1 Serikova Aizhan 状态行「⏳ All documents currently under review」 | 是 |
+| 2-4 seg2 | … approved and matching … | nth4 Mbarga Junior 状态行「✓ Core documents approved · awaiting school matches」 | 是 |
+| 2-4 seg3 | … a new offer … | nth5 Hussain Bilal 状态行「🆕 New offer from A university · name revealed after admission · MSc Computer Science — awaiting student decision · yesterday」 | 是（双盲守住：A university·录取后公布校名） |
+| 2-4 seg4 | … a letter issued … | nth6 Karimova Nilufar 状态行「💰 Letter issued by A university · … · student must pay **¥3,000** in 30 days · 30d left」（¥3,000 为**正数**） | 是 |
+| 2-4 seg5 | … admission complete. | nth8 Volkov Dmitri 状态行「Admission complete · MSc Mechanical Engineering · 1w ago」 | 是 |
+
+2-4 整句字幕（EN）：*Each student card carries its own status line, showing exactly where that student stands — under review, approved and matching, a new offer, a letter issued, admission complete.*
+
+- 时长（最终成片，秒）：land en 35.8 / zh 38.0 / ru 37.2 / fr 36.0；port 同量级。2-4 窗 13.8s（5 段），配音 en 10.9/zh 14.0/ru 13.8/fr 11.3s，静默尾≤2.9s（§四 容许≤3s）。8 片全 res OK + audio yes，录制全 **no @gmail**。
+- 亲眼逐帧复验（EN land seg1/2/3/4/5 + 2-1 + 2-3 全帧；ZH land seg3 全帧）：环框在正确状态行；**2-1 工作台顶部已无「Quota raise pending」横幅**（§三.7 去横幅生效），TOTAL PAYMENTS PROCESSED **¥0** 无负数；增值服务 ¥1,500/¥600/¥4,500、letter ¥3,000 均正数；双盲守住（A university / 某院校·录取后公布校名）；页头平台 WhatsApp/Email（Service@maxhouses.net）不遮（D-14-3/D-15-1）；演示机构 Demo Agency 无真 PII；**无 beta/placeholder/test/负数**。
+- RU/FR 的 2-4 状态行里「New offer from / Letter issued by / student must pay ¥3,000 in 30 days / awaiting student decision / yesterday」等片段为产品 i18n 英文回退（D-18-4：俄法界面英文回退照录不补），非本片引入。字幕本身为对应语言全译（captions-v1.json）。
+- 联络表（本节证据）：`~/mh-jobs/shots/GP1/<lang>/ch2-contact-{land,port}-<lang>.png`（逐镜中点）+ `ch2-2-4-segments-{land,port}-<lang>.png`（2-4 五段逐段）。
 
 ## ch1 §一（1-8 工作台负数金额，返工第29趟 2026-10-12 · v185 定版重录）
 前置：ch1 第 1～7 镜＝注册/入驻 UI（产品自身 gateShowRegister/renderPendingView 渲染，client-side 驱动、零写库），review1 未标 ch1 任何字幕缺陷；唯 1-8「切到 guide_partner：APPROVED 徽章 + 工作台」背景里有 review1 §一 点名的工作台数字问题——v184 缓存帧的 hero 显 `TOTAL PAYMENTS PROCESSED ¥-9,000`（负数，缺陷1）。本趟在 v185 底座（含 trip28 offCamera 等待）对 ch1 整章四语横竖定版重录，1-8 背景自动显修好后的 `¥0`。字幕一字未改。

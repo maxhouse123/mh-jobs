@@ -661,3 +661,20 @@
 - **非四种停下情形**：全在只读复审+文书范围，不碰端口码/不越 §0.3·0.4/不碰 R2·CF·主仓库推送。
 - **改了**（主仓库，点名 JOB-GP1，不推）：`REVIEW-en-self.md`(九项→十一项 v2)、`REVIEW-{zh,ru,fr}-self.md`(新建十一项)、`DECISIONS.md`。无成片改动(trip36 已定版)、无 shots/captions 改动、零 DB。四语 4 self-review + SUMMARY-GP1 + 决定账 + PROGRESS 推 mh-jobs。
 - **下趟**：无。GP-1 四语横竖返工全部完成、十一项四语全过、SUMMARY-GP1 PUSH_OK=yes 已出→循环自停。**不开始 GP-2：不传 R2、不动 Cloudflare、不推主仓库**(留业主另行授权上线)。
+
+## D-38-1 (2026-10-13 第38趟 · 第三轮返工开工 + ch2 §三.1 重做 · RULING-20261013b-video-only)
+- **接手核对**：git status（主仓库半成品皆别线/工装残留，本线不碰）+ 读齐 PROGRESS/loop-tail(20261013-192852)/RULING-20261013b-video-only(本轮总纲)/-gp1(§二停下四情形)/-c-rework/-b-review1/-d/-e/DECISIONS/QUEUE/storyboard。辨明：第二版(trip37)曾判「收官」，业主 10-13 19:04 改判「不改中介端代码、只做视频上线」→开第三轮返工重开。首行开工即改「第三轮返工进行中」，开工 verify **17/17 PASS 0 FAIL**。
+- **第〇节（放回代码）核验**：partner-portal 无任何 v186 文件、`git diff origin/main --stat -- partner-portal` 为空、partner-portal 下无未跟踪文件。第二轮从未动过 v186→无需还原，本轮不改五端口任何代码（本决定项即第〇节 2 条检查的当趟记录，以后每趟复核）。
+- **本趟选题（§五 顺序：ch2 先）**：ch2 §三.1（2-3/2-4 返工）+ §三.7（去提额横幅，ch2 露工作台顶部）+ §三.9（俄法章节条左标签，随本章重烧）。
+- **§三.1 实现（只改成片/录制工装，零改产品码/迁移/共用组件）**：
+  - **2-3**：hl 由 `.partner-students-count`（计数药丸）改为 `.partner-students-list .partner-student-card:nth-of-type(1)`（第一张学生卡整卡 Serikova Aizhan）。字幕不改。
+  - **2-4**：shots-v1.json 去掉旧单点 hl/hl_zh/hl_ru/hl_fr，新增 `hlseq`＝5 个 `…card:nth-of-type(N) .partner-student-issue`（N=1/4/5/6/8）。实证 `_probe-ch2-issue.mjs`/`_probe-ch2-nth.mjs`：9 张卡状态行真实分档（审核中×3 / 已通过匹配×2 / 新offer Bilal / 已发通知书 Karimova / 已付款 Mensah / 录取完成 Volkov），选 5 张覆盖「审核中→已通过匹配→新offer→已发通知书→录取完成」的旅程弧。
+  - **rec.mjs** follow() 新增 `hlseq` 分支：依次 hlOn(每段)，环不熄仅 rAF 移动+hlOn 内 scrollToSel 滚到视口，每段 hold `perSeg=1300ms`；逐段 box 记入 timeline.shots.seq。8 片 seq 全 `YYYYY`(5/5 resolved)。per-seg 环居中占其时段 ~76%≥70%(§四.2)。
+  - **字幕**：四语重写(不加引号避 §四.4 逐字比对)＋重配音(tts-gp1 --force-ids 2-4)。EN「Each student card carries its own status line, …— under review, approved and matching, a new offer, a letter issued, admission complete.」ZH/RU/FR 对应全译(captions-v1.json)＋ shots-v1.json capEN/capZH 同步(字幕=配音同源)。配音 en10.9/zh14.0/ru13.8/fr11.3s，2-4 窗 13.8s，静默尾≤2.9s(§四≤3s)。
+- **§三.7（去提额横幅）**：录前 `st-ch8-quota-off.sql`(quota_requests 单列 pending→approved、decided_at 仍 NULL→产品 `_qrApplyBanner` 清横幅)、录后 `st-ch8-quota-restore.sql` 还原 pending。亲验 2-1 整屏工作台顶部已无「Quota raise pending 10→30」横幅。收工 verify #13 回 pending、17/17 PASS。
+- **§三.9（俄法章节条左标签）·我的决定**：`gp1-overlays.mjs` BAR_I18N.ru.hub `Partner Hub`→`Центр партнёров`、fr.hub→`Espace partenaires`(＝v185 该语言页头实际显示名，亲帧实证)。只重烧章节条→重拼 ru/fr ch2 land+port。zh.hub(`合作伙伴端`)/en 不在 §三.9 范围、不动。本条同改 RULING-20261012c-rework 第3条。
+- **自验（亲眼逐帧，铁律15）**：EN land 2-4 seg1/2/3/4/5 全帧(环框正确状态行)+2-1(无提额横幅·¥0 无负数)+2-3(整框第一张卡)；ZH land seg3(发来新 offer·章节条第2章·页头本地化)；RU land seg5(录取完成·**章节条已改 Центр партнёров**)；FR land seg5(admission terminée·**章节条已改 Espace partenaires**)。全程无 beta/placeholder/test、¥3,000 等金额皆正数、¥0 无负数、双盲守住(A university/某院校·录取后公布校名)、演示机构无真 PII、录制全 no @gmail、页头平台 WhatsApp/Email 不遮(D-14-3/D-15-1)。俄法状态行内英文回退片段(New offer from / Letter issued by / student must pay ¥3,000 / awaiting student decision / yesterday)＝产品 i18n 回退，D-18-4 照录不补。
+- **DB**：开工+收工 verify 均 **17/17 PASS 0 FAIL**，baseline 守住(scoped 置态/复位，无全量 rebuild，D-12-2)。写入/删除仅 §0.3/§0.4 范围(quota_requests 单列可逆)。
+- **非四种停下情形**：全在成片/录制工装+§0.3 范围，不碰端口码/不越界/不碰 R2·CF·主仓库推送。
+- **改了**（主仓库，点名 JOB-GP1，不推）：`rec/shots-v1.json`(2-3 hl/2-4 hlseq+capEN/capZH)、`captions-v1.json`(2-4 四语)、`rec/rec.mjs`(hlseq 分支)、`rec/gp1-overlays.mjs`(ru/fr hub 标签)、`rec/tts-gp1.mjs` 未改(复用 --force-ids)、`REVIEW-{en,zh,ru,fr}-shots.md`(追加 ch2 §三.1 第三轮节、旧 2-3/2-4 行标取代)、`DECISIONS.md`、新增探针 `rec/_probe-ch2-issue.mjs`/`_probe-ch2-nth.mjs`/`rec/_seg-strip-24.mjs`。成片/voice 不入 git；ch2 第二版成片已留底 `guide/dist/partner/_v2/`，dist 覆盖为第三轮版。四语 ch2 联络表(contact land/port + 2-4 segments land/port)+4 REVIEW-shots+决定账+PROGRESS 推 mh-jobs。
+- **下趟**（§五 顺序）：ch1（§一 1-8 负数已在 trip29 v185 修；但第三轮 §三.10 要求十章全部重录不沿用旧录像，故 ch1 四语横竖按 v185 重录，§三.7 去提额横幅、§三.9 俄法章节条；ch1 字幕 review1/本轮未标缺陷，纯定版重录+章节条/横幅处理）。**GP-1 第三轮返工未收官**，后续 ch3→ch10（含 §三.2 ch5-1/§三.3 ch3-3/§三.4 ch3-9/§三.5+§三.6 ch7/§三.8 俄法引用按钮名）逐章做，再 OP 重做+重拼+十一项重审→才重写 SUMMARY-GP1。
