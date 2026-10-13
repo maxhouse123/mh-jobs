@@ -161,3 +161,12 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 | OP-5 2.5s~尾 | （同句配音续） | ch7 7-1：录取详情·揭晓校名条 演示大学·Wuhan·SCH-1AD6C8（橙框）· 下载钮 录取通知书（橙框），底叠「④ Заполняет вуз — доставляем вам」 | 是 |
 
 - 亲验（RU land OP-4＝¥0 发票俄本地化）：无负数、无 beta/test、演示生无真 PII、邮箱掩码 no @gmail、双盲守住、标题条＝RU OP 卡标题/ED-1 回顾一字一致（D-18-4：产品动态串英文回退照录）。卡总时长不变（RU OP-3 15.5 / OP-4 10.5 / OP-5 16.0s），配音未动。
+
+## ch1 §三.10 + §三.7 + §三.9（第三轮返工 · RULING-20261013b，第39趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+RULING-20261013b §三.10 要求十章全部用 v185 重录。本趟 ch1 整章俄文横竖重录。1～7 镜＝注册/入驻 UI（产品渲染·零写库），review1/本轮未标 ch1 字幕缺陷→**字幕一字未改**。
+- **§三.7（去提额横幅）**：1-8 露工作台顶部，录前 `st-ch8-quota-off`、录后 `st-ch8-quota-restore`，收工 verify #13 回 pending、17/17 PASS。本趟 1-8 已无「Quota raise pending」横幅。
+- **§三.9（章节条左标签）**：ru 章节条左标签 `Partner Hub`→**«Центр партнёров»**（＝v185 俄文页头名；gp1-overlays.mjs BAR_I18N.ru.hub，trip38 已改 commit，本趟 ch1 重烧继承）。**横版 ru 成片实帧亲验：章节条＝「Центр партнёров」**（/tmp/ch1-ru-bar.png 裁帧确认）。
+- 1-8 hero：`TOTAL PAYMENTS PROCESSED ¥0`（无负数，缺陷1 销账）、`STUDENTS SUBMITTED 9`。
+- 时长：land 51.21s / port 51.26s（8 镜，俄文配音最长）。横竖 2 片 res OK + audio yes，no @gmail，8 镜 box 全 resolve。
+- 亲眼复验（RU land 章节条裁帧 + RU land/port 联络表）：章节条「Центр партнёров」、页头俄文本地化；1-8 ¥0 无负数、无横幅、STUDENTS 9；无 beta/test。hero 卡标签/提额横幅等 LL 动态串英文回退＝D-18-4 照录不补，入 SUMMARY。
+- 联络表：`~/mh-jobs/shots/GP1/ru/ch1-contact-{land,port}-ru.png`。

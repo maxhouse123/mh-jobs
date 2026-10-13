@@ -169,3 +169,12 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 | OP-5 2.5s~尾 | （同句配音续） | ch7 7-1：录取详情·揭晓校名条 演示大学·Wuhan/武汉·SCH-1AD6C8（橙框）· 下载钮「录取通知书 Official PDF」↓（橙框）· 校名已揭晓·联系方式，底叠「④ 奖学金学校亲自填…」 | 是 |
 
 - 亲验（ZH land OP-3 尾帧＝真 app_no MH-M4S9FH）：中文本地化、无负数、无 beta/test、演示生无真 PII、邮箱掩码 no @gmail、双盲守住（校名揭晓＝付款解锁后合法态）、标题条＝ZH OP 卡标题/ED-1 回顾一字一致。卡总时长不变（ZH OP-3 16.0 / OP-4 9.1 / OP-5 18.0s），配音未动。
+
+## ch1 §三.10 + §三.7 + §三.9（第三轮返工 · RULING-20261013b，第39趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+RULING-20261013b §三.10 要求十章全部用 v185 重录、不沿用旧录像。本趟 ch1 整章中文横竖重录。ch1 第 1～7 镜＝注册/入驻 UI（产品渲染·零写库），review1/本轮未标 ch1 字幕缺陷→**字幕一字未改**。
+- **§三.7（去提额横幅）**：1-8 露工作台顶部，v185 基线 pending quota_request→顶部恒显 amber「Quota raise pending: 10→30」。录前 `st-ch8-quota-off`、录后 `st-ch8-quota-restore`，收工 verify #13 回 pending、17/17 PASS。本趟 1-8 已无横幅。
+- **§三.9（章节条）**：zh 章节条左标签「合作伙伴端」（不在 §三.9 改动范围，照旧）；ru「Центр партнёров」、fr「Espace partenaires」为本轮改动。
+- 1-8 hero：`TOTAL PAYMENTS PROCESSED ¥0`（无负数，缺陷1 销账）、`STUDENTS SUBMITTED 9`、「已通过」徽章橙框。
+- 时长：land 49.44s / port 49.49s（8 镜）。横竖 2 片 res OK + audio yes，全片 no @gmail，8 镜 box 全 resolve。
+- 亲眼复验（ZH 共享 EN land 1-8 原始帧论据·背景数字与语言无关；ZH land/port 联络表）：1-8 hero ¥0、无横幅、STUDENTS 9、已通过徽章橙框；中文 UI 本地化（合作伙伴端/章节条「第 1 章」）；无 beta/内测/test、¥0 无负数；注册段邀请码打码、SPECIMEN 样件、无真 PII；页头平台 WhatsApp/Email 不遮（D-14-3/D-15-1）。hero 卡部分 LL 动态串英文回退＝D-18-4 照录不补。
+- 联络表：`~/mh-jobs/shots/GP1/zh/ch1-contact-{land,port}-zh.png`（四语全部用本趟成片重新生成）。

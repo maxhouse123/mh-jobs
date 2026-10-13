@@ -218,3 +218,13 @@ ch10＝设置章（账户/语言/退出），3 镜 10-2/10-3/10-4，全程在已
 
 - 逐张亲眼复验（EN land OP-3/4/5 card 帧 + b-roll 帧 + 尾帧；EN port OP-4 复验）：OP-3 真 app_no、OP-4 ¥0（无负数）、OP-5 校名揭晓+下载；全程**无 beta/内测/test 控件**（7-1 的 `.cloud-offer-unlock` beta 链接由录制层 HIDE_INIT 在原始帧即遮；OP-4 定格 ts4.5 避开 7-0 末尾「Paid (beta placeholder)」吐司）；演示生/机构无真 PII、邮箱掩码 `agency.demo@example.com`（no @gmail）；双盲守住（OP-5 校名揭晓＝付款解锁后合法态，非盲态泄校名）；标题条文字＝ EN OP-3/4/5 卡标题/ED-1 回顾串一字一致。
 - 卡总时长不变（EN OP-3 15.6 / OP-4 9.1 / OP-5 14.5s，=配音+0.5），配音未动。OP-3/4/5 做完→全部工作台章+开场快剪返工完毕，本趟重拼四语横竖全片/速览（纳入全部 v185 定版章）。
+
+## ch1 §三.10 + §三.7 + §三.9（第三轮返工 · RULING-20261013b，第39趟 2026-10-13 · v185 定版重录·不沿用旧录像）
+RULING-20261013b §三.10 要求十章全部用 v185 重录、不再沿用任何旧录像；本趟对 ch1 整章四语横竖（8 片）用 v185 重新录制、合成、覆盖 dist。ch1 第 1～7 镜＝注册/入驻 UI（产品自身渲染·client-side·零写库），review1/本轮未标 ch1 任何字幕缺陷→**字幕/高亮一字未改**（字幕原文见上「ch1 §一」节表格）。本节落两处新处理：
+- **§三.7（去提额横幅）**：1-8 露工作台顶部 hero，v185 基线有一张 pending quota_request（verify #13）→ 顶部恒显 amber「Quota raise pending: 10 → 30」。录前 `st-ch8-quota-off.sql`（quota_requests 单列 pending→approved、decided_at 保持 NULL→产品 `_qrApplyBanner` 清横幅）、录后 `st-ch8-quota-restore.sql` 还原 pending；收工 verify #13 回 pending、17/17 PASS。→ **本趟 1-8 已无横幅**（横版 en 原始帧 f00402 + 竖版 en 原始帧 f00438 亲验：header 与 hero 之间无 amber 横幅）。
+  - ⚠ 上「ch1 §一（trip29）」节末「记账」行称「1-8 同帧有 Quota raise pending 横幅…在 ch1 叙事中属真实背景态、不矛盾」——**该行已被本节取代**：§三.10/§三.7 要求凡露工作台顶部的镜（含 1-8）一律去横幅，本趟已按此重录。
+- **§三.9（俄法章节条左标签）**：en 章节条左标签仍「Partner Hub」（不在 §三.9 范围）。ru→「Центр партнёров」、fr→「Espace partenaires」、zh→「合作伙伴端」（gp1-overlays.mjs BAR_I18N，trip38 已改并 commit；本趟 ch1 重烧继承）。横版 ru/fr 成片实帧亲验章节条＝「Центр партнёров」/「Espace partenaires」。
+- 1-8 hero 背景数字：`TOTAL PAYMENTS PROCESSED ¥0`（无负数，缺陷1 销账）、`STUDENTS SUBMITTED 9`、APPROVED/approved 徽章橙框。
+- 时长（最终成片，秒）：land en 49.45 / zh 49.44 / ru 51.21 / fr 49.68；port en 49.45 / zh 49.49 / ru 51.26 / fr 49.59。8 片全 res OK + audio yes，录制全 **no @gmail**。8 镜 box 全 resolve。
+- 亲眼逐帧复验：EN land 1-8 原始帧 f00402（hero 橙框·¥0·无横幅·STUDENTS 9）、EN port 1-8 原始帧 f00438（竖版同·无横幅·¥0）、RU land 章节条「Центр партнёров」、FR land 章节条「Espace partenaires」。全程无 beta/placeholder/test、¥0 无负数；注册段邀请码打码、SPECIMEN 样件、无真护照号/电话、演示机构 Demo Agency 无真 PII；页头平台 WhatsApp/Email（Service@maxhouses.net）不遮（D-14-3/D-15-1）。
+- 联络表（本节证据）：`~/mh-jobs/shots/GP1/<lang>/ch1-contact-{land,port}-<lang>.png`（逐镜中点，四语全部用本趟最终成片重新生成）。
