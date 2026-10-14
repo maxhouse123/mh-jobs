@@ -57,3 +57,37 @@ GP2-03 页面 `fetchManifest()` 用跨源 `fetch()` 取 `media.maxhouses.net` �
 主仓库点名提交（未推）：`guide/partner/`（页面 CORS 修 + `m/<lang>/` 8 个同源清单 + BUILD bump）、`jobs/JOB-GP2`（cf 规则改 + apply-cache-rule.sh + cache-ruleset 存档 + gp2-04-verify/measure/_probe-* 脚本 + DECISIONS）。`jobs/JOB-G9/cleanup-apply.sh` 的 bash3.2 修改留工作区不提交（白名单外，给 G-9 业主卡）。
 
 **下一步**：写请示单（CORS 修复推送 + 可选 GP2-06 缓存规则/G-9 两张业主卡），停本趟。业主卡推送 `guide/partner/**` 后，下趟续 GP2-04 线上真验（应全绿）+ 测速 → GP2-05 收官。
+
+---
+
+## 【第 7 趟续办｜2026-10-15】CORS 修复上线后 · 线上真验 ALL PASS + 测速
+
+承 `RULING-20261014e-gp2-04-fix-live`（业主卡 1391 推 33a02cb 上线，同源清单 m/<lang>/ + 版本串 gp2-20261014b）。本趟真浏览器打真线上续验。
+
+### 一、线上真验（真浏览器，经代理打 https://www.maxhouses.net/guide/partner/）—— ALL PASS ✅
+`node gp2-04-verify.mjs`，16 个 context 全绿：
+- **主循环 8 个**（en/zh/ru/fr × 手机405/电脑1440）：http_200 / 无裸键 / 四条重点 / **十章** / 邀请码 MAXHOUSE-PARTNER-2026 显示可复制 / 注册带 src=guide-<lang> / robots noindex / og 本语言 share-<lang>.jpg / 无横向溢出 / 可点区≥44 / 画幅自动（手机 port·电脑 land）/ **点第1章真 CDN 出首帧**（408~1130ms）/ nodownload / 切画幅 / 切语言 / **0 控制台错误（CORS 已灭）** —— 每项 PASS。
+- **速览分段串播 4 个**（lite 强制，en/zh/ru/fr）：segmode✓ / 接缝前进 segReqs=2✓ / **真实连续播放**（窗口采样 advances=6）✓。
+- **弱网自动降档 2 个**（connection=3g stub，zh/en）：3g 识别✓ / 点整片自动走 lite 分段（seqNav 显示）✓。
+- **整片 HD 母带 2 个**（hd 档，en/zh 电脑）：单 master 非分段✓ / **连续播放**（advances=8）✓ / 0 控制台错误✓。
+
+截图 16 张入 `~/mh-jobs/shots/GP2/online/gp2-04-*.png`（旧 gp2-04-BROKEN-*.png 保留作上趟病证，已被本趟绿图取代）。肉眼复核 zh-mobile（竖·十章齐）/ en-desktop（横·十章齐）渲染正确。
+
+**工装两处加固（只改工装脚本，不碰端口/页面）**：① `quick_playing` 原为单点采样，恰落切段握手瞬态→误判；改为 ~3s 窗口采样「currentTime 真前进」。② 弱网降档加 400ms 绑定 settle + 单次补点，吸收多 context 后偶发漏点。加固前后逻辑经专项探针 `_probe-quick-play.mjs`（四语 36~38/40 采样在播、0 暂停）与 `_probe-downgrade.mjs`（en×2/zh effQ=lite、seqNav 1ms 显示）双证。
+
+### 二、测速（gp2-04-measure.mjs，CDP 模拟网 + 手机 CPU×4，每格多次取中位）
+| 档 | 网 | 视图 | 连法 | 点章出画面(中位) | 速览首帧 | 卡顿 | 判 |
+|---|---|---|---|---|---|---|---|
+| 流畅 lite | 3G | 手机 | 代理 | **1475ms** | 931ms | 0 | ✅ ≤2.5s |
+| 流畅 lite | 3G | 手机 | 直连 | **1646ms** | 929ms | 0 | ✅ ≤2.5s |
+| 流畅 lite | 慢3G | 手机 | 代理 | **6766ms** | 2870ms | 4 | 🔴 >4s |
+| 流畅 lite | 慢3G | 手机 | 直连 | **6074ms** | 3023ms | 4 | 🔴 >4s |
+| 高清 hd | 4G | 手机 | 代理 | 895ms | 1457ms | **0** | ✅ 0卡顿 |
+| 高清 hd | 4G | 电脑 | 代理 | 739ms | 1575ms | **0** | ✅ 0卡顿 |
+
+- 首屏首字节 1.6~2.9s；页面 cache-control `max-age=300, stale-while-revalidate=86400`。
+- **第 2 次访问 cf-cache-status = DYNAMIC**（两次都 DYNAMIC）——因 `/guide/partner` 的**边缘缓存规则属 GP2-06 业主卡**（apply-cache-rule.sh 已备、CC 不执行），现状无边缘缓存属预期，不算缺陷。
+- **🔴 唯一未达线：慢3G（400kbps）点章 ~6s > 4s**。直连/代理一致（非代理假象），属物理带宽下限（lite ch1 首帧需缓冲量 ÷ 400kbps≈6s）；慢3G 速览亦 4 次停顿。按任务书 §GP2-04-2「达不到的如实标红，不无限追加」——**标红如实记录，不再追加压缩**（再压会伤画质/违码率下限）。3G 及以上、4G 高清全部达标。
+
+### 三、结论
+线上引导页**已完全可用**：十章加载、四语、画幅自动、点章/速览/整片均真实播放、CORS 零错、弱网自动降档生效。测速除慢3G 点章一项标红外全部达标。GP2-04 收口。下一步 GP2-05 全线体检 + 收官。
