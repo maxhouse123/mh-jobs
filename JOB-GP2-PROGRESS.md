@@ -1,4 +1,4 @@
-最后一趟：2026-10-14 第 5 趟 GP-2：做完 GP2-03 引导页 guide/partner/index.html（停点二）——单文件 44.6KB≤60KB，四语/画幅自动(手机竖电脑横)/十章/速览+整片双缓冲分段串播(HD master/Lite segs 弱网降档)/注册区公开邀请码 MAXHOUSE-PARTNER-2026(DB只读实证)复制钮+注册按钮链 ?src=guide-<lang>/分享+og本语言 share-<lang>.jpg(同源)/去下载/robots noindex(先上线不对外)；清单运行时 fetch(?v=BUILD)。_headers 增 /guide/partner/* 段(照 /guide/student/* 只+5行)；cf 缓存规则 JSON(照 guide-student-html)留业主卡。本地闸 playwright 四语×手机405/电脑1440 全站截流打本机成片 ALL PASS(14项×8context，章首帧82~164ms，lite分段串播另过)。主仓库攒 ffadae3(页面)+fbb1231(请示单)，连 b0dfba9/b4d976d 共 4 笔待业主卡推。写停点二请示单停下。下趟＝业主卡上传(528/558MB)+加缓存规则+推4笔+装 RULING-*-gp2-03-live 后，接 GP2-04 线上真验+测速(只读)。
+最后一趟：2026-10-14 第 6 趟 GP-2：GP2-04 线上真验**发现阻断缺陷**——引导页跨源 fetch 清单被 CORS 挡（media.maxhouses.net 不发 ACAO）→ 十章永不加载（本地 route-stub 闸与业主 curl HEAD 都绕过 CORS 未抓到；学生页不跨源 fetch 故无此病）。已备修法（Option 2 同源清单：8 清单入 guide/partner/m/，页面 fetch 基址改 'm/'+lang，BUILD→gp2-20261014b）并本机 E2E 实证（wrangler pages dev 同源清单×真 R2 媒体，四语 CORS 错0、真媒首帧0.9~1.4s；本地闸仍 ALL PASS）。RULING-d 三件只读附加全做：① cf 规则改克隆 guide-student-html-cache + 幂等 apply-cache-rule.sh(--dry-run 未执行) + 线上 ruleset 存档；② jobs/JOB-G9/cleanup-apply.sh 改 bash3.2(read 循环替 mapfile)，--dry-run 自证 GUARD_OK delete=34(pub28 priv6) 未删，留工作区给 G-9 业主卡；③ 裸 /jobs/QUEUE-G8.md 仍404。主仓库攒 **7de43e7** 1 笔未推。写请示单（CORS 修复推送 + 两张 GP2-06 备选卡）停下。**下趟＝业主卡推 7de43e7 + 验十章出来 + 装 RULING-*-gp2-04-fix-live 后，续 GP2-04 线上真验(应全绿)+测速 → GP2-05 收官。**
 
 # JOB-GP2 进度表
 
@@ -56,3 +56,12 @@
 - 主仓库提交（未推）：`ffadae3`(页面+分享图+_headers+cf JSON+gate/qr/probe+DECISIONS)、`fbb1231`(停点二请示单)。连 b0dfba9/b4d976d 共 **4 笔**待业主卡推。
 - 写停点二请示单（NEEDS_OWNER_DECISION.md 覆盖写 + 复制推 mh-jobs）。结束本趟。
 - **下趟**：等业主卡上传(528/558MB)+加缓存规则+推 4 笔+装 `RULING-<日期>-gp2-03-live.md` 后，接 **GP2-04**（线上真验 + 测速，只读）。
+
+### 第 6 趟（2026-10-14）· GP2-04 线上真验 + RULING-20261014d 三件只读附加
+- 开工核对：五端口 `git diff origin/main --stat` 为空、无未跟踪端口文件 —— PASS。停点二已解除（业主卡 1390：528 对象入公开桶 v4/、5 笔推上线 1c1adfd、装 RULING-20261014d）。本机 HEAD==origin/main==1c1adfd。
+- **GP2-04 线上真验发现阻断缺陷**（回执 ~/mh-jobs/JOB-GP2-04.md）：引导页 `fetchManifest` 跨源 `fetch` media.maxhouses.net 的 manifest.json，该域不发 `Access-Control-Allow-Origin` → 浏览器 CORS 挡 → `MAN` 空 → **十章永不加载、页面停「Could not load」**。病根实证：curl 带 Origin 无 ACAO；无头浏览器控制台 CORS 报错；线上截图 shots/GP2/online/gp2-04-BROKEN-{en,zh}.png。为何没早发现：本地闸 route.fulfill 当同源喂清单(绕 CORS)、业主卡只 curl HEAD(不触发 CORS)；学生页不跨源 fetch 清单故无此病。
+- **修法已备 + 本机 E2E 实证**（Option 2 同源清单，不碰基建）：4 语 8 清单(64KB)入 `guide/partner/m/<lang>/` 由 Pages 同源服务；页面 fetch 基址 `D.MEDIA+'/'+lang`→`'m/'+lang`（媒体仍走清单 base 的 R2，视频/图元素无需 CORS）；BUILD→`gp2-20261014b`。本地闸 8×14 仍 ALL PASS；新增 E2E：`wrangler pages dev`(同源清单)×真 R2 媒体(经代理,localhost bypass) 四语各 10 章、真媒首帧 0.9~1.4s、**CORS 错误 0**。
+- **RULING-20261014d 三件只读附加**（都只读、未执行线上）：① 实读线上 cache ruleset(存档 cf/cache-ruleset-live-20261014.json)——学生页真正生效的是 `guide-student-html-cache`(边缘 respect_origin)，据此把 cf JSON 改成克隆它(expr 换 /guide/partner)+新增幂等 `apply-cache-rule.sh`(按名查重/只增不改不删/改前改后 GET/--dry-run 纯 GET)，`--dry-run` 实证规则未存在、ruleset 解析正常，CC 未执行；② `jobs/JOB-G9/cleanup-apply.sh` 的 `mapfile`→`read` 循环(bash3.2 兼容)，`/bin/bash -n` 过、`--dry-run` 自证 `GUARD_OK delete=34(pub=28 priv=6)` 未删，白名单外留工作区给 G-9 业主卡；③ 裸 `/jobs/QUEUE-G8.md` 仍 `HTTP/2 404 x-mh-block:1`；④ 教训入账 D-GP2-6-4。
+- 决定账 D-GP2-6-1~6-4。主仓库点名提交（未推）：`7de43e7`（guide/partner 页面+m/8清单+BUILD bump；jobs/JOB-GP2 cf 规则+apply 脚本+ruleset 存档+gp2-04-verify/measure+_shot-broken+DECISIONS）。
+- 写请示单（CORS 修复推送 + 两张 GP2-06 备选卡：缓存规则/G-9 收尾）覆盖写 NEEDS_OWNER_DECISION.md + 复制推 ~/mh-jobs。结束本趟。
+- **下趟**：业主卡推 7de43e7 + 浏览器验十章出来(BUILD gp2-20261014b)+ 装 `RULING-<日期>-gp2-04-fix-live.md` 后，续 **GP2-04 线上真验(应全绿)+测速**(gp2-04-measure.mjs，net 4g/3g/slow3g×直连/代理) → **GP2-05 收官**。
