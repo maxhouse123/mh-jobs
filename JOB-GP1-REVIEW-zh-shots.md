@@ -345,3 +345,83 @@ ch10＝设置/语言/账户章，3 镜 10-2/10-3/10-4。**读-only·零 DB 写**
 
 **速览（trailer）当独立片查**：最终 `trailer-{land,port}-zh.mp4`（land 171.6s），镜单同 EN（OP-1~6 → 工作台/章节高亮 → ED-1/2，21 镜/5 段，§三.11 不变）。seg04 的 6-2 盲 offer 无校名、7-0 优惠码 ¥0 **无 beta**、7-1 校名揭晓（解锁后）——复用 ch7 成片同批 per-shot 段（HIDE_INIT+actOff），beta 帧从未进片。自成可独立看懂的招募片。
 **整镜扫描（§四.5）**：OP/ED 卡文案受控常量、b-roll 取自各章第三轮成片（§四.5 逐章 ALL CLEAN），hi-res 亲验 ¥0 无 beta、无非白名单负数、邮箱全 example.com → **0 命中**。
+
+
+## 第四轮返工 · 字幕行数表（§四.7）+ OP/ED 联络表重出（2026-10-14 第52趟 · RULING-20261014a-review3 §二.3/§二.5）
+> 行数闸（§四.7）取代第三版「段时长公式」充数（裁决 §一.4）：从**最终 dist 成片**每镜字幕中点帧扫白像素量行数与底边距。自审表第 6 项改引用本表。
+
+### 字幕行数表（10 章 × 横竖，zh）
+
+| 镜 | 横 行/闸(≤2) | 横 底边距 | 竖 行/闸(≤3) | 竖 底边距 | 过否 |
+|----|----|----|----|----|----|
+| 1-1 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 1-3 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 1-5 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 1-6 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 1-7 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 1-8 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 2-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 2-2 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 2-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 2-4 | 2/2 | 30px | 2/3 | 33px | PASS |
+| 2-5 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-2 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 3-3 | 1/2 | 52px | 1/3 | 89px | PASS |
+| 3-4 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-5 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-6 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-7 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-8 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 3-9 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 4-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 4-2 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 4-3 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 4-4 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 4-5 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 5-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 5-2 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 5-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 6-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 6-2 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 6-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 6-7 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 7-0 | 1/2 | 52px | 1/3 | 62px | PASS |
+| 7-1 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 7-2 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 7-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 7-4 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 8-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 8-2 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 8-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 8-4 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 9-1 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 9-2 | 1/2 | 52px | 2/3 | 62px | PASS |
+| 9-3 | 1/2 | 53px | 2/3 | 62px | PASS |
+| 9-4 | 1/2 | 53px | 1/3 | 90px | PASS |
+| 10-2 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 10-3 | 1/2 | 53px | 1/3 | 91px | PASS |
+| 10-4 | 1/2 | 53px | 1/3 | 91px | PASS |
+
+**zh 行数闸汇总：ALL PASS**（横≤2 行 / 竖≤3 行 / 底边距≥8px，从最终 dist 成片 ch<N>-<orient>-zh.mp4 字幕中点帧 chromium 扫白像素量，工具 rec/_gate-lines.mjs）。
+
+### OP/ED 联络表（从最终 OP/ED 成片 `out/_book/zh/<orient>/OP-*.mp4`·`ED-*.mp4` 重出，工具 rec/_op-ed-contact.mjs）
+- 推 `OP-contact-{land,port}-zh.png` + `ED-contact-{land,port}-zh.png`（每张卡取卡面中点，OP-2~5 另取快剪 b-roll 中点，ED-2 取二维码帧）。**取代**旧 `OP2-quickcut-*` / `OP345-quickcut-*`（trip26/36 第二版图，已被第52趟取代）。
+- ED-2 二维码 jsQR 真帧解码（land+port）= `https://www.maxhouses.net/partner-portal/?src=video-zh` 逐字一致。
+
+### ⚠ 观察（第52趟发现·非 review3 字幕缺陷）：OP-2 横版 b-roll 画面拉伸 ⟶ **已於第53趟修复（见下节）**
+- OP-2 的 b-roll 取自第6章画面。第6章**横版**的录制帧在 trip43 `_runch6.sh` orient 变量污染时被按**竖版视口**（405×600→1080×1600 竖）录下、真横版帧已失（第3/7章横版帧仍为正常 3000×1358，不受影响）。故 OP-2 **横版** b-roll＝竖内容被压进 1920×868 横画幅 → 横向拉伸（四语皆然）。
+- **内容无误**：双盲守住（只露 SCH-xxxxxx 盲码·无校名）、¥0/申请号/揭晓等不受影响；仅 OP-2 横版这段纵横比失真。第6章**成片**（ch6-land-zh.mp4，另有正常横帧来源）与**竖版 OP-2** 均正常。
+- 工装层根因＝横版 ch6 源帧已失，忠实修复需**重录第6章横版**（独立一章一趟，且须先修 `_runch6.sh` orient 污染 bug 防复发）。本趟照 §二.4 不重录、记账留后续；下趟处理。
+
+
+## 第四轮返工 trip53 · OP-2 横版 b-roll 拉伸修复（2026-10-14 · RULING-20261014a-review3 §二.4 残留清零）
+> 第52趟遗留的「OP-2 横版 b-roll 画面横向拉伸」本趟照裁决 §二.4「没有帧的章才重录」忠实修复——**重录第6章横版**（zh）取得正确横版帧，重出 OP。
+
+- **根因复盘**：OP-2 的 b-roll 从 `out/zh-land-ch6/frames` 直接取原始帧（无章节条/字幕）。该目录的横版帧原被 trip43 按竖版视口（405×600→1080×1600 竖）录下，OP-2 横版把竖内容压进 1920×868 横画幅 → 横向拉伸。第6章**成片**另有正常横帧来源故不受影响。
+- **本趟做法**：`_runch6.sh land:zh`（去提额横幅 → 录横版 → 复位），当前 rec.mjs TAG 已正常（`zh-land-ch6`，非 trip43 的乱码 `zh-zh-land-ch6`），**无需改 _runch6.sh**（orient 污染是 trip43 历史问题，现行代码已正）。新帧实测 **3000×1358**（正常横版），tag=`zh-land-ch6`。第6章只读（仅 quota-off/restore 单列可逆），录后 DB verify **17/17 PASS 0 FAIL**。
+- **重出链**：`gp1-finish --stage bookend/film/trailer --lang zh` → 重出 OP-land/ED-land + 重拼 full-land/trailer-land（横竖两版，zh 亦重拼仅为纳入修好的 OP-2 横版 b-roll，字幕/章节一字未改）。
+- **亲帧复验**：OP-2 横版 b-roll 现为正常横版（1920×1080 无拉伸）、双盲守住（只露盲码/无校名）、¥0 无负数、无 beta。时长与 trip49/52 一致（见 PROGRESS）。
+- **行数表不变**：本趟零字幕改动（第6章成片未重建、仅重录原始帧），§四.7 行数表同第52趟；复核 `_gate-lines.mjs --tags zh-land-ch6` 四镜 **ALL PASS**（横≤2 行）。
+- **ED-2 二维码**：重出后 jsQR 真帧解码（land+port）= `https://www.maxhouses.net/partner-portal/?src=video-zh` 逐字一致。
+- **留底**：第52趟已把 full/trailer-land 覆盖为第四轮版（未先入 _v3，trip52 记账缺口，第三轮 full/trailer-land 不可逆——详 DECISIONS D-53-1）；本趟 OP-2 修复在第四轮版上继续，无新 3rd-round 文件可留底。
