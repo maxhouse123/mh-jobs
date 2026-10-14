@@ -1,4 +1,4 @@
-最后一趟：2026-10-14 第 4 趟 GP-2：做完 GP2-02 上传脚本与清单（gp2-02-manifest.mjs 出四语三清单带 ?v=md5；gp2-upload.sh 幂等+Range206 读回+--dry-run；528 对象/558.0MB 上传计划，--dry-run 实测 v4 空全新 528；桶键 v4/<lang>/<land|port>/，HD段/OP/ED/分享图不入桶）；主仓库攒下 GP2-02 一笔 b4d976d(未推，连同 GP2-01 b0dfba9 共 2 笔待业主推)。下趟＝GP2-03 引导页 guide/partner/index.html（停点二）。
+最后一趟：2026-10-14 第 5 趟 GP-2：做完 GP2-03 引导页 guide/partner/index.html（停点二）——单文件 44.6KB≤60KB，四语/画幅自动(手机竖电脑横)/十章/速览+整片双缓冲分段串播(HD master/Lite segs 弱网降档)/注册区公开邀请码 MAXHOUSE-PARTNER-2026(DB只读实证)复制钮+注册按钮链 ?src=guide-<lang>/分享+og本语言 share-<lang>.jpg(同源)/去下载/robots noindex(先上线不对外)；清单运行时 fetch(?v=BUILD)。_headers 增 /guide/partner/* 段(照 /guide/student/* 只+5行)；cf 缓存规则 JSON(照 guide-student-html)留业主卡。本地闸 playwright 四语×手机405/电脑1440 全站截流打本机成片 ALL PASS(14项×8context，章首帧82~164ms，lite分段串播另过)。主仓库攒 ffadae3(页面)+fbb1231(请示单)，连 b0dfba9/b4d976d 共 4 笔待业主卡推。写停点二请示单停下。下趟＝业主卡上传(528/558MB)+加缓存规则+推4笔+装 RULING-*-gp2-03-live 后，接 GP2-04 线上真验+测速(只读)。
 
 # JOB-GP2 进度表
 
@@ -43,3 +43,16 @@
   - 桶键决定 D-GP2-4-1~4-4：HD 分段/OP/ED 母带不入桶（页面 HD 走 master）；分享图 jpg 不入桶（r2-put 无 .jpg CT → GP2-03 随页面入 guide/partner 由 Pages 服务）。
 - 主仓库提交（未推）：`b4d976d`（gp2-02-manifest.mjs + gp2-upload.sh + gp2-upload-plan.tsv + DECISIONS + .gitignore）。连 GP2-01 `b0dfba9` 共 2 笔待业主卡推。
 - **下趟**：GP2-03 引导页 guide/partner/index.html（**停点二**）——cp 线上学生页 g9c 改，四语/画幅自动/十章目录/速览+整片/注册区公开邀请码 MAXHOUSE-PARTNER-2026/分享/去下载/robots noindex/_headers 新增段/缓存规则 JSON；做完写停点二请示单。
+
+### 第 5 趟（2026-10-14）· GP2-03 引导页（停点二）
+- 开工核对：五端口 `git diff origin/main --stat` 为空、无未跟踪端口文件 —— PASS（零端口改动）。停点一已解除（GP2-00 live 7ad527c + RULING-20261014c）。
+- **GP2-03 完成（停点二）**（回执 ~/mh-jobs/JOB-GP2-03.md）：
+  - 新建 `guide/partner/index.html`（单文件 44.6KB≤60KB，零第三方 `<script src>`）：四语(en/zh/ru/fr)+画幅自动(手机竖/电脑横，可切、记 localStorage)+十章目录(缩略图懒加载)+速览/整片双缓冲分段串播(HD 单 master / Lite 分段，弱网自动降档)+下一章/续看。
+  - 注册区：一行「2 工作日审核」(分镜 1-7 口播四语)+公开邀请码 `MAXHOUSE-PARTNER-2026`(顶部常量，db-run.sh 只读实证 partner_code 匹配且 enabled)+复制钮+「注册你的机构」链 `/partner-portal/?src=guide-<lang>`。
+  - 分享 WA/TG/复制/微信QR；og 本语言 `/guide/partner/share-<lang>.jpg`(同源，4 张已入页目录)；品牌图复用线上 brand-300.png。去下载(controlsList=nodownload+禁右键)；robots noindex(先上线不对外)。清单运行时 fetch(?v=BUILD，换片改一行)。
+  - `_headers` 增 `/guide/partner/*` 段(照 `/guide/student/*`，只+5行)；`jobs/JOB-GP2/cf/guide-partner-html-cache-rule.json`(照线上 guide-student-html)留业主卡。
+  - 本地闸 `jobs/JOB-GP2/gp2-03-gate.mjs`：playwright 全站 route 截流打本机成片(绝不碰生产)，四语×手机405/电脑1440 = 8 context×14 项 **ALL PASS**(章首帧 82~164ms≤2.5s)；lite 分段串播单测另过(速览段 550ms 出帧)。截图 8 张 shots/GP2/local/。
+- 决定账 D-GP2-5-1~5-7。
+- 主仓库提交（未推）：`ffadae3`(页面+分享图+_headers+cf JSON+gate/qr/probe+DECISIONS)、`fbb1231`(停点二请示单)。连 b0dfba9/b4d976d 共 **4 笔**待业主卡推。
+- 写停点二请示单（NEEDS_OWNER_DECISION.md 覆盖写 + 复制推 mh-jobs）。结束本趟。
+- **下趟**：等业主卡上传(528/558MB)+加缓存规则+推 4 笔+装 `RULING-<日期>-gp2-03-live.md` 后，接 **GP2-04**（线上真验 + 测速，只读）。
