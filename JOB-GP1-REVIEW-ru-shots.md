@@ -419,3 +419,16 @@ ch10＝设置/语言/账户章，3 镜 10-2/10-3/10-4。**读-only·零 DB 写**
 - **行数表不变**：本趟零字幕改动（第6章成片未重建、仅重录原始帧），§四.7 行数表同第52趟；复核 `_gate-lines.mjs --tags ru-land-ch6` 四镜 **ALL PASS**（横≤2 行）。
 - **ED-2 二维码**：重出后 jsQR 真帧解码（land+port）= `https://www.maxhouses.net/partner-portal/?src=video-ru` 逐字一致。
 - **留底**：第52趟已把 full/trailer-land 覆盖为第四轮版（未先入 _v3，trip52 记账缺口，第三轮 full/trailer-land 不可逆——详 DECISIONS D-53-1）；本趟 OP-2 修复在第四轮版上继续，无新 3rd-round 文件可留底。
+
+## 第 6 章横版新素材 §四.5 复扫（GP2-00a 补跑 · 2026-10-14）
+- **背景**：第 53 趟 ch6 横版用第三轮新素材重录后，`_scan-ch6-forbidden.mjs` 的整镜禁用词复扫被记为「Supabase 登录限流未跑完」（SUMMARY-GP1 §四.5 降级）。本趟（GP2-00a）补跑。
+- **工具**：`jobs/JOB-GP2/_scan-ch6-forbidden-gp2.mjs`（照裁决「每种语言只登录一次」改自 rec/_scan-ch6-forbidden.mjs：每语开一个 context 只 signInWithPassword 一次，land 扫完同页 setViewportSize→port 复跑，8 次登录降到 4 次）。扫描口径一字照原版：MASK_INIT(@gmail→agency.demo@example.com) + HIDE_INIT(遮 .cloud-offer-unlock) + BETA/NEG/REALMAIL in-frame。
+- **真病根（并非限流）**：登录账号本身是 gmail；原 MASK_INIT 作为 initScript 在登录前就把 #emailInput 里的真 gmail 改写成 DEMO → 提交后 Supabase 返「Invalid login credentials」，表现得像登录卡住/限流。修法：MASK/HIDE 改到登录解锁之后再 page.evaluate 注入（要扫的被荐生详情+录取弹窗在注入之后才渲染，遮罩口径不变）。记 D-GP2-1-2。
+- **流程证实非空**：探针确认登录解锁后 viewReferredStudent(Bilal #4)→详情→openCloudAdmissionModal 真打开（body.innerText≈10052 字、hasAdmission=true），是非空扫描，排除「模态没开=假 CLEAN」。
+- **结果（4 语 × 2 视口 · 2026-10-14 14:01，唯一一次登录/语言）**：
+  - en land: CLEAN / en port: CLEAN
+  - zh land: CLEAN / zh port: CLEAN
+  - ru land: CLEAN / ru port: CLEAN
+  - fr land: CLEAN / fr port: CLEAN
+  - **SCAN_RESULT: ALL CLEAN** —— beta/placeholder/test/内测/测试 0 命中、负数金额 0 命中、真邮箱 0 命中。页头平台 WhatsApp +49 152 24910967 / Service@maxhouses.net 不遮（D-14-3/D-15-1）。
+- **本语（ru）**：ru land CLEAN / ru port CLEAN。
