@@ -1,4 +1,4 @@
-最后一趟：2026-10-14 14:56 GP-2：第 2 趟做完 GP2-00b（补 _routes.json 收窄函数作用域至 24 条路径 + 中间件 404 加取证头 x-mh-block:1；本机 wrangler 重验内部 16/16=404+头、公开 9/9=200 无头、share+guide-school 经函数实锤；实测本机 dev 不认 _routes.json 已记账并写进请示单由线上验兜底；G-9 dry-run 仍 GUARD_OK pub=28 priv=6；主仓库提交 a850824 未推），停在停点一已写新请示单。下趟＝等业主卡装 RULING-*-gp2-00-done.md 后接 GP2-01 成片整理。
+最后一趟：2026-10-14 第 3 趟 GP-2：做完 GP2-01 成片整理（236 个 lite 全过 land178~250/port153~217、速览四语横竖重切首段≤20无>40、每语 20 缩略图+24 海报+封面、四语分享图 65~76KB 已肉眼核）；主仓库攒下 GP2-01 脚本+gate 清单一笔(未推)。下趟＝GP2-02 上传脚本与清单（本机，不上传）。
 
 # JOB-GP2 进度表
 
@@ -22,3 +22,14 @@
 - G-9 dry-run 重跑仍 GUARD_OK pub=28 priv=6。
 - 主仓库提交（未推）：`a850824`（仅 _routes.json + functions/_middleware.js，一笔）。
 - 请示单（停点一·第 2 版）覆盖写 + 复制推 ~/mh-jobs。结束本趟。
+
+### 第 3 趟（2026-10-14）· GP2-01 成片整理
+- 开工核对：五端口 git diff origin/main --stat 为空、无未跟踪端口文件 —— PASS。停点一已由业主卡 1387 解除（挡法上线 7ad527c、装 RULING-20261014c）。
+- **GP2-01 完成**（四项全绿，回执 ~/mh-jobs/JOB-GP2-01.md）：
+  - ①流畅档 lite 236 个（80 章+98 full 段+58 trailer 段），1-pass ABR：land 178~250kbps、port 153~217kbps，res 精确、moov 在头、解码无错、fail=0。偏差：29 个最静态 land 段落 178~199（略低 200 下限，内容过静，记账 D-GP2-3-2 接受）。port 初版 bv175/mx220 冲到 235 超限→收紧 bv155/mx195。
+  - ②速览分段重切（照 g9b）：四语横竖首段 12.9~14.9s（≤20 ✓）、中段全 20~40、无 >40、ED 尾 ~13s 独立、段和 vs master Δ≤0.08s。重写 trailer-manifest 四语横竖。整片段 GP-1 已合规不重切。
+  - ③海报/缩略图（ffmpeg 抽帧+cwebp）：每语 20 缩略图(≤25KB，最大 23.3)+24 海报(章×画幅+整片+速览)+2 封面。
+  - ④分享图（playwright 1200×630 JPEG）：四语 65~76KB≤150KB，英中已肉眼核渲染正确。
+- 决定账：D-GP2-3-1(速览重切口径)/3-2(lite 编码参数+偏差)/3-3(媒体模型供 GP2-03)/3-4(海报/分享图实现)。
+- 主仓库提交（未推）：GP2-01 脚本 + gate 清单一笔（gp2-01-*.mjs/_run-lite*.sh/lite-gate-*/poster-gate-*/share-gate + DECISIONS）。成片/lite/海报/分享图在 ~/guide/dist/partner/（不入 git、不传桶，上传留 GP2-02）。
+- **下趟**：GP2-02 上传脚本与清单（本机，不上传；照 g9-03-upload + GS5c make-manifest，只 --dry-run）。
