@@ -1,0 +1,382 @@
+[
+ {
+  "tag": "en-land-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "land",
+  "id": "2-1",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "en-land-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "land",
+  "id": "2-2",
+  "nLines": 1,
+  "bottomGap": 52,
+  "pass": true
+ },
+ {
+  "tag": "en-land-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "land",
+  "id": "2-3",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "en-land-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "land",
+  "id": "2-4",
+  "nLines": 2,
+  "bottomGap": 34,
+  "pass": true
+ },
+ {
+  "tag": "en-land-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "land",
+  "id": "2-5",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "en-port-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "port",
+  "id": "2-1",
+  "nLines": 2,
+  "bottomGap": 59,
+  "pass": true
+ },
+ {
+  "tag": "en-port-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "port",
+  "id": "2-2",
+  "nLines": 2,
+  "bottomGap": 59,
+  "pass": true
+ },
+ {
+  "tag": "en-port-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "port",
+  "id": "2-3",
+  "nLines": 1,
+  "bottomGap": 87,
+  "pass": true
+ },
+ {
+  "tag": "en-port-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "port",
+  "id": "2-4",
+  "nLines": 3,
+  "bottomGap": 31,
+  "pass": true
+ },
+ {
+  "tag": "en-port-ch2",
+  "ch": "2",
+  "lang": "en",
+  "orient": "port",
+  "id": "2-5",
+  "nLines": 2,
+  "bottomGap": 66,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "land",
+  "id": "2-1",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "land",
+  "id": "2-2",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "land",
+  "id": "2-3",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "land",
+  "id": "2-4",
+  "nLines": 2,
+  "bottomGap": 34,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "land",
+  "id": "2-5",
+  "nLines": 1,
+  "bottomGap": 51,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "port",
+  "id": "2-1",
+  "nLines": 3,
+  "bottomGap": 37,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "port",
+  "id": "2-2",
+  "nLines": 2,
+  "bottomGap": 60,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "port",
+  "id": "2-3",
+  "nLines": 2,
+  "bottomGap": 58,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "port",
+  "id": "2-4",
+  "nLines": 3,
+  "bottomGap": 31,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch2",
+  "ch": "2",
+  "lang": "ru",
+  "orient": "port",
+  "id": "2-5",
+  "nLines": 2,
+  "bottomGap": 58,
+  "pass": true
+ },
+ {
+  "tag": "fr-land-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "land",
+  "id": "2-1",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "fr-land-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "land",
+  "id": "2-2",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "fr-land-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "land",
+  "id": "2-3",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "fr-land-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "land",
+  "id": "2-4",
+  "nLines": 2,
+  "bottomGap": 34,
+  "pass": true
+ },
+ {
+  "tag": "fr-land-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "land",
+  "id": "2-5",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "fr-port-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "port",
+  "id": "2-1",
+  "nLines": 3,
+  "bottomGap": 37,
+  "pass": true
+ },
+ {
+  "tag": "fr-port-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "port",
+  "id": "2-2",
+  "nLines": 2,
+  "bottomGap": 58,
+  "pass": true
+ },
+ {
+  "tag": "fr-port-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "port",
+  "id": "2-3",
+  "nLines": 2,
+  "bottomGap": 66,
+  "pass": true
+ },
+ {
+  "tag": "fr-port-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "port",
+  "id": "2-4",
+  "nLines": 3,
+  "bottomGap": 37,
+  "pass": true
+ },
+ {
+  "tag": "fr-port-ch2",
+  "ch": "2",
+  "lang": "fr",
+  "orient": "port",
+  "id": "2-5",
+  "nLines": 2,
+  "bottomGap": 58,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "land",
+  "id": "9-1",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "land",
+  "id": "9-2",
+  "nLines": 2,
+  "bottomGap": 28,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "land",
+  "id": "9-3",
+  "nLines": 2,
+  "bottomGap": 27,
+  "pass": true
+ },
+ {
+  "tag": "ru-land-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "land",
+  "id": "9-4",
+  "nLines": 1,
+  "bottomGap": 50,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "port",
+  "id": "9-1",
+  "nLines": 1,
+  "bottomGap": 87,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "port",
+  "id": "9-2",
+  "nLines": 3,
+  "bottomGap": 29,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "port",
+  "id": "9-3",
+  "nLines": 3,
+  "bottomGap": 29,
+  "pass": true
+ },
+ {
+  "tag": "ru-port-ch9",
+  "ch": "9",
+  "lang": "ru",
+  "orient": "port",
+  "id": "9-4",
+  "nLines": 2,
+  "bottomGap": 58,
+  "pass": true
+ }
+]

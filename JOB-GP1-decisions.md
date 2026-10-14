@@ -877,3 +877,25 @@
 - **工装事故+修复（如实记账）**：本趟为 QR 解码误在 `rec/node_modules`（＝指向 ../../JOB-GP0/node_modules 的符号链接）里 `npm install jsqr`，npm 把符号链接替换成只含 jsqr 的实目录、致 qrcode/playwright 等失联。修＝移走坏目录、重建符号链接 `rec/node_modules → ../../JOB-GP0/node_modules`，验 qrcode/playwright import OK；jsqr 改装在 /tmp/qrtool（连同 pngjs）跑解码，不污染任何 JOB 目录。node_modules 不入 git。
 - **四语十一项全过 → 照 §六重写 `~/mh-jobs/SUMMARY-GP1.md`（首行 PUSH_OK=yes）**。GP-1 第三轮返工收官，循环自停。不开始 GP-2：不传 R2、不动 Cloudflare、不推主仓库。
 - **账目**：主仓库点名提交 JOB-GP1（4 REVIEW-shots + 4 REVIEW-self + DECISIONS），**未推**。四语 80 章联络表 + 4 REVIEW-shots + 4 REVIEW-self + SUMMARY-GP1 + 决定账 + PROGRESS 推 mh-jobs。
+
+## D-51-1 · 第四轮返工开工：字幕短句 + 行数闸 + ch2/ch9 重烧（第51趟 2026-10-14 · RULING-20261014a-review3 · Mac mini 无人值守）
+- **背景**：第50趟判第三轮返工收官；业主 Claude 复核第三版（RULING-20261014a-review3）查出 2-4 字幕俄/法竖版被截断、英竖版与俄横版超行、俄 6-2/9-3 竖版超行、OP/ED 联络表没用第三轮成片重出、自审第 6 项没量过行数 → 开第四轮返工。本趟＝§二 顺序 1→2→3→4 的前四步（字幕短句 + 工装真用短句 + 行数闸 + 重烧受影响章）。
+- **第〇节代码核验**：`git diff origin/main --stat -- partner-portal` 空、partner-portal 无未跟踪、无 v186、最新 v185 → 不改五端口任何代码（每趟复核在案）。开工 verify **17/17 PASS 0 FAIL**。
+- **§二.1 字幕短句（captions-v1.json compress[]）**：
+  - **2-4 加 short（en/ru/fr，zh 不加）**：五阶段按画面顺序一个不少（审核中/已通过并匹配中/新 offer/已发通知书/录取完成）。en＝裁决 §二.1 参考句；ru＝「В строке статуса: на проверке, одобрено и идёт подбор, новое предложение, письмо выдано, зачисление завершено.」；fr＝「Dans la ligne de statut : en cours d'examen, validé et en appariement, une nouvelle offre, une lettre émise, admission terminée.」。
+  - **9-3 加 short（ru）**：「услуга Human-assisted Search: консультант Maxhouse составляет для студента индивидуальный список вузов,」(Human-assisted Search/Maxhouse 顾问/定制学校清单/为学生 四要点全在，保留句末逗号接 9-4)。
+  - **6-2 ru short 改写**（旧句丢了「学校亲自填的」）：「До разблокировки: специальность, стоимость и стипендия — указанные самим вузом — но не его название.」(专业/学费/奖学金/学校亲自填的/看不到校名 五点全在)。
+  - **配音不改**：仍用全文音频（_meta.sub_rule 本来就「烧字幕压短、配音用全文」）。
+- **§二.2 烧字幕真用短句**：`rec/prod-ch.mjs capFor()` 原来只对 ru/fr 取 captions 译文全文、从不读 compress[]（＝review 查出的病根）。改为：先查 `COMPRESS.find(id==&&lang==)`，有 short 就用 short（任意语言、横竖都用）；无则退回原 ru/fr 译文 / en-zh 母版。音频链路不变。
+- **§四.7 行数闸（新增工装）**：
+  - `rec/_sub-lines.mjs`（快速迭代版）：用与 OV.subtitle 逐字一致的 CSS 在 chromium DOM 量某文本横竖排几行、底边距。**自校准**：对现行 full 文本量出的结果与业主复核**逐条吻合**（2-4 en 竖 4 行/ru 横 3 竖溢/fr 竖 5；6-2 ru 竖 4；9-3 ru 竖 4；zh 全过）→ 工具可信。
+  - `rec/_gate-lines.mjs`（权威版·§四.7「从成片字幕中点帧量」）：复刻 prod-ch 分段时长公式算每镜在成片里的时间窗 → ffmpeg 抽中点帧 → chromium canvas 扫底部字幕带白色文字像素行，归并成行组计数 + 量最低白像素距画面底边。判据：横 ≤2 行 / 竖 ≤3 行且底边距 ≥8px。先对现行成片验证能复现 review 的 FAIL（2-4 ru 横 3/竖 4、9-3 ru 竖 4 均 FAIL）→ 工具可信。
+- **§二.4 重烧受影响章（本趟＝clean 的 ch2/ch9；ch6 ru 下趟）**：
+  - 用本机已存第三轮录制帧**重烧字幕、不重录**（prod-ch 读 out/<tag>/frames）：ch2 en/ru/fr 横竖 6 片 + ch9 ru 横竖 2 片 = **8 片**。覆盖前先把现行（第三版）8 片 cp 到 `~/guide/dist/partner/_v3/`（_v3 原空·_v2/_v1 不动）。md5 dist vs _v3 **8 片全差异**＝真重烧。
+  - **行数闸结果（成片帧·全 PASS）**：ch2 四语横竖 2-4 全 ≤ 上限（land 2 行 / port 3 行，底边距 ≥31px）；ch9 ru 9-3 land 2/port 3、9-4 随 capFor 统一用短句后 land 1/port 2，全 PASS。整章其余镜一并量、全 PASS。
+  - **肉眼复验（铁律15·本地 file:// 帧）**：ru-port 2-4 三行全出、五阶段俱全、不裁底；ru-port 9-3 三行全出、四要点俱全；章节条 Центр партнёров；「Вложено в студента ¥0」无负数；双盲守住（校名「раскроется после зачисления」未泄）。
+  - **capFor 统一用短句的连带影响（如实记账）**：ch9 ru 重烧后 9-4 也改用其既有 short（原烧全文·full 本就过闸）——更合 §二.2「凡有 short 都用」，9-4 短句四要点不丢、闸过。ch3/ch7/ch8 的既有 short 镜（3-5/7-3/8-3 ru/fr）**本趟不重烧**：实测其 full 当前就过闸（port ≤3 行），不在 §二.4 章单内、现行成片合规，留原样；其章片若日后重烧会自动改用 short。
+  - **⚠ ch6 ru 下趟单独处理（一章一趟）**：ch6 的 land 录制目录（en/ru/fr/zh-land-ch6 及乱码 <l>-<l>-land-ch6）帧分辨率为 **1080×1600（竖版尺寸）**、timeline.orient 被 trip43 污染成「ru-land」等——而 clean 横版应为 **3000×1358**（对比 ch2/ch9 land）。即 ch6 **land 帧不可用于忠实重烧**（会被强拉变形、且 prod-ch LAND 判定失真）；ch6 **port 帧 1080×1600 正确、可重烧**。下趟＝ch6 ru：port 直接改 timeline.orient→port 重烧；land 若确认原横版帧已被 trip49 cp 覆盖丢失，则照裁决「没有帧的章才重录」对 ch6 land 重录（verify→置态[读-only·quota-off]→录 land→复位→verify）。
+- **本趟未做（留后续趟·如实挂账）**：§二.4 的**英/俄/法全片 / 速览 / 分段重拼**（dist 现有 full/trailer/segments 仍含旧 full-text ch2/ch9，**尚未更新**，不可当成品）；§二.5 OP/ED 联络表重出；§二.6 四语十一项 + 行数表重审；§二.7 SUMMARY 第四版。顺序：ch6 ru 重烧 → 全部重拼 → OP/ED → 重审 → SUMMARY。
+- **验收**：开工 + 收工 verify 均 **17/17 PASS 0 FAIL**（本趟零 DB 写）。
+- **账目**：主仓库点名提交 JOB-GP1（captions-v1.json + rec/prod-ch.mjs + rec/_sub-lines.mjs + rec/_gate-lines.mjs + DECISIONS D-51-1），**未推**（本轮红线）。成片在本机 dist、不入 git。PROGRESS + 决定账 + 行数闸证据帧推 mh-jobs。**GP-1 第四轮返工未收官，不开始 GP-2：不传 R2、不动 Cloudflare、不推主仓库。**
