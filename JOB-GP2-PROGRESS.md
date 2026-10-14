@@ -1,4 +1,4 @@
-最后一趟：2026-10-14 第 7 趟 GP-2 进行中：CORS 修复已上线(33a02cb)，续做 GP2-04 线上真验(真浏览器打真线上四语×手机/电脑，应全绿)+测速 → GP2-05 收官。
+最后一趟：2026-10-15 第 7 趟 GP-2 **收官**：GP2-04 线上真验 ALL PASS(16 context)+测速(3G点章1.5s/4G高清0卡顿达标，慢3G点章~6s如实标红·物理下限)；GP2-05 体检全过(禁用词 268 单元零命中、片尾码四语全对、无真 PII、demo verify 17/17、联络表抽检+GP-1全量背书)；写 SUMMARY-GP2.md(PUSH_OK=yes) + JOB-GP-decisions-all.md(GP-1 15+GP-2 28)。主仓库攒 **2 笔**未推(470c4f6 GP2-04工装+决定 / b9cd716 GP2-05扫描工装)。**GP-2 自动循环结束**；下步＝业主亲眼看片 → 满意后授权 GP2-06 对外(去 noindex 一行+首页入口，另行裁决)。
 
 （上趟存档）第 6 趟 GP-2：GP2-04 线上真验**发现阻断缺陷**——引导页跨源 fetch 清单被 CORS 挡（media.maxhouses.net 不发 ACAO）→ 十章永不加载（本地 route-stub 闸与业主 curl HEAD 都绕过 CORS 未抓到；学生页不跨源 fetch 故无此病）。已备修法（Option 2 同源清单：8 清单入 guide/partner/m/，页面 fetch 基址改 'm/'+lang，BUILD→gp2-20261014b）并本机 E2E 实证（wrangler pages dev 同源清单×真 R2 媒体，四语 CORS 错0、真媒首帧0.9~1.4s；本地闸仍 ALL PASS）。RULING-d 三件只读附加全做：① cf 规则改克隆 guide-student-html-cache + 幂等 apply-cache-rule.sh(--dry-run 未执行) + 线上 ruleset 存档；② jobs/JOB-G9/cleanup-apply.sh 改 bash3.2(read 循环替 mapfile)，--dry-run 自证 GUARD_OK delete=34(pub28 priv6) 未删，留工作区给 G-9 业主卡；③ 裸 /jobs/QUEUE-G8.md 仍404。主仓库攒 **7de43e7** 1 笔未推。写请示单（CORS 修复推送 + 两张 GP2-06 备选卡）停下。**下趟＝业主卡推 7de43e7 + 验十章出来 + 装 RULING-*-gp2-04-fix-live 后，续 GP2-04 线上真验(应全绿)+测速 → GP2-05 收官。**
 
@@ -67,3 +67,20 @@
 - 决定账 D-GP2-6-1~6-4。主仓库点名提交（未推）：`7de43e7`（guide/partner 页面+m/8清单+BUILD bump；jobs/JOB-GP2 cf 规则+apply 脚本+ruleset 存档+gp2-04-verify/measure+_shot-broken+DECISIONS）。
 - 写请示单（CORS 修复推送 + 两张 GP2-06 备选卡：缓存规则/G-9 收尾）覆盖写 NEEDS_OWNER_DECISION.md + 复制推 ~/mh-jobs。结束本趟。
 - **下趟**：业主卡推 7de43e7 + 浏览器验十章出来(BUILD gp2-20261014b)+ 装 `RULING-<日期>-gp2-04-fix-live.md` 后，续 **GP2-04 线上真验(应全绿)+测速**(gp2-04-measure.mjs，net 4g/3g/slow3g×直连/代理) → **GP2-05 收官**。
+
+### 第 7 趟（2026-10-15）· GP2-04 修复上线后续验 + GP2-05 收官
+- 开工承 `RULING-20261014e-gp2-04-fix-live`：业主卡 1391 推 33a02cb 上线(同源清单+gp2-20261014b)，线上验收全过。本机续真浏览器真验 + 测速 + 收官体检。
+- **GP2-04 收口**（回执 ~/mh-jobs/JOB-GP2-04.md 第7趟续）：
+  - 线上真验 `gp2-04-verify.mjs` **16 context ALL PASS**：主循环 8(四语×手机/电脑：十章/点章出CDN帧 408~1130ms/邀请码/注册src/robots/og本语言/切画幅切语言/**0 CORS 错**)+速览串播 4(窗口采样真连播 advances=6)+弱网降档 2+整片HD母带 2(单master非分段+连播)。截图 16 张 shots/GP2/online/。肉眼复核 zh-mobile/en-desktop 渲染正确。
+  - 工装两处加固(只改脚本不碰端口/页面)：quick_playing/整片播放判据单点→窗口采样(灭切段握手瞬态误判)；弱网降档加 400ms settle+单次补点。专项探针 `_probe-quick-play`(四语 36~38/40 在播0暂停)、`_probe-downgrade`(effQ=lite seqNav 1ms)双证。
+  - 测速 `gp2-04-measure.mjs`(CDP 模拟网+手机CPU×4+多次中位)：**3G 点章 1.5s≤2.5s✅、4G 高清 0 卡顿✅、慢3G 点章 ~6s>4s 🔴如实标红**(直连6.07/代理6.77 一致，物理带宽下限，按任务书不追加)。2nd cf-cache-status=DYNAMIC(属预期，边缘缓存规则属 GP2-06)。
+- **GP2-05 收口**（回执 ~/mh-jobs/JOB-GP2-05.md）：
+  - 禁用词+PII 扫描 `_scan-forbidden-gp2-05.mjs`：四语字幕 57×4+章标题 40=**268 单元零命中**(6 类禁用词+PII三正则)。初版误报 2 处「no agency fee」纯资费表述，收紧规则排除 fee/费语境后归零。
+  - 片尾二维码：真成片 ED-{land,port}-{en,zh,ru,fr} 抽帧 jsqr 解码，**四语×横竖全对** `/partner-portal/?src=video-<lang>`。
+  - 画面无真 PII(学生全 is_test，登录邮箱 GP2-00a 已遮)；联络表四语代表样本亲眼过(en-ch1/ru-ch6/zh-ED/fr-ch7)+GP-1 全量自审背书。
+  - 演示数据 verify **17/17 PASS**(db-run.sh 只读)，无需复位。
+  - 决定账汇总 `~/mh-jobs/JOB-GP-decisions-all.md`(GP-1 15+GP-2 28，每条一行)。
+  - 一处非阻断观察：速览时长标签快速连切语言时偶发瞬态(单独打开均正确 2:46~2:56)，记录不追加。
+- 决定账 D-GP2-7-1~7-5。主仓库点名提交（未推，**2 笔**）：`470c4f6`(gp2-04-verify+DECISIONS)、`b9cd716`(_scan-forbidden-gp2-05)。
+- 写 `~/mh-jobs/SUMMARY-GP2.md`(首行 PUSH_OK=yes)。**GP-2 自动循环结束**。
+- **下步(不在本轮自动)**：业主手机/电脑亲眼看四语成片 → 满意后授权 **GP2-06 对外**(去 noindex 一行+本机验+请示单，业主卡推；首页「看操作视频」入口+注册来源进档案另立工单)。
