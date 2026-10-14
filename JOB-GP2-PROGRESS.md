@@ -1,4 +1,4 @@
-最后一趟：2026-10-14 第 3 趟 GP-2：做完 GP2-01 成片整理（236 个 lite 全过 land178~250/port153~217、速览四语横竖重切首段≤20无>40、每语 20 缩略图+24 海报+封面、四语分享图 65~76KB 已肉眼核）；主仓库攒下 GP2-01 脚本+gate 清单一笔(未推)。下趟＝GP2-02 上传脚本与清单（本机，不上传）。
+最后一趟：2026-10-14 第 4 趟 GP-2：做完 GP2-02 上传脚本与清单（gp2-02-manifest.mjs 出四语三清单带 ?v=md5；gp2-upload.sh 幂等+Range206 读回+--dry-run；528 对象/558.0MB 上传计划，--dry-run 实测 v4 空全新 528；桶键 v4/<lang>/<land|port>/，HD段/OP/ED/分享图不入桶）；主仓库攒下 GP2-02 一笔 b4d976d(未推，连同 GP2-01 b0dfba9 共 2 笔待业主推)。下趟＝GP2-03 引导页 guide/partner/index.html（停点二）。
 
 # JOB-GP2 进度表
 
@@ -33,3 +33,13 @@
 - 决定账：D-GP2-3-1(速览重切口径)/3-2(lite 编码参数+偏差)/3-3(媒体模型供 GP2-03)/3-4(海报/分享图实现)。
 - 主仓库提交（未推）：GP2-01 脚本 + gate 清单一笔（gp2-01-*.mjs/_run-lite*.sh/lite-gate-*/poster-gate-*/share-gate + DECISIONS）。成片/lite/海报/分享图在 ~/guide/dist/partner/（不入 git、不传桶，上传留 GP2-02）。
 - **下趟**：GP2-02 上传脚本与清单（本机，不上传；照 g9-03-upload + GS5c make-manifest，只 --dry-run）。
+
+### 第 4 趟（2026-10-14）· GP2-02 上传脚本与清单
+- 开工核对：五端口 `git diff origin/main --stat` 为空、无未跟踪端口文件 —— PASS。停点一已解除（GP2-00 live 7ad527c + RULING-20261014c）。
+- **GP2-02 完成**（回执 ~/mh-jobs/JOB-GP2-02.md；本任务非停点）：
+  - ①`gp2-02-manifest.mjs`：四语各三清单（`manifest.json` HD+展示、`lite-manifest.json` 流畅段串播序、`seg-manifest.json` 段 dur+shots），写入 ~/guide/dist/partner/<lang>/。媒体址相对 base + `?v=md5-8`（照 GS5c）。章标题四语源 prod-ch.mjs CH_TITLE 系列（=章节条烧入文案）。段数动态枚举（ru full 13/zh trailer 8）。血缘三问：缺片即报错停、不兜底。
+  - ②`gp2-upload.sh`：只写公桶 `guide/partner/v4/<lang>/<land|port>/`、不删；幂等（并发 HEAD 字节比对跳过已一致）；经 r2-put.sh 上传（它读 .env，本脚本不碰密钥）+ 二次读回 HEAD200/Range206/长度；`--dry-run` 只分类报数。CC 只跑 --dry-run。
+  - ③上传计划 528 对象/558.0MB（章HD80+章Lite80+masterHD16+流畅段156+海报96+缩略图80+封面8+清单12）。**--dry-run 实测 v4/ 空、528 全新、0 已在**。
+  - 桶键决定 D-GP2-4-1~4-4：HD 分段/OP/ED 母带不入桶（页面 HD 走 master）；分享图 jpg 不入桶（r2-put 无 .jpg CT → GP2-03 随页面入 guide/partner 由 Pages 服务）。
+- 主仓库提交（未推）：`b4d976d`（gp2-02-manifest.mjs + gp2-upload.sh + gp2-upload-plan.tsv + DECISIONS + .gitignore）。连 GP2-01 `b0dfba9` 共 2 笔待业主卡推。
+- **下趟**：GP2-03 引导页 guide/partner/index.html（**停点二**）——cp 线上学生页 g9c 改，四语/画幅自动/十章目录/速览+整片/注册区公开邀请码 MAXHOUSE-PARTNER-2026/分享/去下载/robots noindex/_headers 新增段/缓存规则 JSON；做完写停点二请示单。
