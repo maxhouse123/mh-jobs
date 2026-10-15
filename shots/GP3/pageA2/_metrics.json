@@ -1,0 +1,562 @@
+[
+ {
+  "tag": "partner_zh_mobile_port_ch3",
+  "site": "partner",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 27,
+   "y": 117,
+   "w": 351,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.08,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 371,
+   "h": 574
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_mobile_port_ch3.png"
+ },
+ {
+  "tag": "partner_zh_mobile_port_full",
+  "site": "partner",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 45,
+   "y": 109,
+   "w": 316,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.89,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 316,
+   "h": 562
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_mobile_port_full.png"
+ },
+ {
+  "tag": "partner_zh_mobile_land_ch3",
+  "site": "partner",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "land",
+  "mode": "ch3",
+  "rect": {
+   "x": 27,
+   "y": 75,
+   "w": 351,
+   "h": 197
+  },
+  "videoW": 1920,
+  "videoH": 1081,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.1,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 371,
+   "h": 209
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_mobile_land_ch3.png"
+ },
+ {
+  "tag": "partner_zh_mobile_land_full",
+  "site": "partner",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "land",
+  "mode": "full",
+  "rect": {
+   "x": 16,
+   "y": 285,
+   "w": 373,
+   "h": 210
+  },
+  "videoW": 1920,
+  "videoH": 1080,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 13.27,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 373,
+   "h": 210
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_mobile_land_full.png"
+ },
+ {
+  "tag": "partner_zh_desktop_port_ch3",
+  "site": "partner",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 387,
+   "y": 117,
+   "w": 666,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 686,
+   "h": 660
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_desktop_port_ch3.png"
+ },
+ {
+  "tag": "partner_zh_desktop_port_full",
+  "site": "partner",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 538,
+   "y": 126,
+   "w": 365,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.89,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 365,
+   "h": 648
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 0.994,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_desktop_port_full.png"
+ },
+ {
+  "tag": "partner_zh_desktop_land_ch3",
+  "site": "partner",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "land",
+  "mode": "ch3",
+  "rect": {
+   "x": 387,
+   "y": 75,
+   "w": 666,
+   "h": 375
+  },
+  "videoW": 1920,
+  "videoH": 1081,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 5.93,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 686,
+   "h": 387
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_desktop_land_ch3.png"
+ },
+ {
+  "tag": "partner_zh_desktop_land_full",
+  "site": "partner",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "land",
+  "mode": "full",
+  "rect": {
+   "x": 376,
+   "y": 257,
+   "w": 688,
+   "h": 387
+  },
+  "videoW": 1920,
+  "videoH": 1080,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 13.29,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 688,
+   "h": 387
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_zh_desktop_land_full.png"
+ },
+ {
+  "tag": "partner_en_mobile_port_ch3",
+  "site": "partner",
+  "lang": "en",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 27,
+   "y": 117,
+   "w": 351,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.15,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 371,
+   "h": 574
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_mobile_port_ch3.png"
+ },
+ {
+  "tag": "partner_en_mobile_port_full",
+  "site": "partner",
+  "lang": "en",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 45,
+   "y": 109,
+   "w": 316,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.92,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 316,
+   "h": 562
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_mobile_port_full.png"
+ },
+ {
+  "tag": "partner_en_mobile_land_ch3",
+  "site": "partner",
+  "lang": "en",
+  "view": "mobile",
+  "orient": "land",
+  "mode": "ch3",
+  "rect": {
+   "x": 27,
+   "y": 75,
+   "w": 351,
+   "h": 197
+  },
+  "videoW": 1920,
+  "videoH": 1081,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.25,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 371,
+   "h": 209
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_mobile_land_ch3.png"
+ },
+ {
+  "tag": "partner_en_mobile_land_full",
+  "site": "partner",
+  "lang": "en",
+  "view": "mobile",
+  "orient": "land",
+  "mode": "full",
+  "rect": {
+   "x": 16,
+   "y": 285,
+   "w": 373,
+   "h": 210
+  },
+  "videoW": 1920,
+  "videoH": 1080,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.86,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 373,
+   "h": 210
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_mobile_land_full.png"
+ },
+ {
+  "tag": "partner_en_desktop_port_ch3",
+  "site": "partner",
+  "lang": "en",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 387,
+   "y": 117,
+   "w": 666,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 5.98,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 686,
+   "h": 660
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_desktop_port_ch3.png"
+ },
+ {
+  "tag": "partner_en_desktop_port_full",
+  "site": "partner",
+  "lang": "en",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 538,
+   "y": 126,
+   "w": 365,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.92,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 365,
+   "h": 648
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 0.994,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_desktop_port_full.png"
+ },
+ {
+  "tag": "partner_en_desktop_land_ch3",
+  "site": "partner",
+  "lang": "en",
+  "view": "desktop",
+  "orient": "land",
+  "mode": "ch3",
+  "rect": {
+   "x": 387,
+   "y": 75,
+   "w": 666,
+   "h": 375
+  },
+  "videoW": 1920,
+  "videoH": 1081,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 5.96,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 686,
+   "h": 387
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_desktop_land_ch3.png"
+ },
+ {
+  "tag": "partner_en_desktop_land_full",
+  "site": "partner",
+  "lang": "en",
+  "view": "desktop",
+  "orient": "land",
+  "mode": "full",
+  "rect": {
+   "x": 376,
+   "y": 256,
+   "w": 688,
+   "h": 387
+  },
+  "videoW": 1920,
+  "videoH": 1080,
+  "objectFit": "cover",
+  "controls": true,
+  "currentTime": 12.86,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 688,
+   "h": 387
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/partner_en_desktop_land_full.png"
+ },
+ {
+  "tag": "student_zh_mobile_port_ch3",
+  "site": "student",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 27,
+   "y": 117,
+   "w": 351,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.18,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 371,
+   "h": 574
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/student_zh_mobile_port_ch3.png"
+ },
+ {
+  "tag": "student_zh_mobile_port_full",
+  "site": "student",
+  "lang": "zh",
+  "view": "mobile",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 45,
+   "y": 109,
+   "w": 316,
+   "h": 562
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 12.87,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 316,
+   "h": 562
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/student_zh_mobile_port_full.png"
+ },
+ {
+  "tag": "student_zh_desktop_port_ch3",
+  "site": "student",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "ch3",
+  "rect": {
+   "x": 387,
+   "y": 117,
+   "w": 666,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 6.29,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 686,
+   "h": 660
+  },
+  "wrapOverflow": "visible",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/student_zh_desktop_port_ch3.png"
+ },
+ {
+  "tag": "student_zh_desktop_port_full",
+  "site": "student",
+  "lang": "zh",
+  "view": "desktop",
+  "orient": "port",
+  "mode": "full",
+  "rect": {
+   "x": 538,
+   "y": 126,
+   "w": 365,
+   "h": 648
+  },
+  "videoW": 1080,
+  "videoH": 1920,
+  "objectFit": "contain",
+  "controls": true,
+  "currentTime": 12.87,
+  "paused": false,
+  "readyState": 4,
+  "wrapRect": {
+   "w": 365,
+   "h": 648
+  },
+  "wrapOverflow": "hidden",
+  "bottomBandVisibleFrac": 1,
+  "shot": "/Users/maxhouse/mh-jobs/shots/GP3/pageA2/student_zh_desktop_port_full.png"
+ }
+]
