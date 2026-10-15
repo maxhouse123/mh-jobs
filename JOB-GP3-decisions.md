@@ -84,3 +84,11 @@
 - **D-GP3-9-5** · 【字幕带规格已入引擎、视觉验收留业主（铁律15）】overlays-v5.subtitle 已是学生规格（不透明紫、加粗 700、字号 h·0.26、两行、竖 224/横 140、带顶 H−subH），已随全 80 章烧进成片；「长得对」按铁律15 双闸属业主本地 file:// 肉眼，列停点二乙，CC 不自定。
 - **D-GP3-9-6** · 【本趟不算停点】属 RULING-e §一/§五 全量段的继续执行（只重跑既有引擎 + 复测闸 + 刷新 summary），无四种停点情形；派生/全闸/上传计划/页面/请示单顺着往下做。
 - **D-GP3-9-7** · 【未碰红线】只读 rec/out + voice + ring-override；成片落暂存 ~/guide/dist/partner-v5（仓库外/不入 git/未碰 v4）；本趟未新增/未改脚本源码，仅刷新 recomp-all-v5.summary.json；未改端口/首页/guide 既有文件、未动库、未推主仓、未传删 R2、未碰 CF。
+
+## 第 10 趟（2026-10-15）——v5 派生：整片/分段/lite 四语重出
+- **D-GP3-10-1** · 【分段收尾改「借镜头平衡」而非「并回上一段」】gp1-finish 的 groupSegments 把 <lo(20s) 的末内容段整个 splice 并回上一段；v5 剪头后镜变短，实测 en-land 产生 seg09=51.6s 巨段（超 40 上限，违任务书/RULING-e §五「分段 20~40s」）。gp3-derive-v5 改为：末内容段 <lo 时从上一段尾部**逐镜借过来**，直到末段够 lo 且上一段不低于 lo、两段都不超 hi。改后四语横竖全段落入 20~40s（唯一越界=ED 尾段 ~12~15s，设计有意独立保留）。只改 JOB-GP3 新脚本，不碰 gp1-finish 原件、不碰 v4。
+- **D-GP3-10-2** · 【splitter 读 recon actualDur 按比例切段（修正 D-GP3-9-4 实现细节）】D-9-4 定「读 clipStart/clipEnd」；实查 prod-ch-v5：clipStart/clipEnd 累加的是 `actualDur`(视频帧/30)，而成片 mp4 容器时长由音轨 apad 主导、二者有累积漂移（ch7-land-en ΣactualDur 27.333 vs mp4 27.677，差 0.34s；ch3-port-zh 差 0.046s）。若直接按 clip 绝对值切、漂移会在靠尾镜界越切越早。**正解＝取 recon 每镜 actualDur 作真实镜时长，scale=mp4总时长/ΣactualDur 按比例摊平**（与原 gp1-finish 同法，只把「原始公式重算」换成「recon 实测 actualDur」）。末镜对齐真实片尾。实测 scale≈1.0003~1.0013。
+- **D-GP3-10-3** · 【ru-port full-seg05-lite 码率 223k 边际 CHECK】port lite ceil=220k；该段繁忙帧 1-pass ABR 冲到 223k（超 1.3%，260KB/34.5s），属 GP2 已记 ABR 过冲（D-GP2-3-2 口径）。对流畅兜底无实质影响（仍在 150~220 目标精神内），记 CHECK 不作阻塞；全量闸在停点二乙汇总时复核。
+- **D-GP3-10-4** · 【trailer 不重出】RULING-e §三.2：速览及其派生、分享图不动，清单继续指 v4。故 gp3-derive-v5 只做 film（不做 trailer stage），gp3-lite-v5 只做 chapters+fullseg（不做 trailerseg）。
+- **D-GP3-10-5** · 【未碰红线】只读 partner-v5 recon/mp4 + REC/out/_book（OP/ED 不改）；派生产物落 ~/guide/dist/partner-v5（仓库外/不入 git/未碰 v4）；新脚本只在 jobs/JOB-GP3/（gp3-derive-v5.mjs / gp3-lite-v5.mjs / lite-v5-gate-*.json）；未改端口/首页/guide 既有文件、未动库、未推主仓、未传删 R2、未碰 CF。
+- **D-GP3-10-6** · 【本趟不算停点】属 RULING-e §三 派生段的继续执行，无四种停点情形；下趟接全闸（联络表/禁用词/二维码/PII/字幕带规格/剪头定格对比图/跟随框闸）→ 清单 m/<lang>（新 md5）+ 上传计划 --dry-run → 页面 §四两处+版本串 bump → 停点二乙请示单。
