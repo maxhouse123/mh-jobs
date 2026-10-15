@@ -75,3 +75,12 @@
 - **D-GP3-8-7** · 【坑：yavg 缓存须随重合成失效】verify-timing-v5 缓存 `<mp4>.yavg.txt`；重合成后镜边界移位但旧 yavg 还在 → 误测 FAIL。规矩：重建某章后先删该章 `*.mp4.yavg.txt` 再复测。
 - **D-GP3-8-8** · 【下趟边界】① 用新引擎重跑全 80 章(recomp-all-v5，自动读 override)→ 全 recon 带 subAbs 字段、全闸统一绿、刷新 summary；② 字幕带学生规格最终肉眼稿(§三.1)；③ 派生(整片/分段/流畅/lite，§三.2)；④ 全闸(联络表/禁用词/二维码/无 PII，§五)；⑤ v5 上传计划 --dry-run(§三.3)；⑥ 页面 §四两处(静音 SVG 图标 + 默认有声)+版本串 bump；⑦ 写停点二乙请示单。fr-land 6-1 残疑随派生前再定。
 - **D-GP3-8-9** · 【未碰红线】只读 rec/out + voice + followmeasure；成片落暂存 `~/guide/dist/partner-v5`(仓库外/不入 git/未碰 v4，仅覆盖 ch7×8 + 复原 ch6-land-fr)；新/改脚本与数据只在 jobs/JOB-GP3/(ring-pixel-v5 / ring-measure-batch / verify-ring-composite-v5 / ring-override.json / ringpx/ / prod-ch-v5 改 / verify-timing-v5 改)；未改端口/首页/guide 既有文件、未动库、未推主仓、未传删 R2、未碰 CF。
+
+## 第 9 趟（2026-10-15）——新引擎全 80 章重跑 + 双闸统一绿 + 派生设计定案
+- **D-GP3-9-1** · 【全 80 章新引擎重跑法】recomp-all-v5.mjs 的 `--force` 会重置 summary（`!FORCE && exists` 才读旧）→ 单次 force 跑子集会把 summary 删到只剩该子集。正解：先 `--force --chs 1,2,3,4,5`（4语×2画幅=40 章，重置+填）再**不带 force** `--chs 6,7,8,9,10`（追加另 40，已过章 skip）。结果 built 40+40、时序全过章 80/80、follow 镜 384、超标 0。
+- **D-GP3-9-2** · 【subAbs 全覆盖 + 例外/override 计数】核对 80 份 recon：全部带 `subAbsStart/subAbsEnd`；`follow-exception` 镜 8（7-0×8，§一.2 不剪头+开头静默）；带 `ring-override` 标记镜 16（7-0×8 + 7-1×8）。总镜 408（含非 follow）。
+- **D-GP3-9-3** · 【双闸统一复测绿】暗罩法（verify-timing-v5）：全 80 章 376 常规 follow-realign 镜 maxOn ≤0.25 / maxOff ≤0.04，逐章过。橙色像素法成片闸（verify-ring-composite-v5）ch7 全 8 变体：7-0 onDelay −0.08~+0.02、7-1 land≈0 / port +0.23~+0.25，8/8「全过 ✅ 0.3s」。口径按 RULING-e §五（取代任务书 0.2s）。
+- **D-GP3-9-4** · 【派生正确性点·必须读 recon clip 边界】gp1-finish 的 splitChapter/chapterShotDurs 用 prod-ch **原始公式**重算镜时长再按 total/recon 比例切段；v5 章因剪头/定格真实镜时长已变，旧公式会切错点（联络表取帧同理）。**正解：v5 派生 splitter 读 recon.json `shots[].clipStart/clipEnd`（实测已存在）定切段边界**。OP/ED 复用 REC/out/_book（不改）；trailer 及派生/分享图不动、清单指 v4。下趟建 gp3-derive-v5.mjs（cp gp1-finish，DIST→v5、splitter 读 clip、只 film 不 trailer）+ gp3-lite-v5.mjs（cp gp2-01-lite，DIST→v5，chapters+fullseg）。
+- **D-GP3-9-5** · 【字幕带规格已入引擎、视觉验收留业主（铁律15）】overlays-v5.subtitle 已是学生规格（不透明紫、加粗 700、字号 h·0.26、两行、竖 224/横 140、带顶 H−subH），已随全 80 章烧进成片；「长得对」按铁律15 双闸属业主本地 file:// 肉眼，列停点二乙，CC 不自定。
+- **D-GP3-9-6** · 【本趟不算停点】属 RULING-e §一/§五 全量段的继续执行（只重跑既有引擎 + 复测闸 + 刷新 summary），无四种停点情形；派生/全闸/上传计划/页面/请示单顺着往下做。
+- **D-GP3-9-7** · 【未碰红线】只读 rec/out + voice + ring-override；成片落暂存 ~/guide/dist/partner-v5（仓库外/不入 git/未碰 v4）；本趟未新增/未改脚本源码，仅刷新 recomp-all-v5.summary.json；未改端口/首页/guide 既有文件、未动库、未推主仓、未传删 R2、未碰 CF。
