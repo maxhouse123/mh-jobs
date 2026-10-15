@@ -1,0 +1,446 @@
+{
+ "generated": "2026-10-15 GP3-02 trip8",
+ "chapters": {
+  "ch7-land-en": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.25,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-1",
+     "subAbsStart": 9.5,
+     "subAbsEnd": 13.3,
+     "ringOn": 9.5,
+     "ringOff": 13.45,
+     "onDelay": 0,
+     "offGap": -0.15,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-port-en": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.23,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.23,
+      "offGap": 0.02,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.02,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-0",
+     "subAbsStart": 3.6,
+     "subAbsEnd": 9.1,
+     "ringOn": 3.6,
+     "ringOff": 9.05,
+     "onDelay": 0,
+     "offGap": 0.05,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-land-zh": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.25,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.13,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-1",
+     "subAbsStart": 9.833,
+     "subAbsEnd": 14.033,
+     "ringOn": 9.85,
+     "ringOff": 14,
+     "onDelay": 0.02,
+     "offGap": 0.03,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-port-zh": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.23,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.23,
+      "offGap": 0.02,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-0",
+     "subAbsStart": 4.193,
+     "subAbsEnd": 9.893,
+     "ringOn": 4.15,
+     "ringOff": 9.85,
+     "onDelay": -0.04,
+     "offGap": 0.04,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-land-ru": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.25,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-1",
+     "subAbsStart": 9.033,
+     "subAbsEnd": 13.333,
+     "ringOn": 9.05,
+     "ringOff": 13.45,
+     "onDelay": 0.02,
+     "offGap": -0.12,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-port-ru": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.23,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.23,
+      "offGap": 0.02,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-0",
+     "subAbsStart": 3.575,
+     "subAbsEnd": 9.167,
+     "ringOn": 3.6,
+     "ringOff": 9.15,
+     "onDelay": 0.02,
+     "offGap": 0.02,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-land-fr": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.25,
+    "maxOffGap": 0.02,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.02,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-1",
+     "subAbsStart": 8.8,
+     "subAbsEnd": 13,
+     "ringOn": 8.8,
+     "ringOff": 13.15,
+     "onDelay": 0,
+     "offGap": -0.15,
+     "pass": true
+    }
+   ]
+  },
+  "ch7-port-fr": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.23,
+    "maxOffGap": 0.03,
+    "shots": [
+     {
+      "shot": "7-1",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-2",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-3",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     },
+     {
+      "shot": "7-4",
+      "onDelay": 0.23,
+      "offGap": 0.03,
+      "pass": true,
+      "analytical": false
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "7-0",
+     "subAbsStart": 4.003,
+     "subAbsEnd": 9.2,
+     "ringOn": 3.95,
+     "ringOff": 9.15,
+     "onDelay": -0.05,
+     "offGap": 0.05,
+     "pass": true
+    }
+   ]
+  },
+  "ch6-land-fr": {
+   "darkmask": {
+    "allPass": true,
+    "maxOnDelay": 0.25,
+    "maxOffGap": 0,
+    "shots": [
+     {
+      "shot": "6-1",
+      "onDelay": 0.08,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "6-2",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "6-3",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     },
+     {
+      "shot": "6-7",
+      "onDelay": 0.25,
+      "offGap": 0,
+      "pass": true,
+      "analytical": true
+     }
+    ]
+   },
+   "orangeComposite": [
+    {
+     "shot": "6-1",
+     "subAbsStart": 0,
+     "subAbsEnd": 5.367,
+     "ringOn": 1,
+     "ringOff": 5.35,
+     "onDelay": 1,
+     "offGap": 0.02,
+     "pass": false
+    }
+   ]
+  }
+ }
+}
