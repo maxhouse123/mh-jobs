@@ -1,0 +1,99 @@
+{
+ "tag": "en-land-ch3",
+ "allPass": true,
+ "maxOnDelay": 0.23,
+ "maxOffGap": 0.03,
+ "threshold": 0.3,
+ "shots": [
+  {
+   "shot": "3-1",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 82
+  },
+  {
+   "shot": "3-2",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 73
+  },
+  {
+   "shot": "3-3",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 88
+  },
+  {
+   "shot": "3-4",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 81
+  },
+  {
+   "shot": "3-5",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 61
+  },
+  {
+   "shot": "3-6",
+   "onDelay": 0.23,
+   "offGap": 0,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 60
+  },
+  {
+   "shot": "3-7",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 56
+  },
+  {
+   "shot": "3-8",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 47
+  },
+  {
+   "shot": "3-9",
+   "onDelay": 0.18,
+   "offGap": 0,
+   "pass": true,
+   "analytical": true,
+   "onDelayPred": 0.18,
+   "offGapPred": 0,
+   "dim": 15
+  }
+ ]
+}

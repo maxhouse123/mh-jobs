@@ -1,0 +1,99 @@
+{
+ "tag": "en-port-ch3",
+ "allPass": true,
+ "maxOnDelay": 0.23,
+ "maxOffGap": 0.03,
+ "threshold": 0.3,
+ "shots": [
+  {
+   "shot": "3-1",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 81
+  },
+  {
+   "shot": "3-2",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 68
+  },
+  {
+   "shot": "3-3",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 87
+  },
+  {
+   "shot": "3-4",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 73
+  },
+  {
+   "shot": "3-5",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 23
+  },
+  {
+   "shot": "3-6",
+   "onDelay": 0.23,
+   "offGap": 0,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 23
+  },
+  {
+   "shot": "3-7",
+   "onDelay": 0.13,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 64
+  },
+  {
+   "shot": "3-8",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 53
+  },
+  {
+   "shot": "3-9",
+   "onDelay": 0.05,
+   "offGap": 0,
+   "pass": true,
+   "analytical": true,
+   "onDelayPred": 0.05,
+   "offGapPred": 0,
+   "dim": -20
+  }
+ ]
+}

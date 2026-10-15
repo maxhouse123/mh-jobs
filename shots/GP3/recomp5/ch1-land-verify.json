@@ -1,0 +1,79 @@
+{
+ "tag": "en-land-ch1",
+ "allPass": true,
+ "maxOnDelay": 0.24,
+ "maxOffGap": 0.04,
+ "threshold": 0.3,
+ "shots": [
+  {
+   "shot": "1-2",
+   "onDelay": 0.23,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 39
+  },
+  {
+   "shot": "1-3",
+   "onDelay": 0.24,
+   "offGap": 0.03,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 37
+  },
+  {
+   "shot": "1-4",
+   "onDelay": 0.24,
+   "offGap": 0.04,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 39
+  },
+  {
+   "shot": "1-5",
+   "onDelay": 0.13,
+   "offGap": 0.04,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 88
+  },
+  {
+   "shot": "1-6",
+   "onDelay": 0.23,
+   "offGap": 0.04,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 88
+  },
+  {
+   "shot": "1-7",
+   "onDelay": 0.13,
+   "offGap": 0.04,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 74
+  },
+  {
+   "shot": "1-8",
+   "onDelay": 0.23,
+   "offGap": 0.04,
+   "pass": true,
+   "analytical": false,
+   "onDelayPred": 0.25,
+   "offGapPred": 0,
+   "dim": 68
+  }
+ ]
+}
