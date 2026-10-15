@@ -1,0 +1,914 @@
+[
+ {
+  "tag": "en_mobile_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "en_mobile_port_ch3:controls-off": "PASS controls=false",
+   "en_mobile_port_ch3:band-in-box": "PASS vb=1.000",
+   "en_mobile_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "en_mobile_port_ch3:bar-below": "PASS exists=true below=true",
+   "en_mobile_port_ch3:paused-no-overlay": "PASS bad=0",
+   "en_mobile_port_ch3:paused-band-purple": "PASS purple=0.740@41.9s",
+   "en_mobile_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "en_mobile_port_ch3:clicked-band-purple": "PASS purple=0.740",
+   "en_mobile_port_ch3:ended-no-overlay": "PASS bad=0",
+   "en_mobile_port_ch3:ended-controls-off": "PASS controls=false",
+   "en_mobile_port_top:controls-off": "PASS controls=false",
+   "en_mobile_port_top:fit-contain": "PASS fit=contain",
+   "en_mobile_port_top:band-in-box": "PASS vb=1.000",
+   "en_mobile_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "en_mobile_port_top:bar-below": "PASS exists=true below=true",
+   "en_mobile_port_top:paused-no-overlay": "PASS bad=0",
+   "en_mobile_port_top:paused-band-purple": "PASS purple=0.763@99.5s",
+   "en_mobile_port_top:clicked-no-overlay": "PASS bad=0",
+   "en_mobile_port_top:clicked-band-purple": "PASS purple=0.763",
+   "en_mobile_port_top:ended-no-overlay": "PASS bad=0",
+   "en_mobile_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.74,
+    "clickPurple": 0.74,
+    "bestT": 41.9,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 590,
+     "bottom": 708
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.763,
+    "clickPurple": 0.763,
+    "bestT": 99.5,
+    "fit": "contain",
+    "box": {
+     "w": 332,
+     "h": 590,
+     "bottom": 705
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "en_mobile_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "en_mobile_land_ch3:controls-off": "PASS controls=false",
+   "en_mobile_land_ch3:band-in-box": "PASS vb=1.000",
+   "en_mobile_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "en_mobile_land_ch3:bar-below": "PASS exists=true below=true",
+   "en_mobile_land_ch3:paused-no-overlay": "PASS bad=0",
+   "en_mobile_land_ch3:paused-band-purple": "PASS purple=0.890@41.9s",
+   "en_mobile_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "en_mobile_land_ch3:clicked-band-purple": "PASS purple=0.890",
+   "en_mobile_land_ch3:ended-no-overlay": "PASS bad=0",
+   "en_mobile_land_ch3:ended-controls-off": "PASS controls=false",
+   "en_mobile_land_top:controls-off": "PASS controls=false",
+   "en_mobile_land_top:fit-contain": "PASS fit=contain",
+   "en_mobile_land_top:band-in-box": "PASS vb=1.000",
+   "en_mobile_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "en_mobile_land_top:bar-below": "PASS exists=true below=true",
+   "en_mobile_land_top:paused-no-overlay": "PASS bad=0",
+   "en_mobile_land_top:paused-band-purple": "PASS purple=0.866@33.3s",
+   "en_mobile_land_top:clicked-no-overlay": "PASS bad=0",
+   "en_mobile_land_top:clicked-band-purple": "PASS purple=0.866",
+   "en_mobile_land_top:ended-no-overlay": "PASS bad=0",
+   "en_mobile_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.89,
+    "clickPurple": 0.89,
+    "bestT": 41.9,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 197,
+     "bottom": 273
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.866,
+    "clickPurple": 0.866,
+    "bestT": 33.3,
+    "fit": "contain",
+    "box": {
+     "w": 373,
+     "h": 210,
+     "bottom": 515
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "en_desktop_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "en_desktop_port_ch3:controls-off": "PASS controls=false",
+   "en_desktop_port_ch3:band-in-box": "PASS vb=1.000",
+   "en_desktop_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "en_desktop_port_ch3:bar-below": "PASS exists=true below=true",
+   "en_desktop_port_ch3:paused-no-overlay": "PASS bad=0",
+   "en_desktop_port_ch3:paused-band-purple": "PASS purple=0.433@41.9s",
+   "en_desktop_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "en_desktop_port_ch3:clicked-band-purple": "PASS purple=0.433",
+   "en_desktop_port_ch3:ended-no-overlay": "PASS bad=0",
+   "en_desktop_port_ch3:ended-controls-off": "PASS controls=false",
+   "en_desktop_port_top:controls-off": "PASS controls=false",
+   "en_desktop_port_top:fit-contain": "PASS fit=contain",
+   "en_desktop_port_top:band-in-box": "PASS vb=1.000",
+   "en_desktop_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "en_desktop_port_top:bar-below": "PASS exists=true below=true",
+   "en_desktop_port_top:paused-no-overlay": "PASS bad=0",
+   "en_desktop_port_top:paused-band-purple": "PASS purple=0.767@99.5s",
+   "en_desktop_port_top:clicked-no-overlay": "PASS bad=0",
+   "en_desktop_port_top:clicked-band-purple": "PASS purple=0.767",
+   "en_desktop_port_top:ended-no-overlay": "PASS bad=0",
+   "en_desktop_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.433,
+    "clickPurple": 0.433,
+    "bestT": 41.9,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 648,
+     "bottom": 765
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.767,
+    "clickPurple": 0.767,
+    "bestT": 99.5,
+    "fit": "contain",
+    "box": {
+     "w": 365,
+     "h": 648,
+     "bottom": 774
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "en_desktop_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "en_desktop_land_ch3:controls-off": "PASS controls=false",
+   "en_desktop_land_ch3:band-in-box": "PASS vb=1.000",
+   "en_desktop_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "en_desktop_land_ch3:bar-below": "PASS exists=true below=true",
+   "en_desktop_land_ch3:paused-no-overlay": "PASS bad=0",
+   "en_desktop_land_ch3:paused-band-purple": "PASS purple=0.873@41.9s",
+   "en_desktop_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "en_desktop_land_ch3:clicked-band-purple": "PASS purple=0.873",
+   "en_desktop_land_ch3:ended-no-overlay": "PASS bad=0",
+   "en_desktop_land_ch3:ended-controls-off": "PASS controls=false",
+   "en_desktop_land_top:controls-off": "PASS controls=false",
+   "en_desktop_land_top:fit-contain": "PASS fit=contain",
+   "en_desktop_land_top:band-in-box": "PASS vb=1.000",
+   "en_desktop_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "en_desktop_land_top:bar-below": "PASS exists=true below=true",
+   "en_desktop_land_top:paused-no-overlay": "PASS bad=0",
+   "en_desktop_land_top:paused-band-purple": "PASS purple=0.880@33.3s",
+   "en_desktop_land_top:clicked-no-overlay": "PASS bad=0",
+   "en_desktop_land_top:clicked-band-purple": "PASS purple=0.880",
+   "en_desktop_land_top:ended-no-overlay": "PASS bad=0",
+   "en_desktop_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.873,
+    "clickPurple": 0.873,
+    "bestT": 41.9,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 375,
+     "bottom": 449
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.88,
+    "clickPurple": 0.88,
+    "bestT": 33.3,
+    "fit": "contain",
+    "box": {
+     "w": 688,
+     "h": 387,
+     "bottom": 643
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "zh_mobile_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "zh_mobile_port_ch3:controls-off": "PASS controls=false",
+   "zh_mobile_port_ch3:band-in-box": "PASS vb=1.000",
+   "zh_mobile_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "zh_mobile_port_ch3:bar-below": "PASS exists=true below=true",
+   "zh_mobile_port_ch3:paused-no-overlay": "PASS bad=0",
+   "zh_mobile_port_ch3:paused-band-purple": "PASS purple=0.768@24.0s",
+   "zh_mobile_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "zh_mobile_port_ch3:clicked-band-purple": "PASS purple=0.768",
+   "zh_mobile_port_ch3:ended-no-overlay": "PASS bad=0",
+   "zh_mobile_port_ch3:ended-controls-off": "PASS controls=false",
+   "zh_mobile_port_top:controls-off": "PASS controls=false",
+   "zh_mobile_port_top:fit-contain": "PASS fit=contain",
+   "zh_mobile_port_top:band-in-box": "PASS vb=1.000",
+   "zh_mobile_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "zh_mobile_port_top:bar-below": "PASS exists=true below=true",
+   "zh_mobile_port_top:paused-no-overlay": "PASS bad=0",
+   "zh_mobile_port_top:paused-band-purple": "PASS purple=0.785@68.7s",
+   "zh_mobile_port_top:clicked-no-overlay": "PASS bad=0",
+   "zh_mobile_port_top:clicked-band-purple": "PASS purple=0.785",
+   "zh_mobile_port_top:ended-no-overlay": "PASS bad=0",
+   "zh_mobile_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.768,
+    "clickPurple": 0.768,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 590,
+     "bottom": 708
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.785,
+    "clickPurple": 0.785,
+    "bestT": 68.7,
+    "fit": "contain",
+    "box": {
+     "w": 332,
+     "h": 590,
+     "bottom": 705
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "zh_mobile_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "zh_mobile_land_ch3:controls-off": "PASS controls=false",
+   "zh_mobile_land_ch3:band-in-box": "PASS vb=1.000",
+   "zh_mobile_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "zh_mobile_land_ch3:bar-below": "PASS exists=true below=true",
+   "zh_mobile_land_ch3:paused-no-overlay": "PASS bad=0",
+   "zh_mobile_land_ch3:paused-band-purple": "PASS purple=0.908@24.0s",
+   "zh_mobile_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "zh_mobile_land_ch3:clicked-band-purple": "PASS purple=0.908",
+   "zh_mobile_land_ch3:ended-no-overlay": "PASS bad=0",
+   "zh_mobile_land_ch3:ended-controls-off": "PASS controls=false",
+   "zh_mobile_land_top:controls-off": "PASS controls=false",
+   "zh_mobile_land_top:fit-contain": "PASS fit=contain",
+   "zh_mobile_land_top:band-in-box": "PASS vb=1.000",
+   "zh_mobile_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "zh_mobile_land_top:bar-below": "PASS exists=true below=true",
+   "zh_mobile_land_top:paused-no-overlay": "PASS bad=0",
+   "zh_mobile_land_top:paused-band-purple": "PASS purple=0.865@103.0s",
+   "zh_mobile_land_top:clicked-no-overlay": "PASS bad=0",
+   "zh_mobile_land_top:clicked-band-purple": "PASS purple=0.865",
+   "zh_mobile_land_top:ended-no-overlay": "PASS bad=0",
+   "zh_mobile_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.908,
+    "clickPurple": 0.908,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 197,
+     "bottom": 273
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.865,
+    "clickPurple": 0.865,
+    "bestT": 103,
+    "fit": "contain",
+    "box": {
+     "w": 373,
+     "h": 210,
+     "bottom": 515
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "zh_desktop_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "zh_desktop_port_ch3:controls-off": "PASS controls=false",
+   "zh_desktop_port_ch3:band-in-box": "PASS vb=1.000",
+   "zh_desktop_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "zh_desktop_port_ch3:bar-below": "PASS exists=true below=true",
+   "zh_desktop_port_ch3:paused-no-overlay": "PASS bad=0",
+   "zh_desktop_port_ch3:paused-band-purple": "PASS purple=0.446@24.0s",
+   "zh_desktop_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "zh_desktop_port_ch3:clicked-band-purple": "PASS purple=0.446",
+   "zh_desktop_port_ch3:ended-no-overlay": "PASS bad=0",
+   "zh_desktop_port_ch3:ended-controls-off": "PASS controls=false",
+   "zh_desktop_port_top:controls-off": "PASS controls=false",
+   "zh_desktop_port_top:fit-contain": "PASS fit=contain",
+   "zh_desktop_port_top:band-in-box": "PASS vb=1.000",
+   "zh_desktop_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "zh_desktop_port_top:bar-below": "PASS exists=true below=true",
+   "zh_desktop_port_top:paused-no-overlay": "PASS bad=0",
+   "zh_desktop_port_top:paused-band-purple": "PASS purple=0.788@68.7s",
+   "zh_desktop_port_top:clicked-no-overlay": "PASS bad=0",
+   "zh_desktop_port_top:clicked-band-purple": "PASS purple=0.788",
+   "zh_desktop_port_top:ended-no-overlay": "PASS bad=0",
+   "zh_desktop_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.446,
+    "clickPurple": 0.446,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 648,
+     "bottom": 765
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.788,
+    "clickPurple": 0.788,
+    "bestT": 68.7,
+    "fit": "contain",
+    "box": {
+     "w": 365,
+     "h": 648,
+     "bottom": 774
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "zh_desktop_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "zh_desktop_land_ch3:controls-off": "PASS controls=false",
+   "zh_desktop_land_ch3:band-in-box": "PASS vb=1.000",
+   "zh_desktop_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "zh_desktop_land_ch3:bar-below": "PASS exists=true below=true",
+   "zh_desktop_land_ch3:paused-no-overlay": "PASS bad=0",
+   "zh_desktop_land_ch3:paused-band-purple": "PASS purple=0.907@24.0s",
+   "zh_desktop_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "zh_desktop_land_ch3:clicked-band-purple": "PASS purple=0.907",
+   "zh_desktop_land_ch3:ended-no-overlay": "PASS bad=0",
+   "zh_desktop_land_ch3:ended-controls-off": "PASS controls=false",
+   "zh_desktop_land_top:controls-off": "PASS controls=false",
+   "zh_desktop_land_top:fit-contain": "PASS fit=contain",
+   "zh_desktop_land_top:band-in-box": "PASS vb=1.000",
+   "zh_desktop_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "zh_desktop_land_top:bar-below": "PASS exists=true below=true",
+   "zh_desktop_land_top:paused-no-overlay": "PASS bad=0",
+   "zh_desktop_land_top:paused-band-purple": "PASS purple=0.878@68.7s",
+   "zh_desktop_land_top:clicked-no-overlay": "PASS bad=0",
+   "zh_desktop_land_top:clicked-band-purple": "PASS purple=0.878",
+   "zh_desktop_land_top:ended-no-overlay": "PASS bad=0",
+   "zh_desktop_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.907,
+    "clickPurple": 0.907,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 375,
+     "bottom": 450
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.878,
+    "clickPurple": 0.878,
+    "bestT": 68.7,
+    "fit": "contain",
+    "box": {
+     "w": 688,
+     "h": 387,
+     "bottom": 644
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "ru_mobile_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "ru_mobile_port_ch3:controls-off": "PASS controls=false",
+   "ru_mobile_port_ch3:band-in-box": "PASS vb=1.000",
+   "ru_mobile_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "ru_mobile_port_ch3:bar-below": "PASS exists=true below=true",
+   "ru_mobile_port_ch3:paused-no-overlay": "PASS bad=0",
+   "ru_mobile_port_ch3:paused-band-purple": "PASS purple=0.751@24.0s",
+   "ru_mobile_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "ru_mobile_port_ch3:clicked-band-purple": "PASS purple=0.751",
+   "ru_mobile_port_ch3:ended-no-overlay": "PASS bad=0",
+   "ru_mobile_port_ch3:ended-controls-off": "PASS controls=false",
+   "ru_mobile_port_top:controls-off": "PASS controls=false",
+   "ru_mobile_port_top:fit-contain": "PASS fit=contain",
+   "ru_mobile_port_top:band-in-box": "PASS vb=1.000",
+   "ru_mobile_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "ru_mobile_port_top:bar-below": "PASS exists=true below=true",
+   "ru_mobile_port_top:paused-no-overlay": "PASS bad=0",
+   "ru_mobile_port_top:paused-band-purple": "PASS purple=0.760@105.5s",
+   "ru_mobile_port_top:clicked-no-overlay": "PASS bad=0",
+   "ru_mobile_port_top:clicked-band-purple": "PASS purple=0.760",
+   "ru_mobile_port_top:ended-no-overlay": "PASS bad=0",
+   "ru_mobile_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.751,
+    "clickPurple": 0.751,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 590,
+     "bottom": 707
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.76,
+    "clickPurple": 0.76,
+    "bestT": 105.5,
+    "fit": "contain",
+    "box": {
+     "w": 332,
+     "h": 590,
+     "bottom": 705
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "ru_mobile_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "ru_mobile_land_ch3:controls-off": "PASS controls=false",
+   "ru_mobile_land_ch3:band-in-box": "PASS vb=1.000",
+   "ru_mobile_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "ru_mobile_land_ch3:bar-below": "PASS exists=true below=true",
+   "ru_mobile_land_ch3:paused-no-overlay": "PASS bad=0",
+   "ru_mobile_land_ch3:paused-band-purple": "PASS purple=0.894@24.0s",
+   "ru_mobile_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "ru_mobile_land_ch3:clicked-band-purple": "PASS purple=0.894",
+   "ru_mobile_land_ch3:ended-no-overlay": "PASS bad=0",
+   "ru_mobile_land_ch3:ended-controls-off": "PASS controls=false",
+   "ru_mobile_land_top:controls-off": "PASS controls=false",
+   "ru_mobile_land_top:fit-contain": "PASS fit=contain",
+   "ru_mobile_land_top:band-in-box": "PASS vb=1.000",
+   "ru_mobile_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "ru_mobile_land_top:bar-below": "PASS exists=true below=true",
+   "ru_mobile_land_top:paused-no-overlay": "PASS bad=0",
+   "ru_mobile_land_top:paused-band-purple": "PASS purple=0.858@35.2s",
+   "ru_mobile_land_top:clicked-no-overlay": "PASS bad=0",
+   "ru_mobile_land_top:clicked-band-purple": "PASS purple=0.858",
+   "ru_mobile_land_top:ended-no-overlay": "PASS bad=0",
+   "ru_mobile_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.894,
+    "clickPurple": 0.894,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 197,
+     "bottom": 272
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.858,
+    "clickPurple": 0.858,
+    "bestT": 35.2,
+    "fit": "contain",
+    "box": {
+     "w": 373,
+     "h": 210,
+     "bottom": 515
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "ru_desktop_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "ru_desktop_port_ch3:controls-off": "PASS controls=false",
+   "ru_desktop_port_ch3:band-in-box": "PASS vb=1.000",
+   "ru_desktop_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "ru_desktop_port_ch3:bar-below": "PASS exists=true below=true",
+   "ru_desktop_port_ch3:paused-no-overlay": "PASS bad=0",
+   "ru_desktop_port_ch3:paused-band-purple": "PASS purple=0.437@24.0s",
+   "ru_desktop_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "ru_desktop_port_ch3:clicked-band-purple": "PASS purple=0.437",
+   "ru_desktop_port_ch3:ended-no-overlay": "PASS bad=0",
+   "ru_desktop_port_ch3:ended-controls-off": "PASS controls=false",
+   "ru_desktop_port_top:controls-off": "PASS controls=false",
+   "ru_desktop_port_top:fit-contain": "PASS fit=contain",
+   "ru_desktop_port_top:band-in-box": "PASS vb=1.000",
+   "ru_desktop_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "ru_desktop_port_top:bar-below": "PASS exists=true below=true",
+   "ru_desktop_port_top:paused-no-overlay": "PASS bad=0",
+   "ru_desktop_port_top:paused-band-purple": "PASS purple=0.767@105.5s",
+   "ru_desktop_port_top:clicked-no-overlay": "PASS bad=0",
+   "ru_desktop_port_top:clicked-band-purple": "PASS purple=0.767",
+   "ru_desktop_port_top:ended-no-overlay": "PASS bad=0",
+   "ru_desktop_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.437,
+    "clickPurple": 0.437,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 648,
+     "bottom": 765
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.767,
+    "clickPurple": 0.767,
+    "bestT": 105.5,
+    "fit": "contain",
+    "box": {
+     "w": 365,
+     "h": 648,
+     "bottom": 774
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "ru_desktop_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "ru_desktop_land_ch3:controls-off": "PASS controls=false",
+   "ru_desktop_land_ch3:band-in-box": "PASS vb=1.000",
+   "ru_desktop_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "ru_desktop_land_ch3:bar-below": "PASS exists=true below=true",
+   "ru_desktop_land_ch3:paused-no-overlay": "PASS bad=0",
+   "ru_desktop_land_ch3:paused-band-purple": "PASS purple=0.880@24.0s",
+   "ru_desktop_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "ru_desktop_land_ch3:clicked-band-purple": "PASS purple=0.880",
+   "ru_desktop_land_ch3:ended-no-overlay": "PASS bad=0",
+   "ru_desktop_land_ch3:ended-controls-off": "PASS controls=false",
+   "ru_desktop_land_top:controls-off": "PASS controls=false",
+   "ru_desktop_land_top:fit-contain": "PASS fit=contain",
+   "ru_desktop_land_top:band-in-box": "PASS vb=1.000",
+   "ru_desktop_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "ru_desktop_land_top:bar-below": "PASS exists=true below=true",
+   "ru_desktop_land_top:paused-no-overlay": "PASS bad=0",
+   "ru_desktop_land_top:paused-band-purple": "PASS purple=0.872@35.2s",
+   "ru_desktop_land_top:clicked-no-overlay": "PASS bad=0",
+   "ru_desktop_land_top:clicked-band-purple": "PASS purple=0.872",
+   "ru_desktop_land_top:ended-no-overlay": "PASS bad=0",
+   "ru_desktop_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.88,
+    "clickPurple": 0.88,
+    "bestT": 24,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 375,
+     "bottom": 449
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.872,
+    "clickPurple": 0.872,
+    "bestT": 35.2,
+    "fit": "contain",
+    "box": {
+     "w": 688,
+     "h": 387,
+     "bottom": 643
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "fr_mobile_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "fr_mobile_port_ch3:controls-off": "PASS controls=false",
+   "fr_mobile_port_ch3:band-in-box": "PASS vb=1.000",
+   "fr_mobile_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "fr_mobile_port_ch3:bar-below": "PASS exists=true below=true",
+   "fr_mobile_port_ch3:paused-no-overlay": "PASS bad=0",
+   "fr_mobile_port_ch3:paused-band-purple": "PASS purple=0.723@50.9s",
+   "fr_mobile_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "fr_mobile_port_ch3:clicked-band-purple": "PASS purple=0.723",
+   "fr_mobile_port_ch3:ended-no-overlay": "PASS bad=0",
+   "fr_mobile_port_ch3:ended-controls-off": "PASS controls=false",
+   "fr_mobile_port_top:controls-off": "PASS controls=false",
+   "fr_mobile_port_top:fit-contain": "PASS fit=contain",
+   "fr_mobile_port_top:band-in-box": "PASS vb=1.000",
+   "fr_mobile_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "fr_mobile_port_top:bar-below": "PASS exists=true below=true",
+   "fr_mobile_port_top:paused-no-overlay": "PASS bad=0",
+   "fr_mobile_port_top:paused-band-purple": "PASS purple=0.759@101.4s",
+   "fr_mobile_port_top:clicked-no-overlay": "PASS bad=0",
+   "fr_mobile_port_top:clicked-band-purple": "PASS purple=0.759",
+   "fr_mobile_port_top:ended-no-overlay": "PASS bad=0",
+   "fr_mobile_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.723,
+    "clickPurple": 0.723,
+    "bestT": 50.9,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 590,
+     "bottom": 708
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.759,
+    "clickPurple": 0.759,
+    "bestT": 101.4,
+    "fit": "contain",
+    "box": {
+     "w": 332,
+     "h": 590,
+     "bottom": 705
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "fr_mobile_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "fr_mobile_land_ch3:controls-off": "PASS controls=false",
+   "fr_mobile_land_ch3:band-in-box": "PASS vb=1.000",
+   "fr_mobile_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "fr_mobile_land_ch3:bar-below": "PASS exists=true below=true",
+   "fr_mobile_land_ch3:paused-no-overlay": "PASS bad=0",
+   "fr_mobile_land_ch3:paused-band-purple": "PASS purple=0.877@50.9s",
+   "fr_mobile_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "fr_mobile_land_ch3:clicked-band-purple": "PASS purple=0.877",
+   "fr_mobile_land_ch3:ended-no-overlay": "PASS bad=0",
+   "fr_mobile_land_ch3:ended-controls-off": "PASS controls=false",
+   "fr_mobile_land_top:controls-off": "PASS controls=false",
+   "fr_mobile_land_top:fit-contain": "PASS fit=contain",
+   "fr_mobile_land_top:band-in-box": "PASS vb=1.000",
+   "fr_mobile_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "fr_mobile_land_top:bar-below": "PASS exists=true below=true",
+   "fr_mobile_land_top:paused-no-overlay": "PASS bad=0",
+   "fr_mobile_land_top:paused-band-purple": "PASS purple=0.860@33.7s",
+   "fr_mobile_land_top:clicked-no-overlay": "PASS bad=0",
+   "fr_mobile_land_top:clicked-band-purple": "PASS purple=0.860",
+   "fr_mobile_land_top:ended-no-overlay": "PASS bad=0",
+   "fr_mobile_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.877,
+    "clickPurple": 0.877,
+    "bestT": 50.9,
+    "fit": "contain",
+    "box": {
+     "w": 351,
+     "h": 197,
+     "bottom": 273
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.86,
+    "clickPurple": 0.86,
+    "bestT": 33.7,
+    "fit": "contain",
+    "box": {
+     "w": 373,
+     "h": 210,
+     "bottom": 515
+    },
+    "vid": "1920x1080"
+   }
+  }
+ },
+ {
+  "tag": "fr_desktop_port",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "fr_desktop_port_ch3:controls-off": "PASS controls=false",
+   "fr_desktop_port_ch3:band-in-box": "PASS vb=1.000",
+   "fr_desktop_port_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "fr_desktop_port_ch3:bar-below": "PASS exists=true below=true",
+   "fr_desktop_port_ch3:paused-no-overlay": "PASS bad=0",
+   "fr_desktop_port_ch3:paused-band-purple": "PASS purple=0.423@50.9s",
+   "fr_desktop_port_ch3:clicked-no-overlay": "PASS bad=0",
+   "fr_desktop_port_ch3:clicked-band-purple": "PASS purple=0.423",
+   "fr_desktop_port_ch3:ended-no-overlay": "PASS bad=0",
+   "fr_desktop_port_ch3:ended-controls-off": "PASS controls=false",
+   "fr_desktop_port_top:controls-off": "PASS controls=false",
+   "fr_desktop_port_top:fit-contain": "PASS fit=contain",
+   "fr_desktop_port_top:band-in-box": "PASS vb=1.000",
+   "fr_desktop_port_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "fr_desktop_port_top:bar-below": "PASS exists=true below=true",
+   "fr_desktop_port_top:paused-no-overlay": "PASS bad=0",
+   "fr_desktop_port_top:paused-band-purple": "PASS purple=0.764@101.4s",
+   "fr_desktop_port_top:clicked-no-overlay": "PASS bad=0",
+   "fr_desktop_port_top:clicked-band-purple": "PASS purple=0.764",
+   "fr_desktop_port_top:ended-no-overlay": "PASS bad=0",
+   "fr_desktop_port_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.423,
+    "clickPurple": 0.423,
+    "bestT": 50.9,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 648,
+     "bottom": 765
+    },
+    "vid": "1080x1920"
+   },
+   "top": {
+    "pausedPurple": 0.764,
+    "clickPurple": 0.764,
+    "bestT": 101.4,
+    "fit": "contain",
+    "box": {
+     "w": 365,
+     "h": 648,
+     "bottom": 774
+    },
+    "vid": "1080x1920"
+   }
+  }
+ },
+ {
+  "tag": "fr_desktop_land",
+  "checks": {
+   "ten-chapters": "PASS",
+   "four-keypts": "PASS",
+   "invite-shown": "PASS",
+   "build-bumped": "PASS",
+   "no-hscroll": "PASS",
+   "fr_desktop_land_ch3:controls-off": "PASS controls=false",
+   "fr_desktop_land_ch3:band-in-box": "PASS vb=1.000",
+   "fr_desktop_land_ch3:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\",\"VIDEO\"]",
+   "fr_desktop_land_ch3:bar-below": "PASS exists=true below=true",
+   "fr_desktop_land_ch3:paused-no-overlay": "PASS bad=0",
+   "fr_desktop_land_ch3:paused-band-purple": "PASS purple=0.863@50.9s",
+   "fr_desktop_land_ch3:clicked-no-overlay": "PASS bad=0",
+   "fr_desktop_land_ch3:clicked-band-purple": "PASS purple=0.863",
+   "fr_desktop_land_ch3:ended-no-overlay": "PASS bad=0",
+   "fr_desktop_land_ch3:ended-controls-off": "PASS controls=false",
+   "fr_desktop_land_top:controls-off": "PASS controls=false",
+   "fr_desktop_land_top:fit-contain": "PASS fit=contain",
+   "fr_desktop_land_top:band-in-box": "PASS vb=1.000",
+   "fr_desktop_land_top:loaded-no-overlay": "PASS bad=0 top=[\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\",\"VIDEO#topPlayerA\"]",
+   "fr_desktop_land_top:bar-below": "PASS exists=true below=true",
+   "fr_desktop_land_top:paused-no-overlay": "PASS bad=0",
+   "fr_desktop_land_top:paused-band-purple": "PASS purple=0.874@33.7s",
+   "fr_desktop_land_top:clicked-no-overlay": "PASS bad=0",
+   "fr_desktop_land_top:clicked-band-purple": "PASS purple=0.874",
+   "fr_desktop_land_top:ended-no-overlay": "PASS bad=0",
+   "fr_desktop_land_top:ended-controls-off": "PASS controls=false"
+  },
+  "evidence": {
+   "ch": {
+    "pausedPurple": 0.863,
+    "clickPurple": 0.863,
+    "bestT": 50.9,
+    "fit": "contain",
+    "box": {
+     "w": 666,
+     "h": 375,
+     "bottom": 449
+    },
+    "vid": "1920x1081"
+   },
+   "top": {
+    "pausedPurple": 0.874,
+    "clickPurple": 0.874,
+    "bestT": 33.7,
+    "fit": "contain",
+    "box": {
+     "w": 688,
+     "h": 387,
+     "bottom": 643
+    },
+    "vid": "1920x1080"
+   }
+  }
+ }
+]
