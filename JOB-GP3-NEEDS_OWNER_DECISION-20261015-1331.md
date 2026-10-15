@@ -40,7 +40,7 @@
     git log origin/main..HEAD --oneline          # ① 推前列账：应看到 "JOB-GP3-01 ..."（上一轮 GP3-00 诊断工装那条若也在、一并推即可，都是 jobs/JOB-GP3 内部文件 + 本次 index.html）
     git push origin main                         # ② 推
     git log origin/main..HEAD --oneline          # ③ 推后：必须空输出
-    git status                                   # ④ 必须 working tree clean
+    git status                                   # ④ 已跟踪文件应无待提交改动（开头 ?? 的未跟踪文件是别的线的半成品，正常、别动别提交）
 
 推完 Cloudflare Pages 约 1–2 分钟自动部署。然后真机打开 https://www.maxhouses.net/guide/partner/ ，
 确认页脚版本串变成 **build gp2-20261015a**、底部字幕带露出、控制条好用。
