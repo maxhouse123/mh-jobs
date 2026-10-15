@@ -37,7 +37,7 @@
 先在 v2rayN 挂好代理（TUIC，mixed 端口 10808），然后原生终端按**四段式**（推前列账 → 推 → 推后空账 → clean）：
 
     cd /Volumes/Dev/MAXHOUSE
-    git log origin/main..HEAD --oneline          # ① 推前列账：应看到一条 "JOB-GP3-01 ..." 
+    git log origin/main..HEAD --oneline          # ① 推前列账：应看到 "JOB-GP3-01 ..."（上一轮 GP3-00 诊断工装那条若也在、一并推即可，都是 jobs/JOB-GP3 内部文件 + 本次 index.html）
     git push origin main                         # ② 推
     git log origin/main..HEAD --oneline          # ③ 推后：必须空输出
     git status                                   # ④ 必须 working tree clean
