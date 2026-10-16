@@ -1,11 +1,24 @@
-PUSH_OK=no
+PUSH_OK=yes
 
 # SUMMARY-F3 · 收官（2026-10-16）
 
-> PUSH_OK=no 的原因：两包代码全部做完、四层闸全过、文件清单核对通过，但**推主仓库这一步被权限闸拦住了**
-> （CC 两次执行 `git push origin HEAD:main` 都返回「权限未授予」）。主仓库是生产仓（铁律4 默认 CC 不推），
-> 本轮虽授权 CC 自推，但本机权限系统仍要业主点头。**因此线上尚未更新，线上真验（本应到 v247 后做）也还没做。**
-> 需要业主授权这一次推送，或业主自己在原生终端推（命令见文末）。推成功后 CC 可一条命令跑完线上真验。
+> PUSH_OK=yes：三笔提交业主已在原生终端推上 main（含学校端 v247），线上 Cloudflare 已部署到 v247，
+> CC 已用真浏览器真账号在线上把本轮新功能真验过（下「线上真验」节）。三样断言全过，无阻塞。
+>
+> （历史记：早先 CC 自推被本机权限闸拦，故一度 PUSH_OK=no；现由业主自推完成，CC 接手做完 F3-02 线上真验收官。）
+
+## 线上真验（JOB-F3-02，2026-10-16）—— ✅ LIVE_V247_OK=yes
+
+- **推送核对**：`git fetch` 后 `git log origin/main..HEAD` 空（本地＝线上）；main 上 `school-portal/index.html` 指向 v247、文件在。推了三笔：`64a5d9e`（F3-01 v247）/ `ce69d8f`（F3-00 脚本摘照片步）/ `9bab93c`（F2-05 建档复原）。
+- **部署**：真浏览器读 `/school-portal/` 控制台 `[VER]`，**第 1 次就是 v247**（没等满 15 分钟）。
+- **真验（schX 真账号，不改设置、不真发 Offer）**：
+  1. 路①候选池：进 **ADM-100005** 候选池开一名可发录取学生档案 → 发 Offer 面板顶出现整行「**本校录取办理方式：17gz · 出通知书前 · 修改**」（schX 库里办理方式＝gz17/出通知书前，显示一致）。截图 `shots/F3/live-01-line.png`。
+  2. 点「修改」→ 关弹窗、跳**设置页**、办理方式区块 `v242FilingSection` **紫色描边高亮**。截图 `shots/F3/live-02-edit-jump.png`。
+  3. 路②档案弹窗那条路再开同一学生发 Offer 面板 → **同一行也在**。截图 `shots/F3/live-03-modal-line.png`。
+  - （源码里候选池与档案弹窗共用同一段渲染代码 `_renderCloudOfferInline`，故这行从哪条路进都出；线上两路各走一遍印证。）
+- **机器判定**：`F3_02_LIVE_PASS = true`。
+- **控制台红字全抄**：仅一条 `Failed to load resource: the server responded with a status of 400 ()`（无网址）。另跑两次干净复现（登录路 + 进任务开档案路）**均 0 个 400**，判为偶发、与 v247 无关（v247 零新 RPC/零新网络请求），未拦任何一步。详见 `JOB-F3-02.md`。
+- **v247 本地 md5**：`98557ed0f85dfd4313bbf97f261343d3`（线上裸 md5 受 CF 边缘改写不作判据，判据＝fetch 差集空 + 线上 [VER]=247）。
 
 ## 两包结论
 
@@ -40,20 +53,6 @@ PUSH_OK=no
 - `9bab93c` JOB-F2-05（此前未推的 F2 收尾：SCH-BFB599 建档复原探针+restore+裁决原件）
 （F3-02 §要求"本轮提交连同此前未推的 F-1/F-2 jobs 回执提交一起推"，上述三笔即全部。）
 
-## 线上真验 —— 待办（推成功后才能做）
-推成功、线上 [VER] 到 v247 后，CC 可跑 `~/mh-verify/f3-02-live.mjs`（登 schX，不改设置、不真发 Offer）：
-进 ADM-100005 候选池打开一名可发录取学生 → 验面板顶部「本校录取办理方式：17gz · 出通知书前 · 修改」→
-点「修改」落到设置页办理方式区块 → 两张截图推 `~/mh-jobs/shots/F3/` → 控制台红字全抄。
-
-## 业主要做的（二选一）
-1. **授权 CC 推**：允许这次 `git push origin HEAD:main`，CC 推完等线上 v247 再跑线上真验、把 PUSH_OK 改 yes。
-2. **自己推**（原生终端、先挂代理）：
-   ```
-   cd /Volumes/Dev/MAXHOUSE
-   export https_proxy=http://127.0.0.1:10808 http_proxy=http://127.0.0.1:10808
-   git log origin/main..HEAD --oneline      # 推前过目：应是上面三笔
-   git push origin main
-   git log origin/main..HEAD --oneline      # 推后应空
-   git status                               # 应 clean
-   ```
-   推完告诉 CC，CC 跑线上真验收官。
+## 线上真验 —— ✅ 已完成（见本文件顶「线上真验」节 + `JOB-F3-02.md`）
+推送由业主完成、线上到 v247、CC 已真验三样全过（候选池那行 / 点修改跳设置页高亮 / 档案弹窗那行），
+截图 `shots/F3/live-01-line.png`·`live-02-edit-jump.png`·`live-03-modal-line.png`。F3 全块收官。
