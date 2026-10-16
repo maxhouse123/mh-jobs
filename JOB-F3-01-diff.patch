@@ -1,0 +1,117 @@
+--- school-portal/maxhouse-school-portal-v246.html	2026-10-16 13:19:44
++++ school-portal/maxhouse-school-portal-v247.html	2026-10-16 15:06:39
+@@ -1,5 +1,5 @@
+ <!DOCTYPE html>
+-<!-- maxhouse-school-portal-v246 (2026-10-16): JOB-F2-02 · 账户设置两 bug 修复(病根C,照 JOB-F1-02 第四节) —— ①发 Offer 闸永远拦不下来:`_v242FetchFiling` 从库读到的办理方式原先写进"只有点⚙才存在"的 state.settings,登录那刻 state.settings 还没建故被丢;`_v242FilingGateBlocked` 读的也是它→恒 undefined→无论库里设没设都弹"请先设置办理方式"。改法:办理方式五项(filingSystem/Timing/Url/Account/Note)登录后写进必然存在的 state.account(闸改读 account,'none'=不用建档 放行),FetchFiling 同时镜像到 settings。②"去设置"进设置页六个联系字段全空白:`_v242GoSetFiling` 原先只 state.view='settings' 不建盒→renderSettingsView 读空盒全渲染成空;改走 openSettingsView()(从 account 抄齐联系字段+办理方式);"我的操作记录"返回链接同改。③防御:renderSettingsView 开头 state.settings 空则按 account 补齐;saveSettings 盒未初始化时拒存+提示(绝不把库里真值覆盖成 NULL)。④_v242SaveFiling 存完同步进 state.account,当场再发 Offer 不被拦。新助手 _v246BuildSettingsFromAccount。零新样式、零新 RPC、零新 t() 键(全复用现有 settings.*/filing.* 词典);N1 零移除;只改 school 端,不动库/桶/其它端。[VER] v245→v246 · 原 v245 头注见下 -->
++<!-- maxhouse-school-portal-v247 (2026-10-16): JOB-F3-01 · 发 Offer 面板顶部加一行「本校录取办理方式：<系统> · <时机> · 修改」(未设则「未设置 · 去设置」) —— 新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(登录即由 _v242FetchFiling 填·_v242SaveFiling 存完同步,故不刷新再开面板即显新值),插在 _renderCloudOfferInline 面板顶(候选池内联表单与学生档案弹窗共用此唯一渲染函数,一处插入即覆盖两上下文); 系统显示名 gz17→17gz/at0086→at0086/none→filing.sysNone(不显时机)/own→filing.sysOwn/form→filing.sysForm, 时机复用 filing.timingBefore/After, 「去设置」复用 filing.gateGo; 新增三键 filing.inlineLabel/inlineEdit/inlineUnset(四语齐,无现成可复用,inlineUnset 因不可借用 sysNone「不用建档」语义); 「修改/去设置」点击走现有 _v242GoSetFiling()(关弹窗→openSettingsView→滚到 v242FilingSection 高亮); 零新 CSS 规则(行内小字样式复用 + auth-link 类复用),零新 RPC,N1 只增这一行(一个 div+一个 a),只改 school 端,不动库/桶/其它端。[VER] v246→v247 · 原 v246 头注见下 --><!-- maxhouse-school-portal-v246 (2026-10-16): JOB-F2-02 · 账户设置两 bug 修复(病根C,照 JOB-F1-02 第四节) —— ①发 Offer 闸永远拦不下来:`_v242FetchFiling` 从库读到的办理方式原先写进"只有点⚙才存在"的 state.settings,登录那刻 state.settings 还没建故被丢;`_v242FilingGateBlocked` 读的也是它→恒 undefined→无论库里设没设都弹"请先设置办理方式"。改法:办理方式五项(filingSystem/Timing/Url/Account/Note)登录后写进必然存在的 state.account(闸改读 account,'none'=不用建档 放行),FetchFiling 同时镜像到 settings。②"去设置"进设置页六个联系字段全空白:`_v242GoSetFiling` 原先只 state.view='settings' 不建盒→renderSettingsView 读空盒全渲染成空;改走 openSettingsView()(从 account 抄齐联系字段+办理方式);"我的操作记录"返回链接同改。③防御:renderSettingsView 开头 state.settings 空则按 account 补齐;saveSettings 盒未初始化时拒存+提示(绝不把库里真值覆盖成 NULL)。④_v242SaveFiling 存完同步进 state.account,当场再发 Offer 不被拦。新助手 _v246BuildSettingsFromAccount。零新样式、零新 RPC、零新 t() 键(全复用现有 settings.*/filing.* 词典);N1 零移除;只改 school 端,不动库/桶/其它端。[VER] v245→v246 · 原 v245 头注见下 -->
+ <!-- maxhouse-school-portal-v245 (2026-10-03): JOB-36-01 · 第三十六轮 —— 本校「可发名额」= 等级名额 + 加成(提额批准累加)。配迁移 0223(schools 加 quota_bonus; admin_decide_school_quota 批准即 +requested_quota)。改法:`loadTierQuota` 在校准 OFFER_QUOTA_TIERS[*].defaultAllocated 之后,另起 `_v245SQuotaBonus()` 读本校 `schools.quota_bonus`(0223 未贴/列缺/无行 → 容错 0),把 `state.account.offerQuota.allocated` 设为「等级 defaultAllocated + 加成」(总名额);`state.account.offerQuota.bonus` 留档。所有「可发张数」消费点(getOfferAllocated/getOfferRemaining/名额页/提额表单 current_quota)自动跟到总名额,无需逐点改。四件套齐(名/头注/[VER]&MH_PORTAL_VER=245/index);四语零裸键(只改数字,无新文案);零新样式;N1 零移除;零迁移执行(0223 只写文件待手贴)零云函数零其它端。[VER] v244→v245 · 原 v244 头注见下 --><!-- maxhouse-school-portal-v244 (2026-09-28): JOB-32-03 · 第三十二轮 —— 浏览/搜索进入的学生详情「本校录取状态」由单一「未发 Offer」改**三态**（消掉「明明已在任务候选池却叫人先进任务」的矛盾）：①**已发录取**（本校台账 `state._schoolOffers[sid]` 有行）→ 显示 学生响应状态 + 所属任务号（任务名）+ 平台建档状态（`_v242FilingRow(offer_id)`，有 `filing_tasks` 时）+「打开任务查看」；②**已在任务候选池未发**（`state._poolCands` 命中）→「已在任务 X（名）的候选池」+「打开该任务发录取」；③**都没有** → 保持现状（未发 Offer 提示 + 加入任务）。「打开该任务发录取/打开任务查看」= `_v244OpenTaskStudent(code,sid)`：`openTask(code)` 进任务视图 → `openCloudStudentDetail(sid,'pool')` 打开该生候选卡（发录取内联出现）；异常退一步滚动到候选卡并闪。打开详情时台账/池籍超 60 秒 → 先重载再就地重开（`state._v244LedgerRefreshing` 守卫，不成环）。`loadSchoolOffersFromCloud` select 补 `id`（挂建档状态）。中英新键 `detail.belongTask/openTaskView/inPoolHint/inPoolTask/inPoolSuffix/openTaskOffer`。N1 零移除（`_v243InTask/_v243AddLabel` 保留）；四件套齐（名/头注/[VER]&MH_PORTAL_VER=244/index）；中英零裸键；零迁移零云函数零其它端。[VER] v243→v244 -->
+ <!-- maxhouse-school-portal-v243 (2026-09-28): JOB-31-03 · 第三十一轮返修 —— ①设置页「录取办理方式」区块的「系统网址」标签改「报名系统登录网址」+ placeholder https://wtu.17gz.org + 小字「填学校报名系统的登录页地址，不是学校官网」；「中介账号名」标签简化 + 小字「学校给迈克豪斯开的中介账号的用户名，不填密码」(四语 filing.urlHint/acctHint)。②老「导出到 17gz」三处按钮/卡片(export.btnLabel/export.admittedCloudBtn/dash.qaExport17gz + 可见兜底文案)改名「导出已录取名单」/「导出本列表已录取名单」，按钮 id 与 handler(openExportWizard/exportAdmittedCloud) 一律不变。③学生已在 ≥1 个招生任务(候选池)时，浏览详情与名单里的「＋加入任务」按钮文案改「加入其它任务」(新键 student.addToOther + 助手 _v243InTask/_v243AddLabel，逻辑不变)。④31-00 P1 判「学校端未发 Offer」为数据来源问题(那条 offer 的 sent_by 非本校行)非显示问题→offer 台账口径本轮不动，留第三十二轮。四件套齐(名/头注/[VER]&MH_PORTAL_VER=243/index)；四语零裸键；N1 零移除；零迁移零云函数零其它端。[VER] v242→v243 -->
+ <!-- maxhouse-school-portal-v242 (2026-09-28): JOB-30-02 · 第三十轮 —— 学校报名系统对接一期(学校侧)。设置页新增「录取办理方式」区块(用什么系统 none/gz17/at0086/own/form · 何时建档 before_letter/after_payment · 网址 · 中介账号名 · 备注; 独立保存 _v242SaveFiling→school_set_filing; 选「不用建档」灰掉后三项)。首次发 OFFER 闸: sendOfferCloud/_cloudSendOfferFromInline 顶部 _v242FilingGateBlocked() 未设办理方式则弹「请先设置」+去设置; 服务端回 filing_unset 两处兜底弹同窗。OFFER 卡新增「平台建档」状态行(_v242FilingRow 读 filing_tasks: 待学生补充/待建档/已导出/已提交(申请号)/学校已通过/退回/已取消; filing_system=none/空 不显)。装载补读 _v242FetchFiling(schools filing_* 列)+ _v242LoadFilingTasks; 0222 未贴时列 42703/表 42P01 → _v242FilingUnavailable 隐藏全部新 UI、发 OFFER 照旧放行。四语 filing.* 词典(zh/en/ru/fr); 四件套齐; 零迁移改动(0222 已在 30-01)零云函数零其它端; 不改配额/面试/通知书上传。[VER] v241→v242 -->
+@@ -4592,7 +4592,7 @@
+   </div>
+ </footer>
+ <script>
+-console.info('[VER] school portal v246 (JOB-F2-02: 账户设置两 bug 修复 —— 办理方式五项登录后写进 state.account(发 Offer 闸改读 account, none 放行), FetchFiling 镜像到 settings; "去设置"/操作记录返回链接改走 openSettingsView() 从 account 抄齐联系字段, 不再白屏; renderSettingsView 空盒按 account 补齐; saveSettings 盒未初始化拒存不清真值; _v242SaveFiling 存完同步 account 当场放行; 新助手 _v246BuildSettingsFromAccount; 零新样式/RPC/键, N1 零移除, 只改 school 端。原 v245:)');   // JOB-F2-02   // 探针随版
++console.info('[VER] school portal v247 (JOB-F3-01: 发 Offer 面板顶部加「本校录取办理方式」行——新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(不刷新即显新值), 插 _renderCloudOfferInline 面板顶; 系统/时机显示名复用 filing.* 词条, 去设置复用 filing.gateGo, 新增三键 filing.inlineLabel/inlineEdit/inlineUnset(四语); 修改/去设置走 _v242GoSetFiling(); 零新 CSS/RPC, N1 只增一行, 只改 school 端。原 v246: 账户设置两 bug 修复 —— 办理方式五项登录后写进 state.account(发 Offer 闸改读 account, none 放行), FetchFiling 镜像到 settings; "去设置"/操作记录返回链接改走 openSettingsView() 从 account 抄齐联系字段, 不再白屏; renderSettingsView 空盒按 account 补齐; saveSettings 盒未初始化拒存不清真值; _v242SaveFiling 存完同步 account 当场放行; 新助手 _v246BuildSettingsFromAccount; 零新样式/RPC/键, N1 零移除, 只改 school 端。原 v245:)');   // JOB-F2-02   // 探针随版
+ console.info('[VER-prev245] school portal v245 (JOB-36-01: 本校可发名额 = 等级名额 + quota_bonus(提额批准加成) —— loadTierQuota 另读本校 schools.quota_bonus(0223未贴/列缺→容错0)并入 state.account.offerQuota.allocated(等级 defaultAllocated + 加成); _v245SQuotaBonus 容错; 四件套齐; 四语零裸键(只改数字, 无新文案); 零新样式; 零迁移执行(0223待手贴)零云函数零其它端。原 v244: JOB-32-03: 浏览/搜索进入的详情「本校录取状态」改三态 —— ①已发录取(台账_schoolOffers[sid]有行): 状态+所属任务号(名)+平台建档状态_v242FilingRow(offer_id)+「打开任务查看」; ②已在候选池未发(_poolCands命中): 「已在任务X(名)的候选池」+「打开该任务发录取」(_v244OpenTaskStudent→openTask+openCloudStudentDetail pool, 退一步滚动闪); ③都没有: 保持现状(未发Offer+加入任务). 台账/池籍超60秒→打开详情先重载再重画(state._v244LedgerRefreshing守卫,不成环). loadSchoolOffersFromCloud select补id. 中英新键detail.belongTask/openTaskView/inPoolHint/inPoolTask/inPoolSuffix/openTaskOffer; N1零移除(_v243InTask/AddLabel保留); 四件套齐; 版本 v243→v244)');   // JOB-32-03   // 探针随版
+ console.info('[VER-prev242] school portal v242 (JOB-30-02: 录取办理方式区块 + 首次发 OFFER 闸 + 平台建档状态行)');   // JOB-30-02
+ console.info('[VER-prev238] school portal v238 (JOB-26-02: 层次叫法归一 _v238LevelIs)');   // JOB-26-02
+@@ -8130,7 +8130,10 @@
+   'filing.stSubmitted':'已提交',
+   'filing.stApproved':'学校已通过',
+   'filing.stRejected':'退回',
+-  'filing.stCancelled':'已取消'
++  'filing.stCancelled':'已取消',
++  'filing.inlineLabel':'本校录取办理方式',
++  'filing.inlineEdit':'修改',
++  'filing.inlineUnset':'未设置'
+ });
+ Object.assign(I18N.en, {
+   'filing.secTitle':'Admission filing method',
+@@ -8161,7 +8164,10 @@
+   'filing.stSubmitted':'Submitted',
+   'filing.stApproved':'Approved by school',
+   'filing.stRejected':'Returned',
+-  'filing.stCancelled':'Cancelled'
++  'filing.stCancelled':'Cancelled',
++  'filing.inlineLabel':'This school’s admission filing',
++  'filing.inlineEdit':'Edit',
++  'filing.inlineUnset':'Not set'
+ });
+ Object.assign(I18N.ru, {
+   'filing.secTitle':'Способ оформления поступления',
+@@ -8192,7 +8198,10 @@
+   'filing.stSubmitted':'Отправлено',
+   'filing.stApproved':'Одобрено школой',
+   'filing.stRejected':'Возвращено',
+-  'filing.stCancelled':'Отменено'
++  'filing.stCancelled':'Отменено',
++  'filing.inlineLabel':'Способ оформления (эта школа)',
++  'filing.inlineEdit':'Изменить',
++  'filing.inlineUnset':'Не задано'
+ });
+ Object.assign(I18N.fr, {
+   'filing.secTitle':'Méthode de dossier d’admission',
+@@ -8223,7 +8232,10 @@
+   'filing.stSubmitted':'Soumis',
+   'filing.stApproved':'Approuvé par l’école',
+   'filing.stRejected':'Retourné',
+-  'filing.stCancelled':'Annulé'
++  'filing.stCancelled':'Annulé',
++  'filing.inlineLabel':'Dossier d’admission (cette école)',
++  'filing.inlineEdit':'Modifier',
++  'filing.inlineUnset':'Non défini'
+ });
+ 
+ let currentLang = 'zh';
+@@ -8266,7 +8278,7 @@
+ 
+ // ══════════════════ JOB-22-03 · 「有新版请刷新」横幅(四语·只提示·绝不自动刷新, 五端同段代码) ══════════════════
+ // 取不到 index.html / 解析不出一律静默; 关掉后本会话不再弹。
+-var MH_PORTAL_VER = 246;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
++var MH_PORTAL_VER = 247;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
+ var MH_VER_BANNER_DISMISSED = false;
+ function _mhCurrentPortalVer(){
+   try{ var m = String(location.pathname || '').match(/maxhouse[_-][a-z_-]*portal[_-]v(\d+)/i); if(m) return parseInt(m[1], 10); }catch(_e){}
+@@ -23633,6 +23645,32 @@
+         </div>
+       </div>
+     </div>`;
++}
++// v247 (JOB-F3-01): 发 Offer 面板顶部一行——本校录取办理方式。只读 state.account(登录即由 _v242FetchFiling 填 · _v242SaveFiling 存完同步, 故不刷新再开面板即显新值)。
++//   系统/时机显示名复用设置页 filing.* 词条; 「修改/去设置」走现有 _v242GoSetFiling(); 零新 CSS 规则(行内小字样式复用 + auth-link 类复用)。
++function _v247FilingLine(){
++  const a = (typeof state !== 'undefined' && state.account) || {};
++  const label = t('filing.inlineLabel') || '本校录取办理方式';
++  const go = function(txt){ return '<a class="auth-link" style="font-size:12.5px" onclick="_v242GoSetFiling()">' + escapeHtml(txt) + '</a>'; };
++  const sys = a.filingSystem || '';
++  let body;
++  if(!sys){
++    body = escapeHtml(t('filing.inlineUnset') || '未设置') + ' · ' + go(t('filing.gateGo') || '去设置');
++  } else {
++    const sysName = sys === 'gz17' ? '17gz'
++      : sys === 'at0086' ? 'at0086'
++      : sys === 'none' ? (t('filing.sysNone') || '不用建档')
++      : sys === 'own' ? (t('filing.sysOwn') || '学校自有系统')
++      : sys === 'form' ? (t('filing.sysForm') || '表格或邮件')
++      : sys;
++    let timing = '';
++    if(sys !== 'none'){
++      const tm = a.filingTiming || 'before_letter';
++      timing = ' · ' + escapeHtml(tm === 'after_payment' ? (t('filing.timingAfter') || '付款后') : (t('filing.timingBefore') || '出通知书前'));
++    }
++    body = escapeHtml(sysName) + timing + ' · ' + go(t('filing.inlineEdit') || '修改');
++  }
++  return '<div style="font-size:12.5px;color:var(--ink-mid);margin:0 0 10px">' + escapeHtml(label) + '：' + body + '</div>';
+ }
+ function _renderCloudOfferInline(studentId, taskCode){
+   window._cloudSupSamples = {}; window._cloudSupIdxSeq = 0;  // 卡P-1: composer 重建即清空每行范例暂存
+@@ -23695,7 +23733,7 @@
+       '<span>' + escapeHtml(m) + '</span>' + chip + '</label>';
+   }).join('');
+   return `
+-    <div class="detail-section">${_v182PassBanner}
++    <div class="detail-section">${_v182PassBanner}${_v247FilingLine()}
+       <div class="detail-section-title">🎯 ${t('offer.sectionTitle')||'决定录取专业'}</div>
+       <div style="font-size:12.5px;color:var(--ink-mid);margin:6px 0 10px">${t('offer.multiCandidateHint')||'从候选池中选 1 个专业。学生将以此为录取专业。'} <span style="background:#FEE2E2;color:#B91C1C;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700">${t('offer.required')||'必选'}</span></div>
+       ${majorRows || _cloudOfferFallbackRow(task)}
