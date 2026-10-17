@@ -1,0 +1,154 @@
+# JOB-F4 生产库契约探针 公开段（①②③③b④⑤⑥⑨⑪）2026-10-17
+# 安全类 ⑦行级安全/⑧桶策略/⑩函数search_path 不在本公开文件（见主仓库私有件）。④全为 OK_PRIVATE，公开安全。
+# 探针 RC=0，begin/commit 只读。
+
+ part | portals |   fn    |      params       | result | db_signatures 
+------+---------+---------+-------------------+--------+---------------
+ ①RPC | ALL     | SUMMARY | 185 calls checked | 185 OK | 
+(1 row)
+
+ part | portals |       tbl       |              col               |     result     
+------+---------+-----------------+--------------------------------+----------------
+ ②COL | ALL     | SUMMARY         | 466 table.column pairs checked | 
+ ②COL | A       | task_candidates | app_no                         | MISSING_COLUMN
+ ②COL | A       | task_candidates | created_at                     | MISSING_COLUMN
+(3 rows)
+
+  part  | portals |   tbl   |            priv             | result 
+--------+---------+---------+-----------------------------+--------
+ ③GRANT | ALL     | SUMMARY | 60 table privileges checked | 
+(1 row)
+
+    part    | portals |   tbl    |             col              |             result              
+------------+---------+----------+------------------------------+---------------------------------
+ ③bCOLGRANT | P       | students | app_no                       | NO_UPDATE_ON_COLUMN
+ ③bCOLGRANT | ALL     | SUMMARY  | 524 column privileges listed | 522 checked on existing columns
+(2 rows)
+
+  part   |           id            |   result   
+---------+-------------------------+------------
+ ④BUCKET | comm-attachments        | OK_PRIVATE
+ ④BUCKET | offer-letters           | OK_PRIVATE
+ ④BUCKET | offer-samples           | OK_PRIVATE
+ ④BUCKET | partner-onboarding-docs | OK_PRIVATE
+ ④BUCKET | payment-evidence        | OK_PRIVATE
+ ④BUCKET | school-onboarding-docs  | OK_PRIVATE
+ ④BUCKET | student-documents       | OK_PRIVATE
+ ④BUCKET | wm-cache                | OK_PRIVATE
+(8 rows)
+
+  part   |                  field                  |                                                                                                                                                                                                                                                                                                                                                       db_values                                                                                                                                                                                                                                                                                                                                                        
+---------+-----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ⑤VALUES | admin_events.event_type                 | contact_unlock | degree_level_corrected | exposure_boost_pending | exposure_boost_started | exposure_order_replaced | exposure_set | filing_status_set | interview_declined | interview_result | location_change_cancelled | location_change_requested | partner_application_decided | partner_profile_updated | partner_quota_set | pool_remove | referral_resubmitted | referral_signup | referral_withdrawn | round_closed_by_student | round_closed_enrolled | school_application_decided | school_filing_set | school_quota_decided | school_tier_set | school_updated | share_created | share_opened | share_revoked | student_location_changed | task_approved | visa_valid_until_locked | visa_valid_until_set
+ ⑤VALUES | admission_tasks.status                  | active | locked
+ ⑤VALUES | ai_precheck_draft.verdict               | error | fail | pass | unsure
+ ⑤VALUES | ai_precheck_shadow.verdict              | error | fail | pass | unsure
+ ⑤VALUES | app_roles.role                          | admin | reviewer | school
+ ⑤VALUES | application_drafts.portal               | partner | school | student
+ ⑤VALUES | application_rounds.degree_level         | ∅ | associate | bachelor | chinese_lang | doctor | master
+ ⑤VALUES | concierge_requests.kind                 | admissions_upgrade
+ ⑤VALUES | concierge_requests.status               | done
+ ⑤VALUES | delegation_release_requests.status      | rejected
+ ⑤VALUES | documents.doc_type                      | ∅ | application | attendance | bank | conduct | criminal | cv | education | embassy | english | health | HSK 4 级证书 | passport | photo | recommendation | signature | studyPlan | studyProof | transcript | translation | video | visa | work | 护照首页
+ ⑤VALUES | documents.region                        | ∅ | africa-west | sea
+ ⑤VALUES | documents.slim_status                   | ∅ | kept_error | kept_not70 | slimmed
+ ⑤VALUES | filing_tasks.status                     | approved | exported | submitted | waiting_student
+ ⑤VALUES | intake_terms.season                     | Fall | Spring
+ ⑤VALUES | media_shares.scope                      | agent | parent | referral
+ ⑤VALUES | named_invites.status                    | claimed | expired | opened | revoked | sent
+ ⑤VALUES | notifications.kind                      | announcement | boost_expired | boost_expiring | boost_started | doc_admin_rejected | doc_assigned | doc_returned | doc_review_rejected | docs_all_passed | interview_confirmed | interview_declined | interview_result | interview_scheduled | letter_paid | letter_uploaded | offer_issued | offer_responded | partner_application_decided | partner_application_submitted | partner_profile_requested | payment_confirmed | payment_evidence_submitted | profile_change_decided | quota_requested | school_application_decided | school_application_submitted | task_reviewed
+ ⑤VALUES | notifications.priority                  | high | normal | urgent
+ ⑤VALUES | offer_decisions.match_tier              | ∅ | high | mid
+ ⑤VALUES | offer_decisions.outcome                 | ∅ | interview-declined | interview-rejected
+ ⑤VALUES | offer_decisions.student_reject_category | ∅ | schedule_conflict
+ ⑤VALUES | offer_decisions.student_response        | ∅ | accepted | pending | rejected
+ ⑤VALUES | partner_documents.kind                  | other | passport | proof
+ ⑤VALUES | partner_profile_requests.status         | approved | rejected
+ ⑤VALUES | partners.kind                           | agency | student_agent
+ ⑤VALUES | partners.status                         | active | pending
+ ⑤VALUES | payment_orders.kind                     | admissions_upgrade | concierge | exposure_boost | offer_letter
+ ⑤VALUES | payment_orders.lane                     | agent | self
+ ⑤VALUES | payment_orders.status                   | awaiting_review | created | expired | paid | rejected
+ ⑤VALUES | platform_payments.kind                  | admissions_upgrade | exposure_boost
+ ⑤VALUES | quota_requests.status                   | approved | pending | rejected
+ ⑤VALUES | review_verdicts.admin_verdict           | ∅ | agree | approved | reject
+ ⑤VALUES | review_verdicts.doc_type                | ∅ | application | bank | conduct | criminal | education | english | health | HSK 4 级证书 | passport | photo | recommendation | signature | studyPlan | studyProof | transcript | translation | video | visa | work | 护照首页
+ ⑤VALUES | review_verdicts.status                  | approved | rejected
+ ⑤VALUES | school_access_log.file_kind             | avatar | image | pdf | video
+ ⑤VALUES | school_access_log.outcome               | served | served_original | served_video_url
+ ⑤VALUES | school_action_log.action                | download | view_student
+ ⑤VALUES | school_doc_reviews.verdict              | approve | reject
+ ⑤VALUES | school_documents.kind                   | other | proof | supplement
+ ⑤VALUES | school_quota_requests.status            | approved | pending
+ ⑤VALUES | schools.filing_system                   | ∅ | gz17 | none
+ ⑤VALUES | schools.filing_timing                   | before_letter
+ ⑤VALUES | schools.status                          | active | onboarding
+ ⑤VALUES | schools.tier                            | ∅ | advanced | standard | trial
+ ⑤VALUES | students.exposure_level                 | normal | paused
+ ⑤VALUES | students.gender                         | ∅ | female | male
+ ⑤VALUES | tier_quota.tier                         | advanced | enterprise | standard | trial
+(48 rows)
+
+  part  |             tbl             |                 conname                  |                                                                                                        def                                                                                                        
+--------+-----------------------------+------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ⑥CHECK | admission_tasks             | admission_tasks_status_chk               | CHECK ((status = ANY (ARRAY['active'::text, 'locked'::text, 'rejected'::text])))
+ ⑥CHECK | ai_precheck_shadow          | ai_precheck_shadow_verdict_check         | CHECK ((verdict = ANY (ARRAY['pass'::text, 'fail'::text, 'unsure'::text, 'error'::text])))
+ ⑥CHECK | app_roles                   | app_roles_role_check                     | CHECK ((role = ANY (ARRAY['student'::text, 'school'::text, 'partner'::text, 'reviewer'::text, 'admin'::text])))
+ ⑥CHECK | application_drafts          | application_drafts_portal_check          | CHECK ((portal = ANY (ARRAY['student'::text, 'school'::text, 'partner'::text])))
+ ⑥CHECK | application_rounds          | application_rounds_closed_reason_check   | CHECK (((closed_reason IS NULL) OR (closed_reason = ANY (ARRAY['enrolled'::text, 'withdrawn'::text, 'student_closed'::text, 'admin_blocked'::text]))))
+ ⑥CHECK | concierge_requests          | concierge_requests_kind_check            | CHECK ((kind = ANY (ARRAY['concierge'::text, 'admissions_upgrade'::text])))
+ ⑥CHECK | concierge_requests          | concierge_requests_status_check          | CHECK ((status = ANY (ARRAY['open'::text, 'in_progress'::text, 'done'::text])))
+ ⑥CHECK | delegation_release_requests | delegation_release_requests_status_check | CHECK ((status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text])))
+ ⑥CHECK | documents                   | documents_slim_status_chk                | CHECK (((slim_status IS NULL) OR (slim_status = ANY (ARRAY['slimmed'::text, 'kept_not70'::text, 'kept_pages'::text, 'kept_error'::text]))))
+ ⑥CHECK | filing_tasks                | filing_tasks_status_chk                  | CHECK ((status = ANY (ARRAY['waiting_student'::text, 'pending'::text, 'exported'::text, 'submitted'::text, 'approved'::text, 'rejected'::text, 'cancelled'::text])))
+ ⑥CHECK | media_shares                | media_shares_scope_check                 | CHECK ((scope = ANY (ARRAY['referral'::text, 'parent'::text, 'agent'::text])))
+ ⑥CHECK | media_shares                | media_shares_sharer_role_check           | CHECK ((sharer_role = ANY (ARRAY['student'::text, 'student_agent'::text, 'agency'::text])))
+ ⑥CHECK | named_invites               | named_invites_status_check               | CHECK ((status = ANY (ARRAY['sent'::text, 'opened'::text, 'claimed'::text, 'expired'::text, 'revoked'::text])))
+ ⑥CHECK | notifications               | notifications_audience_type_check        | CHECK ((audience_type = ANY (ARRAY['student'::text, 'school'::text, 'partner'::text, 'admin'::text, 'reviewer'::text])))
+ ⑥CHECK | notifications               | notifications_priority_check             | CHECK ((priority = ANY (ARRAY['urgent'::text, 'high'::text, 'normal'::text])))
+ ⑥CHECK | offer_decisions             | offer_decisions_match_tier_check         | CHECK ((match_tier = ANY (ARRAY['high'::text, 'mid'::text, 'low'::text])))
+ ⑥CHECK | offer_decisions             | offer_decisions_reassign_count_check     | CHECK (((reassign_count >= 0) AND (reassign_count <= 1)))
+ ⑥CHECK | offer_decisions             | offer_decisions_student_response_check   | CHECK ((student_response = ANY (ARRAY['accepted'::text, 'rejected'::text, 'pending'::text])))
+ ⑥CHECK | partner_documents           | partner_documents_kind_check             | CHECK ((kind = ANY (ARRAY['passport'::text, 'proof'::text, 'other'::text])))
+ ⑥CHECK | partner_profile_requests    | ppr_status_ck                            | CHECK ((status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text])))
+ ⑥CHECK | partners                    | partners_kind_chk                        | CHECK ((kind = ANY (ARRAY['agency'::text, 'student_agent'::text])))
+ ⑥CHECK | payment_orders              | payment_orders_amount_check              | CHECK ((amount >= (0)::numeric))
+ ⑥CHECK | payment_orders              | payment_orders_boost_days_check          | CHECK (((kind <> 'exposure_boost'::text) OR ((boost_days IS NOT NULL) AND (boost_days > 0))))
+ ⑥CHECK | payment_orders              | payment_orders_kind_check                | CHECK ((kind = ANY (ARRAY['offer_letter'::text, 'admissions_upgrade'::text, 'concierge'::text, 'exposure_boost'::text])))
+ ⑥CHECK | payment_orders              | payment_orders_lane_check                | CHECK ((lane = ANY (ARRAY['self'::text, 'agent'::text])))
+ ⑥CHECK | payment_orders              | payment_orders_method_check              | CHECK ((method = ANY (ARRAY['paypal_manual'::text, 'offline'::text, 'stripe'::text, 'flutterwave'::text])))
+ ⑥CHECK | payment_orders              | payment_orders_status_check              | CHECK ((status = ANY (ARRAY['created'::text, 'awaiting_review'::text, 'paid'::text, 'rejected'::text, 'pending'::text, 'expired'::text])))
+ ⑥CHECK | quota_requests              | quota_requests_status_check              | CHECK ((status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text])))
+ ⑥CHECK | review_verdicts             | review_verdicts_status_check             | CHECK ((status = ANY (ARRAY['approved'::text, 'rejected'::text])))
+ ⑥CHECK | school_doc_reviews          | school_doc_reviews_verdict_check         | CHECK ((verdict = ANY (ARRAY['approve'::text, 'reject'::text, 'needs_fix'::text])))
+ ⑥CHECK | school_documents            | school_documents_kind_check              | CHECK ((kind = ANY (ARRAY['proof'::text, 'other'::text, 'supplement'::text])))
+ ⑥CHECK | schools                     | schools_filing_system_chk                | CHECK (((filing_system IS NULL) OR (filing_system = ANY (ARRAY['none'::text, 'gz17'::text, 'at0086'::text, 'own'::text, 'form'::text]))))
+ ⑥CHECK | schools                     | schools_filing_timing_chk                | CHECK (((filing_timing IS NULL) OR (filing_timing = ANY (ARRAY['before_letter'::text, 'after_payment'::text]))))
+ ⑥CHECK | schools                     | schools_status_check                     | CHECK ((status = ANY (ARRAY['onboarding'::text, 'active'::text])))
+ ⑥CHECK | schools                     | schools_tier_check                       | CHECK (((tier IS NULL) OR (tier = ANY (ARRAY['trial'::text, 'standard'::text, 'advanced'::text, 'enterprise'::text]))))
+ ⑥CHECK | students                    | students_exposure_level_check            | CHECK ((exposure_level = ANY (ARRAY['blocked'::text, 'paused'::text, 'normal'::text, 'boosted'::text])))
+ ⑥CHECK | students                    | students_exposure_reason_check           | CHECK (((exposure_reason_code IS NULL) OR (exposure_reason_code = ANY (ARRAY['student_request'::text, 'materials_check'::text, 'school_feedback'::text, 'misconduct'::text, 'other'::text]))))
+ ⑥CHECK | students                    | students_gender_check                    | CHECK ((gender = ANY (ARRAY['male'::text, 'female'::text, 'other'::text])))
+ ⑥CHECK | students                    | students_gpa_band_check                  | CHECK (((gpa_band IS NULL) OR (gpa_band = ANY (ARRAY['3.7-4.0'::text, '3.3-3.7'::text, '3.0-3.3'::text, '2.7-3.0'::text, '2.0-2.7'::text, 'below-2.0'::text, 'other-system'::text]))))
+ ⑥CHECK | students                    | students_intake_mode_check               | CHECK (((intake_mode IS NULL) OR (intake_mode = ANY (ARRAY['self'::text, 'proxy'::text, 'delegate'::text]))))
+ ⑥CHECK | students                    | students_stage_check                     | CHECK ((stage = ANY (ARRAY['pending-review'::text, 'docs-review'::text, 'interview-scheduled'::text, 'admitted'::text, 'enrolled'::text, 'interview-rejected'::text, 'offer-declined'::text, 'no-match'::text])))
+ ⑥CHECK | students                    | students_submit_holder_check             | CHECK ((submit_holder = ANY (ARRAY['student'::text, 'partner'::text])))
+ ⑥CHECK | students                    | students_target_program_check            | CHECK ((target_program = ANY (ARRAY['bachelor'::text, 'master'::text, 'doctor'::text, 'associate'::text, 'pathway'::text, 'short_term'::text, 'chinese_lang'::text])))
+ ⑥CHECK | students                    | students_target_programs_is_array        | CHECK ((jsonb_typeof(target_programs) = 'array'::text))
+ ⑥CHECK | students                    | students_ui_lang_chk                     | CHECK (((ui_lang IS NULL) OR (ui_lang = ANY (ARRAY['en'::text, 'zh'::text, 'ru'::text, 'fr'::text]))))
+(45 rows)
+
+   part   |           fn            |  param  |           val           |      result       
+----------+-------------------------+---------+-------------------------+-------------------
+ ⑨LITERAL | admin_set_platform_flag | p_key   | delegate_invite_enabled | LITERAL_NOT_FOUND
+ ⑨LITERAL | ALL                     | SUMMARY | 44 literals checked     | 
+ ⑨LITERAL | mh_flag                 | p_key   | delegate_invite_enabled | LITERAL_NOT_FOUND
+(3 rows)
+
+  part   |           src            |                                                                  state                                                                   
+---------+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------
+ ⑪SWITCH | platform_flags           | delegate_invite_enabled=true
+ ⑪SWITCH | platform_flags           | wm_render_v=1
+ ⑪SWITCH | school_invite_config     | universal_enabled=true universal_code_set=true | partner_enabled=true partner_code_set=true | student_enabled=true student_code_set=true
+ ⑪SWITCH | schools_with_invite_code | 4
+(4 rows)

@@ -1,0 +1,67 @@
+==== A 五端线上版本与加载 ====
+student: 落地 /student-portal/maxhouse_student_portal_v413 | [VER] [VER] student portal v413 (JOB-G8-03d: 引用共用补充信息表组件 v1.7 —— 仅表头 CSS 修第10章手机排版(业主裁决A, 病根见 OWNER-DECISION-ch10.md): 有平台/AI 预填时表头琥珀提示原 nowrap 把标题挤成竖排、右信息组溢屏; v1.7 表 | 期望 v413 → OK | 同站 4xx/5xx: 无
+school: 落地 /school-portal/maxhouse-school-portal-v247 | [VER] [VER] school portal v247 (JOB-F3-01: 发 Offer 面板顶部加「本校录取办理方式」行——新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(不刷新即显新值), 插 _renderCloudOfferInli | 期望 v247 → OK | 同站 4xx/5xx: 无
+partner: 落地 /partner-portal/maxhouse-partner-portal-v185 | [VER] [VER] partner portal v185 (JOB-GP1-PF 漏斗修复, 业主裁决 RULING-20261012d 选 A=先修产品再录: _getPartnerStats 云端分支旧读废弃列 students.stage(恒 NULL)致工作台「录取漏斗/人均 offer」对云端推荐生全 0、与卡面矛 | 期望 v185 → OK | 同站 4xx/5xx: 无
+admin: 落地 https://maxhouseapp.cloudflareaccess.com/cdn-cgi/access/login/www.maxhouses.net?kid=1fecee5d999dc8332148e19ba0a796b174575f5208763ada523239344023d13e&meta=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImZjY2E2Y2U2OTNiNWFiMjQ5MjI2MDdlMGQzZjcxNzU5YzMxZjM3YWZhZmY1MGNmMjY3NjU2MTgxMzAzYmFkZTYifQ.eyJ0eXBlIjoibWV0YSIsImF1ZCI6IjFmZWNlZTVkOTk5ZGM4MzMyMTQ4ZTE5YmEwYTc5NmIxNzQ1NzVmNTIwODc2M2FkYTUyMzIzOTM0NDAyM2QxM2UiLCJob3N0bmFtZSI6Ind3dy5tYXhob3VzZXMubmV0IiwicmVkaXJlY3RfdXJsIjoiL2FkbWluLXBvcnRhbC8iLCJzZXJ2aWNlX3Rva2VuX3N0YXR1cyI6ZmFsc2UsImlzX3dhcnAiOmZhbHNlLCJpc19nYXRld2F5IjpmYWxzZSwiZXhwIjoxNzkyMjI2MjkyLCJuYmYiOjE3OTIyMjU5OTIsImlhdCI6MTc5MjIyNTk5MiwiYXV0aF9zdGF0dXMiOiJOT05FIiwibXRsc19hdXRoIjp7ImNlcnRfaXNzdWVyX2RuIjoiIiwiY2VydF9zZXJpYWwiOiIiLCJjZXJ0X2lzc3Vlcl9za2kiOiIiLCJjZXJ0X3ByZXNlbnRlZCI6ZmFsc2UsImNvbW1vbl9uYW1lIjoiIiwiYXV0aF9zdGF0dXMiOiJOT05FIn0sInJlYWxfY291bnRyeSI6IlVTIiwiYXBwX3Nlc3Npb25faGFzaCI6IjFhOTk0Mzk2ZDNmOGZlNmRlMzE0YWJlODcyNzY1Y2EyZjI5NzhjMzdkNGU4NWE2YWIwYTZkYjk3OTRjZDNjMjMifQ.RHwjm7ZITcDNoM_-MLGHYBqNdTu_spjCH-ORMGft5SqG3nEtBZz9IVQF0Gjb5K4MYdX_Ou5Y9enVw_jN8sg236u0V8gewQzfym8hJjDJRz5rdhPDGC5cjUtxqBKWVVr9EJzuTz2pwk-O9eP71E_tU_TasXwbyMbLD4nbiY7RMKGYfWVXGkcuJZ1Sr9Ojr0N0ohbLNrhOeufOSlZF6-KFosPQDyjE_nLnwCE1UtYS6yiCP6o6Fz9q7fCln7deGN89JES9YdJTu5SKgF86-FY0fziSP95qdcSXO4YB6j2VIg-0b-CUmAR3wR8xMmfj-RlBm5ec8UvPwWPwfceSINhykw&redirect_url=%2Fadmin-portal%2F | [VER] (没看到) | 期望 v250 → MISMATCH | 同站 4xx/5xx: 无
+reviewer: 落地 https://maxhouseapp.cloudflareaccess.com/cdn-cgi/access/login/www.maxhouses.net?kid=a846fc16259c32e401fe06b8e8fe623db214088bee53c05b1a4bd74fccf89746&meta=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6ImZjY2E2Y2U2OTNiNWFiMjQ5MjI2MDdlMGQzZjcxNzU5YzMxZjM3YWZhZmY1MGNmMjY3NjU2MTgxMzAzYmFkZTYifQ.eyJ0eXBlIjoibWV0YSIsImF1ZCI6ImE4NDZmYzE2MjU5YzMyZTQwMWZlMDZiOGU4ZmU2MjNkYjIxNDA4OGJlZTUzYzA1YjFhNGJkNzRmY2NmODk3NDYiLCJob3N0bmFtZSI6Ind3dy5tYXhob3VzZXMubmV0IiwicmVkaXJlY3RfdXJsIjoiL3Jldmlld2VyLXBvcnRhbC8iLCJzZXJ2aWNlX3Rva2VuX3N0YXR1cyI6ZmFsc2UsImlzX3dhcnAiOmZhbHNlLCJpc19nYXRld2F5IjpmYWxzZSwiZXhwIjoxNzkyMjI2Mjk5LCJuYmYiOjE3OTIyMjU5OTksImlhdCI6MTc5MjIyNTk5OSwiYXV0aF9zdGF0dXMiOiJOT05FIiwibXRsc19hdXRoIjp7ImNlcnRfaXNzdWVyX2RuIjoiIiwiY2VydF9zZXJpYWwiOiIiLCJjZXJ0X2lzc3Vlcl9za2kiOiIiLCJjZXJ0X3ByZXNlbnRlZCI6ZmFsc2UsImNvbW1vbl9uYW1lIjoiIiwiYXV0aF9zdGF0dXMiOiJOT05FIn0sInJlYWxfY291bnRyeSI6IlVTIiwiYXBwX3Nlc3Npb25faGFzaCI6IjFhOTk0Mzk2ZDNmOGZlNmRlMzE0YWJlODcyNzY1Y2EyZjI5NzhjMzdkNGU4NWE2YWIwYTZkYjk3OTRjZDNjMjMifQ.mE2zhSFdwxWK0SgiUrH6WJF8sp_7fwbgRepS7HTL935B6v6DwbuiHZIJGUIXyM6IEmCn9J0TBjNrpC_KpHVtgThhs_zC4d78ue_BES7G2MS5ZGk7j8rjZCniPwID9dgXlohZP7Cb5gifF2lUqrlZb9cH7uBCkiXtXHL7MR8c8RuW1QxBDCQk3YnXkgQWkVnFo854SEyYriED-nTaAoce-s4b71sL2QHV_xUTiG87e34LaazCPqdGFy4f3Xo7IfILsevmbHL11psYdGZCkMQcxVng1euNWcTcrrEYp5hQc6HRduyJo9cKksF2zaLQH4S0VdJFHipIyRCFq6bBl4fIWg&redirect_url=%2Freviewer-portal%2F | [VER] (没看到) | 期望 v46 → MISMATCH | 同站 4xx/5xx: 无
+
+==== B 静态资源（线上 HTTP / 仓库文件）====
+OK  200  repo=yes assets/fonts/manrope-300.woff2
+OK  200  repo=yes assets/fonts/manrope-400.woff2
+BAD ERR apiRequestContext.get: 805E2CF401000000:error:0A0001BB:SSL r repo=yes assets/fonts/manrope-500.woff2
+OK  200  repo=yes assets/fonts/manrope-600.woff2
+OK  200  repo=yes assets/fonts/manrope-700.woff2
+OK  200  repo=yes assets/fonts/manrope-800.woff2
+OK  200  repo=yes assets/fonts/sora-400.woff2
+OK  200  repo=yes assets/fonts/sora-500.woff2
+OK  200  repo=yes assets/fonts/sora-600.woff2
+OK  200  repo=yes assets/fonts/sora-700.woff2
+OK  200  repo=yes assets/fonts/sora-800.woff2
+OK  200  repo=yes assets/icons/icon-16.png
+OK  200  repo=yes assets/icons/icon-32.png
+OK  200  repo=yes assets/icons/icon-180.png
+OK  200  repo=yes assets/mh-pdf-slim-v1.js
+OK  200  repo=yes assets/mh-filing-form-v1-7.js
+OK  200  repo=yes assets/mh-filing-form-v1-6.js
+OK  200  repo=yes assets/mh-viewer-v2-1-1.js
+OK  200  repo=yes assets/vendor/pdf.min.js
+OK  200  repo=yes assets/vendor/pdf.worker.min.js
+OK  200  repo=yes assets/vendor/tus.min.js
+OK  200  repo=yes assets/vendor/pdf-lib.min.js
+OK  200  repo=yes assets/vendor/eruda.min.js
+OK  200  repo=yes vendor/tesseract/tesseract.min.js
+OK  200  repo=yes vendor/tesseract/worker.min.js
+OK  200  repo=yes favicon.png
+OK  200  repo=yes student-portal/icons/icon-16.png
+OK  200  repo=yes student-portal/icons/icon-32.png
+OK  200  repo=yes student-portal/icons/icon-180.png
+OK  200  repo=yes student-portal/manifest.webmanifest
+OK  200  repo=yes student-portal/maxhouse_student_i18n_v412_zh.js
+OK  200  repo=yes student-portal/maxhouse_student_i18n_v412_ru.js
+OK  200  repo=yes student-portal/maxhouse_student_i18n_v412_fr.js
+OK  200  repo=yes partner-portal/maxhouse-partner-i18n-v183-ru.js
+OK  200  repo=yes partner-portal/maxhouse-partner-i18n-v183-fr.js
+OK  200  repo=yes student-portal/vendor/supabase.js
+OK  200  repo=yes school-portal/vendor/supabase.js
+OK  200  repo=yes partner-portal/vendor/supabase.js
+OK  200  repo=yes admin-portal/vendor/supabase.js
+OK  200  repo=yes reviewer-portal/vendor/supabase.js
+OK  200  repo=yes student-portal/maxhouse_student_portal_v413.html
+OK  200  repo=yes school-portal/maxhouse-school-portal-v247.html
+OK  200  repo=yes partner-portal/maxhouse-partner-portal-v185.html
+OK  200  repo=yes admin-portal/maxhouse-admin-portal-v250.html
+OK  200  repo=yes reviewer-portal/maxhouse-reviewer-portal-v46.html
+vendor/tesseract/lang 目录: eng.traineddata.gz
+
+==== C 边缘函数是否已部署（OPTIONS 预检，不带登录，不执行业务）====
+DEPLOYED     200  repo=yes admin-doc 
+DEPLOYED     204  repo=yes admin-reset-student-password 
+DEPLOYED     200  repo=yes ai-translate 
+DEPLOYED     200  repo=yes fetch-logo 
+DEPLOYED     204  repo=yes filing-prefill 
+DEPLOYED     204  repo=yes precheck-ai 
+DEPLOYED     200  repo=yes send-verify-email 
+DEPLOYED     200  repo=yes student-avatars 
+DEPLOYED     200  repo=yes watermark-doc 
+
+F4_LIVE_PROBLEMS=3
