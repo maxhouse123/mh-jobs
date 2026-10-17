@@ -1,0 +1,430 @@
+# JOB-F5-03 四端前端补丁 diff (old → new), 由 jobs/JOB-F5/f5_patch.py 产出
+# admin v250→v251 / school v247→v248 / reviewer v46→v47 / partner v185→v186
+
+--- admin-portal/maxhouse-admin-portal-v250.html	2026-10-10 13:31:33
++++ admin-portal/maxhouse-admin-portal-v251.html	2026-10-17 17:53:50
+@@ -1,4 +1,5 @@
+ <!DOCTYPE html>
++<!-- maxhouse-admin-portal-v251 (2026-10-17, JOB-F5-04): ①学校抽屉「代设录取办理方式」弹窗带出学校现有设置(读不到不放开保存, 防空表单把 17gz 等现值冲成「不建档」); ②驾驶舱「已录取」卡下钻、转化率明细、增长漏斗「已录取」、学生详情阶段徽章与「下一步」改读派生口径(_v251Sets / _f3StageKey / _v46NextAction; 原读废列 students.stage 恒空→0 人/0%/空白); ③招生任务「查看候选池」改读 task_candidates 全列(原读 app_no/created_at 两列, 生产库无此二列→读取失败), 申请号取学生档案、时间取现有时间列。其余一字不动。 -->
+ <!-- maxhouse-admin-portal-v250 (2026-10-10, JOB-G8-02 付款单改名·详见回执): [VER] v249->v250 · 原 maxhouse-admin-portal-v249 (2026-10-04, JOB-40-02 · 第四十轮 27-B): 管理员重置学生登录密码 —— 学生抽屉新增「🔑 登录密码」段(_v249AResetSection)+「重置密码」按钮(btn btn-warn btn-sm, 零新样式)→ 二次确认(_confirmP danger)→ 云函数 admin-reset-student-password(带管理员 JWT, 服务钥匙改密, 核 is_admin)→ 弹临时密码(_noticeP htmlMessage, 等宽可复制 _v249ACopyPw + 已复制 toast)+ 提示学生登录后立即改。失败人话 toast(no_auth_user 该学生还没有登录账号/not_an_admin 无权限/其它重试)。审计 student_password_reset 加进 _v188EventLabel + 学生抽屉管理操作历史 .in() 过滤 + _v145KindMeta(🔑 管理员重置了学生密码, 中英), detail 不含密码。新函数前缀 _v249A。四件套齐(名/头注/[VER]&MH_PORTAL_VER=249/index); 零新样式(复用 dd-sec/dd-row-sub/btn/code+_noticeP); 中英零裸键(直接字面量); 不改导出/zip/取数主体/其它端/组件/其它云函数; admin_events.event_type 无 CHECK(迁移 0039 实证)→ 零迁移。[VER] v248→v249 · 原 v248 头注见下 --><!-- maxhouse-admin-portal-v248 (2026-10-03, JOB-39-03 · 第三十九轮): 导出建档包引用的共用组件 v1.5→v1.6(组件表单端新增「让 AI 从材料里读」第二步预填; 导出口径 missingFor/REQUIRED/缺 N 项/_v239BuildProfile 删 _meta 一字不改, AI 预填与平台预填同走 _meta.prefilled, 导出前已剔除)。本轮仅换组件引用 + 四件套, 零改导出/zip/取数主体/其它逻辑。四件套齐(名/头注/[VER]&MH_PORTAL_VER=248/index); 零新样式; 零裸键; 不改其它端/机器人/云函数(filing-prefill 另包)/迁移。[VER] v247→v248 · 原 v247 头注见下 --><!-- maxhouse-admin-portal-v247 (2026-10-03, JOB-38-03 · 第三十八轮): 导出建档包剔除平台预填元数据 —— 引用共用组件 v1.4→v1.5(组件新增打开表单时平台信息预填; 导出口径 missingFor/REQUIRED/缺N项 一字不改); _v239BuildProfile 开头内联深拷贝 filing 并删 _meta(前缀 _v247A), profile.json 保证不带组件预填记录(_meta.prefilled 只服务表单 UI, 机器人/建档包不读)。契约/zip/取数主体不动。四件套齐(名/头注/[VER]&MH_PORTAL_VER=247/index); 零新样式; 零裸键; 不改其它端/机器人/云函数/迁移。[VER] v246→v247 · 原 v246 头注见下 --><!-- maxhouse-admin-portal-v246 (2026-10-03, JOB-37-01 · 第三十七轮): 层次代码「显示」归一 —— 新增唯一权威表 `_v246ALevelLabel(code,isZh)`(lang/chinese_lang/language→汉语进修·Chinese language; exchange/short_term→短期学习·Short-term study; associate→专科·Associate degree; pathway/prep/preparatory→预科·Pathway/Foundation; bachelor/master/doctor/phd/doctorate/non-degree 照现役逐字不变; 未知代码回落原文不丢信息)。`_v227Level`(任务卡层次行)、`_v231LevelLabel`、`_v233LevelLabel`(学生抽屉学历层次·导出列)三函数统一委托此表, 派单台/任务详情/学校抽屉任务列表/学生抽屉遇 lang/exchange 不再印代码原文。**只改显示**: 存值/target_programs/任何比对·过滤·RPC/学校端 PROGRAMS 一概不动。四件套齐(名/头注/[VER]&MH_PORTAL_VER=246/index); 零新样式; 零裸键(直接字面量, 不走 t()); 不改学生端/学校端/审核端/共用组件/机器人/云函数/迁移。[VER] v245→v246 · 原 v245 头注见下 --><!-- maxhouse-admin-portal-v245 (2026-10-03, JOB-36-01 · 第三十六轮): 学校提额「批准即加名额」—— 配迁移 0223(schools 加 quota_bonus; admin_decide_school_quota 批准即 +requested_quota, 幂等/驳回不加, 签名返回形状不变)。①`loadSchoolsFromCloud` 主查询不动(防白屏), 另起 best-effort 查 `id,quota_bonus` 按 uuid 并入 `s.quotaBonus`(列缺/0223未贴→容错 0); ②学校抽屉 `_v191SchoolTierSection` 当前层级行显「等级名额 N + 加成 M = 总名额 N+M」(加成 0 时只显等级名额); ③学校列表层级列 bonus>0 时加「+N」灰字(cell-meta); ④`_v191SchoolQuotaDecide` 批准后 toast「已批准 · 已加 N 张名额」(N 取 _sqrCache 该行 requested_quota)+批准后顺带 loadSchoolsFromCloud 刷新加成。四件套齐(名/头注/[VER]&MH_PORTAL_VER=245/index); 中英零裸键(复用现有文案+数字, 无新裸键); 零新样式(复用 dd-field/dd-row-sub/cell-meta/queue 既有类); 不改导出/zip/取数主体/其它端/云函数; 迁移 0223 只写文件待手贴。R2(层次同义比对)=图纸现实冲突停工(见 JOB-36-00 回执)。[VER] v244→v245 · 原 v243 头注见下 --><!-- maxhouse-admin-portal-v243 (2026-09-29, JOB-34-02 · 第三十四轮): 教育经历三段必填对齐 + 删过时提示 —— ①导出建档包引用的共用组件由 `../assets/mh-filing-form-v1-2.js` 换 `v1-3.js`(三段教育经历全部必填/段首四语提示)，「学校建档」列表「缺 N 项」经 `MHFilingForm.missingFor` 自动跟到 55 + HSK 报告条件 + 在华条件。②删除 `_v239ExportPack` 里那句**过时提示** `showToast('该生在华：建档第 1 步需人工填，包已生成')`(所在函数与其余导出逻辑一字不动)——机器人 v3.3 已能逐条中文说明缺项，此提示既失真又误导，QUEUE-34 §0.3 授权移除。四件套齐(名/头注/[VER]&MH_PORTAL_VER=243/index)；中英零裸键(未新增文案)；零新样式；不改 zip 引擎/取数 RPC/其它端/云函数/迁移。[VER] v242→v243 · 原 v242 头注见下 --><!-- maxhouse-admin-portal-v242 (2026-09-29, JOB-33-01 · 第三十三轮): 导出 meta.json 学校网址/中文名/中介账号改取「学校建档」列表行 ——①`_v239ExportPack` meta 的 `filing_url`/`school_name_zh` 改读 `_v239FilingCache` 该 offer 行的 `school_filing_url`/`school_name_zh`(该校自己在「录取办理方式」里填的值)，**删除** `filing_system==='gz17'→'https://wtu.17gz.org'` 兜底；meta 增 `filing_account`(取行 `school_filing_account`)。②网址为空(`school_filing_url` 空)→ `_v242AShowNoUrl` 弹琥珀提示(还没填报名系统网址)+「去补」(openSchoolDetail 开该校抽屉)+「仍然下载」(带 `_v242AUrlAck` 继续导出，`filing_url` 写空串)，**仍允许下载**。③「学校建档」列表 gz17/at0086 且网址空的行，学校列加小灰字「未填网址」(中英)。新函数前缀 `_v242A`。四件套齐(名/头注/[VER]&MH_PORTAL_VER=242/index)；中英零裸键；零新样式(复用 `_v240PlatformBanner` 琥珀卡样式)；不改 zip 引擎/取数 RPC/其它端/共用组件/云函数/迁移。[VER] v241→v242 · 原 v241 头注见下 --><!-- maxhouse-admin-portal-v241 (2026-09-28, JOB-32-04 · 第三十二轮): 导出建档包加**在华信息**与 **meta.json**，「缺 N 项」改统一出口 —— ①`_v239BuildProfile`：`in_china=true` 时按 `filing.data.china` 增 `china` 块（附录 A-2：current_school/visa_type/visa_no/visa_expiry/issue_place/issue_place_other/residence_purpose/residence_other，机器人 v3 checkPack 按 `in_china_now` 查；`false` 不带）。②`_v239ExportPack`：zip 另加 `meta.json`（附录 A-3：version=filing-meta-1/app_no/offer_id/school_code/school_name_zh/en/filing_system/filing_url/exported_at，给桌面启动器读、机器人不读）。⚠ `admin_get_filing_pack` RPC 目前不返回 `filing_url`/`name_zh`（数据血缘缺口，本轮零 SQL 不改 RPC）→ 暂兜底 `filing_system==='gz17'→'https://wtu.17gz.org'`、name_zh 回落 name_en，列 33 轮建议。③「缺 N 项」由固定 REQUIRED[43] 改 `MHFilingForm.missingFor(filing,{in_china_now,hsk_level})`（固定 43 + HSK 报告条件 + 在华条件），在华学生缺在华信息即计入并**禁止导出**；缺项标签用 `MHFilingForm.fieldLabelKey`（含 `china.*→fld.china_*`）。引用组件 v1.1→v1.2。四件套齐（名/头注/[VER]&MH_PORTAL_VER=241/index）；中英零裸键；零新样式；不改 zip 引擎/取数 RPC/其它端/云函数/迁移。[VER] v240→v241 -->
+ <!-- maxhouse-admin-portal-v240 (2026-09-28, JOB-31-04 · 第三十一轮返修): 导出建档包国籍/宗教对照 17gz 选项原文 —— ①_v240COUNTRY_ALIAS(平台国名→17gz, 14 条: 31-00 差集实算, 含图纸漏列的 Côte d'Ivoire→Cote d'Ivoire; Burkina Faso→Burkinabe 只作用国籍字段; Nauru 故意不映射)+_v240RELIGION(none/christianity/catholic/islam/... 小写码→17gz 原文, ''→None), 接进 _v239BuildProfile 的 student.nationality/religion; 出生国/教育/永久地址国家来自表单(已是 17gz 原文)不经此表。②对照不上的国籍(映射后仍不在 MHFilingForm.OPTIONS.nationality, 含 Nauru)→ 导出前 _v240ShowUnmapped 弹窗列出 + 运营手改(_v240ApplyUnmapped 存 _v240Overrides)后 _v239ExportPack(skip) 继续, 不静默导出。③「学校建档」页顶 _v240PlatformBanner 琥珀条(平台联系信息仍占位, 请运营核 _v239PLATFORM) + 平台常量逐项列出「让运营看一眼」。④「缺 N 项」复用共用组件 v1.1 REQUIRED[43](引用改 ../assets/mh-filing-form-v1-1.js)。四件套齐(名/头注/[VER]&MH_PORTAL_VER=240/index); 中英零裸键; 零新样式; 零其它端零云函数零迁移执行; 不改导出/zip/取数主体。[VER] v239→v240 -->
+ <!-- maxhouse-admin-portal-v239 (2026-09-28, JOB-30-04 · 第三十轮): 「学校建档」页 + 导出建档包(浏览器内) + 学校抽屉代设录取办理方式 —— ①侧栏「录取与服务」在「录取通知分发」后加 data-view="filing"「🗂️ 学校建档」(nav.filing/topbar.filing/Crumb 中英已入词典, #view-filing 容器 + VIEW_RENDERERS 注册 + switchView 装载 _v239LoadFiling)。②_v239RenderFiling: 读 admin_list_filing_tasks(0222) 列全量, 七枚筛选芯片(全部/待学生补充/待建档/已导出/已提交/学校已通过/退回), 表列 学生(姓名+申请号)|学校|系统|时机|补充信息(已齐/缺N项:复用共用组件 window.MHFilingForm.REQUIRED 对 filing.data 逐一数, 点「缺N项」列出四语标签 t())|建档状态(+申请号)|操作; 行内「导出建档包」(补齐才亮, 否则灰显缺N项)+「记申请号/改状态」(showModal 七态下拉+申请号+备注→admin_set_filing_status)。③_v239ExportPack 全浏览器内: admin_get_filing_pack 取数, createSignedUrls 批量签(照 v237)后 fetch, 照片/护照/签名→jpg(pdf 用 _v216EnsurePdfJs 取第一页画 jpg, 图片经 canvas 长边≤2000 质量降到≤1.5MB), 学历/成绩单→pdf 原样(>1.5MB 转第一页 jpg)或图片转 jpg, 另生成 files/photo_4x3.jpg(4:3 居中裁切 100–500KB), 学习计划无上传但有 statement→pdf-lib 生成 pdf(非拉丁文本 canvas 兜底 jpg); 缺必传文件弹窗列出不导出; _v239ZipStore 自写 store-only zip(本地文件头+中央目录+CRC32, 不引第三方) → 下载 filing-<app_no>-<display_code>.zip, 成功后 admin_set_filing_status(...,'exported')。④学校抽屉加「录取办理方式」小区块(_v239SchoolFilingBlock/_v239FillSchoolFiling 读 schools filing 列, 列不存在整段隐藏)+「代设」按钮(showModal 五项→admin_set_school_filing 六参)。⑤容错: RPC 42883/PGRST202/表列 42P01/42703 → 页面一行「待贴迁移 0222」/学校抽屉隐藏, console warn 一次。⑥运营常量 _v239PLATFORM(推荐人/在华担保人/通知书接收人/联系邮箱电话/地址, 一处集中「运营改这里」)。引用共用资产 ../assets/mh-filing-form-v1.js(仅取 REQUIRED+t, 不弹表单)。四件套齐; 中英零裸键; 零新 CSS 类(复用 .wf-hero/.filter-chip/.table/.card/.badge/.field/.btn/showModal/showToast/_ddSec); 零其它端零云函数零迁移执行; 不改派单台/材料审核台/录取全景/admin_update_school。[VER] v238→v239 -->
+@@ -3535,7 +3536,7 @@
+ // ══════════════════ JOB-22-04 · 「有新版请刷新」横幅(四语·只提示·绝不自动刷新, 五端同段代码) ══════════════════
+ // 管理端在 Cloudflare Access 后面: 登录态下 fetch('./index.html') 带 CF Access cookie 正常返回真跳转页(含版本串);
+ // 若返回 CF Access 页/任何不含 maxhouse..portal_v<digits> 的内容 → 正则不命中 → 静默(天然安全)。取不到/解析不出一律静默。
+-var MH_PORTAL_VER = 250;   // 当前文件版本(回退用; 主源为 location.pathname 解析) —— JOB-40-02
++var MH_PORTAL_VER = 251;   // 当前文件版本(回退用; 主源为 location.pathname 解析) —— JOB-40-02
+ var MH_VER_BANNER_DISMISSED = false;
+ function _mhCurrentPortalVer(){
+   try{ var m = String(location.pathname || '').match(/maxhouse[_-][a-z_-]*portal[_-]v(\d+)/i); if(m) return parseInt(m[1], 10); }catch(_e){}
+@@ -4577,7 +4578,7 @@
+     _ddField(isZh?'在境内/境外':'In China?', _v174InChina(st.inChina, isZh)) +
+     _ddField(isZh?'个人陈述':'Statement', esc(st.statement)) +
+     _ddField(isZh?'申请日期':'Applied', st.appliedAt) +
+-    _ddField(isZh?'下一步':'Next step', _v21NextStep(st.stage, isZh));
++    _ddField(isZh?'下一步':'Next step', escapeHtml(((typeof _v46NextAction === 'function') ? _v46NextAction(st).label : '') || '\u2014'));   // v251 (JOB-F5-04): 原读废列 stage
+   return G('\ud83e\udeaa ' + (isZh?'身份':'Identity'), identity)
+        + G('\ud83d\udcde ' + (isZh?'联系':'Contact'), contact)
+        + G('\ud83d\udcda ' + (isZh?'学业':'Academic'), academic)
+@@ -5132,6 +5133,23 @@
+   'f3-submitted':  { c:'amber', zh:'已提交申请',   en:'Submitted' },
+   'f3-registered': { c:'gray',  zh:'自助注册',     en:'Registered' }
+ };
++// v251 (JOB-F5-04): 驾驶舱「已录取/转化率」、学生列表筛选、增长漏斗、转化率明细同一口径 —— 已录取 = 有 offer 被接受(按学生去重), 已入学 = 有报到时间
++var _v251SetsMemo = { src: undefined, acc: null, enr: null };
++function _v251Sets(){
++  const src = (typeof _offerDecCache !== 'undefined') ? _offerDecCache : null;
++  if(_v251SetsMemo.acc && _v251SetsMemo.src === src) return _v251SetsMemo;
++  const acc = new Set(), enr = new Set();
++  (typeof _v8FlattenDecisions === 'function' ? _v8FlattenDecisions() : []).forEach(function(d){
++    if(!d || d.studentId == null) return;
++    if(d.studentResponse === 'accepted') acc.add(String(d.studentId));
++    if(d.enrolledAt) enr.add(String(d.studentId));
++  });
++  _v251SetsMemo = { src: src, acc: acc, enr: enr };
++  return _v251SetsMemo;
++}
++function _v251AccSet(){ return _v251Sets().acc; }
++function _v251EnrSet(){ return _v251Sets().enr; }
++function _v251StageBadgeByKey(k, isZh){ const cfg = _F3_STAGE_LABELS[k]; return cfg ? ('<span class="badge ' + cfg.c + '">' + (isZh ? cfg.zh : cfg.en) + '</span>') : getStageBadge(k); }
+ function _f3StageKey(st){
+   if (!st) return '';
+   if (st.stage) return st.stage;   // 老数据(6/34)原键,显示与筛选都不变
+@@ -5446,7 +5464,7 @@
+       '<div><div class="dd-hero-name">' + escapeHtml(st.name) + _v43IdBadge(st.id) + _v203HeroTestMark(st) + (st.intakeMode === 'delegate' ? '<span class="badge amber" style="margin-left:6px">' + (isZh ? '委托代录' : 'Delegate') + '</span>' : '') + (st.emailVerified ? '<span class="badge green" style="margin-left:6px">' + (isZh ? '邮箱已验证' : 'Email verified') + '</span>' : '<span class="badge gray" style="margin-left:6px">' + (isZh ? '邮箱未验证' : 'Email unverified') + '</span>') + (_v195IsStudentAgent(st.uuid) ? '<span class="badge purple" style="margin-left:6px;cursor:pointer" onclick="openPartnerDetail(\'' + escapeAttr(st.uuid||'') + '\')">' + (isZh ? '已申请学生中介' : 'Student-agent') + '</span>' : '') + '</div>' +
+         '<div class="dd-hero-sub">' +
+           '<span>' + countryFlag(st.country) + ' ' + escapeHtml(countryName) + '</span>' +
+-          getStageBadge(st.stage) +
++          _f3StageCell(st, isZh) +
+           '<span>🎯 ' + escapeHtml(_m6bTargetSchools(apps)) + '</span>' +
+         '</div>' +
+       '</div>' +
+@@ -7121,8 +7139,8 @@
+   if (f.indexOf('st:') === 0) return _f3StageKey(st) === f.slice(3);
+   if (f === 'pending') return st.stage === 'pending-review' || st.stage === 'docs-review';
+   if (f === 'interview') return st.stage === 'interview-scheduled';
+-  if (f === 'admitted') return st.stage === 'admitted';
+-  if (f === 'enrolled') return st.stage === 'enrolled';
++  if (f === 'admitted') return _v251AccSet().has(String(st.uuid));   // v251 (JOB-F5-04): 与驾驶舱「已录取」卡同口径(原读废列 stage)
++  if (f === 'enrolled') return _v251EnrSet().has(String(st.uuid));
+   if (f === 'needs-help') return _v27NeedsHelp(st); // v27: rejected/failed/stalled cohort
+   if (f.indexOf('c:') === 0) return st.country === f.slice(2);
+   return true;
+@@ -7383,16 +7401,20 @@
+       '<button class="btn btn-primary" onclick="closeModal();switchView(\'payments\')">' + (isZh ? '查看付款流水' : 'Open payments') + '</button>'
+     );
+   } else if (kind === 'conversion') {
+-    const total = STUDENTS.length;
+-    const adm = STUDENTS.filter(s => s.stage === 'admitted').length;
+-    const enr = STUDENTS.filter(s => s.stage === 'enrolled').length;
+-    const stageDefs = ['pending-review', 'docs-review', 'interview-scheduled', 'admitted', 'enrolled', 'interview-rejected', 'offer-declined', 'no-match'];
+-    const brk = stageDefs.map(st => { const n = STUDENTS.filter(s => s.stage === st).length; return n ? '<div class="dd-row"><div class="dd-row-main">' + getStageBadge(st) + '</div><strong style="font-family:\'Sora\'">' + n + '</strong></div>' : ''; }).join('');
++    // v251 (JOB-F5-04): 与驾驶舱卡片同口径 —— 分母 = 已提交申请学生; 已录取 = 有 offer 被接受(去重); 已入学 = 有报到时间; 阶段分布走派生 _f3StageKey(原读废列 stage 恒 0)
++    const _D = (typeof _dashData !== 'undefined') ? _dashData : null;
++    const total = (_D && Array.isArray(_D.stu)) ? _D.stu.filter(s => s.submitted_at).length : STUDENTS.filter(s => s.submittedAt).length;
++    const adm = _v251AccSet().size;
++    const enr = _v251EnrSet().size;
++    const cnt = {}; STUDENTS.forEach(s => { const k = _f3StageKey(s); if (k) cnt[k] = (cnt[k] || 0) + 1; });
++    const order = ['f3-registered', 'f3-submitted', 'f3-awaiting', 'f3-accepted', 'f3-letter', 'f3-paid', 'f3-enrolled', 'f3-declined'];
++    const keys = order.filter(k => cnt[k]).concat(Object.keys(cnt).filter(k => order.indexOf(k) === -1));
++    const brk = keys.map(k => '<div class="dd-row"><div class="dd-row-main">' + _v251StageBadgeByKey(k, isZh) + '</div><strong style="font-family:\'Sora\'">' + cnt[k] + '</strong></div>').join('');
+     showModal(
+       isZh ? '📊 转化率明细' : '📊 Conversion',
+-      '<div class="dd-funnel" style="margin-bottom:14px"><div class="dd-funnel-step"><strong>' + total + '</strong>' + (isZh ? '学生' : 'Students') + '</div><span class="dd-funnel-arrow">→</span><div class="dd-funnel-step"><strong>' + adm + '</strong>' + (isZh ? '已录取' : 'Admitted') + '</div><span class="dd-funnel-arrow">→</span><div class="dd-funnel-step"><strong>' + enr + '</strong>' + (isZh ? '已入学' : 'Enrolled') + '</div></div>' +
+-      '<div class="dd-row-sub" style="margin-bottom:10px">' + (isZh ? '转化率 = (已录取+已入学) / 学生总数 = ' : 'Rate = (admitted+enrolled)/total = ') + (total ? Math.round((adm + enr) / total * 1000) / 10 : 0) + '%</div>' +
+-      _ddSec('🎓 ' + (isZh ? '各阶段分布' : 'By stage'), brk),
++      '<div class="dd-funnel" style="margin-bottom:14px"><div class="dd-funnel-step"><strong>' + total + '</strong>' + (isZh ? '已提交申请' : 'Submitted') + '</div><span class="dd-funnel-arrow">→</span><div class="dd-funnel-step"><strong>' + adm + '</strong>' + (isZh ? '已录取' : 'Admitted') + '</div><span class="dd-funnel-arrow">→</span><div class="dd-funnel-step"><strong>' + enr + '</strong>' + (isZh ? '已入学' : 'Enrolled') + '</div></div>' +
++      '<div class="dd-row-sub" style="margin-bottom:10px">' + (isZh ? '转化率 = 已录取 ÷ 已提交申请学生 = ' : 'Rate = admitted ÷ submitted = ') + (total ? Math.round(adm / total * 1000) / 10 : 0) + '%</div>' +
++      _ddSec('🎓 ' + (isZh ? '各阶段分布' : 'By stage'), brk || _ddEmpty(isZh ? '无' : 'None')),
+       '<button class="btn btn-ghost" onclick="closeModal()">' + (isZh ? '关闭' : 'Close') + '</button>' +
+       '<button class="btn btn-primary" onclick="closeModal();switchView(\'students\')">' + (isZh ? '查看学生' : 'Open students') + '</button>'
+     );
+@@ -8296,7 +8318,7 @@
+               const _rs  = _D.stu || [];
+               const _all = _rs.length;
+               const _sub = _rs.filter(function(s){ return s.submitted_at; }).length;
+-              const _adm = _rs.filter(function(s){ return s.submitted_at && s.stage === 'admitted'; }).length;
++              const _adm = _v251AccSet().size;   // v251 (JOB-F5-04): 与「已录取」卡同口径(原读废列 stage 恒 0)
+               const _pct = function(n){ return _all > 0 ? Math.round(n / _all * 100) : 0; };
+               const _row = function(cls, label, n){
+                 return '<div class="funnel-stage ' + cls + '" style="width:' + Math.max(22, _pct(n)) + '%">' +
+@@ -12316,6 +12338,7 @@
+   try{
+     const { error } = await window.sb.rpc('admin_set_filing_status', { p_offer_id:offerId, p_status:st, p_school_app_no:app||null, p_note:note||null });
+     if(error){ showToast((isZh?'保存失败：':'Save failed: ')+error.message,'error'); return; }
++    try{ delete (window._v251FilingCache || {})[uuid]; }catch(_e){}   // v251 (JOB-F5-04): 存完作废缓存, 下次开弹窗重读
+     closeModal(); showToast(isZh?'已保存':'Saved','success'); _v239LoadFiling();
+   }catch(e){ showToast(isZh?'保存失败':'Save failed','error'); }
+ }
+@@ -12331,6 +12354,7 @@
+     const { data, error } = await window.sb.from('schools').select('filing_system,filing_timing,filing_url,filing_account,filing_note').eq('id', uuid).maybeSingle();
+     if(error){ if(_v239IsUnavail(error)){ _v239HideSchoolFilingSection(); return; } host.textContent='—'; return; }
+     const d = data || {};
++    try{ (window._v251FilingCache = window._v251FilingCache || {})[uuid] = d; }catch(_e){}   // v251 (JOB-F5-04): 供「代设」弹窗带出现值
+     const cur = d.filing_system
+       ? (_v239SystemLabel(d.filing_system, isZh) + ' · ' + (_v239TimingLabel(d.filing_timing, isZh)||'—')
+           + (d.filing_url?(' · '+escapeHtml(d.filing_url)):'') + (d.filing_account?(' · '+(isZh?'账号 ':'acct ')+escapeHtml(d.filing_account)):''))
+@@ -12347,11 +12371,35 @@
+     '<div class="field"><label class="field-label">'+(isZh?'系统网址':'System URL')+'</label><input class="field-input" id="v239sfUrl"></div>'+
+     '<div class="field"><label class="field-label">'+(isZh?'给迈克豪斯的中介账号名（只填名不填密码）':'Agency account name (name only, no password)')+'</label><input class="field-input" id="v239sfAcc"></div>'+
+     '<div class="field"><label class="field-label">'+(isZh?'备注':'Note')+'</label><textarea class="field-textarea" id="v239sfNote" rows="2"></textarea></div>';
+-  const actions = '<button class="btn btn-secondary btn-sm" onclick="closeModal()">'+(isZh?'取消':'Cancel')+'</button> <button class="btn btn-primary btn-sm" onclick="_v239SubmitSchoolFiling(\''+uuid+'\')">'+(isZh?'保存':'Save')+'</button>';
++  const actions = '<button class="btn btn-secondary btn-sm" onclick="closeModal()">'+(isZh?'取消':'Cancel')+'</button> <button class="btn btn-primary btn-sm" id="v251sfSave" disabled onclick="_v239SubmitSchoolFiling(\''+uuid+'\')">'+(isZh?'保存':'Save')+'</button>';
+   showModal(isZh?'代设录取办理方式':'Set filing method', body, actions);
++  _v251PrefillFiling(uuid);   // v251 (JOB-F5-04)
++}
++async function _v251PrefillFiling(uuid){   // v251 (JOB-F5-04): 弹窗带出学校现有办理方式; 读不到就不放开保存, 防空表单冲掉现值
++  const isZh = currentLang==='zh';
++  window._v251FilingReady = null;
++  let d = (window._v251FilingCache || {})[uuid];
++  if(!d){
++    try{
++      const { data, error } = await window.sb.from('schools').select('filing_system,filing_timing,filing_url,filing_account,filing_note').eq('id', uuid).maybeSingle();
++      if(error) throw error;
++      d = data || {};
++      (window._v251FilingCache = window._v251FilingCache || {})[uuid] = d;
++    }catch(e){
++      const b0 = document.getElementById('v251sfSave'); if(b0){ b0.disabled = true; b0.title = isZh?'读取当前设置失败，请关闭后重试':'Could not load the current settings; close and retry'; }
++      try{ showToast(isZh?'读取当前设置失败，请关闭后重试':'Could not load the current settings; close and retry','error'); }catch(_e){}
++      return;
++    }
++  }
++  const setv = function(id, v){ const el = document.getElementById(id); if(el && v != null && v !== '') el.value = v; };
++  setv('v239sfSys', d.filing_system); setv('v239sfTim', d.filing_timing);
++  setv('v239sfUrl', d.filing_url); setv('v239sfAcc', d.filing_account); setv('v239sfNote', d.filing_note);
++  window._v251FilingReady = uuid;
++  const b = document.getElementById('v251sfSave'); if(b) b.disabled = false;
+ }
+ async function _v239SubmitSchoolFiling(uuid){
+   const isZh = currentLang==='zh';
++  if(window._v251FilingReady !== uuid){ try{ showToast(isZh?'当前设置还没读出来，请稍候再保存':'Current settings are still loading','error'); }catch(_e){} return; }   // v251 (JOB-F5-04)
+   const sys = document.getElementById('v239sfSys').value;
+   const tim = document.getElementById('v239sfTim').value;
+   const url = (document.getElementById('v239sfUrl').value||'').trim();
+@@ -15294,15 +15342,16 @@
+     '<div id="v181CandBody" style="min-height:80px;color:#888">' + (isZh?'载入中…':'Loading…') + '</div>',
+     '<button class="btn btn-ghost" onclick="closeModal()">' + (isZh?'关闭':'Close') + '</button>');
+   try {
+-    var r = await window.sb.from('task_candidates').select('task_code,student_id,app_no,created_at').eq('task_code', taskCode).order('created_at', { ascending:true });
++    var r = await window.sb.from('task_candidates').select('*').eq('task_code', taskCode);   // v251 (JOB-F5-04): 原读 app_no/created_at 两列, 生产库无此二列(JOB-10 加列迁移从未上线)→整条读取失败; 改读全列
+     var b = document.getElementById('v181CandBody'); if(!b) return;
+     if(r.error){ b.innerHTML = '<div style="color:#888">' + (isZh?'读取失败(可能迁移未跑)：':'Load failed: ') + escapeHtml(r.error.message) + '</div>'; return; }
+-    var list = Array.isArray(r.data) ? r.data : [];
++    var list = (Array.isArray(r.data) ? r.data : []).map(function(c){ var s0 = (typeof STUDENTS !== 'undefined' ? STUDENTS : []).find(function(x){ return x.uuid && x.uuid === c.student_id; }); return Object.assign({}, c, { _app: c.app_no || (s0 && s0.appNo) || '', _t: c.created_at || c.added_at || c.inserted_at || c.matched_at || '' }); });   // v251: 申请号取学生档案, 时间取现有时间列
++    list.sort(function(a, b){ return String(a._t).localeCompare(String(b._t)); });
+     if(!list.length){ b.innerHTML = _ddEmpty(isZh?'该任务暂无候选学生':'No candidates'); return; }
+     b.innerHTML = '<div class="queue-list">' + list.map(function(c){
+       var nm = (typeof _v176StuName === 'function') ? _v176StuName(c.student_id) : c.student_id;
+       return '<div class="queue-row"><div class="queue-row-main"><div class="queue-row-head"><span class="queue-row-title">' + escapeHtml(nm) + '</span></div>'
+-        + '<div class="queue-row-meta">' + (c.app_no ? ('\ud83d\udccb ' + escapeHtml(c.app_no)) : '') + ' · \ud83d\udd52 ' + escapeHtml(String(c.created_at||'').slice(0,10)) + '</div></div></div>';
++        + '<div class="queue-row-meta">' + (c._app ? ('\ud83d\udccb ' + escapeHtml(c._app)) : '') + (c._t ? (' · \ud83d\udd52 ' + escapeHtml(String(c._t).slice(0,10))) : '') + '</div></div></div>';
+     }).join('') + '</div>';
+   } catch(e){ var bb=document.getElementById('v181CandBody'); if(bb) bb.innerHTML='<div style="color:#888">error</div>'; }
+ }
+@@ -16671,7 +16720,7 @@
+ }
+ 
+ function __runAppInit() {
+-  console.info('[VER] admin portal v250 (JOB-G8-02: 付款单改名「录取通知书解锁费」优惠码+面包屑; 原 v249 JOB-40-02: 27-B 管理员重置学生登录密码 —— 学生抽屉「重置密码」按钮→二次确认→云函数 admin-reset-student-password(带管理员JWT/服务钥匙改密/核is_admin/记审计student_password_reset不含密码)→弹临时密码等宽可复制+提示登录后立即改; 失败人话toast; _v145KindMeta+_v188EventLabel翻「管理员重置了学生密码」中英; 新函数前缀_v249A; 四件套齐MH_PORTAL_VER=249; 零新样式(复用dd-sec/btn/_noticeP)/零裸键; 零迁移(admin_events.event_type无CHECK); 不改导出/zip/取数/其它端/组件/其它云函数; v248→v249) | 原 v248 JOB-39-03: 导出建档包引用组件 v1.5→v1.6(表单端新增「让 AI 从材料里读」; 导出口径 missingFor/REQUIRED/缺N项/删_meta 一字不改); 仅换引用+四件套; 零改导出/zip/取数/其它端/云函数/迁移; v247→v248) | 原 v247 JOB-38-03: 导出建档包剔除平台预填元数据 _meta —— _v239BuildProfile 开头内联深拷贝 filing 删 _meta(前缀 _v247A), profile.json 不带 _meta.prefilled; 引用组件 v1.5(表单端新增平台信息预填, 导出口径 missingFor/REQUIRED/缺N项 一字不改); 契约/zip/取数主体不动; 四件套齐; 零新样式; v246→v247) | 原 v246 JOB-37-01: 层次代码显示归一 —— 新增唯一权威表 _v246ALevelLabel(lang/chinese_lang/language→汉语进修 Chinese language; exchange/short_term→短期学习 Short-term study; associate→专科 Associate degree; pathway/prep→预科 Pathway/Foundation; bachelor族照旧; 未知回落原文); _v227Level/_v231LevelLabel/_v233LevelLabel 三函数统一委托此表(任务卡层次/学生抽屉学历层次/导出列不再印代码原文); 只改显示, 存值/比对/过滤/RPC 零改; 四件套齐; 零新样式; 不改其它端/云函数/迁移; v245→v246)');   // JOB-37-01
++  console.info('[VER] admin portal v251 (JOB-F5-04: 代设办理方式带出现值 + 已录取/转化率/漏斗/学生详情改派生口径 + 候选池按现有列读; 原 v250 JOB-G8-02: 付款单改名「录取通知书解锁费」优惠码+面包屑; 原 v249 JOB-40-02: 27-B 管理员重置学生登录密码 —— 学生抽屉「重置密码」按钮→二次确认→云函数 admin-reset-student-password(带管理员JWT/服务钥匙改密/核is_admin/记审计student_password_reset不含密码)→弹临时密码等宽可复制+提示登录后立即改; 失败人话toast; _v145KindMeta+_v188EventLabel翻「管理员重置了学生密码」中英; 新函数前缀_v249A; 四件套齐MH_PORTAL_VER=249; 零新样式(复用dd-sec/btn/_noticeP)/零裸键; 零迁移(admin_events.event_type无CHECK); 不改导出/zip/取数/其它端/组件/其它云函数; v248→v249) | 原 v248 JOB-39-03: 导出建档包引用组件 v1.5→v1.6(表单端新增「让 AI 从材料里读」; 导出口径 missingFor/REQUIRED/缺N项/删_meta 一字不改); 仅换引用+四件套; 零改导出/zip/取数/其它端/云函数/迁移; v247→v248) | 原 v247 JOB-38-03: 导出建档包剔除平台预填元数据 _meta —— _v239BuildProfile 开头内联深拷贝 filing 删 _meta(前缀 _v247A), profile.json 不带 _meta.prefilled; 引用组件 v1.5(表单端新增平台信息预填, 导出口径 missingFor/REQUIRED/缺N项 一字不改); 契约/zip/取数主体不动; 四件套齐; 零新样式; v246→v247) | 原 v246 JOB-37-01: 层次代码显示归一 —— 新增唯一权威表 _v246ALevelLabel(lang/chinese_lang/language→汉语进修 Chinese language; exchange/short_term→短期学习 Short-term study; associate→专科 Associate degree; pathway/prep→预科 Pathway/Foundation; bachelor族照旧; 未知回落原文); _v227Level/_v231LevelLabel/_v233LevelLabel 三函数统一委托此表(任务卡层次/学生抽屉学历层次/导出列不再印代码原文); 只改显示, 存值/比对/过滤/RPC 零改; 四件套齐; 零新样式; 不改其它端/云函数/迁移; v245→v246)');   // JOB-37-01
+   console.info('[VER-prev241] admin portal v241 (JOB-32-04: 导出建档包加在华信息 + meta.json + 缺N项改统一出口; 兜底gz17=武纺网址已于v242删除)');   // JOB-32-04
+   console.info('[VER-prev239] admin portal v239 (JOB-30-04: 学校建档页 + 导出建档包(浏览器内) + 学校抽屉代设录取办理方式 —— nav/view/VIEW_RENDERERS/switchView filing 分支 + _v239RenderFiling(admin_list_filing_tasks 七芯片 + 补充信息已齐/缺N项 复用 MHFilingForm.REQUIRED + 记申请号/改状态 admin_set_filing_status) + _v239ExportPack(admin_get_filing_pack + createSignedUrls + canvas/pdf.js 转 jpg + pdf-lib 学习计划 + 自写 store-only zip → filing-<app_no>-<code>.zip + set exported) + 学校抽屉 _v239SchoolFilingBlock/_v239FillSchoolFiling + admin_set_school_filing 六参 + _v239PLATFORM 运营常量; 容错 42883/PGRST202/42P01/42703 一行提示或隐藏 warn 一次; 中英零裸键零新样式零其它端零云函数零迁移执行; v238→v239)');   // JOB-30-04
+   console.info('[VER-prev238] admin portal v238 (JOB-29-02: 材料派单台三处病修)');   // JOB-29-02
+--- school-portal/maxhouse-school-portal-v247.html	2026-10-16 15:06:39
++++ school-portal/maxhouse-school-portal-v248.html	2026-10-17 17:53:50
+@@ -1,4 +1,5 @@
+ <!DOCTYPE html>
++<!-- maxhouse-school-portal-v248 (2026-10-17): JOB-F5-04 · ①补 10 种现役材料码的中英文名(translation/conduct/attendance/signature/application/embassy/publication/work/other/visa; 中文=中介端上传格叫法, 英文=学生端 v413), 此前学校看材料显示英文代号; ②英文界面两处 Offer 数量后缀原显裸键 common.peopleSuffixOffers → 新助手 _v248OfferSfx()(英文不加后缀, 中文「张」)。其余一字不动。 -->
+ <!-- maxhouse-school-portal-v247 (2026-10-16): JOB-F3-01 · 发 Offer 面板顶部加一行「本校录取办理方式：<系统> · <时机> · 修改」(未设则「未设置 · 去设置」) —— 新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(登录即由 _v242FetchFiling 填·_v242SaveFiling 存完同步,故不刷新再开面板即显新值),插在 _renderCloudOfferInline 面板顶(候选池内联表单与学生档案弹窗共用此唯一渲染函数,一处插入即覆盖两上下文); 系统显示名 gz17→17gz/at0086→at0086/none→filing.sysNone(不显时机)/own→filing.sysOwn/form→filing.sysForm, 时机复用 filing.timingBefore/After, 「去设置」复用 filing.gateGo; 新增三键 filing.inlineLabel/inlineEdit/inlineUnset(四语齐,无现成可复用,inlineUnset 因不可借用 sysNone「不用建档」语义); 「修改/去设置」点击走现有 _v242GoSetFiling()(关弹窗→openSettingsView→滚到 v242FilingSection 高亮); 零新 CSS 规则(行内小字样式复用 + auth-link 类复用),零新 RPC,N1 只增这一行(一个 div+一个 a),只改 school 端,不动库/桶/其它端。[VER] v246→v247 · 原 v246 头注见下 --><!-- maxhouse-school-portal-v246 (2026-10-16): JOB-F2-02 · 账户设置两 bug 修复(病根C,照 JOB-F1-02 第四节) —— ①发 Offer 闸永远拦不下来:`_v242FetchFiling` 从库读到的办理方式原先写进"只有点⚙才存在"的 state.settings,登录那刻 state.settings 还没建故被丢;`_v242FilingGateBlocked` 读的也是它→恒 undefined→无论库里设没设都弹"请先设置办理方式"。改法:办理方式五项(filingSystem/Timing/Url/Account/Note)登录后写进必然存在的 state.account(闸改读 account,'none'=不用建档 放行),FetchFiling 同时镜像到 settings。②"去设置"进设置页六个联系字段全空白:`_v242GoSetFiling` 原先只 state.view='settings' 不建盒→renderSettingsView 读空盒全渲染成空;改走 openSettingsView()(从 account 抄齐联系字段+办理方式);"我的操作记录"返回链接同改。③防御:renderSettingsView 开头 state.settings 空则按 account 补齐;saveSettings 盒未初始化时拒存+提示(绝不把库里真值覆盖成 NULL)。④_v242SaveFiling 存完同步进 state.account,当场再发 Offer 不被拦。新助手 _v246BuildSettingsFromAccount。零新样式、零新 RPC、零新 t() 键(全复用现有 settings.*/filing.* 词典);N1 零移除;只改 school 端,不动库/桶/其它端。[VER] v245→v246 · 原 v245 头注见下 -->
+ <!-- maxhouse-school-portal-v245 (2026-10-03): JOB-36-01 · 第三十六轮 —— 本校「可发名额」= 等级名额 + 加成(提额批准累加)。配迁移 0223(schools 加 quota_bonus; admin_decide_school_quota 批准即 +requested_quota)。改法:`loadTierQuota` 在校准 OFFER_QUOTA_TIERS[*].defaultAllocated 之后,另起 `_v245SQuotaBonus()` 读本校 `schools.quota_bonus`(0223 未贴/列缺/无行 → 容错 0),把 `state.account.offerQuota.allocated` 设为「等级 defaultAllocated + 加成」(总名额);`state.account.offerQuota.bonus` 留档。所有「可发张数」消费点(getOfferAllocated/getOfferRemaining/名额页/提额表单 current_quota)自动跟到总名额,无需逐点改。四件套齐(名/头注/[VER]&MH_PORTAL_VER=245/index);四语零裸键(只改数字,无新文案);零新样式;N1 零移除;零迁移执行(0223 只写文件待手贴)零云函数零其它端。[VER] v244→v245 · 原 v244 头注见下 --><!-- maxhouse-school-portal-v244 (2026-09-28): JOB-32-03 · 第三十二轮 —— 浏览/搜索进入的学生详情「本校录取状态」由单一「未发 Offer」改**三态**（消掉「明明已在任务候选池却叫人先进任务」的矛盾）：①**已发录取**（本校台账 `state._schoolOffers[sid]` 有行）→ 显示 学生响应状态 + 所属任务号（任务名）+ 平台建档状态（`_v242FilingRow(offer_id)`，有 `filing_tasks` 时）+「打开任务查看」；②**已在任务候选池未发**（`state._poolCands` 命中）→「已在任务 X（名）的候选池」+「打开该任务发录取」；③**都没有** → 保持现状（未发 Offer 提示 + 加入任务）。「打开该任务发录取/打开任务查看」= `_v244OpenTaskStudent(code,sid)`：`openTask(code)` 进任务视图 → `openCloudStudentDetail(sid,'pool')` 打开该生候选卡（发录取内联出现）；异常退一步滚动到候选卡并闪。打开详情时台账/池籍超 60 秒 → 先重载再就地重开（`state._v244LedgerRefreshing` 守卫，不成环）。`loadSchoolOffersFromCloud` select 补 `id`（挂建档状态）。中英新键 `detail.belongTask/openTaskView/inPoolHint/inPoolTask/inPoolSuffix/openTaskOffer`。N1 零移除（`_v243InTask/_v243AddLabel` 保留）；四件套齐（名/头注/[VER]&MH_PORTAL_VER=244/index）；中英零裸键；零迁移零云函数零其它端。[VER] v243→v244 -->
+ <!-- maxhouse-school-portal-v243 (2026-09-28): JOB-31-03 · 第三十一轮返修 —— ①设置页「录取办理方式」区块的「系统网址」标签改「报名系统登录网址」+ placeholder https://wtu.17gz.org + 小字「填学校报名系统的登录页地址，不是学校官网」；「中介账号名」标签简化 + 小字「学校给迈克豪斯开的中介账号的用户名，不填密码」(四语 filing.urlHint/acctHint)。②老「导出到 17gz」三处按钮/卡片(export.btnLabel/export.admittedCloudBtn/dash.qaExport17gz + 可见兜底文案)改名「导出已录取名单」/「导出本列表已录取名单」，按钮 id 与 handler(openExportWizard/exportAdmittedCloud) 一律不变。③学生已在 ≥1 个招生任务(候选池)时，浏览详情与名单里的「＋加入任务」按钮文案改「加入其它任务」(新键 student.addToOther + 助手 _v243InTask/_v243AddLabel，逻辑不变)。④31-00 P1 判「学校端未发 Offer」为数据来源问题(那条 offer 的 sent_by 非本校行)非显示问题→offer 台账口径本轮不动，留第三十二轮。四件套齐(名/头注/[VER]&MH_PORTAL_VER=243/index)；四语零裸键；N1 零移除；零迁移零云函数零其它端。[VER] v242→v243 -->
+@@ -4592,7 +4593,7 @@
+   </div>
+ </footer>
+ <script>
+-console.info('[VER] school portal v247 (JOB-F3-01: 发 Offer 面板顶部加「本校录取办理方式」行——新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(不刷新即显新值), 插 _renderCloudOfferInline 面板顶; 系统/时机显示名复用 filing.* 词条, 去设置复用 filing.gateGo, 新增三键 filing.inlineLabel/inlineEdit/inlineUnset(四语); 修改/去设置走 _v242GoSetFiling(); 零新 CSS/RPC, N1 只增一行, 只改 school 端。原 v246: 账户设置两 bug 修复 —— 办理方式五项登录后写进 state.account(发 Offer 闸改读 account, none 放行), FetchFiling 镜像到 settings; "去设置"/操作记录返回链接改走 openSettingsView() 从 account 抄齐联系字段, 不再白屏; renderSettingsView 空盒按 account 补齐; saveSettings 盒未初始化拒存不清真值; _v242SaveFiling 存完同步 account 当场放行; 新助手 _v246BuildSettingsFromAccount; 零新样式/RPC/键, N1 零移除, 只改 school 端。原 v245:)');   // JOB-F2-02   // 探针随版
++console.info('[VER] school portal v248 (JOB-F5-04: 补10种材料中英文名 + 英文Offer数量后缀不再显裸键; 原 v247 JOB-F3-01: 发 Offer 面板顶部加「本校录取办理方式」行——新助手 _v247FilingLine() 读 state.account.filingSystem/filingTiming(不刷新即显新值), 插 _renderCloudOfferInline 面板顶; 系统/时机显示名复用 filing.* 词条, 去设置复用 filing.gateGo, 新增三键 filing.inlineLabel/inlineEdit/inlineUnset(四语); 修改/去设置走 _v242GoSetFiling(); 零新 CSS/RPC, N1 只增一行, 只改 school 端。原 v246: 账户设置两 bug 修复 —— 办理方式五项登录后写进 state.account(发 Offer 闸改读 account, none 放行), FetchFiling 镜像到 settings; "去设置"/操作记录返回链接改走 openSettingsView() 从 account 抄齐联系字段, 不再白屏; renderSettingsView 空盒按 account 补齐; saveSettings 盒未初始化拒存不清真值; _v242SaveFiling 存完同步 account 当场放行; 新助手 _v246BuildSettingsFromAccount; 零新样式/RPC/键, N1 零移除, 只改 school 端。原 v245:)');   // JOB-F2-02   // 探针随版
+ console.info('[VER-prev245] school portal v245 (JOB-36-01: 本校可发名额 = 等级名额 + quota_bonus(提额批准加成) —— loadTierQuota 另读本校 schools.quota_bonus(0223未贴/列缺→容错0)并入 state.account.offerQuota.allocated(等级 defaultAllocated + 加成); _v245SQuotaBonus 容错; 四件套齐; 四语零裸键(只改数字, 无新文案); 零新样式; 零迁移执行(0223待手贴)零云函数零其它端。原 v244: JOB-32-03: 浏览/搜索进入的详情「本校录取状态」改三态 —— ①已发录取(台账_schoolOffers[sid]有行): 状态+所属任务号(名)+平台建档状态_v242FilingRow(offer_id)+「打开任务查看」; ②已在候选池未发(_poolCands命中): 「已在任务X(名)的候选池」+「打开该任务发录取」(_v244OpenTaskStudent→openTask+openCloudStudentDetail pool, 退一步滚动闪); ③都没有: 保持现状(未发Offer+加入任务). 台账/池籍超60秒→打开详情先重载再重画(state._v244LedgerRefreshing守卫,不成环). loadSchoolOffersFromCloud select补id. 中英新键detail.belongTask/openTaskView/inPoolHint/inPoolTask/inPoolSuffix/openTaskOffer; N1零移除(_v243InTask/AddLabel保留); 四件套齐; 版本 v243→v244)');   // JOB-32-03   // 探针随版
+ console.info('[VER-prev242] school portal v242 (JOB-30-02: 录取办理方式区块 + 首次发 OFFER 闸 + 平台建档状态行)');   // JOB-30-02
+ console.info('[VER-prev238] school portal v238 (JOB-26-02: 层次叫法归一 _v238LevelIs)');   // JOB-26-02
+@@ -7064,6 +7065,17 @@
+   'doc.performance':'Performance certificate',
+   'doc.studyPlan':'Study plan',
+   'doc.interview':'Interview',
++  // v248 (JOB-F5-04): 现役材料码补名(与学生端 v413 英文同名)
++  'doc.translation':'English translation',
++  'doc.conduct':'In-school performance record',
++  'doc.attendance':'Previous-school attendance record',
++  'doc.signature':'Personal signature',
++  'doc.application':'Application letter',
++  'doc.embassy':'Embassy authentication',
++  'doc.publication':'Published papers / journals',
++  'doc.work':'Work-experience certificate',
++  'doc.other':'Other documents',
++  'doc.visa':'Visa / residence permit',
+   'common.month':'mo',
+   'common.open':'expand',
+   'common.amountPh':'Amount ¥',
+@@ -7723,6 +7735,17 @@
+   'doc.performance':'表现证明',
+   'doc.studyPlan':'学习计划书',
+   'doc.interview':'面试',
++  // v248 (JOB-F5-04): 现役材料码补名(与中介端上传格中文同名)
++  'doc.translation':'英文翻译件',
++  'doc.conduct':'在校表现证明',
++  'doc.attendance':'上一所学校出勤率证明',
++  'doc.signature':'个人签名',
++  'doc.application':'申请书',
++  'doc.embassy':'大使馆认证',
++  'doc.publication':'发表过的期刊',
++  'doc.work':'工作经历证明',
++  'doc.other':'其他材料',
++  'doc.visa':'签证 / 居留许可',
+   'common.month':'月',
+   'common.open':'展开',
+   'common.amountPh':'金额 ¥',
+@@ -8278,7 +8301,8 @@
+ 
+ // ══════════════════ JOB-22-03 · 「有新版请刷新」横幅(四语·只提示·绝不自动刷新, 五端同段代码) ══════════════════
+ // 取不到 index.html / 解析不出一律静默; 关掉后本会话不再弹。
+-var MH_PORTAL_VER = 247;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
++function _v248OfferSfx(){ var d = (typeof I18N !== 'undefined' && I18N[currentLang]) || {}; var v = d['common.peopleSuffixOffers']; if (v == null && typeof I18N !== 'undefined' && I18N.en) v = I18N.en['common.peopleSuffixOffers']; return (v == null) ? '\u5f20' : v; }   // v248 (JOB-F5-04): 英文值为空串, 旧写法 t()||'张' 会落到裸键
++var MH_PORTAL_VER = 248;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
+ var MH_VER_BANNER_DISMISSED = false;
+ function _mhCurrentPortalVer(){
+   try{ var m = String(location.pathname || '').match(/maxhouse[_-][a-z_-]*portal[_-]v(\d+)/i); if(m) return parseInt(m[1], 10); }catch(_e){}
+@@ -10945,7 +10969,7 @@
+           <span>
+             ${t('quota.hasPendingTitle')||'您已有一个正在审核中的申请'} ·
+             ${t('quota.hasPendingId')||'编号'} <strong>${pending.id}</strong> ·
+-            ${t('quota.hasPendingAmount')||'申请数量'} <strong>${pending.requestedAmount}</strong> ${t('common.peopleSuffixOffers')||'张'} ·
++            ${t('quota.hasPendingAmount')||'申请数量'} <strong>${pending.requestedAmount}</strong> ${_v248OfferSfx()} ·
+             ${t('quota.hasPendingHint')||'通常 1-3 个工作日内出结果'}
+           </span>
+         </div>
+@@ -18848,7 +18872,7 @@
+                    v56: added ⓘ scope-clarifier tooltip so users don't conflate this
+                    task-level number with the account-level total shown elsewhere. -->
+               <span style="display:inline-flex;align-items:center;gap:6px;padding:2px 10px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);border-radius:999px;font-weight:600">
+-                📨 ${t('task.offersSentForThis')||'本任务已发'} <strong style="color:#fff">${task._cloud ? Object.values((state._taskOffers||{})[task.code]||{}).filter(function(o){return o&&!o.preOffer;}).length : (task.offerSentStudents||[]).length}</strong> ${t('common.peopleSuffixOffers')||'张'}
++                📨 ${t('task.offersSentForThis')||'本任务已发'} <strong style="color:#fff">${task._cloud ? Object.values((state._taskOffers||{})[task.code]||{}).filter(function(o){return o&&!o.preOffer;}).length : (task.offerSentStudents||[]).length}</strong> ${_v248OfferSfx()}
+                 <span class="task-offer-scope-help" title="${t('quota.scopeHeaderTooltip')||'仅本任务的 Offer 计数。所有任务的累计配额请见学校 Dashboard。'}" style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:rgba(255,255,255,0.22);color:#fff;font-size:9px;font-weight:700;cursor:help;margin-left:2px">ⓘ</span>
+               </span>
+             </div>
+--- reviewer-portal/maxhouse-reviewer-portal-v46.html	2026-09-25 00:56:00
++++ reviewer-portal/maxhouse-reviewer-portal-v47.html	2026-10-17 17:53:50
+@@ -1,3 +1,4 @@
++<!-- maxhouse-reviewer-portal-v47 (2026-10-17): JOB-F5-05 · ①DOC_TYPES 补 honors/signature/application 三条(中文=中介端上传格叫法; 同构 {zh,icon,cls,minutes}, 核对清单仍走通用三条), 此前审核员看这三类显示英文代号; ②学生卡「最早 N 天前」原取等待最短那份(minDays) → 改取等待最久那份(maxDaysWaiting), 兜底排序同口径「等最久在前」。其余一字不动。 -->
+ <!-- maxhouse-reviewer-portal-v46 (2026-09-25): JOB-22-04 —— 只加「有新版请刷新」横幅一段(五端同段代码, 审核端 zh-only 故 lang 回退 zh): 载入 3s fetch(./index.html,{cache:no-store}) 正则取最大版本 vs 当前(pathname/回退 MH_PORTAL_VER=46), 线上更新→顶部固定横幅(点去根地址·绝不自动刷新·可关本会话不再弹·把 .header/.topbar 顶到横幅下不遮按钮), 每 30min+visibilitychange 复查; 审核端在 CF Access 后, 取不到/返回 Access 页/解析不出一律静默。其它一行不动, 不改共用查看器/云函数/库。[VER] v45→v46 -->
+ <!-- maxhouse-reviewer-portal-v44 (2026-09-23): JOB-19-02 未登记类型入册 + 预取日志标签 —— ①入册: 生产队列里 studyProof/studyPlan 此前不在 DOC_TYPES → 走 _v43SafeType 兜底给审核员显示英文代号。补两条(与现役同构 {zh,icon,cls,minutes}, 15 处渲染一行不动): studyProof=在读证明 📖 doc/3、studyPlan=学习计划 📋 doc/6。zh 按码原样读自管理端 v218 ADM7_KINDS(非学生端, 学生端 zh 词典存的是英文); icon 按码读自学校端 v234 上传格; cls/minutes 各照现役最接近的一条(education/statement)。数据来源 jobs/JOB-19-02/doc-types-added.json。doc_type=null 那条不建条目、照旧走裸串兜底。②标签: 预取入队日志 [v42]→[v44](仅改标签字符串, 逻辑不动)。零共用查看器/RPC/库/UI 骨架改动。[VER] v43→v44 (19-02 定案选甲: 审核端无语言切换器 currentLang 恒 zh, 入册只写 zh, 达成「标题=正式中文名而非英文代号」这一真实目标; 闸3① 断言按 P3a 由 Claude 授权改写为「入册后标题=正式中文名」, 不再要求 en/ru/fr 截图) -->
+ <!-- maxhouse-reviewer-portal-v43 (2026-09-22): JOB-18-02 查看让路 + 找慢件 + 超高卡 + 未知类型名 —— ①让路: _wmFetch(docId,signal) 给可中止两路(signed_url _wmTryCache / 整渲染 _wmFetchEF)配 AbortSignal, 直读桶 supabase download 无中止入口(查看期间泵暂停即并行降0, 已在途直读听其跑完); 预取泵每路配 AbortController 存 _v43PfCtrls, openPreview 点查看先 _v43LetThroughForView(本件) 中止除本件外在途预取 + 放回队列最前, 本件取完(_wmPrefetchPaused=false)泵恢复重取; 中止不计失败。②找慢件: 每份查看打一行 [v43] wm timing <id> ttfb/total/bytes(总时可靠), 18-00③慢件结论见回执。③超高卡: IntersectionObserver 触发条件由「露出比≥1/3」加「或露出高度≥1/3屏高」(加密阈值), 高过3屏的卡也能进预取队列。④未知类型: _v43SafeType 兜底, docType.zh 空→显示 doc_type 原值, 原值也空才「未知类型 / Unknown type」(9处类型兜底统一)。零共用查看器改动、零 RPC/库改动、零 UI 骨架改动。[VER] v42→v43 -->
+@@ -1528,6 +1529,10 @@
+   'other': { zh: '其他材料', icon: 'DOC', cls: 'doc', minutes: 3 },
+   'publication': { zh: '发表过的期刊', icon: 'DOC', cls: 'doc', minutes: 3 },
+   'work': { zh: '工作经历证明', icon: 'DOC', cls: 'doc', minutes: 3 },
++  // v47 (JOB-F5-05): 生产里实有的三类此前未登记 → 审核员看到英文代号; 中文名取中介端上传格叫法, 其余字段照上同构
++  'honors': { zh: '荣誉证明', icon: 'DOC', cls: 'doc', minutes: 3 },
++  'signature': { zh: '个人签名', icon: 'DOC', cls: 'doc', minutes: 3 },
++  'application': { zh: '申请书', icon: 'DOC', cls: 'doc', minutes: 3 },
+   // v44 (JOB-19-02): 生产队列里 studyProof/studyPlan 此前未登记 → 走 _v43SafeType 兜底给审核员显示英文代号。
+   //   入册补两条(与上同构 {zh,icon,cls,minutes}, 15 处渲染一行不动)。
+   //   zh 按码原样读自管理端 v218 ADM7_KINDS(在读证明 / 学习计划; 非学生端——学生端 zh 词典存的是英文 Proof of study/Study plan);
+@@ -2004,15 +2009,17 @@
+   Object.values(groups).forEach(g => {
+     // case priority = highest among PENDING docs (done docs don't influence urgency)
+     let topPri = 'normal';
+-    let minDays = Infinity;
++    let minDays = Infinity, maxDays = 0;   // v47 (JOB-F5-05): 「最早 N 天前」取等最久那份
+     g.pendingDocs.forEach(m => {
+       const p = m.daysWaiting >= 5 ? 'urgent' : m.daysWaiting >= 3 ? 'high' : 'normal';
+       if (p === 'urgent') topPri = 'urgent';
+       else if (p === 'high' && topPri !== 'urgent') topPri = 'high';
+       if (m.daysWaiting < minDays) minDays = m.daysWaiting;
++      if (m.daysWaiting > maxDays) maxDays = m.daysWaiting;
+     });
+     g.casePriority = topPri;
+     g.minDaysWaiting = isFinite(minDays) ? minDays : 0;
++    g.maxDaysWaiting = maxDays;
+     // Sort docs inside the group by descending daysWaiting (oldest first)
+     g.pendingDocs.sort((a, b) => b.daysWaiting - a.daysWaiting);
+     g.doneDocs.sort((a, b) => b.daysWaiting - a.daysWaiting);
+@@ -2053,7 +2060,7 @@
+     var d = b.pendingDocs.length - a.pendingDocs.length;
+     if (d) return d;
+   }
+-  return b.minDaysWaiting - a.minDaysWaiting;   // \u515c\u5e95 = \u539f\u6392\u5e8f: \u7b49\u6700\u4e45\u5728\u524d
++  return (b.maxDaysWaiting || 0) - (a.maxDaysWaiting || 0);   // \u515c\u5e95 = \u539f\u6392\u5e8f: \u7b49\u6700\u4e45\u5728\u524d
+ }
+ function _rqSortBuckets(urgent, high, normal){
+   if (!RQ_UI.grouped) {   // \u4e0d\u5206\u6863: \u5168\u90e8\u5e76\u5165\u5e38\u89c4\u533a\u4e00\u5217\u6392
+@@ -2251,7 +2258,7 @@
+         '<span class="student-case-progress">' + doneCount + '/' + total + ' 已审</span>' +
+       '</div>' +
+       '<div class="student-case-head-side">' +
+-        '<span class="student-case-pri ' + priority + '">' + priIcon + ' 最早 ' + g.minDaysWaiting + ' 天前</span>' +
++        '<span class="student-case-pri ' + priority + '">' + priIcon + ' 最早 ' + (g.maxDaysWaiting || 0) + ' 天前</span>' +
+       '</div>' +
+     '</div>' +
+     '<div class="student-case-docs">' + pendingRows + doneRows + '</div>' +
+@@ -3738,13 +3745,13 @@
+   return (t.getMonth() + 1) + '/' + t.getDate();
+ }
+ 
+-console.info('[VER] reviewer portal v46 (JOB-22-04: 只加「有新版请刷新」横幅一段(五端同段代码, 审核端 zh-only 故 lang 回退 zh): 载入 3s fetch(./index.html,{cache:no-store}) 正则 maxhouse[_-][a-z_-]*portal[_-]v(数字) 取最大版本 vs 当前(location.pathname 解析, 回退 MH_PORTAL_VER=46), 线上更新→顶部固定横幅(点去根地址·绝不自动刷新·可关本会话不再弹·把 .header/.topbar 顶到横幅下不遮按钮), 每 30min+visibilitychange 复查; CF Access 后取不到/返回 Access 页/解析不出一律静默; 其它一行不动)');   // JOB-22-04   // 探针随版
++console.info('[VER] reviewer portal v47 (JOB-F5-05: 补 honors/signature/application 中文名 + 「最早 N 天前」改取最久; 原 v46 JOB-22-04: 只加「有新版请刷新」横幅一段(五端同段代码, 审核端 zh-only 故 lang 回退 zh): 载入 3s fetch(./index.html,{cache:no-store}) 正则 maxhouse[_-][a-z_-]*portal[_-]v(数字) 取最大版本 vs 当前(location.pathname 解析, 回退 MH_PORTAL_VER=46), 线上更新→顶部固定横幅(点去根地址·绝不自动刷新·可关本会话不再弹·把 .header/.topbar 顶到横幅下不遮按钮), 每 30min+visibilitychange 复查; CF Access 后取不到/返回 Access 页/解析不出一律静默; 其它一行不动)');   // JOB-22-04   // 探针随版
+ console.info('[VER-prev45] reviewer portal v45 (JOB-19-03 慢件服务端计时上屏)');   // JOB-19-03
+ 
+ // ══════════════════ JOB-22-04 · 「有新版请刷新」横幅(四语·只提示·绝不自动刷新, 五端同段代码) ══════════════════
+ // 审核端在 Cloudflare Access 后面 + 无语言切换器(currentLang 恒 zh/未声明) → lang 回退 zh。
+ // 登录态下 fetch('./index.html') 带 CF Access cookie 正常返回真跳转页(含版本串); 返回 Access 页/解析不出 → 静默。
+-var MH_PORTAL_VER = 46;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
++var MH_PORTAL_VER = 47;   // 当前文件版本(回退用; 主源为 location.pathname 解析)
+ var MH_VER_BANNER_DISMISSED = false;
+ function _mhCurrentPortalVer(){
+   try{ var m = String(location.pathname || '').match(/maxhouse[_-][a-z_-]*portal[_-]v(\d+)/i); if(m) return parseInt(m[1], 10); }catch(_e){}
+--- partner-portal/maxhouse-partner-portal-v185.html	2026-10-12 20:06:50
++++ partner-portal/maxhouse-partner-portal-v186.html	2026-10-17 17:53:50
+@@ -1832,7 +1832,7 @@
+   const SUPABASE_URL = 'https://uexgzwfambanvhdhxome.supabase.co';
+   const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_7kx6JBztyd5nzSqzSgW4MA_HavI0Wnr';
+   const { createClient } = supabase;  // 库的全局对象就叫 supabase
+-  console.info('[VER] partner portal v185 (JOB-GP1-PF 漏斗修复, 业主裁决 RULING-20261012d 选 A=先修产品再录: _getPartnerStats 云端分支旧读废弃列 students.stage(恒 NULL)致工作台「录取漏斗/人均 offer」对云端推荐生全 0、与卡面矛盾; 改读页面已加载的真 offer 数据 stu._offers(get_agent_student_offers, 与学生卡同源), 口径同卡面: offer 份数=offer 行数/拿通知书=letter_uploaded_at/已付=letter_paid_at/录取完成=completed_at; 0 生时人均显 0.0 不显 NaN; TOTAL PAYMENTS PROCESSED 与 Invested on this student 不动(§一.3); 其余界面/文案/样式/逻辑一字不动, 盲态不破, 四件套齐 MH_PORTAL_VER=185; 原 v184 JOB-G8-03d: 引用共用补充信息表组件 v1.7 —— 仅表头 CSS 修第10章手机排版(业主裁决A, 与学生 v413 同一组件修): 代填表单有平台/AI 预填时表头琥珀提示原 nowrap 把标题挤成竖排、右信息组溢屏; v1.7 表头 flex-wrap:wrap + 标题 min-width:12ch + 琥珀/按钮 white-space:normal + 手机(≤640px)标题独占行/右组下移左对齐/× 绝对定位; 组件外全端逻辑/词典/字段一字不动, 盲态不破, 逐项回归同 v183; 原 v183 JOB-G8-02: 付款单改名「录取通知书解锁费 / Admission Letter Unlock Fee」四语; 原 v182 JOB-42-01: 缩略图签名到期稳健重签(久开标签页, 与学生端 v411 同一套) —— 签名链接有效期 1 小时, 原 v170 只在重画被荐生详情弹窗时查一次, 弹窗久开不重画则到期无人续。新增 _v182 一套: _v182InitResignWatch 装每 5 分钟 setInterval + visibilitychange(可见) + window focus 三触发; _v182CheckAndResign 仅在「详情弹窗开着且有在看的被荐生(viewingStudentIdx)」时扫该生上传件, 任一批签名年龄 ≥50 分钟(或缺)→ 复用现有 _v170SignFiles 整批重签成功轻量重开弹窗; 失败(离线/401)不炸页面, 连续 3 次才 _s7Toast 一句 mat.resignStale(en+zh 已有, 俄法回退英文零裸键), 本会话一次; openPreviewStudentDoc 打开前若该件签名 ≥50 分钟(或缺)先 _v170SignOne 重签再开(state._v182ViewerResigning 守卫不成环, 失败照常开)。既有 _v170MaybeResign/_v170SignFiles/_v170ThumbErr 未动; 不改组件/其它端/云函数; 零迁移零 SQL; 盲态不破(不涉校名); 四件套齐 MH_PORTAL_VER=182; 原 v181 JOB-40-01: 代填 AI 读材料支持 PDF —— _v180AiPrefill 调云函数前用 pdf.js 把被荐生白名单类型(护照/学历/成绩单/简历/语言证书)里扩展名 pdf 的最新一件(每类1件/最多4件)前2页画成 JPEG(长边1280/质量0.8/>900KB降1024)随 body.images 送; 复用现成 _ensurePdfJs + assets/vendor/pdf.min.js; 被荐生 docs 经 _v181DocsForSid(sid) 从 state.referredStudents 取; 云函数 filing-prefill v2 核验 partner_owns_student 后合并(同类 storage 有图片以 storage 为准/客户端只补 PDF 类/总≤8张/单张b64≤1.2MB/read 标 source:client_pdf); 读不了的 PDF 跳过并 toast 四语; 新函数前缀 _v181(_v181CollectPdfImages/_v181RenderPdfToJpegs/_v181PageToJpeg/_v181PdfSkipMsg/_v181DocsForSid); 组件 v1.6 不动, onDraft/onSubmit/onFile/onAiPrefill 不改, 无 PDF 时同 v180; 盲态不破(不涉校名); 四件套齐 MH_PORTAL_VER=181; 原 v180 JOB-39-03: 引用组件 v1.6 + 代填补充信息表接「让 AI 从材料里读」—— open() 传 onAiPrefill: ()=>_v180AiPrefill(sid)(被荐生真实 id); 调云函数 filing-prefill body={student_id:sid}, 云端核验 partner_owns_student 后读该生护照/学历/成绩单/简历/语言证书(图片)返字段子集, 组件只填空格淡黄「AI填的」; invoke 失败或 ok:false→{ok:false,message}(列缺四语「功能正在上线」, 其余走组件 pf.aiFail); 新函数前缀 _v180, 不改 onDraft/onSubmit/onFile; 盲态不破(不涉校名); 原 v179 JOB-38-02: 引用组件 v1.5 + 代填补充信息表打开时平台信息预填 —— _v179BuildPrefill 用被荐生内存对象造 prefill: 国籍→母语(_v179NatLang)/国籍→出生国&永久地址国家; 推荐表仅收姓名/生日/护照/邮箱, 无 homeAddress/programs 故仅国籍项(§0.5); 只填空格子交组件把关合法选项+淡黄标记随草稿恢复; 新函数前缀 _v179, 不新发请求/不调AI; 盲态不破(不涉校名); 原 v178 JOB-37-01: offer 卡层次代码显示归一 —— 词典补 prog.lang=汉语进修/Chinese language、prog.exchange=短期学习/Short-term study(中英; 本端无俄法 prog.* 词典); 新增别名表 _v178LevelKey(lang/language→chinese_lang, exchange→short_term), offer 卡键名卫兵先经别名表再查词典, 未知仍回落原文; 只改显示, 存值/比对/过滤/RPC/推荐向导 progs 不改; 四件套齐; 不改其它端/组件/云函数/迁移; v177→v178) | 原 v177 JOB-35-02: 引用共用组件 v1.4(上传不卡死/自动存草稿/记住已传学习计划与签名); 代填补充信息表内上传改直传(_v173UploadFiling 直接 _v384.upload 到 被荐生sid/kind/ + documents insert, 遇 reason_required 自动带固定原因重试不弹窗, 返 {ok,name}, 成功重水合被荐生)+表单打开时 body.mhff-open 把 .modal-bg/#v384Dock/toast 抬到 100001; onDraft(d,opts) silent 静默; _v173OpenFiling 打开前读被荐生 documents(studyPlan/signature,未软删)算 base 三键; 原 v176 JOB-34-02: 引用共用组件 v1.3(三段教育经历全部必填/段首四语提示 hint.edu3); 本版仅换引用+四件套; 原 v175 JOB-32-02: 引用共用组件 v1.2(在华信息段/missingFor/红字点名/HSK 显示), base 取被推荐生平台真值(in_china_now/hsk_level 原值交组件格式化); 原 v174 JOB-31-02 · 返修: 引用共用组件 v1.1 + 目前在中国改取真值(被推荐生 location) + _v173SaveFiling 改 async 返 {ok,message}(成功 toast, 失败红字留表) + 上传反馈 toast; 原 v173 JOB-30-03 · 推荐生已接受 offer 加「补充信息表」按钮 get_agent_filing/agent_save_filing; 原 v172 JOB-28-01 · 第二十八轮: 委托邀请入口不再「晚登录即消失」—— _dlLoadFlags 改事件驱动装入: ①保留 load 后 1.5s 定时器; ②新增 onAuthStateChange(SIGNED_IN/TOKEN_REFRESHED/INITIAL_SESSION) 各触发一次(同 uid 去重, force 除外); ③登录成功/会话恢复(hydratePartnerAccount 解锁后)钩一次 trigger=gate; ④visibilitychange 回可见且未装成时补一次; ⑤自重试改指数退避不设上限(2→4→…封顶30s)。_dlLoadInvites/_dlDecorateDom 不再只在开关读取成功后跑(mh_flag/partners 报错也照载清单画区块, 开关失败只影响按钮); 区块加状态行(读取中/读取失败·点此重试(_dlLoadFlags(true))/开关关维持现状), 四语零裸键; [dl] flags trigger=<load|signed_in|gate|visible|retry> 便于溯源。零写库/零云函数/零其它端/N1 零移除) — 探针随版');   // JOB-28-01
++  console.info('[VER] partner portal v186 (JOB-F5-03: 下线「解锁查看（内测：仅状态翻转，不收款）」后门 + 付款成功提示去「内测占位」+ 俄/法语言包 v186; 原 v185 JOB-GP1-PF 漏斗修复, 业主裁决 RULING-20261012d 选 A=先修产品再录: _getPartnerStats 云端分支旧读废弃列 students.stage(恒 NULL)致工作台「录取漏斗/人均 offer」对云端推荐生全 0、与卡面矛盾; 改读页面已加载的真 offer 数据 stu._offers(get_agent_student_offers, 与学生卡同源), 口径同卡面: offer 份数=offer 行数/拿通知书=letter_uploaded_at/已付=letter_paid_at/录取完成=completed_at; 0 生时人均显 0.0 不显 NaN; TOTAL PAYMENTS PROCESSED 与 Invested on this student 不动(§一.3); 其余界面/文案/样式/逻辑一字不动, 盲态不破, 四件套齐 MH_PORTAL_VER=185; 原 v184 JOB-G8-03d: 引用共用补充信息表组件 v1.7 —— 仅表头 CSS 修第10章手机排版(业主裁决A, 与学生 v413 同一组件修): 代填表单有平台/AI 预填时表头琥珀提示原 nowrap 把标题挤成竖排、右信息组溢屏; v1.7 表头 flex-wrap:wrap + 标题 min-width:12ch + 琥珀/按钮 white-space:normal + 手机(≤640px)标题独占行/右组下移左对齐/× 绝对定位; 组件外全端逻辑/词典/字段一字不动, 盲态不破, 逐项回归同 v183; 原 v183 JOB-G8-02: 付款单改名「录取通知书解锁费 / Admission Letter Unlock Fee」四语; 原 v182 JOB-42-01: 缩略图签名到期稳健重签(久开标签页, 与学生端 v411 同一套) —— 签名链接有效期 1 小时, 原 v170 只在重画被荐生详情弹窗时查一次, 弹窗久开不重画则到期无人续。新增 _v182 一套: _v182InitResignWatch 装每 5 分钟 setInterval + visibilitychange(可见) + window focus 三触发; _v182CheckAndResign 仅在「详情弹窗开着且有在看的被荐生(viewingStudentIdx)」时扫该生上传件, 任一批签名年龄 ≥50 分钟(或缺)→ 复用现有 _v170SignFiles 整批重签成功轻量重开弹窗; 失败(离线/401)不炸页面, 连续 3 次才 _s7Toast 一句 mat.resignStale(en+zh 已有, 俄法回退英文零裸键), 本会话一次; openPreviewStudentDoc 打开前若该件签名 ≥50 分钟(或缺)先 _v170SignOne 重签再开(state._v182ViewerResigning 守卫不成环, 失败照常开)。既有 _v170MaybeResign/_v170SignFiles/_v170ThumbErr 未动; 不改组件/其它端/云函数; 零迁移零 SQL; 盲态不破(不涉校名); 四件套齐 MH_PORTAL_VER=182; 原 v181 JOB-40-01: 代填 AI 读材料支持 PDF —— _v180AiPrefill 调云函数前用 pdf.js 把被荐生白名单类型(护照/学历/成绩单/简历/语言证书)里扩展名 pdf 的最新一件(每类1件/最多4件)前2页画成 JPEG(长边1280/质量0.8/>900KB降1024)随 body.images 送; 复用现成 _ensurePdfJs + assets/vendor/pdf.min.js; 被荐生 docs 经 _v181DocsForSid(sid) 从 state.referredStudents 取; 云函数 filing-prefill v2 核验 partner_owns_student 后合并(同类 storage 有图片以 storage 为准/客户端只补 PDF 类/总≤8张/单张b64≤1.2MB/read 标 source:client_pdf); 读不了的 PDF 跳过并 toast 四语; 新函数前缀 _v181(_v181CollectPdfImages/_v181RenderPdfToJpegs/_v181PageToJpeg/_v181PdfSkipMsg/_v181DocsForSid); 组件 v1.6 不动, onDraft/onSubmit/onFile/onAiPrefill 不改, 无 PDF 时同 v180; 盲态不破(不涉校名); 四件套齐 MH_PORTAL_VER=181; 原 v180 JOB-39-03: 引用组件 v1.6 + 代填补充信息表接「让 AI 从材料里读」—— open() 传 onAiPrefill: ()=>_v180AiPrefill(sid)(被荐生真实 id); 调云函数 filing-prefill body={student_id:sid}, 云端核验 partner_owns_student 后读该生护照/学历/成绩单/简历/语言证书(图片)返字段子集, 组件只填空格淡黄「AI填的」; invoke 失败或 ok:false→{ok:false,message}(列缺四语「功能正在上线」, 其余走组件 pf.aiFail); 新函数前缀 _v180, 不改 onDraft/onSubmit/onFile; 盲态不破(不涉校名); 原 v179 JOB-38-02: 引用组件 v1.5 + 代填补充信息表打开时平台信息预填 —— _v179BuildPrefill 用被荐生内存对象造 prefill: 国籍→母语(_v179NatLang)/国籍→出生国&永久地址国家; 推荐表仅收姓名/生日/护照/邮箱, 无 homeAddress/programs 故仅国籍项(§0.5); 只填空格子交组件把关合法选项+淡黄标记随草稿恢复; 新函数前缀 _v179, 不新发请求/不调AI; 盲态不破(不涉校名); 原 v178 JOB-37-01: offer 卡层次代码显示归一 —— 词典补 prog.lang=汉语进修/Chinese language、prog.exchange=短期学习/Short-term study(中英; 本端无俄法 prog.* 词典); 新增别名表 _v178LevelKey(lang/language→chinese_lang, exchange→short_term), offer 卡键名卫兵先经别名表再查词典, 未知仍回落原文; 只改显示, 存值/比对/过滤/RPC/推荐向导 progs 不改; 四件套齐; 不改其它端/组件/云函数/迁移; v177→v178) | 原 v177 JOB-35-02: 引用共用组件 v1.4(上传不卡死/自动存草稿/记住已传学习计划与签名); 代填补充信息表内上传改直传(_v173UploadFiling 直接 _v384.upload 到 被荐生sid/kind/ + documents insert, 遇 reason_required 自动带固定原因重试不弹窗, 返 {ok,name}, 成功重水合被荐生)+表单打开时 body.mhff-open 把 .modal-bg/#v384Dock/toast 抬到 100001; onDraft(d,opts) silent 静默; _v173OpenFiling 打开前读被荐生 documents(studyPlan/signature,未软删)算 base 三键; 原 v176 JOB-34-02: 引用共用组件 v1.3(三段教育经历全部必填/段首四语提示 hint.edu3); 本版仅换引用+四件套; 原 v175 JOB-32-02: 引用共用组件 v1.2(在华信息段/missingFor/红字点名/HSK 显示), base 取被推荐生平台真值(in_china_now/hsk_level 原值交组件格式化); 原 v174 JOB-31-02 · 返修: 引用共用组件 v1.1 + 目前在中国改取真值(被推荐生 location) + _v173SaveFiling 改 async 返 {ok,message}(成功 toast, 失败红字留表) + 上传反馈 toast; 原 v173 JOB-30-03 · 推荐生已接受 offer 加「补充信息表」按钮 get_agent_filing/agent_save_filing; 原 v172 JOB-28-01 · 第二十八轮: 委托邀请入口不再「晚登录即消失」—— _dlLoadFlags 改事件驱动装入: ①保留 load 后 1.5s 定时器; ②新增 onAuthStateChange(SIGNED_IN/TOKEN_REFRESHED/INITIAL_SESSION) 各触发一次(同 uid 去重, force 除外); ③登录成功/会话恢复(hydratePartnerAccount 解锁后)钩一次 trigger=gate; ④visibilitychange 回可见且未装成时补一次; ⑤自重试改指数退避不设上限(2→4→…封顶30s)。_dlLoadInvites/_dlDecorateDom 不再只在开关读取成功后跑(mh_flag/partners 报错也照载清单画区块, 开关失败只影响按钮); 区块加状态行(读取中/读取失败·点此重试(_dlLoadFlags(true))/开关关维持现状), 四语零裸键; [dl] flags trigger=<load|signed_in|gate|visible|retry> 便于溯源。零写库/零云函数/零其它端/N1 零移除) — 探针随版');   // JOB-28-01
+   console.info('[VER-prev169] partner portal v169 (JOB-21-02: 琥珀卡停留延长+悬停暂停+钉视口底六项零重叠)');   // JOB-21-02
+   console.info('[VER-prev164] partner portal v164 (JOB-17-03 C Copy link 点了有看得见的反应)');   // JOB-17-03
+   console.info('[VER-prev163] partner portal v163 (JOB-16-05 代传瘦身状态入库+从库读+回落补软删: 代传 s5c insert 成功拿 doc_id 后 _v163SaveSlim→set_doc_slim 落 slim_* 五列(主+重试两 insert 点, 失败仅console.warn); 文件卡瘦身行 _v159SlimLine→_v163SlimLine(f): 库(f.slim_status→_v163SlimFromDb)优先, 内存 _v159SlimInfo 兜底; _hydrateCloudStudent 代传材料查询补 .is(deleted_at,null)+带出 slim5列并随件挂上; _dlLoadDocs 齐全度查询与 _renderMatGrid 材料网格查询均补 .is(deleted_at,null)(软删死图/齐全度不再串); 原因框小字 reasonLabel→reasonWord「原因」四语与标题去重; 上层 v162 原因框/人话/预览/姓名软化沿用)');   // JOB-16-05
+@@ -2384,7 +2384,7 @@
+     'cloudOffer.sampleTag': 'Sample',
+     'cloudOffer.sups': 'Supplementary materials needed',
+     'cloudOffer.toastAccepted': 'Offer accepted',
+-    'cloudOffer.toastPaid': 'Paid (beta placeholder) — you can download the letter',
++    'cloudOffer.toastPaid': 'Paid — you can now download the admission letter',
+     'cloudOffer.toastRejected': 'Offer rejected',
+     'cloudOffer.unlock': 'Unlock to view (beta: status flip only, no payment)',
+     'cloudOffer.unlockFail': 'Unlock failed: ',
+@@ -3148,7 +3148,7 @@
+     'cloudOffer.sampleTag': '范例',
+     'cloudOffer.sups': '需补充材料',
+     'cloudOffer.toastAccepted': '已同意录取',
+-    'cloudOffer.toastPaid': '已付款（内测占位），可下载录取通知书',
++    'cloudOffer.toastPaid': '已付款，可下载录取通知书',
+     'cloudOffer.toastRejected': '已拒绝录取',
+     'cloudOffer.unlock': '解锁查看（内测：仅状态翻转，不收款）',
+     'cloudOffer.unlockFail': '解锁失败：',
+@@ -3400,7 +3400,7 @@
+   }
+ };
+ 
+-// v109: 词典拆分 —— 俄/法两语在同目录的独立包里(maxhouse-partner-i18n-v183-<lang>.js), 中/英常驻(英文是回退)。
++// v109: 词典拆分 —— 俄/法两语在同目录的独立包里(maxhouse-partner-i18n-v186-<lang>.js), 中/英常驻(英文是回退)。
+ //   预取: 按 localStorage mh_partner_lang 同步插入一包, 与主文件并行下载; 包取不到时原有逻辑自然退回英文。
+ var _mhI18nPending = {};
+ function _mhI18nLoad(lang, cb){
+@@ -3409,7 +3409,7 @@
+     if (_mhI18nPending[lang]) { _mhI18nPending[lang].push(cb); return; }
+     _mhI18nPending[lang] = [cb];
+     var s = document.createElement('script');
+-    s.src = './maxhouse-partner-i18n-v183-' + lang + '.js';
++    s.src = './maxhouse-partner-i18n-v186-' + lang + '.js';
+     s.onload = s.onerror = function(){ var q = _mhI18nPending[lang] || []; delete _mhI18nPending[lang]; if (!REP_I18N[lang]) console.warn('[v109] i18n pack failed, falling back to en:', lang); q.forEach(function(f){ try { f(); } catch(e){} }); };
+     document.head.appendChild(s);
+   } catch(e){ try { cb(); } catch(_){} }
+@@ -3417,7 +3417,7 @@
+ (function(){
+   try {
+     var l = null; try { l = localStorage.getItem('mh_partner_lang'); } catch(e){}
+-    if (l && ['ru','fr'].indexOf(l) >= 0 && !REP_I18N[l]) document.write('<script src="./maxhouse-partner-i18n-v183-' + l + '.js"><\/script>');
++    if (l && ['ru','fr'].indexOf(l) >= 0 && !REP_I18N[l]) document.write('<script src="./maxhouse-partner-i18n-v186-' + l + '.js"><\/script>');
+   } catch(e){}
+ })();
+ function t(k){ const d = REP_I18N[currentLang] || REP_I18N.en; const v = (d && d[k] != null) ? d[k] : REP_I18N.en[k]; return v != null ? v : k; }
+@@ -4440,7 +4440,7 @@
+     const { data, error } = await window.sb.rpc('coupon_agent_pay_offer', { p_sid: s._sid, p_offer_id: offerId, p_code: code });
+     if(error){ console.warn('coupon_agent_pay_offer', error); _s7Toast((t('cloudOffer.payFail')||'付款失败：')+(error.message||''),'error'); return { ok:false }; }
+     if(!data || data.ok !== true){ const r = (data && data.reason) || 'network'; _s7Toast(t('coupon.err.'+r),'error'); return { ok:false, reason:r }; }
+-    _s7Toast(t('cloudOffer.toastPaid')||'已付款（内测占位），可下载录取通知书','success');
++    _s7Toast(t('cloudOffer.toastPaid')||'已付款，可下载录取通知书','success');
+     s._hydrated=false; await _hydrateCloudStudent(idx);
+     return { ok:true, receipt:data };
+   }catch(e){ console.warn(e); _s7Toast((t('cloudOffer.payFail')||'付款失败：')+(e&&e.message||e),'error'); return { ok:false }; }
+@@ -5638,9 +5638,7 @@
+   } else if(resp !== 'accepted' && resp !== 'rejected' && o.offered_program != null){   // v280: pre-offer(面试期)无可响应之物,同意/拒绝均不出(配迁移0129闸)
+     html += '<div class="admission-actions"><button class="btn btn-decline" onclick="_cloudAdmRespond(\'rejected\')">✗ <span data-i18n="admission.declineBtn">Decline this offer</span></button><button class="btn btn-accept" disabled style="opacity:.55;cursor:not-allowed" title="' + escapeHtml(t('admission.progPendingToast')||'请先在上方确认录取专业') + '">🔒 ' + escapeHtml(t('admission.progPendingLock')||'请先在上方确认录取专业') + '</button></div>';
+   }
+-  if(!o.unlocked_at && o.offered_program != null){   // v280: 面试期无可解锁之物
+-    html += '<button class="cloud-offer-unlock" onclick="_cloudAdmUnlock()">🔓 ' + escapeHtml(t('cloudOffer.unlock')||'解锁查看（内测：仅状态翻转，不收款）') + '</button>';
+-  }
++  // v186 (JOB-F5-03): 内测后门「解锁查看（内测：仅状态翻转，不收款）」下线 —— 与学生端 v374 同: 解锁 = 付款落库自动解锁(迁移 0182 触发器); 服务端 agent_unlock_offer 也改为拒绝未付款(迁移 0229)
+   return html;
+ }
+ 
+@@ -11764,7 +11762,7 @@
+ 
+ // ══════════════════ JOB-22-02 · 「有新版请刷新」横幅(四语·只提示·绝不自动刷新) ══════════════════
+ // 22-03/22-04 五端同一段代码。取不到 index.html / 解析不出一律静默; 关掉后本会话不再弹。
+-var MH_PORTAL_VER = 185;   // 当前文件版本(回退用; 主源为 location.pathname 解析) —— JOB-GP1-PF 漏斗修复随版
++var MH_PORTAL_VER = 186;   // 当前文件版本(回退用; 主源为 location.pathname 解析) —— JOB-GP1-PF 漏斗修复随版
+ var MH_VER_BANNER_DISMISSED = false;
+ function _mhCurrentPortalVer(){
+   try{ var m = String(location.pathname || '').match(/maxhouse[_-][a-z_-]*portal[_-]v(\d+)/i); if(m) return parseInt(m[1], 10); }catch(_e){}
