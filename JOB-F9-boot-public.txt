@@ -1,0 +1,19 @@
+F9PUB|SETUP|other_student_found=t, partner1_students=3, school_found=t, task_found=t
+F9PUB|SETUP|role_authenticated=t
+F9PUB|BOOT_MS|student_bootstrap.run1=96.2
+F9PUB|BOOT_MS|student_bootstrap.run2=21.2
+F9PUB|BOOT_MS|student_bootstrap.run3=20.3
+F9PUB|BOOT_MS|get_my_offers=0.5 (rows 1)
+F9PUB|BOOT_MS|partner_bootstrap.run1=13.6
+F9PUB|BOOT_MS|partner_bootstrap.run2=9.2
+F9PUB|BOOT_MS|partner_bootstrap.run3=9.1
+F9PUB|BOOT_MS|get_agent_student_offers=0.6 (rows 1)
+F9PUB|BOOT_MS|get_agent_boost_stats=2.8
+F9PUB|BOOT_MS|get_offer_locks=2.3 (rows 1)
+F9PUB|BOOT_MS|school_bootstrap.run1=8.1
+F9PUB|BOOT_MS|school_bootstrap.run2=6.4
+F9PUB|BOOT_MS|school_bootstrap.run3=6.3
+F9PUB|BOOT_MS|search_students_global_500=2.1 (rows 54)
+F9PUB|BOOT_MS|get_task_candidates=1.6 (rows 2)
+F9PUB|IDOR_LIVE|tested=5, suspicious=0
+F9PUB|ISO_SUMMARY|checks=10, flagged=0
